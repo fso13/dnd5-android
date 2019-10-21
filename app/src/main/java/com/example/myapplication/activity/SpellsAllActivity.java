@@ -10,7 +10,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -26,6 +28,7 @@ import com.example.myapplication.service.SpellService;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.List;
 
 public class SpellsAllActivity extends Fragment {
@@ -33,7 +36,10 @@ public class SpellsAllActivity extends Fragment {
     private ListView listView;
     private SpellService spellService;
     private SpellAdapter spellAdapter;
-
+    private Spinner spinnerClass;
+    private Spinner spinnerLevel;
+    private static List<String> classes = Arrays.asList("Все", "Колдун", "Бард");
+    private static List<String> level = Arrays.asList("0", "1", "2", "3", "4", "5", "6", "7", "8", "9");
 
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -81,11 +87,23 @@ public class SpellsAllActivity extends Fragment {
                 String infoMessage = spell.toString();
                 intent.putExtra("SPELL_INFO", infoMessage);
 
-                startActivityForResult(intent,0);
+                startActivityForResult(intent, 0);
 
             }
         };
         listView.setOnItemClickListener(itemListener);
+
+
+        spinnerClass = root.findViewById(R.id.spinner1);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this.getActivity(), android.R.layout.simple_spinner_item, classes);
+        adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+        spinnerClass.setAdapter(adapter);
+
+
+        spinnerLevel = root.findViewById(R.id.spinner2);
+        ArrayAdapter<String> adapter2 = new ArrayAdapter<>(this.getActivity(), android.R.layout.simple_spinner_item, level);
+        adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+        spinnerLevel.setAdapter(adapter2);
 
         return root;
     }
@@ -108,6 +126,7 @@ public class SpellsAllActivity extends Fragment {
                 spellAdapter.getFilter().filter(query);
                 return false;
             }
+
             @Override
             public boolean onQueryTextChange(String newText) {
                 System.out.println(newText);
