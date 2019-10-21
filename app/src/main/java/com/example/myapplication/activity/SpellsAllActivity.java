@@ -104,6 +104,18 @@ public class SpellsAllActivity extends Fragment {
         ArrayAdapter<String> adapter2 = new ArrayAdapter<>(this.getActivity(), android.R.layout.simple_spinner_item, level);
         adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         spinnerLevel.setAdapter(adapter2);
+        spinnerLevel.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                spellAdapter.getFilter().filter("level:" + level.get(position));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
 
         return root;
     }
