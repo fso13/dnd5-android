@@ -15,6 +15,7 @@ import android.widget.ListView;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.widget.SearchView;
+import androidx.core.view.MenuItemCompat;
 import androidx.fragment.app.Fragment;
 
 import com.example.myapplication.R;
@@ -25,19 +26,20 @@ import com.example.myapplication.service.SpellService;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.Comparator;
 import java.util.List;
 
 public class SpellsAllActivity extends Fragment {
 
     private ListView listView;
-private SpellService spellService;
-private SpellAdapter spellAdapter;
+    private SpellService spellService;
+    private SpellAdapter spellAdapter;
+
+
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-
+        setHasOptionsMenu(true);
         View root = inflater.inflate(R.layout.activity_spells_all, container, false);
         listView = root.findViewById(R.id.grid_view_spells);
 
@@ -51,13 +53,14 @@ private SpellAdapter spellAdapter;
             spellService = new SpellService(android.text.Html.fromHtml(total.toString()).toString());
 
             List<Spell> spells = spellService.getAll();
-            spells.sort(new Comparator<Spell>() {
-                @Override
-                public int compare(Spell o1, Spell o2) {
-                    return o1.getRu().getName().compareTo(o2.getRu().getName());
-                }
-            });
-            listView.setAdapter(new SpellAdapter(getContext(),0, spellService.getAll()));
+//            spells.sort(new Comparator<Spell>() {
+//                @Override
+//                public int compare(Spell o1, Spell o2) {
+//                    return o1.getRu().getName().compareTo(o2.getRu().getName());
+//                }
+//            });
+            spellAdapter = new SpellAdapter(getContext(), 0, spellService.getAll());
+            listView.setAdapter(spellAdapter);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -70,7 +73,7 @@ private SpellAdapter spellAdapter;
                                     int position, long id) {
                 Intent intent = new Intent(getContext(), SpellActivity.class);
 
-                InfoSpell spell = spellService.getById(position).getRu();
+                InfoSpell spell = spellAdapter.getItem(position).getRu();
 
                 String nameMessage = spell.getName();
                 intent.putExtra("SPELL_NAME", nameMessage);
@@ -87,16 +90,22 @@ private SpellAdapter spellAdapter;
         return root;
     }
 
+
     @Override
-    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        menu.clear();
         inflater.inflate(R.menu.main, menu);
-        MenuItem mSearch = menu.findItem(R.id.action_search);
-        SearchView mSearchView = (SearchView) mSearch.getActionView();
-        mSearchView.setQueryHint("Search");
-        mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+        MenuItem item = menu.findItem(R.id.action_search);
+        SearchView searchView = new SearchView(((MainActivity) getContext()).getSupportActionBar().getThemedContext());
+        MenuItemCompat.setShowAsAction(item, MenuItemCompat.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW | MenuItemCompat.SHOW_AS_ACTION_IF_ROOM);
+        MenuItemCompat.setActionView(item, searchView);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 System.out.println(query);
+
+                spellAdapter.getFilter().filter(query);
                 return false;
             }
             @Override
@@ -104,57 +113,16 @@ private SpellAdapter spellAdapter;
                 System.out.println(newText);
 
                 spellAdapter.getFilter().filter(newText);
-                return true;
+                return false;
             }
         });
+        searchView.setOnClickListener(new View.OnClickListener() {
+                                          @Override
+                                          public void onClick(View v) {
+
+                                          }
+                                      }
+        );
     }
 
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//
-////        Toolbar myToolbar = findViewById(R.id.toolbar);
-////        setSupportActionBar(myToolbar);
-////        getSupportActionBar().setDisplayShowTitleEnabled(false);
-//
-//
-//        setContentView(R.layout.activity_spells_all);
-//        listView = findViewById(R.id.grid_view_spells);
-//
-//
-//        StringBuilder total = new StringBuilder();
-//
-//        try {
-//            BufferedReader r = new BufferedReader(new InputStreamReader(getResources().openRawResource(R.raw.spells)));
-//            for (String line; (line = r.readLine()) != null; ) {
-//                total.append(line).append('\n');
-//            }
-//            spellService = new SpellService(android.text.Html.fromHtml(total.toString()).toString());
-//            listView.setAdapter(new SpellAdapter(this, spellService.getAll()));
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//
-//        AdapterView.OnItemClickListener itemListener = new AdapterView.OnItemClickListener() {
-//
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View v,
-//                                    int position, long id) {
-//                Intent intent = new Intent(getApplicationContext(), SpellActivity.class);
-//
-//                InfoSpell spell = spellService.getById(position).getRu();
-//
-//                String nameMessage = spell.getName();
-//                intent.putExtra("SPELL_NAME", nameMessage);
-//
-//                String infoMessage = spell.toString();
-//                intent.putExtra("SPELL_INFO", infoMessage);
-//
-//                startActivity(intent);
-//
-//            }
-//        };
-//        listView.setOnItemClickListener(itemListener);
-//    }
 }
