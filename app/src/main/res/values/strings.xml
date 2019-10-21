@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">D&amp;D 5 spells</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Бардовский университет</string>
+    <string name="nav_header_subtitle">13laughingman13@gmail.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+
+    <string name="menu_home">Все заклинания</string>
+
+
+    <string name="appbar_scrolling_view_behavior" translatable="false">com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior</string>
+
+
+</resources>
