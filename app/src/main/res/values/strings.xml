@@ -7,6 +7,8 @@
     <string name="nav_header_desc">Navigation header</string>
 
     <string name="menu_home">Все заклинания</string>
+    <string name="spinner2">Класс</string>
+    <string name="spinner1">Уровень</string>
 
 
     <string name="appbar_scrolling_view_behavior" translatable="false">com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior</string>
