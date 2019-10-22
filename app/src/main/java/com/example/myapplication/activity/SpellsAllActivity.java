@@ -103,11 +103,10 @@ public class SpellsAllActivity extends Fragment {
 
 
         Spinner spinnerClass = root.findViewById(R.id.spinner_classes);
-        ArrayAdapter<String> adapterClasses = new ArrayAdapter<>(this.getActivity(), android.R.layout.simple_spinner_item, classes);
-        adapterClasses.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+        ArrayAdapter<String> adapterClasses = new ArrayAdapter<>(this.getActivity(), R.layout.spinner_dropdown_item, classes);
+        adapterClasses.setDropDownViewResource(R.layout.spinner_dropdown_item);
         spinnerClass.setAdapter(adapterClasses);
-        adapterClasses.setDropDownViewResource(R.layout.textview_with_padding_classes);
-
+//        adapterClasses.setDropDownViewResource(R.layout.textview_with_padding_classes);
         spinnerClass.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -121,10 +120,10 @@ public class SpellsAllActivity extends Fragment {
         });
 
         Spinner spinnerLevel = root.findViewById(R.id.spinner_level);
-        ArrayAdapter<String> adapterLevel = new ArrayAdapter<>(this.getActivity(), android.R.layout.simple_spinner_item, level);
-        adapterLevel.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+        ArrayAdapter<String> adapterLevel = new ArrayAdapter<>(this.getActivity(), R.layout.spinner_dropdown_item, level);
+        adapterLevel.setDropDownViewResource(R.layout.spinner_dropdown_item);
         spinnerLevel.setAdapter(adapterLevel);
-        adapterLevel.setDropDownViewResource(R.layout.textview_with_padding_level);
+//        adapterLevel.setDropDownViewResource(R.layout.textview_with_padding_level);
         spinnerLevel.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
