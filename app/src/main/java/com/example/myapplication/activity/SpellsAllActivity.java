@@ -33,11 +33,7 @@ import java.util.List;
 
 public class SpellsAllActivity extends Fragment {
 
-    private ListView listView;
-    private SpellService spellService;
     private SpellAdapter spellAdapter;
-    private Spinner spinnerClass;
-    private Spinner spinnerLevel;
     private static List<String> classes = Arrays.asList("Все", "Колдун", "Бард");
     private static List<String> level = Arrays.asList("Все", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9");
 
@@ -47,7 +43,7 @@ public class SpellsAllActivity extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         setHasOptionsMenu(true);
         View root = inflater.inflate(R.layout.activity_spells_all, container, false);
-        listView = root.findViewById(R.id.grid_view_spells);
+        ListView listView = root.findViewById(R.id.grid_view_spells);
 
         StringBuilder total = new StringBuilder();
 
@@ -56,7 +52,7 @@ public class SpellsAllActivity extends Fragment {
             for (String line; (line = r.readLine()) != null; ) {
                 total.append(line).append('\n');
             }
-            spellService = new SpellService(android.text.Html.fromHtml(total.toString()).toString());
+            SpellService spellService = new SpellService(android.text.Html.fromHtml(total.toString()).toString());
 
             List<Spell> spells = spellService.getAll();
 //            spells.sort(new Comparator<Spell>() {
@@ -94,16 +90,28 @@ public class SpellsAllActivity extends Fragment {
         listView.setOnItemClickListener(itemListener);
 
 
-        spinnerClass = root.findViewById(R.id.spinner1);
+        Spinner spinnerClass = root.findViewById(R.id.spinner1);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this.getActivity(), android.R.layout.simple_spinner_item, classes);
         adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         spinnerClass.setAdapter(adapter);
 
+        spinnerClass.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                spellAdapter.getFilter().filter("class:" + classes.get(position));
+            }
 
-        spinnerLevel = root.findViewById(R.id.spinner2);
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        Spinner spinnerLevel = root.findViewById(R.id.spinner2);
         ArrayAdapter<String> adapter2 = new ArrayAdapter<>(this.getActivity(), android.R.layout.simple_spinner_item, level);
         adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         spinnerLevel.setAdapter(adapter2);
+
         spinnerLevel.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -133,16 +141,12 @@ public class SpellsAllActivity extends Fragment {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                System.out.println(query);
-
                 spellAdapter.getFilter().filter(query);
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                System.out.println(newText);
-
                 spellAdapter.getFilter().filter(newText);
                 return false;
             }
