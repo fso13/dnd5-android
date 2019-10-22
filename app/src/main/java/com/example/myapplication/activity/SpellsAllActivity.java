@@ -39,7 +39,7 @@ public class SpellsAllActivity extends Fragment {
     private Spinner spinnerClass;
     private Spinner spinnerLevel;
     private static List<String> classes = Arrays.asList("Все", "Колдун", "Бард");
-    private static List<String> level = Arrays.asList("0", "1", "2", "3", "4", "5", "6", "7", "8", "9");
+    private static List<String> level = Arrays.asList("Все", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9");
 
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -65,7 +65,7 @@ public class SpellsAllActivity extends Fragment {
 //                    return o1.getRu().getName().compareTo(o2.getRu().getName());
 //                }
 //            });
-            spellAdapter = new SpellAdapter(getContext(), 0, spellService.getAll());
+            spellAdapter = new SpellAdapter(getContext(), spellService.getAll());
             listView.setAdapter(spellAdapter);
 
         } catch (Exception e) {
