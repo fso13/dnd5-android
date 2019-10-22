@@ -29,6 +29,9 @@ public class SpellAdapter extends BaseAdapter implements Filterable {
     private LayoutInflater mInflater;
     private ItemFilter mFilter = new ItemFilter();
 
+    private String classFilterText = "Все";
+    private String levelFilterText = "Все";
+
     public SpellAdapter(Context context, List<Spell> data, Map<Clazz, ClassInfo> map) {
         this.filteredData = data;
         this.originalData = data;
@@ -105,12 +108,15 @@ public class SpellAdapter extends BaseAdapter implements Filterable {
                     }
                 } else if (filterString.length == 2) {
 
-                    if (filterString[0].equals("level") && (filterString[1].equals("Все") || spell.getEn().getLevel().equals(filterString[1]))) {
+                    if (filterString[0].equals("level") && (filterString[1].equals("Все") || spell.getEn().getLevel().equals(filterString[1])) && (classFilterText.equals("Все") || isBelong(classFilterText, spell))) {
                         nlist.add(spell);
+                        levelFilterText = filterString[1];
+
                     }
 
-                    if (filterString[0].equals("class") && (filterString[1].equals("Все") || isBelong(filterString[1], spell))) {
+                    if (filterString[0].equals("class") && (filterString[1].equals("Все") || isBelong(filterString[1], spell)) && (levelFilterText.equals("Все") || spell.getEn().getLevel().equals(levelFilterText))) {
                         nlist.add(spell);
+                        classFilterText = filterString[1];
                     }
                 }
             }
