@@ -32,6 +32,7 @@ public class SpellAdapter extends BaseAdapter implements Filterable {
 
     private String classFilterText = "Все";
     private String levelFilterText = "Все";
+    private String nameFilterText = "";
 
     public SpellAdapter(Context context, List<Spell> data, Map<Clazz, ClassInfo> map) {
         this.filteredData = data;
@@ -105,21 +106,22 @@ public class SpellAdapter extends BaseAdapter implements Filterable {
                 spell = list.get(i);
 
                 if (filterString.length == 1) {
-                    if (spell.getRu().getName().toLowerCase().contains(filterString[0].toLowerCase())) {
-                        nlist.add(spell);
-                    }
+                    nameFilterText = filterString[0].toLowerCase();
                 } else if (filterString.length == 2) {
 
-                    if (filterString[0].equals("level") && (filterString[1].equals("Все") || spell.getEn().getLevel().equals(filterString[1])) && (classFilterText.equals("Все") || isBelong(classFilterText, spell))) {
-                        nlist.add(spell);
+                    if (filterString[0].equals("level")) {
                         levelFilterText = filterString[1];
-
                     }
 
-                    if (filterString[0].equals("class") && (filterString[1].equals("Все") || isBelong(filterString[1], spell)) && (levelFilterText.equals("Все") || spell.getEn().getLevel().equals(levelFilterText))) {
-                        nlist.add(spell);
+                    if (filterString[0].equals("class")) {
                         classFilterText = filterString[1];
                     }
+
+
+                }
+
+                if (filter(spell)) {
+                    nlist.add(spell);
                 }
             }
 
@@ -127,6 +129,11 @@ public class SpellAdapter extends BaseAdapter implements Filterable {
             results.count = nlist.size();
 
             return results;
+        }
+
+        @RequiresApi(api = Build.VERSION_CODES.N)
+        private boolean filter(Spell spell) {
+            return ("".equals(nameFilterText) || spell.getRu().getName().toLowerCase().contains(nameFilterText)) && (levelFilterText.equals("Все") || spell.getEn().getLevel().equals(levelFilterText)) && (classFilterText.equals("Все") || isBelong(classFilterText, spell));
         }
 
         @SuppressWarnings("unchecked")
