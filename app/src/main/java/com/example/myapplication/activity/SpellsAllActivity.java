@@ -106,6 +106,7 @@ public class SpellsAllActivity extends Fragment {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this.getActivity(), android.R.layout.simple_spinner_item, classes);
         adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         spinnerClass.setAdapter(adapter);
+        adapter.setDropDownViewResource(R.layout.textview_with_padding2);
 
         spinnerClass.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -123,7 +124,7 @@ public class SpellsAllActivity extends Fragment {
         ArrayAdapter<String> adapter2 = new ArrayAdapter<>(this.getActivity(), android.R.layout.simple_spinner_item, level);
         adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         spinnerLevel.setAdapter(adapter2);
-
+        adapter2.setDropDownViewResource(R.layout.textview_with_padding);
         spinnerLevel.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
