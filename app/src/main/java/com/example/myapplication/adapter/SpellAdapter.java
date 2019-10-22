@@ -2,6 +2,7 @@ package com.example.myapplication.adapter;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,21 +12,33 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.TextView;
 
+import androidx.annotation.RequiresApi;
+
+import com.example.myapplication.model.ClassInfo;
+import com.example.myapplication.model.Clazz;
 import com.example.myapplication.model.Spell;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class SpellAdapter extends BaseAdapter implements Filterable {
-    private List<Spell> originalData = null;
-    private List<Spell> filteredData = null;
+    private List<Spell> originalData;
+    private List<Spell> filteredData;
+    private Map<Clazz, ClassInfo> map;
     private LayoutInflater mInflater;
     private ItemFilter mFilter = new ItemFilter();
 
-    public SpellAdapter(Context context, List<Spell> data) {
+    public SpellAdapter(Context context, List<Spell> data, Map<Clazz, ClassInfo> map) {
         this.filteredData = data;
         this.originalData = data;
+        this.map = map;
         mInflater = LayoutInflater.from(context);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private boolean isBelong(String filterClass, Spell spell) {
+        return map.get(Clazz.fromRu(filterClass)).getSpells().contains(spell.getEn().getName());
     }
 
     @Override
@@ -67,6 +80,7 @@ public class SpellAdapter extends BaseAdapter implements Filterable {
     }
 
     private class ItemFilter extends Filter {
+        @RequiresApi(api = Build.VERSION_CODES.N)
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
 
@@ -92,6 +106,10 @@ public class SpellAdapter extends BaseAdapter implements Filterable {
                 } else if (filterString.length == 2) {
 
                     if (filterString[0].equals("level") && (filterString[1].equals("Все") || spell.getEn().getLevel().equals(filterString[1]))) {
+                        nlist.add(spell);
+                    }
+
+                    if (filterString[0].equals("class") && (filterString[1].equals("Все") || isBelong(filterString[1], spell))) {
                         nlist.add(spell);
                     }
                 }
