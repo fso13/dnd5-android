@@ -22,6 +22,8 @@ import androidx.fragment.app.Fragment;
 
 import com.example.myapplication.R;
 import com.example.myapplication.adapter.SpellAdapter;
+import com.example.myapplication.model.ClassInfo;
+import com.example.myapplication.model.Clazz;
 import com.example.myapplication.model.InfoSpell;
 import com.example.myapplication.model.Spell;
 import com.example.myapplication.service.SpellService;
@@ -30,11 +32,12 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 public class SpellsAllActivity extends Fragment {
 
     private SpellAdapter spellAdapter;
-    private static List<String> classes = Arrays.asList("Все", "Колдун", "Бард");
+    private static List<String> classes = Clazz.getRu();
     private static List<String> level = Arrays.asList("Все", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9");
 
 
@@ -52,16 +55,24 @@ public class SpellsAllActivity extends Fragment {
             for (String line; (line = r.readLine()) != null; ) {
                 total.append(line).append('\n');
             }
-            SpellService spellService = new SpellService(android.text.Html.fromHtml(total.toString()).toString());
+            List<Spell> spells = SpellService.getAllSpells(android.text.Html.fromHtml(total.toString()).toString());
 
-            List<Spell> spells = spellService.getAll();
 //            spells.sort(new Comparator<Spell>() {
 //                @Override
 //                public int compare(Spell o1, Spell o2) {
 //                    return o1.getRu().getName().compareTo(o2.getRu().getName());
 //                }
 //            });
-            spellAdapter = new SpellAdapter(getContext(), spellService.getAll());
+
+            total = new StringBuilder();
+            r = new BufferedReader(new InputStreamReader(getResources().openRawResource(R.raw.class_spells)));
+            for (String line; (line = r.readLine()) != null; ) {
+                total.append(line).append('\n');
+            }
+
+            Map<Clazz, ClassInfo> map = SpellService.getClassSpells(android.text.Html.fromHtml(total.toString()).toString());
+
+            spellAdapter = new SpellAdapter(getContext(), spells, map);
             listView.setAdapter(spellAdapter);
 
         } catch (Exception e) {
