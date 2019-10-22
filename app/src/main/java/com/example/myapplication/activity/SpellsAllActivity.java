@@ -75,6 +75,7 @@ public class SpellsAllActivity extends Fragment {
             spellAdapter = new SpellAdapter(getContext(), spells, map);
             listView.setAdapter(spellAdapter);
 
+
         } catch (Exception e) {
             e.printStackTrace();
         }

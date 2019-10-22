@@ -1,6 +1,7 @@
 package com.example.myapplication.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.util.TypedValue;
@@ -59,6 +60,7 @@ public class SpellAdapter extends BaseAdapter implements Filterable {
         Spell spell = filteredData.get(position);
         textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
         textView.setTypeface(null, Typeface.BOLD);
+        textView.setTextColor(Color.WHITE);
         textView.setText(spell.getRu().getName());
 
 
