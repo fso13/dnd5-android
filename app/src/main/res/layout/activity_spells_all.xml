@@ -30,23 +30,21 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Spinner
-        android:id="@+id/spinner1"
+        android:id="@+id/spinner_level"
         android:layout_width="182dp"
         android:layout_height="34dp"
         android:layout_marginLeft="15dp"
         android:paddingTop="10dp"
         android:text="@string/spinner1"
-        android:theme="@style/Widget.AppCompat.Spinner.DropDown"
         android:verticalScrollbarPosition="right"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
-        android:id="@+id/spinner2"
+        android:id="@+id/spinner_classes"
         android:layout_width="180dp"
         android:layout_height="34dp"
         android:layout_marginRight="15dp"
-        android:theme="@style/Widget.AppCompat.Spinner.DropDown"
         android:paddingTop="10dp"
         android:text="@string/spinner2"
         android:verticalScrollbarPosition="left"
