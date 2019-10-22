@@ -3,29 +3,29 @@ package com.example.myapplication.adapter;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.util.TypedValue;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
-
-import androidx.annotation.NonNull;
 
 import com.example.myapplication.model.Spell;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SpellAdapter extends ArrayAdapter<Spell> {
+public class SpellAdapter extends BaseAdapter implements Filterable {
+    private List<Spell> originalData = null;
+    private List<Spell> filteredData = null;
+    private LayoutInflater mInflater;
+    private ItemFilter mFilter = new ItemFilter();
 
-    private final Object mLock = new Object();
-    private ArrayList<Spell> mOriginalValues;
-    private SpellFilter mFilter = new SpellFilter();
-
-    public SpellAdapter(@NonNull Context context, int resource, @NonNull List<Spell> objects) {
-        super(context, resource, objects);
-        mFilter.mObjects = objects;
-
+    public SpellAdapter(Context context, List<Spell> data) {
+        this.filteredData = data;
+        this.originalData = data;
+        mInflater = LayoutInflater.from(context);
     }
 
     @Override
@@ -34,13 +34,13 @@ public class SpellAdapter extends ArrayAdapter<Spell> {
         TextView textView;
         if (convertView == null) {
             // if it's not recycled, initialize some attributes
-            textView = new TextView(getContext());
+            textView = new TextView(mInflater.getContext());
             textView.setPadding(8, 8, 8, 8);
         } else {
             textView = (TextView) convertView;
         }
 
-        Spell spell = getItem(position);
+        Spell spell = filteredData.get(position);
         textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
         textView.setTypeface(null, Typeface.BOLD);
         textView.setText(spell.getRu().getName());
@@ -49,101 +49,68 @@ public class SpellAdapter extends ArrayAdapter<Spell> {
         return textView;
     }
 
-    @NonNull
-    @Override
+
+    public int getCount() {
+        return filteredData.size();
+    }
+
+    public Spell getItem(int position) {
+        return filteredData.get(position);
+    }
+
+    public long getItemId(int position) {
+        return position;
+    }
+
     public Filter getFilter() {
         return mFilter;
     }
 
-    class SpellFilter extends Filter {
-        private List<Spell> mObjects;
-
-
+    private class ItemFilter extends Filter {
         @Override
-        protected FilterResults performFiltering(CharSequence prefix) {
-            final FilterResults results = new FilterResults();
+        protected FilterResults performFiltering(CharSequence constraint) {
 
-            if (mOriginalValues == null) {
-                synchronized (mLock) {
-                    mOriginalValues = new ArrayList<>(mObjects);
+
+            String[] filterString = constraint.toString().split(":");
+
+            FilterResults results = new FilterResults();
+
+            final List<Spell> list = originalData;
+
+            int count = list.size();
+            final ArrayList<Spell> nlist = new ArrayList<>(count);
+
+            Spell spell;
+
+            for (int i = 0; i < count; i++) {
+                spell = list.get(i);
+
+                if (filterString.length == 1) {
+                    if (spell.getRu().getName().toLowerCase().contains(filterString[0].toLowerCase())) {
+                        nlist.add(spell);
+                    }
+                } else if (filterString.length == 2) {
+
+                    if (filterString[0].equals("level") && (filterString[1].equals("Все") || spell.getEn().getLevel().equals(filterString[1]))) {
+                        nlist.add(spell);
+                    }
                 }
             }
 
-            if (prefix == null || prefix.length() == 0) {
-                final ArrayList<Spell> list;
-                synchronized (mLock) {
-                    list = new ArrayList<>(mOriginalValues);
-                }
-                results.values = list;
-                results.count = list.size();
-            } else {
-                String prefixString;
-                String propertiesFilter = null;
-                String[] arg = prefix.toString().split(":");
-                if (arg.length == 2) {
-                    propertiesFilter = arg[0];
-                    prefixString = arg[1];
-                } else {
-                    prefixString = prefix.toString().toLowerCase();
-                }
-                final ArrayList<Spell> values;
-                synchronized (mLock) {
-                    values = new ArrayList<>(mOriginalValues);
-                }
-
-                final int count = values.size();
-                final ArrayList<Spell> newValues = new ArrayList<>();
-
-                for (int i = 0; i < count; i++) {
-                    final Spell value = values.get(i);
-
-                    String valueText = null;
-                    if (propertiesFilter == null) {
-                        valueText = value.toString().toLowerCase();
-                    } else {
-                        if (propertiesFilter.equals("level")) {
-                            try {
-
-                                valueText = value.getEn().getLevel().toLowerCase();
-                            } catch (Exception e) {
-                                valueText = " ";
-                                System.out.println(e);
-                            }
-                        }
-                    }
-
-                    // First match against the whole, non-splitted value
-                    if (valueText.startsWith(prefixString)) {
-                        newValues.add(value);
-                    } else {
-                        final String[] words = valueText.split(" ");
-                        for (String word : words) {
-                            if (word.startsWith(prefixString)) {
-                                newValues.add(value);
-                                break;
-                            }
-                        }
-                    }
-                }
-
-                results.values = newValues;
-                results.count = newValues.size();
-            }
+            results.values = nlist;
+            results.count = nlist.size();
 
             return results;
         }
 
-
+        @SuppressWarnings("unchecked")
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
-            mObjects = (List<Spell>) results.values;
-            if (results.count > 0) {
-                notifyDataSetChanged();
-            } else {
-                notifyDataSetInvalidated();
-            }
+            filteredData = (ArrayList<Spell>) results.values;
+            notifyDataSetChanged();
         }
+
     }
-
-
 }
+
+//in your Activity or Fragment where of Adapter is instantiated :
