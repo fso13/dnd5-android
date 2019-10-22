@@ -31,8 +31,8 @@
 
     <Spinner
         android:id="@+id/spinner_level"
-        android:layout_width="182dp"
-        android:layout_height="34dp"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
         android:layout_marginLeft="15dp"
         android:paddingTop="10dp"
         android:text="@string/spinner1"
@@ -42,8 +42,8 @@
 
     <Spinner
         android:id="@+id/spinner_classes"
-        android:layout_width="180dp"
-        android:layout_height="34dp"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
         android:layout_marginRight="15dp"
         android:paddingTop="10dp"
         android:text="@string/spinner2"
