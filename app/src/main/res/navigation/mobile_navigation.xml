@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.example.myapplication.activity.SpellsAllActivity"
+        android:name="com.example.myapplication.fragment.SpellsAllActivity"
         android:label="@string/menu_home"
         tools:layout="@layout/activity_spells_all" />
 

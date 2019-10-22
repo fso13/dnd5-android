@@ -18,7 +18,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.SpellsAllActivity" />
+        <activity android:name=".fragment.SpellsAllActivity" />
         <activity android:name=".activity.SpellActivity" />
     </application>
 

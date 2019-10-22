@@ -20,6 +20,8 @@ import com.example.myapplication.model.Clazz;
 import com.example.myapplication.model.Spell;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
@@ -35,6 +37,14 @@ public class SpellAdapter extends BaseAdapter implements Filterable {
     private String nameFilterText = "";
 
     public SpellAdapter(Context context, List<Spell> data, Map<Clazz, ClassInfo> map) {
+        Collections.sort(data, new Comparator<Spell>() {
+            @Override
+            public int compare(Spell o1, Spell o2) {
+                int c = o1.getEn().getLevel().compareTo(o2.getEn().getLevel());
+                return c == 0 ? o1.getRu().getName().compareTo(o2.getRu().getName()) : c;
+            }
+        });
+
         this.filteredData = data;
         this.originalData = data;
         this.map = map;
