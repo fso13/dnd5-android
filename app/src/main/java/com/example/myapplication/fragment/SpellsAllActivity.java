@@ -68,6 +68,15 @@ public class SpellsAllActivity extends Fragment {
             spellAdapter = new SpellAdapter(getContext(), spells, map);
             listView.setAdapter(spellAdapter);
 
+
+            total = new StringBuilder();
+            r = new BufferedReader(new InputStreamReader(getResources().openRawResource(R.raw.name)));
+            for (String line; (line = r.readLine()) != null; ) {
+                total.append(line).append('\n');
+            }
+            List<Spell> spells2 = SpellService.getAllSpells(spells, total.toString());
+            System.out.println(spells2);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
