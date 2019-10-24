@@ -11,4 +11,9 @@
         android:label="@string/menu_home"
         tools:layout="@layout/activity_spells_all" />
 
+    <fragment
+        android:id="@+id/nav_favorite"
+        android:name="com.example.myapplication.fragment.FavoriteActivity"
+        android:label="@string/menu_favorite"
+        tools:layout="@layout/activity_favorite" />
 </navigation>

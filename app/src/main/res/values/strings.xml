@@ -7,6 +7,7 @@
     <string name="nav_header_desc">Navigation header</string>
 
     <string name="menu_home">Все заклинания</string>
+    <string name="menu_favorite">Закладки</string>
     <string name="spinner2">Класс</string>
     <string name="spinner1">Уровень</string>
 
