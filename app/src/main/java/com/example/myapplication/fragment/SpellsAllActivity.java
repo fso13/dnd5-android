@@ -1,6 +1,8 @@
 package com.example.myapplication.fragment;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -65,7 +67,8 @@ public class SpellsAllActivity extends Fragment {
             }
 
             Map<Clazz, ClassInfo> map = SpellService.getClassSpells(android.text.Html.fromHtml(total.toString()).toString());
-            spellAdapter = new SpellAdapter(getContext(), spells, map);
+            SharedPreferences preferences = getActivity().getPreferences(Context.MODE_PRIVATE);
+            spellAdapter = new SpellAdapter(getContext(), spells, map, preferences, preferences.edit());
             listView.setAdapter(spellAdapter);
 
 
@@ -75,7 +78,6 @@ public class SpellsAllActivity extends Fragment {
                 total.append(line).append('\n');
             }
             List<Spell> spells2 = SpellService.getAllSpells(spells, total.toString());
-            System.out.println(spells2);
 
         } catch (Exception e) {
             e.printStackTrace();

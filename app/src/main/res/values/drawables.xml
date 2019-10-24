@@ -1,3 +1,5 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
     <item name="ic_menu_spells_all" type="drawable">@android:drawable/ic_menu_view</item>
+    <item name="start_on" type="drawable">@android:drawable/star_on</item>
+    <item name="start_off" type="drawable">@android:drawable/star_off</item>
 </resources>
