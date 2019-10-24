@@ -3,13 +3,15 @@ package com.example.myapplication.model;
 public class Spell {
     private InfoSpell en;
     private InfoSpell ru;
+    private boolean isFavorite;
 
     public Spell() {
     }
 
-    public Spell(InfoSpell en, InfoSpell ru) {
+    public Spell(InfoSpell en, InfoSpell ru, boolean isFavorite) {
         this.en = en;
         this.ru = ru;
+        this.isFavorite = isFavorite;
     }
 
     public InfoSpell getEn() {
@@ -26,6 +28,14 @@ public class Spell {
 
     public void setRu(InfoSpell ru) {
         this.ru = ru;
+    }
+
+    public boolean isFavorite() {
+        return isFavorite;
+    }
+
+    public void setFavorite(boolean favorite) {
+        isFavorite = favorite;
     }
 
     @Override

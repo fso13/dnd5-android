@@ -1,6 +1,7 @@
 package com.example.myapplication.adapter;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Build;
@@ -9,12 +10,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.CompoundButton;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 import androidx.annotation.RequiresApi;
+import androidx.core.content.ContextCompat;
 
+import com.example.myapplication.R;
 import com.example.myapplication.model.ClassInfo;
 import com.example.myapplication.model.Clazz;
 import com.example.myapplication.model.Spell;
@@ -31,12 +36,17 @@ public class SpellAdapter extends BaseAdapter implements Filterable {
     private Map<Clazz, ClassInfo> map;
     private LayoutInflater mInflater;
     private ItemFilter mFilter = new ItemFilter();
-
     private String classFilterText = "Все";
     private String levelFilterText = "Все";
     private String nameFilterText = "";
+    private Context context;
+    private SharedPreferences preferences;
+    private SharedPreferences.Editor editor;
 
-    public SpellAdapter(Context context, List<Spell> data, Map<Clazz, ClassInfo> map) {
+    public SpellAdapter(Context context, List<Spell> data, Map<Clazz, ClassInfo> map, SharedPreferences preferences, SharedPreferences.Editor editor) {
+        this.context = context;
+        this.preferences = preferences;
+        this.editor = editor;
         Collections.sort(data, new Comparator<Spell>() {
             @Override
             public int compare(Spell o1, Spell o2) {
@@ -44,10 +54,10 @@ public class SpellAdapter extends BaseAdapter implements Filterable {
                 return c == 0 ? o1.getRu().getName().compareTo(o2.getRu().getName()) : c;
             }
         });
-
         this.filteredData = data;
         this.originalData = data;
         this.map = map;
+
         mInflater = LayoutInflater.from(context);
     }
 
@@ -59,23 +69,61 @@ public class SpellAdapter extends BaseAdapter implements Filterable {
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
 
-        TextView textView;
+        final View view;
+        final ViewHolder viewHolder;
+
         if (convertView == null) {
-            // if it's not recycled, initialize some attributes
-            textView = new TextView(mInflater.getContext());
-            textView.setPadding(8, 8, 8, 8);
+            viewHolder = new ViewHolder();
+            convertView = mInflater.inflate(R.layout.spell_list_view_item_layout, parent, false);
+            viewHolder.textView = convertView.findViewById(R.id.textView2);
+            viewHolder.toggleButton = convertView.findViewById(R.id.toggleButton);
+            convertView.setTag(viewHolder);
+            view = convertView;
+
         } else {
-            textView = (TextView) convertView;
+            viewHolder = (ViewHolder) convertView.getTag();
+            view = convertView;
         }
 
-        Spell spell = filteredData.get(position);
-        textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
-        textView.setTypeface(null, Typeface.BOLD);
-        textView.setTextColor(Color.WHITE);
-        textView.setText(spell.getRu().getName());
+        final Spell spell = filteredData.get(position);
+
+        viewHolder.textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
+        viewHolder.textView.setTypeface(null, Typeface.BOLD);
+        viewHolder.textView.setTextColor(Color.WHITE);
+        viewHolder.textView.setText(spell.getRu().getName());
 
 
-        return textView;
+        viewHolder.toggleButton.setChecked(spell.isFavorite());
+        viewHolder.toggleButton.setTextOff("");
+        viewHolder.toggleButton.setTextOn("");
+
+        spell.setFavorite(preferences.getBoolean(spell.getEn().getName().replace(" ", "_"), spell.isFavorite()));
+        viewHolder.toggleButton.setBackgroundDrawable(ContextCompat.getDrawable(context, spell.isFavorite() ? R.drawable.start_on : R.drawable.start_off));
+        viewHolder.toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    viewHolder.toggleButton.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.start_on));
+                    spell.setFavorite(true);
+                } else {
+                    viewHolder.toggleButton.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.start_off));
+                    spell.setFavorite(false);
+                }
+
+                if (preferences.contains(spell.getEn().getName().replace(" ", "_"))) {
+                    editor.remove(spell.getEn().getName().replace(" ", "_"));
+                }
+                editor.putBoolean(spell.getEn().getName().replace(" ", "_"), spell.isFavorite());
+                editor.commit();
+            }
+        });
+
+        return view;
+    }
+
+    private class ViewHolder {
+        TextView textView;
+        ToggleButton toggleButton;
     }
 
 
@@ -94,6 +142,7 @@ public class SpellAdapter extends BaseAdapter implements Filterable {
     public Filter getFilter() {
         return mFilter;
     }
+
 
     private class ItemFilter extends Filter {
         @RequiresApi(api = Build.VERSION_CODES.N)
