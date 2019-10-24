@@ -41,12 +41,10 @@ public class SpellAdapter extends BaseAdapter implements Filterable {
     private String nameFilterText = "";
     private Context context;
     private SharedPreferences preferences;
-    private SharedPreferences.Editor editor;
 
-    public SpellAdapter(Context context, List<Spell> data, Map<Clazz, ClassInfo> map, SharedPreferences preferences, SharedPreferences.Editor editor) {
+    public SpellAdapter(Context context, List<Spell> data, Map<Clazz, ClassInfo> map, SharedPreferences preferences) {
         this.context = context;
         this.preferences = preferences;
-        this.editor = editor;
         Collections.sort(data, new Comparator<Spell>() {
             @Override
             public int compare(Spell o1, Spell o2) {
@@ -97,24 +95,34 @@ public class SpellAdapter extends BaseAdapter implements Filterable {
         viewHolder.toggleButton.setTextOff("");
         viewHolder.toggleButton.setTextOn("");
 
-        spell.setFavorite(preferences.getBoolean(spell.getEn().getName().replace(" ", "_"), spell.isFavorite()));
+        final String key = spell.getRu().getName().replace(" ", "_");
+        spell.setFavorite(preferences.getBoolean(key, spell.isFavorite()));
         viewHolder.toggleButton.setBackgroundDrawable(ContextCompat.getDrawable(context, spell.isFavorite() ? R.drawable.start_on : R.drawable.start_off));
         viewHolder.toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    viewHolder.toggleButton.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.start_on));
-                    spell.setFavorite(true);
-                } else {
-                    viewHolder.toggleButton.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.start_off));
-                    spell.setFavorite(false);
-                }
+                if (buttonView.isPressed()) {
+                    if (isChecked) {
+                        viewHolder.toggleButton.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.start_on));
+                        spell.setFavorite(true);
+                        if (preferences.contains(key)) {
+                            preferences.edit().remove(key).apply();
+                        }
+                        preferences.edit().putBoolean(key, true).apply();
+                    } else {
+                        viewHolder.toggleButton.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.start_off));
+                        spell.setFavorite(false);
+                        if (preferences.contains(key)) {
+                            preferences.edit().remove(key).apply();
+                        }
+                        preferences.edit().putBoolean(key, false).apply();
+                    }
 
-                if (preferences.contains(spell.getEn().getName().replace(" ", "_"))) {
-                    editor.remove(spell.getEn().getName().replace(" ", "_"));
+                    if (preferences.contains(key)) {
+                        preferences.edit().remove(key).apply();
+                    }
+                    preferences.edit().putBoolean(key, spell.isFavorite()).apply();
                 }
-                editor.putBoolean(spell.getEn().getName().replace(" ", "_"), spell.isFavorite());
-                editor.commit();
             }
         });
 

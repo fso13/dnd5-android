@@ -67,10 +67,6 @@ public class SpellsAllActivity extends Fragment {
             }
 
             Map<Clazz, ClassInfo> map = SpellService.getClassSpells(android.text.Html.fromHtml(total.toString()).toString());
-            SharedPreferences preferences = getActivity().getPreferences(Context.MODE_PRIVATE);
-            spellAdapter = new SpellAdapter(getContext(), spells, map, preferences, preferences.edit());
-            listView.setAdapter(spellAdapter);
-
 
             total = new StringBuilder();
             r = new BufferedReader(new InputStreamReader(getResources().openRawResource(R.raw.name)));
@@ -78,6 +74,10 @@ public class SpellsAllActivity extends Fragment {
                 total.append(line).append('\n');
             }
             List<Spell> spells2 = SpellService.getAllSpells(spells, total.toString());
+
+            SharedPreferences preferences = getActivity().getPreferences(Context.MODE_PRIVATE);
+            spellAdapter = new SpellAdapter(getContext(), spells2, map, preferences);
+            listView.setAdapter(spellAdapter);
 
         } catch (Exception e) {
             e.printStackTrace();
