@@ -5,9 +5,12 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.example.myapplication.R;
+import com.example.myapplication.model.SingleToArray;
 import com.example.myapplication.model.magic.ClassInfo;
 import com.example.myapplication.model.magic.Clazz;
 import com.example.myapplication.model.magic.Spell;
+import com.example.myapplication.model.monster.Monster;
+import com.example.myapplication.model.monster.MonsterList;
 import com.squareup.moshi.JsonAdapter;
 import com.squareup.moshi.Moshi;
 import com.squareup.moshi.Types;
@@ -114,9 +117,40 @@ public class AppModule {
         return application.getApplicationContext().getSharedPreferences("application_preferences", Context.MODE_PRIVATE);
     }
 
+
+    @Provides
+    @Singleton
+    public List<Monster> provideListMonsters() {
+        try {
+            StringBuilder total = new StringBuilder();
+            BufferedReader r = new BufferedReader(new InputStreamReader(application.getResources().openRawResource(R.raw.monsters)));
+            for (String line; (line = r.readLine()) != null; ) {
+                total.append(line).append('\n');
+            }
+            List<Monster> monsters = SpellService.getAllMonsters(android.text.Html.fromHtml(total.toString()).toString());
+
+
+            Collections.sort(monsters, new Comparator<Monster>() {
+                @Override
+                public int compare(Monster o1, Monster o2) {
+                    return o1.getName().compareTo(o2.getName());
+                }
+            });
+
+            return monsters;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
+
     static class SpellService {
         private static final Pattern PATTERN = Pattern.compile("[А-я]", Pattern.MULTILINE);
         private static Type listSpellType = Types.newParameterizedType(List.class, Spell.class);
+        private static Type listMonsterType = Types.newParameterizedType(MonsterList.class);
         private static Type mapStringSpellsType = Types.newParameterizedType(Map.class, Clazz.class, ClassInfo.class);
 
         static List<Spell> getAllSpells(String json) throws IOException {
@@ -124,6 +158,13 @@ public class AppModule {
 
             JsonAdapter<List<Spell>> jsonAdapter = moshi.adapter(listSpellType);
             return jsonAdapter.fromJson(json);
+        }
+
+        static List<Monster> getAllMonsters(String json) throws IOException {
+            Moshi moshi = new Moshi.Builder().add(SingleToArray.Adapter.FACTORY).build();
+
+            JsonAdapter<MonsterList> jsonAdapter = moshi.adapter(listMonsterType);
+            return jsonAdapter.fromJson(json).getDataList();
         }
 
         static Map<Clazz, ClassInfo> getClassSpells(String json) throws IOException {

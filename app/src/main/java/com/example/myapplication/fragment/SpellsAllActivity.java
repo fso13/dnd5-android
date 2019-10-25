@@ -31,6 +31,7 @@ import com.example.myapplication.model.magic.ClassInfo;
 import com.example.myapplication.model.magic.Clazz;
 import com.example.myapplication.model.magic.InfoSpell;
 import com.example.myapplication.model.magic.Spell;
+import com.example.myapplication.model.monster.Monster;
 
 import java.util.Arrays;
 import java.util.List;
@@ -49,6 +50,9 @@ public class SpellsAllActivity extends Fragment {
     @Inject
     Map<Clazz, ClassInfo> clazzMap;
     private SpellAdapter spellAdapter;
+
+    @Inject
+    List<Monster> monsters;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
