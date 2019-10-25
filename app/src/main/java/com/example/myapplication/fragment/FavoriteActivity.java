@@ -43,15 +43,13 @@ public class FavoriteActivity extends Fragment {
 
     private static List<String> classes = Clazz.getRu();
     private static List<String> level = Arrays.asList("Все", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9");
-    private SpellAdapter spellAdapter;
-
     @Inject
     SharedPreferences preferences;
     @Inject
     List<Spell> spells;
-
     @Inject
     Map<Clazz, ClassInfo> clazzMap;
+    private SpellAdapter spellAdapter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -68,16 +66,15 @@ public class FavoriteActivity extends Fragment {
         ListView listView = root.findViewById(R.id.grid_view_spells);
 
 
-
-            List<Spell> spells3 = new ArrayList<>();
+        List<Spell> spells3 = new ArrayList<>();
         for (Spell s : spells) {
-                if (s.isFavorite()) {
-                    spells3.add(s);
-                }
+            if (s.isFavorite()) {
+                spells3.add(s);
             }
+        }
 
         spellAdapter = new SpellAdapter(getContext(), spells3, clazzMap, preferences);
-            listView.setAdapter(spellAdapter);
+        listView.setAdapter(spellAdapter);
 
         AdapterView.OnItemClickListener itemListener = new AdapterView.OnItemClickListener() {
 
@@ -159,5 +156,6 @@ public class FavoriteActivity extends Fragment {
                                       }
         );
     }
+
 
 }

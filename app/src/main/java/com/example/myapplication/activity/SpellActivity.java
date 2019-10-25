@@ -33,7 +33,7 @@ public class SpellActivity extends AppCompatActivity {
         info.setText(bundle.getString("SPELL_INFO"));
     }
 
-    public boolean onOptionsItemSelected(MenuItem item){
+    public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             finish();
             return true;

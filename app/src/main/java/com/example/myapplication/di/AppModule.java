@@ -12,6 +12,8 @@ import com.example.myapplication.service.SpellService;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
@@ -61,6 +63,15 @@ public class AppModule {
                 final String key = spell.getRu().getName().replace(" ", "_");
                 spell.setFavorite(preferences.getBoolean(key, spell.isFavorite()));
             }
+
+            Collections.sort(spells1, new Comparator<Spell>() {
+                @Override
+                public int compare(Spell o1, Spell o2) {
+                    int c = o1.getEn().getLevel().compareTo(o2.getEn().getLevel());
+                    return c == 0 ? o1.getRu().getName().compareTo(o2.getRu().getName()) : c;
+                }
+            });
+
             return spells1;
 
         } catch (Exception e) {

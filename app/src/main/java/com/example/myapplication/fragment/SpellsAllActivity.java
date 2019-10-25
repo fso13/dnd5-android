@@ -40,17 +40,15 @@ import javax.inject.Inject;
 
 public class SpellsAllActivity extends Fragment {
 
-    private SpellAdapter spellAdapter;
     private static List<String> classes = Clazz.getRu();
     private static List<String> level = Arrays.asList("Все", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9");
-
     @Inject
     SharedPreferences preferences;
     @Inject
     List<Spell> spells;
-
     @Inject
     Map<Clazz, ClassInfo> clazzMap;
+    private SpellAdapter spellAdapter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -157,11 +155,11 @@ public class SpellsAllActivity extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
 
+        for (Spell spell : spells) {
+            final String key = spell.getRu().getName().replace(" ", "_");
+            preferences.edit().remove(key).apply();
+            preferences.edit().putBoolean(key, spell.isFavorite()).apply();
+        }
 
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
     }
 }
