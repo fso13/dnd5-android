@@ -32,7 +32,9 @@ public class Monster {
     @SingleToArray
     private List<Trait> trait;
     @SingleToArray
-    private List<Action> action;
+    private List<Trait> action;
+
+    private boolean isFavorite;
 
     public String getName() {
         return name;
@@ -194,11 +196,59 @@ public class Monster {
         this.trait = trait;
     }
 
-    public List<Action> getAction() {
+    public List<Trait> getAction() {
         return action;
     }
 
-    public void setAction(List<Action> action) {
+    public void setAction(List<Trait> action) {
         this.action = action;
+    }
+
+    public boolean isFavorite() {
+        return isFavorite;
+    }
+
+    public void setFavorite(boolean favorite) {
+        isFavorite = favorite;
+    }
+
+    public String getInfo1() {
+        return "Класс защиты:" + ac + '\n' +
+                "ХП:" + hp + '\n' +
+                "Скорость:" + speed;
+    }
+
+    public String getInfo2() {
+        return "Сила:" + str + '\t' +
+                "Ловкость:" + dex + '\t' +
+                "Телосложение:" + con + '\t' +
+                "Интеллект:" + intilect + '\t' +
+                "Мудрость:" + wis + '\t' +
+                "Харизма:" + cha;
+    }
+
+    public String getText() {
+        StringBuilder r = new StringBuilder(fiction + '\n' +
+                "Размер: " + size + '\n' +
+                "Тип: " + type + '(' + sType + ")\n" +
+                "Мировозрение: " + alignment + '\n' +
+                "Пассивное восприятие: " + passive + '\n' +
+                "Языки: " + languages + '\n' +
+                "Сложность: " + cr + '\n');
+        if (trait != null) {
+            r.append("Черты:").append('\n');
+            for (Trait t : trait) {
+                r.append(t.toString());
+            }
+        }
+
+        if (action != null) {
+            r.append("Действия:").append('\n');
+            for (Trait a : action) {
+                r.append(a.toString());
+            }
+        }
+
+        return r.toString();
     }
 }

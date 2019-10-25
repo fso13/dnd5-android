@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.example.myapplication.R;
+import com.example.myapplication.adapter.MonsterAdapter;
 import com.example.myapplication.model.SingleToArray;
 import com.example.myapplication.model.magic.ClassInfo;
 import com.example.myapplication.model.magic.Clazz;
@@ -122,6 +123,8 @@ public class AppModule {
     @Singleton
     public List<Monster> provideListMonsters() {
         try {
+            SharedPreferences preferences = application.getApplicationContext().getSharedPreferences("application_preferences", Context.MODE_PRIVATE);
+
             StringBuilder total = new StringBuilder();
             BufferedReader r = new BufferedReader(new InputStreamReader(application.getResources().openRawResource(R.raw.monsters)));
             for (String line; (line = r.readLine()) != null; ) {
@@ -129,6 +132,10 @@ public class AppModule {
             }
             List<Monster> monsters = SpellService.getAllMonsters(android.text.Html.fromHtml(total.toString()).toString());
 
+            for (Monster monster : monsters) {
+                final String key = "MONSTER_" + monster.getName().replace(" ", "_");
+                monster.setFavorite(preferences.getBoolean(key, monster.isFavorite()));
+            }
 
             Collections.sort(monsters, new Comparator<Monster>() {
                 @Override
@@ -145,7 +152,12 @@ public class AppModule {
         return null;
     }
 
+    @Provides
+    @Singleton
+    public MonsterAdapter monsterAdapterAll() {
+        return new MonsterAdapter(application, provideListMonsters());
 
+    }
 
     static class SpellService {
         private static final Pattern PATTERN = Pattern.compile("[А-я]", Pattern.MULTILINE);

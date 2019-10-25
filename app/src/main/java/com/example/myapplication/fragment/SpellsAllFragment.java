@@ -32,14 +32,13 @@ import com.example.myapplication.model.magic.Clazz;
 import com.example.myapplication.model.magic.InfoSpell;
 import com.example.myapplication.model.magic.Spell;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
 
-public class FavoriteActivity extends Fragment {
+public class SpellsAllFragment extends Fragment {
 
     private static List<String> classes = Clazz.getRu();
     private static List<String> level = Arrays.asList("Все", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9");
@@ -61,20 +60,15 @@ public class FavoriteActivity extends Fragment {
     @RequiresApi(api = Build.VERSION_CODES.N)
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+
         setHasOptionsMenu(true);
-        View root = inflater.inflate(R.layout.activity_favorite, container, false);
+        View root = inflater.inflate(R.layout.fragment_spells_all, container, false);
         ListView listView = root.findViewById(R.id.grid_view_spells);
 
 
-        List<Spell> spells3 = new ArrayList<>();
-        for (Spell s : spells) {
-            if (s.isFavorite()) {
-                spells3.add(s);
-            }
-        }
-
-        spellAdapter = new SpellAdapter(getContext(), spells3, clazzMap, preferences);
+        spellAdapter = new SpellAdapter(getContext(), spells, clazzMap);
         listView.setAdapter(spellAdapter);
+
 
         AdapterView.OnItemClickListener itemListener = new AdapterView.OnItemClickListener() {
 
@@ -157,5 +151,15 @@ public class FavoriteActivity extends Fragment {
         );
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
 
+        for (Spell spell : spells) {
+            final String key = spell.getRu().getName().replace(" ", "_");
+            preferences.edit().remove(key).apply();
+            preferences.edit().putBoolean(key, spell.isFavorite()).apply();
+        }
+
+    }
 }

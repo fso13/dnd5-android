@@ -37,7 +37,7 @@
         android:layout_height="40dp"
         android:layout_marginLeft="15dp"
         android:paddingTop="10dp"
-        android:text="@string/spinner1"
+        android:text="@string/spinner_level"
         android:verticalScrollbarPosition="right"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -48,7 +48,7 @@
         android:layout_height="40dp"
         android:layout_marginRight="15dp"
         android:paddingTop="10dp"
-        android:text="@string/spinner2"
+        android:text="@string/spinner_class"
         android:verticalScrollbarPosition="left"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

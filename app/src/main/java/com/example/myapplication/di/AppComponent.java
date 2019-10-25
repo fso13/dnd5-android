@@ -1,8 +1,10 @@
 package com.example.myapplication.di;
 
 import com.example.myapplication.activity.MainActivity;
-import com.example.myapplication.fragment.FavoriteActivity;
-import com.example.myapplication.fragment.SpellsAllActivity;
+import com.example.myapplication.fragment.MonstersAllFragment;
+import com.example.myapplication.fragment.MonstersFavoriteFragment;
+import com.example.myapplication.fragment.SpellsAllFragment;
+import com.example.myapplication.fragment.SpellsFavoriteFragment;
 
 import javax.inject.Singleton;
 
@@ -14,7 +16,11 @@ public interface AppComponent {
 
     void inject(MainActivity target);
 
-    void inject(SpellsAllActivity target);
+    void inject(SpellsAllFragment target);
 
-    void inject(FavoriteActivity favoriteActivity);
+    void inject(SpellsFavoriteFragment target);
+
+    void inject(MonstersAllFragment target);
+
+    void inject(MonstersFavoriteFragment target);
 }
