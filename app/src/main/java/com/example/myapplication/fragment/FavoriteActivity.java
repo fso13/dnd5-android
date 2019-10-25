@@ -27,10 +27,10 @@ import com.example.myapplication.activity.MainActivity;
 import com.example.myapplication.activity.SpellActivity;
 import com.example.myapplication.adapter.SpellAdapter;
 import com.example.myapplication.di.App;
-import com.example.myapplication.model.ClassInfo;
-import com.example.myapplication.model.Clazz;
-import com.example.myapplication.model.InfoSpell;
-import com.example.myapplication.model.Spell;
+import com.example.myapplication.model.magic.ClassInfo;
+import com.example.myapplication.model.magic.Clazz;
+import com.example.myapplication.model.magic.InfoSpell;
+import com.example.myapplication.model.magic.Spell;
 
 import java.util.ArrayList;
 import java.util.Arrays;

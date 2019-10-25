@@ -20,9 +20,9 @@ import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 
 import com.example.myapplication.R;
-import com.example.myapplication.model.ClassInfo;
-import com.example.myapplication.model.Clazz;
-import com.example.myapplication.model.Spell;
+import com.example.myapplication.model.magic.ClassInfo;
+import com.example.myapplication.model.magic.Clazz;
+import com.example.myapplication.model.magic.Spell;
 
 import java.util.ArrayList;
 import java.util.List;

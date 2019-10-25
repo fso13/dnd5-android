@@ -1,4 +1,4 @@
-package com.example.myapplication.model;
+package com.example.myapplication.model.magic;
 
 public class InfoSpell {
     private String name;
