@@ -1,7 +1,6 @@
 package com.example.myapplication.fragment;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -31,28 +30,23 @@ import com.example.myapplication.model.magic.ClassInfo;
 import com.example.myapplication.model.magic.Clazz;
 import com.example.myapplication.model.magic.InfoSpell;
 import com.example.myapplication.model.magic.Spell;
-import com.example.myapplication.model.monster.Monster;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
 
-public class SpellsAllActivity extends Fragment {
+public class SpellsFavoriteFragment extends Fragment {
 
     private static List<String> classes = Clazz.getRu();
     private static List<String> level = Arrays.asList("Все", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9");
-    @Inject
-    SharedPreferences preferences;
     @Inject
     List<Spell> spells;
     @Inject
     Map<Clazz, ClassInfo> clazzMap;
     private SpellAdapter spellAdapter;
-
-    @Inject
-    List<Monster> monsters;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -64,15 +58,20 @@ public class SpellsAllActivity extends Fragment {
     @RequiresApi(api = Build.VERSION_CODES.N)
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-
         setHasOptionsMenu(true);
-        View root = inflater.inflate(R.layout.activity_spells_all, container, false);
+        View root = inflater.inflate(R.layout.activity_favorite, container, false);
         ListView listView = root.findViewById(R.id.grid_view_spells);
 
 
-        spellAdapter = new SpellAdapter(getContext(), spells, clazzMap, preferences);
-        listView.setAdapter(spellAdapter);
+        List<Spell> spells3 = new ArrayList<>();
+        for (Spell s : spells) {
+            if (s.isFavorite()) {
+                spells3.add(s);
+            }
+        }
 
+        spellAdapter = new SpellAdapter(getContext(), spells3, clazzMap);
+        listView.setAdapter(spellAdapter);
 
         AdapterView.OnItemClickListener itemListener = new AdapterView.OnItemClickListener() {
 
@@ -155,15 +154,5 @@ public class SpellsAllActivity extends Fragment {
         );
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
 
-        for (Spell spell : spells) {
-            final String key = spell.getRu().getName().replace(" ", "_");
-            preferences.edit().remove(key).apply();
-            preferences.edit().putBoolean(key, spell.isFavorite()).apply();
-        }
-
-    }
 }

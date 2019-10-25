@@ -6,14 +6,17 @@
     <string name="nav_header_subtitle">13laughingman13@gmail.com</string>
     <string name="nav_header_desc">Navigation header</string>
 
-    <string name="menu_home">Все заклинания</string>
-    <string name="menu_favorite">Закладки</string>
-    <string name="spinner2">Класс</string>
-    <string name="spinner1">Уровень</string>
+    <string name="menu_all_spells">Заклинания</string>
+    <string name="menu_favorite_spells">Любимые заклинания</string>
+    <string name="menu_all_monsters">Монстры</string>
+    <string name="menu_favorite_monsters">Любимые монстры</string>
+
+    <string name="spinner_class">Класс</string>
+    <string name="spinner_level">Уровень</string>
 
 
     <string name="appbar_scrolling_view_behavior" translatable="false">com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior</string>
-    <string name="search">Search</string>
+    <string name="search_spells">Search</string>
 
 
 </resources>

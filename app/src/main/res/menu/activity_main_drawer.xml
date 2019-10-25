@@ -5,15 +5,27 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_home"
+            android:id="@+id/nav_all_spells"
             android:icon="@drawable/ic_menu_spells_all"
             android:textColor="@color/textColor"
-            android:title="@string/menu_home" />
+            android:title="@string/menu_all_spells" />
 
         <item
-            android:id="@+id/nav_favorite"
+            android:id="@+id/nav_favorite_spells"
             android:icon="@drawable/ic_menu_favorite"
             android:textColor="@color/textColor"
-            android:title="@string/menu_favorite" />
+            android:title="@string/menu_favorite_spells" />
+
+        <item
+            android:id="@+id/nav_all_monsters"
+            android:icon="@drawable/ic_menu_spells_all"
+            android:textColor="@color/textColor"
+            android:title="@string/menu_all_monsters" />
+
+        <item
+            android:id="@+id/nav_favorite_monsters"
+            android:icon="@drawable/ic_menu_favorite"
+            android:textColor="@color/textColor"
+            android:title="@string/menu_favorite_monsters" />
     </group>
 </menu>

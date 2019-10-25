@@ -19,37 +19,24 @@ import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 
 import com.example.myapplication.R;
-import com.example.myapplication.model.magic.ClassInfo;
-import com.example.myapplication.model.magic.Clazz;
-import com.example.myapplication.model.magic.Spell;
+import com.example.myapplication.model.monster.Monster;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-public class SpellAdapter extends BaseAdapter implements Filterable {
-    private List<Spell> originalData;
-    private List<Spell> filteredData;
-    private Map<Clazz, ClassInfo> map;
+public class MonsterAdapter extends BaseAdapter implements Filterable {
+    private List<Monster> originalData;
+    private List<Monster> filteredData;
     private LayoutInflater mInflater;
     private ItemFilter mFilter = new ItemFilter();
-    private String classFilterText = "Все";
-    private String levelFilterText = "Все";
-    private String nameFilterText = "";
     private Context context;
 
-    public SpellAdapter(Context context, List<Spell> data, Map<Clazz, ClassInfo> map) {
+    public MonsterAdapter(Context context, List<Monster> data) {
         this.context = context;
         this.filteredData = data;
         this.originalData = data;
-        this.map = map;
 
         mInflater = LayoutInflater.from(context);
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    private boolean isBelong(String filterClass, Spell spell) {
-        return map.get(Clazz.fromRu(filterClass)).getSpells().contains(spell.getEn().getName());
     }
 
     @Override
@@ -71,30 +58,30 @@ public class SpellAdapter extends BaseAdapter implements Filterable {
             view = convertView;
         }
 
-        final Spell spell = filteredData.get(position);
+        final Monster monster = filteredData.get(position);
 
         viewHolder.textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
         viewHolder.textView.setTypeface(null, Typeface.BOLD);
         viewHolder.textView.setTextColor(Color.WHITE);
-        viewHolder.textView.setText(spell.getRu().getName());
+        viewHolder.textView.setText(monster.getName());
 
 
-        viewHolder.toggleButton.setChecked(spell.isFavorite());
+        viewHolder.toggleButton.setChecked(monster.isFavorite());
         viewHolder.toggleButton.setTextOff("");
         viewHolder.toggleButton.setTextOn("");
 
-        viewHolder.toggleButton.setBackgroundDrawable(ContextCompat.getDrawable(context, spell.isFavorite() ? R.drawable.start_on : R.drawable.start_off));
+        viewHolder.toggleButton.setBackgroundDrawable(ContextCompat.getDrawable(context, monster.isFavorite() ? R.drawable.start_on : R.drawable.start_off));
         viewHolder.toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (buttonView.isPressed()) {
                     if (isChecked) {
                         viewHolder.toggleButton.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.start_on));
-                        spell.setFavorite(true);
+                        monster.setFavorite(true);
 
                     } else {
                         viewHolder.toggleButton.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.start_off));
-                        spell.setFavorite(false);
+                        monster.setFavorite(false);
                     }
 
                 }
@@ -108,7 +95,7 @@ public class SpellAdapter extends BaseAdapter implements Filterable {
         return filteredData.size();
     }
 
-    public Spell getItem(int position) {
+    public Monster getItem(int position) {
         return filteredData.get(position);
     }
 
@@ -129,39 +116,19 @@ public class SpellAdapter extends BaseAdapter implements Filterable {
         @RequiresApi(api = Build.VERSION_CODES.N)
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
-
-
-            String[] filterString = constraint.toString().split(":");
-
             FilterResults results = new FilterResults();
 
-            final List<Spell> list = originalData;
+            final List<Monster> list = originalData;
 
             int count = list.size();
-            final ArrayList<Spell> nlist = new ArrayList<>(count);
+            final ArrayList<Monster> nlist = new ArrayList<>(count);
 
-            Spell spell;
+            Monster monster;
 
             for (int i = 0; i < count; i++) {
-                spell = list.get(i);
-
-                if (filterString.length == 1) {
-                    nameFilterText = filterString[0].toLowerCase();
-                } else if (filterString.length == 2) {
-
-                    if (filterString[0].equals("level")) {
-                        levelFilterText = filterString[1];
-                    }
-
-                    if (filterString[0].equals("class")) {
-                        classFilterText = filterString[1];
-                    }
-
-
-                }
-
-                if (filter(spell)) {
-                    nlist.add(spell);
+                monster = list.get(i);
+                if ("".equals(constraint.toString()) || monster.getName().toLowerCase().contains(constraint.toString())) {
+                    nlist.add(monster);
                 }
             }
 
@@ -171,15 +138,10 @@ public class SpellAdapter extends BaseAdapter implements Filterable {
             return results;
         }
 
-        @RequiresApi(api = Build.VERSION_CODES.N)
-        private boolean filter(Spell spell) {
-            return ("".equals(nameFilterText) || spell.getRu().getName().toLowerCase().contains(nameFilterText)) && (levelFilterText.equals("Все") || spell.getEn().getLevel().equals(levelFilterText)) && (classFilterText.equals("Все") || isBelong(classFilterText, spell));
-        }
-
         @SuppressWarnings("unchecked")
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
-            filteredData = (ArrayList<Spell>) results.values;
+            filteredData = (ArrayList<Monster>) results.values;
             notifyDataSetChanged();
         }
 
