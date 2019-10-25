@@ -1,6 +1,5 @@
 package com.example.myapplication.fragment;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
@@ -17,6 +16,7 @@ import android.widget.ListView;
 import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.widget.SearchView;
 import androidx.core.view.MenuItemCompat;
@@ -26,24 +26,39 @@ import com.example.myapplication.R;
 import com.example.myapplication.activity.MainActivity;
 import com.example.myapplication.activity.SpellActivity;
 import com.example.myapplication.adapter.SpellAdapter;
+import com.example.myapplication.di.App;
 import com.example.myapplication.model.ClassInfo;
 import com.example.myapplication.model.Clazz;
 import com.example.myapplication.model.InfoSpell;
 import com.example.myapplication.model.Spell;
-import com.example.myapplication.service.SpellService;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+
+import javax.inject.Inject;
 
 public class FavoriteActivity extends Fragment {
 
     private static List<String> classes = Clazz.getRu();
     private static List<String> level = Arrays.asList("Все", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9");
     private SpellAdapter spellAdapter;
+
+    @Inject
+    SharedPreferences preferences;
+    @Inject
+    List<Spell> spells;
+
+    @Inject
+    Map<Clazz, ClassInfo> clazzMap;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        ((App) getActivity().getApplication()).getComponent().inject(this);
+
+    }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -52,33 +67,10 @@ public class FavoriteActivity extends Fragment {
         View root = inflater.inflate(R.layout.activity_favorite, container, false);
         ListView listView = root.findViewById(R.id.grid_view_spells);
 
-        StringBuilder total = new StringBuilder();
 
-        try {
-            BufferedReader r = new BufferedReader(new InputStreamReader(getResources().openRawResource(R.raw.spells)));
-            for (String line; (line = r.readLine()) != null; ) {
-                total.append(line).append('\n');
-            }
-            List<Spell> spells = SpellService.getAllSpells(android.text.Html.fromHtml(total.toString()).toString());
-            total = new StringBuilder();
-            r = new BufferedReader(new InputStreamReader(getResources().openRawResource(R.raw.class_spells)));
-            for (String line; (line = r.readLine()) != null; ) {
-                total.append(line).append('\n');
-            }
-
-            Map<Clazz, ClassInfo> map = SpellService.getClassSpells(android.text.Html.fromHtml(total.toString()).toString());
-
-            total = new StringBuilder();
-            r = new BufferedReader(new InputStreamReader(getResources().openRawResource(R.raw.name)));
-            for (String line; (line = r.readLine()) != null; ) {
-                total.append(line).append('\n');
-            }
-            List<Spell> spells2 = SpellService.getAllSpells(spells, total.toString());
-
-            SharedPreferences preferences = getActivity().getPreferences(Context.MODE_PRIVATE);
 
             List<Spell> spells3 = new ArrayList<>();
-            for (Spell s : spells2) {
+        for (Spell s : spells) {
                 final String key = s.getRu().getName().replace(" ", "_");
                 s.setFavorite(preferences.getBoolean(key, s.isFavorite()));
                 if (s.isFavorite()) {
@@ -86,12 +78,8 @@ public class FavoriteActivity extends Fragment {
                 }
             }
 
-            spellAdapter = new SpellAdapter(getContext(), spells3, map, preferences);
+        spellAdapter = new SpellAdapter(getContext(), spells3, clazzMap, preferences);
             listView.setAdapter(spellAdapter);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
         AdapterView.OnItemClickListener itemListener = new AdapterView.OnItemClickListener() {
 
