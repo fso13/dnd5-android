@@ -41,7 +41,7 @@ public class AppModule {
     @Singleton
     public List<Spell> provideListSpells() {
         try {
-
+            SharedPreferences preferences = application.getApplicationContext().getSharedPreferences("application_preferences", Context.MODE_PRIVATE);
             StringBuilder total = new StringBuilder();
             BufferedReader r = new BufferedReader(new InputStreamReader(application.getResources().openRawResource(R.raw.spells)));
             for (String line; (line = r.readLine()) != null; ) {
@@ -54,8 +54,14 @@ public class AppModule {
             for (String line; (line = r.readLine()) != null; ) {
                 total.append(line).append('\n');
             }
-            return SpellService.getAllSpells(spells, total.toString());
+            List<Spell> spells1 = SpellService.getAllSpells(spells, total.toString());
 
+
+            for (Spell spell : spells1) {
+                final String key = spell.getRu().getName().replace(" ", "_");
+                spell.setFavorite(preferences.getBoolean(key, spell.isFavorite()));
+            }
+            return spells1;
 
         } catch (Exception e) {
             e.printStackTrace();
