@@ -71,8 +71,6 @@ public class FavoriteActivity extends Fragment {
 
             List<Spell> spells3 = new ArrayList<>();
         for (Spell s : spells) {
-                final String key = s.getRu().getName().replace(" ", "_");
-                s.setFavorite(preferences.getBoolean(key, s.isFavorite()));
                 if (s.isFavorite()) {
                     spells3.add(s);
                 }
