@@ -1,51 +1,204 @@
 package com.example.myapplication.model.monster;
 
+import com.example.myapplication.model.SingleToArray;
+import com.squareup.moshi.Json;
+
+import java.util.List;
+
 public class Monster {
-//
-//      "name": "Ааракокра (Aarakocra)",
-//              "image": "aarakocra.jpg",
-//              "fiction": "<p>Ааракокры населяют Воющий Вихрь, бесконечный шторм могучих ветров и дождей, который окружает царство Аакуа в Стихийном Плане Воздуха. Осуществляя воздушное патрулирование, эти птицеподобные гуманоиды охраняют воздушные границы своего дома от захватчиков из Стихийного Плана Земли, своих заклятых врагов — горгулий.</p> <p> <b> <i>Враги Стихийного Зла.</b> </i> На службе у Воздушных Герцогов Аакуы ааракокры разведывают планы в поисках храмов Стихийного Зла. Они шпионят за злыми стихийными существами, а затем либо вступают с ними в бой, либо возвращаются с докладом к герцогам.</p> <p>На Материальном Плане ааракокры возводят гнёзда на вершинах самых высоких гор, особенно на пиках вблизи порталов, ведущих на Стихийный План Воздуха. С этих высот ааракокры следят за признаками стихийного вторжения, а также за малейшими угрозами для своего домашнего плана. Ааракокры предпочитают жить сами по себе, как перекати-поле, скитаясь по области в течение многих лет, защищая её от набегов Стихийного Зла.</p> <p>У ааракокр нет представления о политических границах или личной собственности, они не знают цену драгоценным камням, золоту и другим драгоценностям. Всё это для них это ничего не значит. По их мнению, существо должно использовать то, что необходимо, а потом бросить это на ветер, чтобы этим воспользовались другие.</p> <p> <b> <i>Поиск семи осколков.</b> </i> Воздушные Герцоги Аакуы происходят от стихийных существ, называемых ваати, которые некогда правили множеством миров. Существо, известное как Королева Хаоса, появившись, развязало межплановую войну с ваати. Для борьбы с этой угрозой семь героев ваати объединили свои силы, чтобы создать могущественный <i>Жезл Закона</i>. В битве с величайшим генералом королевы, Мишкой Волчьим Пауком, ваати убили Мишку, проткнув его жезлом как копьём. Жезл сломался на семь осколков, которые разлетелись по всей мультивселенной. Ааракокры ищут эти осколки в разных местах, чтобы восстановить то, что теперь известно как <i>Жезл Семи Частей</i>.</p>",
-//              "size": "M",
-//              "type": "гуманоид (ааракокра)",
-//              "source": "MM",
-//              "alignment": "нейтрально-добрый",
-//              "ac": "12",
-//              "hp": "13 (3d8)",
-//              "speed": "4 клетки, летая 10 клеток.",
-//              "str": "10",
-//              "dex": "14",
-//              "con": "10",
-//              "int": "11",
-//              "wis": "12",
-//              "cha": "11",
-//              "skill": "Восприятие +5",
-//              "passive": "15",
-//              "languages": "Ауран, язык Ааракокр",
-//              "cr": "1/4",
-//              "trait": {
-//        "name": "Пикирующая атака",
-//                "text": "Если ааракокра летит и пикирует на расстояние не менее 6 клеток по прямой к цели, а затем попадает по ней рукопашной атакой оружием, атака причиняет цели дополнительно 3 (1d6) урона",
-//                "attack": "Пике||1d6"
-//    },
-//            "action": [
-//    {
-//        "name": "Когти",
-//            "text": "<i>Рукопашная атака оружием:</i> +4 к попаданию, досягаемость 1 клетка, одна цель. <i>Попадание:</i> 4 (1d4+2) Рубящего урона.",
-//            "attack": "Когти|4|1d4+2"
-//    },
-//    {
-//        "name": "Метательное копье",
-//            "text": "<i>Рукопашная или дальнобойная атака оружием:</i> +4 к попаданию, досягаемость 1 клетка или дистанция 6/24 клетки, одна цель. <i>Попадание:</i> 5 (1d6+2) Колющего урона.",
-//            "attack": "Метательное копье|4|1d6+2"
-//    },
-//    {
-//        "name": "Призыв воздушного элементаля",
-//            "text": "Пять ааракокр на расстоянии не далее чем 6 клеток друг от друга могут магическим образом призвать воздушного элементаля. Каждая из них должна использовать свое основное действие и действие движения в течение 3-ех последовательных ходов, чтобы совершить воздушный танец. Пока совершается танец ааракокры должны поддерживать концентрацию, как если бы концентрировались на сотворении заклинания. Когда все ааракокры завершают третий ход танца, элементаль появляется в незанятом пространстве в пределах 12 клеток от ааракокр. Элементаль дружелюбен ааракокрам и подчиняется их вербальным командам. Элеменаль существует 1 час, либо до смерти одного из призывателей, либо до тех пор пока любой из призывателей не освободит его бонусным действием. Призыватель не может исполнить еще один танец до короткого отдыха. Когда элементаль возвращается в Стихийный План Воздуха, все ааракокры в пределах 1 клетки от него могут вернуться вместе с ним."
-//    }
-//      ],
-//              "biom": "MOUNTAIN",
-//              "sType": "гуманоид",
-//              "aSubtypes": [
-//              "ааракокра"
-//              ]
+    private String name;
+    private String fiction;
+    private String size;
+    private String type;
+    private String alignment;
+    private String ac;
+    private String hp;
+    private String speed;
+
+    private String str;
+    private String dex;
+    private String con;
+    @Json(name = "int")
+    private String intilect;
+    private String wis;
+    private String cha;
+
+    private String passive;
+    private String languages;
+    private String cr;
+    private String biom;
+    private String sType;
+
+    @SingleToArray
+    private List<Trait> trait;
+    @SingleToArray
+    private List<Action> action;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getFiction() {
+        return fiction;
+    }
+
+    public void setFiction(String fiction) {
+        this.fiction = fiction;
+    }
+
+    public String getSize() {
+        return size;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getAlignment() {
+        return alignment;
+    }
+
+    public void setAlignment(String alignment) {
+        this.alignment = alignment;
+    }
+
+    public String getAc() {
+        return ac;
+    }
+
+    public void setAc(String ac) {
+        this.ac = ac;
+    }
+
+    public String getHp() {
+        return hp;
+    }
+
+    public void setHp(String hp) {
+        this.hp = hp;
+    }
+
+    public String getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(String speed) {
+        this.speed = speed;
+    }
+
+    public String getStr() {
+        return str;
+    }
+
+    public void setStr(String str) {
+        this.str = str;
+    }
+
+    public String getDex() {
+        return dex;
+    }
+
+    public void setDex(String dex) {
+        this.dex = dex;
+    }
+
+    public String getCon() {
+        return con;
+    }
+
+    public void setCon(String con) {
+        this.con = con;
+    }
+
+    public String getIntilect() {
+        return intilect;
+    }
+
+    public void setIntilect(String intilect) {
+        this.intilect = intilect;
+    }
+
+    public String getWis() {
+        return wis;
+    }
+
+    public void setWis(String wis) {
+        this.wis = wis;
+    }
+
+    public String getCha() {
+        return cha;
+    }
+
+    public void setCha(String cha) {
+        this.cha = cha;
+    }
+
+    public String getPassive() {
+        return passive;
+    }
+
+    public void setPassive(String passive) {
+        this.passive = passive;
+    }
+
+    public String getLanguages() {
+        return languages;
+    }
+
+    public void setLanguages(String languages) {
+        this.languages = languages;
+    }
+
+    public String getCr() {
+        return cr;
+    }
+
+    public void setCr(String cr) {
+        this.cr = cr;
+    }
+
+    public String getBiom() {
+        return biom;
+    }
+
+    public void setBiom(String biom) {
+        this.biom = biom;
+    }
+
+    public String getsType() {
+        return sType;
+    }
+
+    public void setsType(String sType) {
+        this.sType = sType;
+    }
+
+    public List<Trait> getTrait() {
+        return trait;
+    }
+
+    public void setTrait(List<Trait> trait) {
+        this.trait = trait;
+    }
+
+    public List<Action> getAction() {
+        return action;
+    }
+
+    public void setAction(List<Action> action) {
+        this.action = action;
+    }
 }
