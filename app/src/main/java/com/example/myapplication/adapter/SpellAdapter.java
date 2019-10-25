@@ -211,6 +211,8 @@ public class SpellAdapter extends BaseAdapter implements Filterable {
         }
 
     }
+
+
 }
 
 //in your Activity or Fragment where of Adapter is instantiated :

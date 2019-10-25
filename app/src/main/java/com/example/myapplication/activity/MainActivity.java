@@ -1,5 +1,6 @@
 package com.example.myapplication.activity;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.Menu;
 
@@ -12,9 +13,15 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.myapplication.R;
+import com.example.myapplication.di.App;
 import com.google.android.material.navigation.NavigationView;
 
+import javax.inject.Inject;
+
 public class MainActivity extends AppCompatActivity {
+
+    @Inject
+    Context context;
 
     private AppBarConfiguration mAppBarConfiguration;
 
@@ -36,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-
+        ((App) getApplication()).getComponent().inject(this);
     }
 
     @Override

@@ -27,10 +27,10 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment:2.1.0'
     implementation 'androidx.navigation:navigation-ui:2.1.0'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0'
-
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation 'com.squareup.moshi:moshi:1.8.0'
 
+    api 'com.google.dagger:dagger-android:2.25.2'
+    api 'com.google.dagger:dagger-android-support:2.25.2' // if you use the support libraries
+    annotationProcessor 'com.google.dagger:dagger-android-processor:2.25.2'
+    annotationProcessor "com.google.dagger:dagger-compiler:2.25.2"
 }

@@ -1,6 +1,5 @@
 package com.example.myapplication.fragment;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
@@ -17,6 +16,7 @@ import android.widget.ListView;
 import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.widget.SearchView;
 import androidx.core.view.MenuItemCompat;
@@ -26,62 +26,50 @@ import com.example.myapplication.R;
 import com.example.myapplication.activity.MainActivity;
 import com.example.myapplication.activity.SpellActivity;
 import com.example.myapplication.adapter.SpellAdapter;
+import com.example.myapplication.di.App;
 import com.example.myapplication.model.ClassInfo;
 import com.example.myapplication.model.Clazz;
 import com.example.myapplication.model.InfoSpell;
 import com.example.myapplication.model.Spell;
-import com.example.myapplication.service.SpellService;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+
+import javax.inject.Inject;
 
 public class SpellsAllActivity extends Fragment {
 
     private SpellAdapter spellAdapter;
     private static List<String> classes = Clazz.getRu();
     private static List<String> level = Arrays.asList("Все", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9");
+    @Inject
+    SharedPreferences preferences;
+    @Inject
+    List<Spell> spells;
 
+    @Inject
+    Map<Clazz, ClassInfo> clazzMap;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        ((App) getActivity().getApplication()).getComponent().inject(this);
+
+    }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+
         setHasOptionsMenu(true);
         View root = inflater.inflate(R.layout.activity_spells_all, container, false);
         ListView listView = root.findViewById(R.id.grid_view_spells);
 
-        StringBuilder total = new StringBuilder();
 
-        try {
-            BufferedReader r = new BufferedReader(new InputStreamReader(getResources().openRawResource(R.raw.spells)));
-            for (String line; (line = r.readLine()) != null; ) {
-                total.append(line).append('\n');
-            }
-            List<Spell> spells = SpellService.getAllSpells(android.text.Html.fromHtml(total.toString()).toString());
-            total = new StringBuilder();
-            r = new BufferedReader(new InputStreamReader(getResources().openRawResource(R.raw.class_spells)));
-            for (String line; (line = r.readLine()) != null; ) {
-                total.append(line).append('\n');
-            }
+        spellAdapter = new SpellAdapter(getContext(), spells, clazzMap, preferences);
+        listView.setAdapter(spellAdapter);
 
-            Map<Clazz, ClassInfo> map = SpellService.getClassSpells(android.text.Html.fromHtml(total.toString()).toString());
-
-            total = new StringBuilder();
-            r = new BufferedReader(new InputStreamReader(getResources().openRawResource(R.raw.name)));
-            for (String line; (line = r.readLine()) != null; ) {
-                total.append(line).append('\n');
-            }
-            List<Spell> spells2 = SpellService.getAllSpells(spells, total.toString());
-
-            SharedPreferences preferences = getActivity().getPreferences(Context.MODE_PRIVATE);
-            spellAdapter = new SpellAdapter(getContext(), spells2, map, preferences);
-            listView.setAdapter(spellAdapter);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
         AdapterView.OnItemClickListener itemListener = new AdapterView.OnItemClickListener() {
 
@@ -163,5 +151,6 @@ public class SpellsAllActivity extends Fragment {
                                       }
         );
     }
+
 
 }
