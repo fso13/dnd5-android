@@ -25,8 +25,6 @@ import com.example.myapplication.model.Clazz;
 import com.example.myapplication.model.Spell;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
@@ -45,13 +43,6 @@ public class SpellAdapter extends BaseAdapter implements Filterable {
     public SpellAdapter(Context context, List<Spell> data, Map<Clazz, ClassInfo> map, SharedPreferences preferences) {
         this.context = context;
         this.preferences = preferences;
-        Collections.sort(data, new Comparator<Spell>() {
-            @Override
-            public int compare(Spell o1, Spell o2) {
-                int c = o1.getEn().getLevel().compareTo(o2.getEn().getLevel());
-                return c == 0 ? o1.getRu().getName().compareTo(o2.getRu().getName()) : c;
-            }
-        });
         this.filteredData = data;
         this.originalData = data;
         this.map = map;
@@ -95,8 +86,6 @@ public class SpellAdapter extends BaseAdapter implements Filterable {
         viewHolder.toggleButton.setTextOff("");
         viewHolder.toggleButton.setTextOn("");
 
-        final String key = spell.getRu().getName().replace(" ", "_");
-        spell.setFavorite(preferences.getBoolean(key, spell.isFavorite()));
         viewHolder.toggleButton.setBackgroundDrawable(ContextCompat.getDrawable(context, spell.isFavorite() ? R.drawable.start_on : R.drawable.start_off));
         viewHolder.toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -105,35 +94,18 @@ public class SpellAdapter extends BaseAdapter implements Filterable {
                     if (isChecked) {
                         viewHolder.toggleButton.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.start_on));
                         spell.setFavorite(true);
-                        if (preferences.contains(key)) {
-                            preferences.edit().remove(key).apply();
-                        }
-                        preferences.edit().putBoolean(key, true).apply();
+
                     } else {
                         viewHolder.toggleButton.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.start_off));
                         spell.setFavorite(false);
-                        if (preferences.contains(key)) {
-                            preferences.edit().remove(key).apply();
-                        }
-                        preferences.edit().putBoolean(key, false).apply();
                     }
 
-                    if (preferences.contains(key)) {
-                        preferences.edit().remove(key).apply();
-                    }
-                    preferences.edit().putBoolean(key, spell.isFavorite()).apply();
                 }
             }
         });
 
         return view;
     }
-
-    private class ViewHolder {
-        TextView textView;
-        ToggleButton toggleButton;
-    }
-
 
     public int getCount() {
         return filteredData.size();
@@ -151,6 +123,10 @@ public class SpellAdapter extends BaseAdapter implements Filterable {
         return mFilter;
     }
 
+    private class ViewHolder {
+        TextView textView;
+        ToggleButton toggleButton;
+    }
 
     private class ItemFilter extends Filter {
         @RequiresApi(api = Build.VERSION_CODES.N)

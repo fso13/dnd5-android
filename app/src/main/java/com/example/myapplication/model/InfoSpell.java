@@ -2,11 +2,11 @@ package com.example.myapplication.model;
 
 public class InfoSpell {
     private String name;
-    private  String school;
-    private  String level;
-    private  String castingTime;
-    private  String range;
-    private  String components;
+    private String school;
+    private String level;
+    private String castingTime;
+    private String range;
+    private String components;
     private String duration;
     private String text;
     private String source;
@@ -101,14 +101,14 @@ public class InfoSpell {
     @Override
     public String toString() {
         return
-                "Название:  " + name + '\n'+
-                "Школа: " + school + '\n' +
-                "Уровень:   " + level + '\n' +
-                "Время накладывания:    " + castingTime + '\n' +
-                "Дистанция: " + range + '\n' +
-                "Компоненты:    " + components + '\n' +
-                "Длительность:  " + duration + '\n' +
-                "Описание:\n" + text;
+                "Название:  " + name + '\n' +
+                        "Школа: " + school + '\n' +
+                        "Уровень:   " + level + '\n' +
+                        "Время накладывания:    " + castingTime + '\n' +
+                        "Дистанция: " + range + '\n' +
+                        "Компоненты:    " + components + '\n' +
+                        "Длительность:  " + duration + '\n' +
+                        "Описание:\n" + text;
     }
 }
 
