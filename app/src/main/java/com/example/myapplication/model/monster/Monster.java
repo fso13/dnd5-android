@@ -1,7 +1,10 @@
 package com.example.myapplication.model.monster;
 
-import com.example.myapplication.model.SingleToArray;
-import com.squareup.moshi.Json;
+//import com.example.myapplication.model.SingleToArray;
+
+import com.example.myapplication.model.AlwaysListTypeAdapterFactory;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
@@ -18,7 +21,7 @@ public class Monster {
     private String str;
     private String dex;
     private String con;
-    @Json(name = "int")
+    @SerializedName("int")
     private String intilect;
     private String wis;
     private String cha;
@@ -29,9 +32,9 @@ public class Monster {
     private String biom;
     private String sType;
 
-    @SingleToArray
+    @JsonAdapter(AlwaysListTypeAdapterFactory.class)
     private List<Trait> trait;
-    @SingleToArray
+    @JsonAdapter(AlwaysListTypeAdapterFactory.class)
     private List<Trait> action;
 
     private boolean isFavorite;

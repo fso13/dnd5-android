@@ -1,14 +1,15 @@
 package com.example.myapplication.model.monster;
 
-import com.example.myapplication.model.SingleToArray;
+import com.example.myapplication.model.AlwaysListTypeAdapterFactory;
+import com.google.gson.annotations.JsonAdapter;
 
 import java.util.List;
 
 public class Trait {
     private String name;
-    @SingleToArray
+    @JsonAdapter(AlwaysListTypeAdapterFactory.class)
     private List<String> text;
-    @SingleToArray
+    @JsonAdapter(AlwaysListTypeAdapterFactory.class)
     private List<String> attack;
 
     public String getName() {
