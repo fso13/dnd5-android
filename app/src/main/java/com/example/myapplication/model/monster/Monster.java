@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Monster {
     private String name;
-    private String fiction;
+    private String fiction = "";
     private String size;
     private String type;
     private String alignment;
@@ -219,9 +219,9 @@ public class Monster {
     }
 
     public String getInfo2() {
-        return "Сила:" + str + '\t' +
+        return "\nСила:" + str + '\t' +
                 "Ловкость:" + dex + '\t' +
-                "Телосложение:" + con + '\t' +
+                "Телосложение:" + con + '\n' +
                 "Интеллект:" + intilect + '\t' +
                 "Мудрость:" + wis + '\t' +
                 "Харизма:" + cha;
