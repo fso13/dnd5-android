@@ -6,15 +6,14 @@ import android.content.SharedPreferences;
 
 import com.example.myapplication.R;
 import com.example.myapplication.adapter.MonsterAdapter;
-import com.example.myapplication.model.SingleToArray;
 import com.example.myapplication.model.magic.ClassInfo;
 import com.example.myapplication.model.magic.Clazz;
 import com.example.myapplication.model.magic.Spell;
 import com.example.myapplication.model.monster.Monster;
 import com.example.myapplication.model.monster.MonsterList;
-import com.squareup.moshi.JsonAdapter;
-import com.squareup.moshi.Moshi;
-import com.squareup.moshi.Types;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -161,29 +160,29 @@ public class AppModule {
 
     static class SpellService {
         private static final Pattern PATTERN = Pattern.compile("[А-я]", Pattern.MULTILINE);
-        private static Type listSpellType = Types.newParameterizedType(List.class, Spell.class);
-        private static Type listMonsterType = Types.newParameterizedType(MonsterList.class);
-        private static Type mapStringSpellsType = Types.newParameterizedType(Map.class, Clazz.class, ClassInfo.class);
 
         static List<Spell> getAllSpells(String json) throws IOException {
-            Moshi moshi = new Moshi.Builder().build();
-
-            JsonAdapter<List<Spell>> jsonAdapter = moshi.adapter(listSpellType);
-            return jsonAdapter.fromJson(json);
+            Type listType = new TypeToken<List<Spell>>() {
+            }.getType();
+            GsonBuilder builder = new GsonBuilder();
+            Gson gson = builder.create();
+            return gson.fromJson(json, listType);
         }
 
         static List<Monster> getAllMonsters(String json) throws IOException {
-            Moshi moshi = new Moshi.Builder().add(SingleToArray.Adapter.FACTORY).build();
-
-            JsonAdapter<MonsterList> jsonAdapter = moshi.adapter(listMonsterType);
-            return jsonAdapter.fromJson(json).getDataList();
+            GsonBuilder builder = new GsonBuilder();
+            Gson gson = builder.create();
+            return gson.fromJson(json, MonsterList.class).getDataList();
         }
 
         static Map<Clazz, ClassInfo> getClassSpells(String json) throws IOException {
-            Moshi moshi = new Moshi.Builder().build();
+            Type listType = new TypeToken<Map<Clazz, ClassInfo>>() {
+            }.getType();
 
-            JsonAdapter<Map<Clazz, ClassInfo>> jsonAdapter = moshi.adapter(mapStringSpellsType);
-            return jsonAdapter.fromJson(json);
+            GsonBuilder builder = new GsonBuilder();
+            Gson gson = builder.create();
+            return gson.fromJson(json, listType);
+
         }
 
         static List<Spell> getAllSpells(List<Spell> spells, String txt) {
