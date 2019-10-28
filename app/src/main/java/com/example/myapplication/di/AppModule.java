@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.example.myapplication.R;
-import com.example.myapplication.adapter.MonsterAdapter;
 import com.example.myapplication.model.magic.ClassInfo;
 import com.example.myapplication.model.magic.Clazz;
 import com.example.myapplication.model.magic.Spell;
@@ -149,13 +148,6 @@ public class AppModule {
             e.printStackTrace();
         }
         return null;
-    }
-
-    @Provides
-    @Singleton
-    public MonsterAdapter monsterAdapterAll() {
-        return new MonsterAdapter(application, provideListMonsters());
-
     }
 
     static class SpellService {

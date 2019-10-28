@@ -31,6 +31,10 @@ public class MonsterAdapter extends BaseAdapter implements Filterable {
     private ItemFilter mFilter = new ItemFilter();
     private Context context;
 
+    private String biomFilterText = "Все";
+    private String levelFilterText = "Все";
+    private String nameFilterText = "";
+
     public MonsterAdapter(Context context, List<Monster> data) {
         this.context = context;
         this.filteredData = data;

@@ -5,6 +5,7 @@ import java.util.List;
 public class MonsterList {
     private List<Monster> dataList;
 
+
     public List<Monster> getDataList() {
         return dataList;
     }
