@@ -19,6 +19,7 @@ import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 
 import com.example.myapplication.R;
+import com.example.myapplication.model.monster.Biom;
 import com.example.myapplication.model.monster.Monster;
 
 import java.util.ArrayList;
@@ -120,6 +121,8 @@ public class MonsterAdapter extends BaseAdapter implements Filterable {
         @RequiresApi(api = Build.VERSION_CODES.N)
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
+            String[] filterString = constraint.toString().split(":");
+
             FilterResults results = new FilterResults();
 
             final List<Monster> list = originalData;
@@ -127,19 +130,44 @@ public class MonsterAdapter extends BaseAdapter implements Filterable {
             int count = list.size();
             final ArrayList<Monster> nlist = new ArrayList<>(count);
 
-            Monster monster;
+
 
             for (int i = 0; i < count; i++) {
-                monster = list.get(i);
-                if ("".equals(constraint.toString()) || monster.getName().toLowerCase().contains(constraint.toString())) {
+                Monster monster = list.get(i);
+
+                if (filterString.length == 1) {
+                    nameFilterText = filterString[0].toLowerCase();
+                } else if (filterString.length == 2) {
+
+                    if (filterString[0].equals("exp")) {
+                        levelFilterText = filterString[1];
+                    }
+
+                    if (filterString[0].equals("biom")) {
+                        biomFilterText = filterString[1];
+                    }
+
+                }
+
+
+                if (filter(monster)) {
                     nlist.add(monster);
                 }
+
+
             }
 
             results.values = nlist;
             results.count = nlist.size();
 
             return results;
+        }
+
+        @RequiresApi(api = Build.VERSION_CODES.N)
+        private boolean filter(Monster monster) {
+            return ("".equals(nameFilterText) || monster.getName().toLowerCase().contains(nameFilterText)) &&
+                    (levelFilterText.equals("Все") || monster.getCr().equals(levelFilterText)) &&
+                    (biomFilterText.equals("Все") || Biom.fromRu(biomFilterText).name().equals(monster.getBiom()));
         }
 
         @SuppressWarnings("unchecked")

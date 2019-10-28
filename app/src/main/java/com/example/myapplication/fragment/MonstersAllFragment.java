@@ -38,7 +38,7 @@ import javax.inject.Inject;
 public class MonstersAllFragment extends Fragment {
     private static List<String> bioms = Biom.getRu();
     private static List<String> expId;
-    private static Map<String, String> exps = new HashMap<>();
+    public static Map<String, String> exps = new HashMap<>();
 
     static {
         exps.put("Все", "Все");
@@ -171,7 +171,7 @@ public class MonstersAllFragment extends Fragment {
         spinnerClass.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                monsterAdapter.getFilter().filter("exp:" + exps.get(expId.get(position)));
+                monsterAdapter.getFilter().filter("exp:" + expId.get(position));
             }
 
             @Override

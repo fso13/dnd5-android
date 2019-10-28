@@ -2,6 +2,7 @@ package com.example.myapplication.model.monster;
 
 //import com.example.myapplication.model.SingleToArray;
 
+import com.example.myapplication.fragment.MonstersAllFragment;
 import com.example.myapplication.model.AlwaysListTypeAdapterFactory;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -237,7 +238,7 @@ public class Monster {
                 "Мировозрение: " + alignment + '\n' +
                 "Пассивное восприятие: " + passive + '\n' +
                 "Языки: " + languages + '\n' +
-                "Сложность: " + cr + '\n');
+                "Сложность: " + cr + " (" + MonstersAllFragment.exps.get(cr) + ")\n");
         if (trait != null) {
             r.append("Черты:").append('\n');
             for (Trait t : trait) {
