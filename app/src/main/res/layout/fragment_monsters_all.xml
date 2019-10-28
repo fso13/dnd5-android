@@ -11,6 +11,7 @@
         android:id="@+id/grid_view_monsters"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="55dp"
         android:cacheColorHint="#FFFFFF"
         android:divider="@color/colorPrimary"
         android:dividerHeight="1dp"
