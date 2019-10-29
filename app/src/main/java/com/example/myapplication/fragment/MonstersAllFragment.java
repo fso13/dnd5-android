@@ -36,8 +36,8 @@ import java.util.Map;
 import javax.inject.Inject;
 
 public class MonstersAllFragment extends Fragment {
-    private static List<String> bioms = Biom.getRu();
-    private static List<String> expId;
+    public static List<String> bioms = Biom.getRu();
+    public static List<String> expId;
     public static Map<String, String> exps = new HashMap<>();
 
     static {

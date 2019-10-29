@@ -11,7 +11,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -33,7 +35,6 @@ import java.util.List;
 import javax.inject.Inject;
 
 public class MonstersFavoriteFragment extends Fragment {
-
     @Inject
     SharedPreferences preferences;
 
@@ -87,11 +88,44 @@ public class MonstersFavoriteFragment extends Fragment {
         };
         listView.setOnItemClickListener(itemListener);
 
+        Spinner spinnerClass = root.findViewById(R.id.spinner_level);
+
+        ArrayAdapter<String> adapterClasses = new ArrayAdapter<>(this.getActivity(), R.layout.spinner_dropdown_item, MonstersAllFragment.expId);
+        adapterClasses.setDropDownViewResource(R.layout.spinner_dropdown_item);
+        spinnerClass.setAdapter(adapterClasses);
+        spinnerClass.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                monsterAdapter.getFilter().filter("exp:" + MonstersAllFragment.expId.get(position));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        Spinner spinnerBiom = root.findViewById(R.id.spinner_biom);
+        ArrayAdapter<String> adapterLevel = new ArrayAdapter<>(this.getActivity(), R.layout.spinner_dropdown_item, MonstersAllFragment.bioms);
+        adapterLevel.setDropDownViewResource(R.layout.spinner_dropdown_item);
+        spinnerBiom.setAdapter(adapterLevel);
+        spinnerBiom.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                monsterAdapter.getFilter().filter("biom:" + MonstersAllFragment.bioms.get(position));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
         return root;
     }
 
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         menu.clear();
         inflater.inflate(R.menu.main, menu);

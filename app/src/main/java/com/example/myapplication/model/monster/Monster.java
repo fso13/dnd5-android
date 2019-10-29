@@ -216,19 +216,24 @@ public class Monster {
         isFavorite = favorite;
     }
 
+    public static String getChr(String s) {
+        return s + "(" + (int) Math.floor((Double.valueOf(s) - 10) / 2) + ")";
+    }
+
     public String getInfo1() {
         return "Класс защиты:" + ac + '\n' +
                 "ХП:" + hp + '\n' +
+                "Сложность: " + cr + " (" + MonstersAllFragment.exps.get(cr) + ")\n" +
                 "Скорость:" + speed;
     }
 
     public String getInfo2() {
-        return "\nСила:" + str + '\t' +
-                "Ловкость:" + dex + '\t' +
-                "Телосложение:" + con + '\n' +
-                "Интеллект:" + intilect + '\t' +
-                "Мудрость:" + wis + '\t' +
-                "Харизма:" + cha;
+        return "\nСила:" + getChr(str) + '\t' +
+                "Ловкость:" + getChr(dex) + '\t' +
+                "Телосложение:" + getChr(con) + '\n' +
+                "Интеллект:" + getChr(intilect) + '\t' +
+                "Мудрость:" + getChr(wis) + '\t' +
+                "Харизма:" + getChr(cha);
     }
 
     public String getText() {
@@ -237,8 +242,7 @@ public class Monster {
                 "Тип: " + type + '(' + sType + ")\n" +
                 "Мировозрение: " + alignment + '\n' +
                 "Пассивное восприятие: " + passive + '\n' +
-                "Языки: " + languages + '\n' +
-                "Сложность: " + cr + " (" + MonstersAllFragment.exps.get(cr) + ")\n");
+                "Языки: " + languages + '\n');
         if (trait != null) {
             r.append("Черты:").append('\n');
             for (Trait t : trait) {
