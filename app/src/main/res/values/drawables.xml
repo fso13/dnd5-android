@@ -1,6 +1,8 @@
-<resources xmlns:android="http://schemas.android.com/apk/res/android">
-    <item name="ic_menu_spells_all" type="drawable">@android:drawable/ic_menu_view</item>
-    <item name="ic_menu_favorite" type="drawable">@android:drawable/star_big_off</item>
-    <item name="start_on" type="drawable">@android:drawable/star_on</item>
-    <item name="start_off" type="drawable">@android:drawable/star_off</item>
+<resources>
+    <item name="ic_menu_spells_all" type="drawable">@drawable/spell_all</item>
+    <item name="ic_menu_spell_favorite" type="drawable">@drawable/spell_favoritel</item>
+    <item name="start_on" type="drawable">@drawable/stars_on</item>
+    <item name="start_off" type="drawable">@drawable/stars_off</item>
+    <item name="ic_menu_monster_all" type="drawable">@drawable/monster_all</item>
+    <item name="ic_menu_monster_favorite" type="drawable">@drawable/monster_favorite</item>
 </resources>

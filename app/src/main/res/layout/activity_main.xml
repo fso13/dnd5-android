@@ -19,7 +19,9 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:background="@color/colorPrimary"
-        android:fitsSystemWindows="true"
+        android:focusableInTouchMode="false"
+        android:isScrollContainer="false"
+        android:keepScreenOn="false"
         app:headerLayout="@layout/nav_header_main"
         app:itemTextColor="@color/colorAccent"
         app:menu="@menu/activity_main_drawer" />
