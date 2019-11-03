@@ -2,11 +2,12 @@ package com.example.myapplication.model.magic;
 
 import androidx.annotation.NonNull;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class ClassInfo {
+public class ClassInfo implements Serializable {
     private Title title;
     private List<String> spells;
 

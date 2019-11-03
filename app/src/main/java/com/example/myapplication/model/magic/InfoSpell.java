@@ -1,6 +1,8 @@
 package com.example.myapplication.model.magic;
 
-public class InfoSpell {
+import java.io.Serializable;
+
+public class InfoSpell implements Serializable {
     private String name;
     private String school;
     private String level;
@@ -101,7 +103,6 @@ public class InfoSpell {
     @Override
     public String toString() {
         return
-                "Название:  " + name + '\n' +
                         "Школа: " + school + '\n' +
                         "Уровень:   " + level + '\n' +
                         "Время накладывания:    " + castingTime + '\n' +

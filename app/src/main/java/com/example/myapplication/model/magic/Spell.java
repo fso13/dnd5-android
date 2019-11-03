@@ -1,6 +1,8 @@
 package com.example.myapplication.model.magic;
 
-public class Spell {
+import java.io.Serializable;
+
+public class Spell implements Serializable {
     private InfoSpell en;
     private InfoSpell ru;
     private boolean isFavorite;

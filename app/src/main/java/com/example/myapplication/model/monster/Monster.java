@@ -1,15 +1,12 @@
 package com.example.myapplication.model.monster;
 
-//import com.example.myapplication.model.SingleToArray;
 
 import com.example.myapplication.fragment.MonstersAllFragment;
-import com.example.myapplication.model.AlwaysListTypeAdapterFactory;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Monster {
+public class Monster implements Serializable {
     private String name;
     private String fiction = "";
     private String size;
@@ -22,7 +19,6 @@ public class Monster {
     private String str;
     private String dex;
     private String con;
-    @SerializedName("int")
     private String intilect;
     private String wis;
     private String cha;
@@ -33,9 +29,7 @@ public class Monster {
     private String biom;
     private String sType;
 
-    @JsonAdapter(AlwaysListTypeAdapterFactory.class)
     private List<Trait> trait;
-    @JsonAdapter(AlwaysListTypeAdapterFactory.class)
     private List<Trait> action;
 
     private boolean isFavorite;
@@ -228,7 +222,7 @@ public class Monster {
     }
 
     public String getInfo2() {
-        return "\nСила:" + getChr(str) + '\t' +
+        return "Сила:" + getChr(str) + '\t' +
                 "Ловкость:" + getChr(dex) + '\t' +
                 "Телосложение:" + getChr(con) + '\n' +
                 "Интеллект:" + getChr(intilect) + '\t' +
@@ -257,6 +251,6 @@ public class Monster {
             }
         }
 
-        return r.toString();
+        return r.toString().trim();
     }
 }
