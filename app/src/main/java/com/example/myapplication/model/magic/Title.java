@@ -1,6 +1,8 @@
 package com.example.myapplication.model.magic;
 
-public class Title {
+import java.io.Serializable;
+
+public class Title implements Serializable {
     private String en;
     private String ru;
 

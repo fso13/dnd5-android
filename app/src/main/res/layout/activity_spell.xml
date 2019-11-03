@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_constraintEnd_toEndOf="parent"
@@ -8,37 +9,24 @@
     app:layout_constraintTop_toTopOf="parent">
 
     <TextView
-        android:id="@+id/textView_name"
-        android:layout_width="390dp"
-        android:layout_height="28dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginBottom="15dp"
-        android:text="TextView"
-        android:textColor="@color/textColor"
-        android:gravity="center"
-        android:textAllCaps="true"
-        android:textIsSelectable="true"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/textView_info"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
         android:id="@+id/textView_info"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="11dp"
         android:layout_marginLeft="11dp"
+        android:layout_marginTop="11dp"
         android:layout_marginEnd="11dp"
         android:layout_marginRight="11dp"
-        android:text="TextView"
+        android:layout_marginBottom="11dp"
+        android:background="@drawable/my_border"
+        android:paddingLeft="5dp"
+        android:paddingTop="5dp"
         android:textColor="@color/textColor"
         android:textIsSelectable="true"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_name" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Школа: призыв Уровень:   0 Время накладывания:    1 действие Дистанция: 60 футов Компоненты:    В, С Длительность:  мгновенно Описание: Вы выпускаете пузырь кислоты. Выберите одну цель в пределах дальности заклинания или две цели, которые находятся в 5 футах друг от друга. Цель должна сделать успешный спасбросок по Ловкости или получит 1d6 урона кислотой.Урон заклинания увеличивается на 1d6, по достижению 5 уровня (2d6), 11 уровня (3d6) и 17 уровня (4d6)." />
 </androidx.constraintlayout.widget.ConstraintLayout>

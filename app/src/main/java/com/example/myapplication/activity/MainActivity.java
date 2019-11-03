@@ -3,6 +3,7 @@ package com.example.myapplication.activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.Menu;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -12,6 +13,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.example.myapplication.BuildConfig;
 import com.example.myapplication.R;
 import com.example.myapplication.di.App;
 import com.google.android.material.navigation.NavigationView;
@@ -41,6 +43,9 @@ public class MainActivity extends AppCompatActivity {
                 R.id.nav_all_spells, R.id.nav_favorite_spells, R.id.nav_all_monsters, R.id.nav_favorite_monsters)
                 .setDrawerLayout(drawer)
                 .build();
+
+        TextView versionName = navigationView.getHeaderView(0).findViewById(R.id.textViewVersion);
+        versionName.setText("v." + BuildConfig.VERSION_NAME);
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
