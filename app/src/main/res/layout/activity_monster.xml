@@ -51,12 +51,13 @@
     <TextView
         android:id="@+id/textView_text"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginStart="11dp"
         android:layout_marginLeft="11dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="11dp"
         android:layout_marginRight="11dp"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/my_border"
         android:paddingLeft="5dp"
         android:paddingTop="5dp"
@@ -64,6 +65,7 @@
         android:textColor="@color/textColor"
         android:textIsSelectable="true"
         android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_info2" />
