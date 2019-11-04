@@ -15,6 +15,7 @@ import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -102,6 +103,7 @@ public class AppModule {
     @Provides
     @Singleton
     public List<Monster> provideListMonsters() {
+        List<Monster> monsters = new LinkedList<>();
         try {
             SharedPreferences preferences = application.getApplicationContext().getSharedPreferences("application_preferences", Context.MODE_PRIVATE);
 
@@ -115,18 +117,17 @@ public class AppModule {
             ObjectInputStream in = new ObjectInputStream(fis);
             in.close();
 
-            List<Monster> monsters = (List<Monster>) in.readObject();
+            monsters = (List<Monster>) in.readObject();
+
 
             for (Monster monster : monsters) {
                 final String key = "MONSTER_" + monster.getName().replace(" ", "_");
                 monster.setFavorite(preferences.getBoolean(key, monster.isFavorite()));
             }
 
-            return monsters;
-
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return null;
+        return monsters;
     }
 }
