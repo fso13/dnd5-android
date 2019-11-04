@@ -4,9 +4,12 @@ package com.example.myapplication.model.monster;
 import com.example.myapplication.fragment.MonstersAllFragment;
 
 import java.io.Serializable;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Monster implements Serializable {
+    static final long serialVersionUID = -7697865451137831907L;
+
     private String name;
     private String fiction = "";
     private String size;
@@ -33,6 +36,8 @@ public class Monster implements Serializable {
     private List<Trait> action;
 
     private boolean isFavorite;
+
+    private List<Biom> bioms = null;
 
     public String getName() {
         return name;
@@ -170,8 +175,21 @@ public class Monster implements Serializable {
         this.cr = cr;
     }
 
-    public String getBiom() {
-        return biom;
+    public List<Biom> getBiom() {
+        if (bioms != null) {
+            return bioms;
+        }
+
+        if (biom != null) {
+            biom = biom.replace("DUNDERDARK", "UNDERDARK");
+        }
+
+        bioms = new LinkedList<>();
+        String[] bb = biom == null ? new String[]{"All"} : biom.split(",");
+        for (int i = 0; i < bb.length; i++) {
+            bioms.add(i, Biom.valueOf(bb[i].trim()));
+        }
+        return bioms;
     }
 
     public void setBiom(String biom) {

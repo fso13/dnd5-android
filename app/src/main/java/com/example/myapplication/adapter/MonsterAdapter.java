@@ -167,7 +167,7 @@ public class MonsterAdapter extends BaseAdapter implements Filterable {
         private boolean filter(Monster monster) {
             return ("".equals(nameFilterText) || monster.getName().toLowerCase().contains(nameFilterText)) &&
                     (levelFilterText.equals("Все") || monster.getCr().equals(levelFilterText)) &&
-                    (biomFilterText.equals("Все") || Biom.fromRu(biomFilterText).name().equals(monster.getBiom()));
+                    (biomFilterText.equals("Все") || monster.getBiom().contains(Biom.fromRu(biomFilterText)));
         }
 
         @SuppressWarnings("unchecked")
