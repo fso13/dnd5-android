@@ -8,7 +8,7 @@ import java.util.List;
 import ru.drudenko.dnd.fragment.MonstersAllFragment;
 
 public class Monster implements Serializable {
-    static final long serialVersionUID = -7697865451137831907L;
+    static final long serialVersionUID = -8686024160072043140L;
 
     private String name;
     private String fiction = "";
@@ -178,10 +178,6 @@ public class Monster implements Serializable {
     public List<Biom> getBiom() {
         if (bioms != null) {
             return bioms;
-        }
-
-        if (biom != null) {
-            biom = biom.replace("DUNDERDARK", "UNDERDARK");
         }
 
         bioms = new LinkedList<>();
