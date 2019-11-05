@@ -7,25 +7,25 @@
 
     <fragment
         android:id="@+id/nav_all_spells"
-        android:name="com.example.myapplication.fragment.SpellsAllFragment"
+        android:name="ru.drudenko.dnd.fragment.SpellsAllFragment"
         android:label="@string/menu_all_spells"
         tools:layout="@layout/fragment_spells_all" />
 
     <fragment
         android:id="@+id/nav_favorite_spells"
-        android:name="com.example.myapplication.fragment.SpellsFavoriteFragment"
+        android:name="ru.drudenko.dnd.fragment.SpellsFavoriteFragment"
         android:label="@string/menu_favorite_spells"
         tools:layout="@layout/activity_favorite" />
 
     <fragment
         android:id="@+id/nav_all_monsters"
-        android:name="com.example.myapplication.fragment.MonstersAllFragment"
+        android:name="ru.drudenko.dnd.fragment.MonstersAllFragment"
         android:label="@string/menu_all_monsters"
         tools:layout="@layout/fragment_spells_all" />
 
     <fragment
         android:id="@+id/nav_favorite_monsters"
-        android:name="com.example.myapplication.fragment.MonstersFavoriteFragment"
+        android:name="ru.drudenko.dnd.fragment.MonstersFavoriteFragment"
         android:label="@string/menu_favorite_monsters"
         tools:layout="@layout/activity_favorite" />
 </navigation>

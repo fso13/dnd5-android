@@ -1,4 +1,4 @@
-package com.example.myapplication.adapter;
+package ru.drudenko.dnd.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -18,12 +18,12 @@ import android.widget.ToggleButton;
 import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 
-import com.example.myapplication.R;
-import com.example.myapplication.model.monster.Biom;
-import com.example.myapplication.model.monster.Monster;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import ru.drudenko.dnd.R;
+import ru.drudenko.dnd.model.monster.Biom;
+import ru.drudenko.dnd.model.monster.Monster;
 
 public class MonsterAdapter extends BaseAdapter implements Filterable {
     private List<Monster> originalData;

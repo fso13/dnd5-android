@@ -1,14 +1,13 @@
-package com.example.myapplication.di;
-
-import com.example.myapplication.activity.MainActivity;
-import com.example.myapplication.fragment.MonstersAllFragment;
-import com.example.myapplication.fragment.MonstersFavoriteFragment;
-import com.example.myapplication.fragment.SpellsAllFragment;
-import com.example.myapplication.fragment.SpellsFavoriteFragment;
+package ru.drudenko.dnd.di;
 
 import javax.inject.Singleton;
 
 import dagger.Component;
+import ru.drudenko.dnd.activity.MainActivity;
+import ru.drudenko.dnd.fragment.MonstersAllFragment;
+import ru.drudenko.dnd.fragment.MonstersFavoriteFragment;
+import ru.drudenko.dnd.fragment.SpellsAllFragment;
+import ru.drudenko.dnd.fragment.SpellsFavoriteFragment;
 
 @Singleton
 @Component(modules = {AppModule.class})

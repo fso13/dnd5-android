@@ -1,4 +1,4 @@
-package com.example.myapplication.activity;
+package ru.drudenko.dnd.activity;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -13,12 +13,13 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import com.example.myapplication.BuildConfig;
-import com.example.myapplication.R;
-import com.example.myapplication.di.App;
 import com.google.android.material.navigation.NavigationView;
 
 import javax.inject.Inject;
+
+import ru.drudenko.dnd.BuildConfig;
+import ru.drudenko.dnd.R;
+import ru.drudenko.dnd.di.App;
 
 public class MainActivity extends AppCompatActivity {
 

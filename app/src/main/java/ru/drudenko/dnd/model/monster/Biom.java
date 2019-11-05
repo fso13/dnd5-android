@@ -1,4 +1,4 @@
-package com.example.myapplication.model.monster;
+package ru.drudenko.dnd.model.monster;
 
 import java.util.ArrayList;
 import java.util.List;
