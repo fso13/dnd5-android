@@ -1,11 +1,11 @@
-package com.example.myapplication.model.monster;
+package ru.drudenko.dnd.model.monster;
 
-
-import com.example.myapplication.fragment.MonstersAllFragment;
 
 import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
+
+import ru.drudenko.dnd.fragment.MonstersAllFragment;
 
 public class Monster implements Serializable {
     static final long serialVersionUID = -7697865451137831907L;

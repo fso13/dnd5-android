@@ -1,15 +1,9 @@
-package com.example.myapplication.di;
+package ru.drudenko.dnd.di;
 
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Base64;
-
-import com.example.myapplication.R;
-import com.example.myapplication.model.magic.ClassInfo;
-import com.example.myapplication.model.magic.Clazz;
-import com.example.myapplication.model.magic.Spell;
-import com.example.myapplication.model.monster.Monster;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
@@ -23,6 +17,11 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import ru.drudenko.dnd.R;
+import ru.drudenko.dnd.model.magic.ClassInfo;
+import ru.drudenko.dnd.model.magic.Clazz;
+import ru.drudenko.dnd.model.magic.Spell;
+import ru.drudenko.dnd.model.monster.Monster;
 
 
 @Module

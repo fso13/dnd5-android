@@ -1,4 +1,4 @@
-package com.example.myapplication.di;
+package ru.drudenko.dnd.di;
 
 import android.app.Application;
 

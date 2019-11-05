@@ -1,8 +1,7 @@
-package com.example.myapplication.fragment;
+package ru.drudenko.dnd.fragment;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -17,31 +16,114 @@ import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.widget.SearchView;
 import androidx.core.view.MenuItemCompat;
 import androidx.fragment.app.Fragment;
 
-import com.example.myapplication.R;
-import com.example.myapplication.activity.MainActivity;
-import com.example.myapplication.activity.MonsterActivity;
-import com.example.myapplication.adapter.MonsterAdapter;
-import com.example.myapplication.di.App;
-import com.example.myapplication.model.monster.Monster;
-
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
-public class MonstersFavoriteFragment extends Fragment {
+import ru.drudenko.dnd.R;
+import ru.drudenko.dnd.activity.MainActivity;
+import ru.drudenko.dnd.activity.MonsterActivity;
+import ru.drudenko.dnd.adapter.MonsterAdapter;
+import ru.drudenko.dnd.di.App;
+import ru.drudenko.dnd.model.monster.Biom;
+import ru.drudenko.dnd.model.monster.Monster;
+
+public class MonstersAllFragment extends Fragment {
+    public static List<String> bioms = Biom.getRu();
+    public static List<String> expId;
+    public static Map<String, String> exps = new HashMap<>();
+
+    static {
+        exps.put("Все", "Все");
+        exps.put("0", "0 - 10");
+        exps.put("1/8", "25");
+        exps.put("1/4", "50");
+        exps.put("1/2", "100");
+        exps.put("1", "200");
+        exps.put("2", "450");
+        exps.put("3", "700");
+        exps.put("4", "1100");
+        exps.put("5", "1800");
+        exps.put("6", "2300");
+        exps.put("7", "2900");
+        exps.put("8", "3900");
+        exps.put("9", "5000");
+        exps.put("10", "5900");
+        exps.put("11", "7200");
+        exps.put("12", "8400");
+        exps.put("13", "10000");
+        exps.put("14", "11500");
+        exps.put("15", "13000");
+        exps.put("16", "15000");
+        exps.put("17", "18000");
+        exps.put("18", "20000");
+        exps.put("19", "22000");
+        exps.put("20", "25000");
+        exps.put("21", "33000");
+        exps.put("22", "41000");
+        exps.put("23", "50000");
+        exps.put("24", "62000");
+        exps.put("25", "75000");
+        exps.put("26", "90000");
+        exps.put("27", "105000");
+        exps.put("28", "120000");
+        exps.put("29", "135000");
+        exps.put("30", "155000");
+
+
+        expId = new ArrayList<>();
+        expId.add("Все");
+        expId.add("0");
+        expId.add("1/8");
+        expId.add("1/4");
+        expId.add("1/2");
+        expId.add("1");
+        expId.add("2");
+        expId.add("3");
+        expId.add("4");
+        expId.add("5");
+        expId.add("6");
+        expId.add("7");
+        expId.add("8");
+        expId.add("9");
+        expId.add("10");
+        expId.add("11");
+        expId.add("12");
+        expId.add("13");
+        expId.add("14");
+        expId.add("15");
+        expId.add("16");
+        expId.add("17");
+        expId.add("18");
+        expId.add("19");
+        expId.add("20");
+        expId.add("21");
+        expId.add("22");
+        expId.add("23");
+        expId.add("24");
+        expId.add("25");
+        expId.add("26");
+        expId.add("27");
+        expId.add("28");
+        expId.add("29");
+        expId.add("30");
+    }
+
     @Inject
     SharedPreferences preferences;
 
     @Inject
     List<Monster> monsters;
 
-    private MonsterAdapter monsterAdapter;
+
+    MonsterAdapter monsterAdapter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -50,7 +132,6 @@ public class MonstersFavoriteFragment extends Fragment {
 
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
@@ -58,15 +139,8 @@ public class MonstersFavoriteFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_monsters_all, container, false);
         ListView listView = root.findViewById(R.id.grid_view_monsters);
 
-        List<Monster> m = new ArrayList<>();
-        for (Monster s : monsters) {
-            if (s.isFavorite()) {
-                m.add(s);
-            }
-        }
+        monsterAdapter = new MonsterAdapter(getContext(), monsters);
 
-
-        monsterAdapter = new MonsterAdapter(getContext(), m);
         listView.setAdapter(monsterAdapter);
 
 
@@ -88,15 +162,16 @@ public class MonstersFavoriteFragment extends Fragment {
         };
         listView.setOnItemClickListener(itemListener);
 
+
         Spinner spinnerClass = root.findViewById(R.id.spinner_level);
 
-        ArrayAdapter<String> adapterClasses = new ArrayAdapter<>(this.getActivity(), R.layout.spinner_dropdown_item, MonstersAllFragment.expId);
+        ArrayAdapter<String> adapterClasses = new ArrayAdapter<>(this.getActivity(), R.layout.spinner_dropdown_item, expId);
         adapterClasses.setDropDownViewResource(R.layout.spinner_dropdown_item);
         spinnerClass.setAdapter(adapterClasses);
         spinnerClass.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                monsterAdapter.getFilter().filter("exp:" + MonstersAllFragment.expId.get(position));
+                monsterAdapter.getFilter().filter("exp:" + expId.get(position));
             }
 
             @Override
@@ -106,13 +181,13 @@ public class MonstersFavoriteFragment extends Fragment {
         });
 
         Spinner spinnerBiom = root.findViewById(R.id.spinner_biom);
-        ArrayAdapter<String> adapterLevel = new ArrayAdapter<>(this.getActivity(), R.layout.spinner_dropdown_item, MonstersAllFragment.bioms);
+        ArrayAdapter<String> adapterLevel = new ArrayAdapter<>(this.getActivity(), R.layout.spinner_dropdown_item, bioms);
         adapterLevel.setDropDownViewResource(R.layout.spinner_dropdown_item);
         spinnerBiom.setAdapter(adapterLevel);
         spinnerBiom.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                monsterAdapter.getFilter().filter("biom:" + MonstersAllFragment.bioms.get(position));
+                monsterAdapter.getFilter().filter("biom:" + bioms.get(position));
             }
 
             @Override
@@ -121,11 +196,12 @@ public class MonstersFavoriteFragment extends Fragment {
             }
         });
 
+
         return root;
     }
 
     @Override
-    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         menu.clear();
         inflater.inflate(R.menu.main, menu);
@@ -154,4 +230,16 @@ public class MonstersFavoriteFragment extends Fragment {
         );
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        SharedPreferences.Editor editor = preferences.edit();
+        for (Monster monster : monsters) {
+            final String key = "MONSTER_" + monster.getName().replace(" ", "_");
+            editor.remove(key);
+            editor.putBoolean(key, monster.isFavorite());
+        }
+        editor.apply();
+
+    }
 }

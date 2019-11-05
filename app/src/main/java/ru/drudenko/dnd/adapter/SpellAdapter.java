@@ -1,4 +1,4 @@
-package com.example.myapplication.adapter;
+package ru.drudenko.dnd.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -18,14 +18,14 @@ import android.widget.ToggleButton;
 import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 
-import com.example.myapplication.R;
-import com.example.myapplication.model.magic.ClassInfo;
-import com.example.myapplication.model.magic.Clazz;
-import com.example.myapplication.model.magic.Spell;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import ru.drudenko.dnd.R;
+import ru.drudenko.dnd.model.magic.ClassInfo;
+import ru.drudenko.dnd.model.magic.Clazz;
+import ru.drudenko.dnd.model.magic.Spell;
 
 public class SpellAdapter extends BaseAdapter implements Filterable {
     private List<Spell> originalData;
@@ -47,7 +47,6 @@ public class SpellAdapter extends BaseAdapter implements Filterable {
         mInflater = LayoutInflater.from(context);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
     private boolean isBelong(String filterClass, Spell spell) {
         return map.get(Clazz.fromRu(filterClass)).getSpells().contains(spell.getEn().getName());
     }

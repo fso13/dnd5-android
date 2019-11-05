@@ -1,4 +1,4 @@
-package com.example.myapplication.model.monster;
+package ru.drudenko.dnd.model.monster;
 
 import java.io.Serializable;
 import java.util.List;

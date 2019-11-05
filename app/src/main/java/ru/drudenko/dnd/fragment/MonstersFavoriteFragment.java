@@ -1,4 +1,4 @@
-package com.example.myapplication.fragment;
+package ru.drudenko.dnd.fragment;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -22,36 +22,26 @@ import androidx.appcompat.widget.SearchView;
 import androidx.core.view.MenuItemCompat;
 import androidx.fragment.app.Fragment;
 
-import com.example.myapplication.R;
-import com.example.myapplication.activity.MainActivity;
-import com.example.myapplication.activity.SpellActivity;
-import com.example.myapplication.adapter.SpellAdapter;
-import com.example.myapplication.di.App;
-import com.example.myapplication.model.magic.ClassInfo;
-import com.example.myapplication.model.magic.Clazz;
-import com.example.myapplication.model.magic.InfoSpell;
-import com.example.myapplication.model.magic.Spell;
-import com.example.myapplication.model.monster.Monster;
-
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import javax.inject.Inject;
 
-public class SpellsAllFragment extends Fragment {
+import ru.drudenko.dnd.R;
+import ru.drudenko.dnd.activity.MainActivity;
+import ru.drudenko.dnd.activity.MonsterActivity;
+import ru.drudenko.dnd.adapter.MonsterAdapter;
+import ru.drudenko.dnd.di.App;
+import ru.drudenko.dnd.model.monster.Monster;
 
-    private static List<String> classes = Clazz.getRu();
-    private static List<String> level = Arrays.asList("Все", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9");
+public class MonstersFavoriteFragment extends Fragment {
     @Inject
     SharedPreferences preferences;
-    @Inject
-    List<Spell> spells;
-    @Inject
-    Map<Clazz, ClassInfo> clazzMap;
-    private SpellAdapter spellAdapter;
+
     @Inject
     List<Monster> monsters;
+
+    private MonsterAdapter monsterAdapter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -65,12 +55,19 @@ public class SpellsAllFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
 
         setHasOptionsMenu(true);
-        View root = inflater.inflate(R.layout.fragment_spells_all, container, false);
-        ListView listView = root.findViewById(R.id.grid_view_spells);
+        View root = inflater.inflate(R.layout.fragment_monsters_all, container, false);
+        ListView listView = root.findViewById(R.id.grid_view_monsters);
+
+        List<Monster> m = new ArrayList<>();
+        for (Monster s : monsters) {
+            if (s.isFavorite()) {
+                m.add(s);
+            }
+        }
 
 
-        spellAdapter = new SpellAdapter(getContext(), spells, clazzMap);
-        listView.setAdapter(spellAdapter);
+        monsterAdapter = new MonsterAdapter(getContext(), m);
+        listView.setAdapter(monsterAdapter);
 
 
         AdapterView.OnItemClickListener itemListener = new AdapterView.OnItemClickListener() {
@@ -78,26 +75,28 @@ public class SpellsAllFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {
-                Intent intent = new Intent(getContext(), SpellActivity.class);
-                InfoSpell spell = spellAdapter.getItem(position).getRu();
-                String nameMessage = spell.getName();
-                intent.putExtra("SPELL_NAME", nameMessage);
-                String infoMessage = spell.toString();
-                intent.putExtra("SPELL_INFO", infoMessage);
+                Intent intent = new Intent(getContext(), MonsterActivity.class);
+                Monster monster = monsterAdapter.getItem(position);
+
+                String nameMessage = monster.getName();
+                intent.putExtra("MONSTER_NAME", nameMessage);
+                intent.putExtra("MONSTER_INFO1", monster.getInfo1());
+                intent.putExtra("MONSTER_INFO2", monster.getInfo2());
+                intent.putExtra("MONSTER_TEXT", monster.getText());
                 startActivityForResult(intent, 0);
             }
         };
         listView.setOnItemClickListener(itemListener);
 
+        Spinner spinnerClass = root.findViewById(R.id.spinner_level);
 
-        Spinner spinnerClass = root.findViewById(R.id.spinner_classes);
-        ArrayAdapter<String> adapterClasses = new ArrayAdapter<>(this.getActivity(), R.layout.spinner_dropdown_item, classes);
+        ArrayAdapter<String> adapterClasses = new ArrayAdapter<>(this.getActivity(), R.layout.spinner_dropdown_item, MonstersAllFragment.expId);
         adapterClasses.setDropDownViewResource(R.layout.spinner_dropdown_item);
         spinnerClass.setAdapter(adapterClasses);
         spinnerClass.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                spellAdapter.getFilter().filter("class:" + classes.get(position));
+                monsterAdapter.getFilter().filter("exp:" + MonstersAllFragment.expId.get(position));
             }
 
             @Override
@@ -106,14 +105,14 @@ public class SpellsAllFragment extends Fragment {
             }
         });
 
-        Spinner spinnerLevel = root.findViewById(R.id.spinner_level);
-        ArrayAdapter<String> adapterLevel = new ArrayAdapter<>(this.getActivity(), R.layout.spinner_dropdown_item, level);
+        Spinner spinnerBiom = root.findViewById(R.id.spinner_biom);
+        ArrayAdapter<String> adapterLevel = new ArrayAdapter<>(this.getActivity(), R.layout.spinner_dropdown_item, MonstersAllFragment.bioms);
         adapterLevel.setDropDownViewResource(R.layout.spinner_dropdown_item);
-        spinnerLevel.setAdapter(adapterLevel);
-        spinnerLevel.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        spinnerBiom.setAdapter(adapterLevel);
+        spinnerBiom.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                spellAdapter.getFilter().filter("level:" + level.get(position));
+                monsterAdapter.getFilter().filter("biom:" + MonstersAllFragment.bioms.get(position));
             }
 
             @Override
@@ -121,11 +120,12 @@ public class SpellsAllFragment extends Fragment {
 
             }
         });
+
         return root;
     }
 
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         menu.clear();
         inflater.inflate(R.menu.main, menu);
@@ -136,13 +136,13 @@ public class SpellsAllFragment extends Fragment {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                spellAdapter.getFilter().filter(query);
+                monsterAdapter.getFilter().filter(query);
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                spellAdapter.getFilter().filter(newText);
+                monsterAdapter.getFilter().filter(newText);
                 return false;
             }
         });
@@ -154,15 +154,4 @@ public class SpellsAllFragment extends Fragment {
         );
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-
-        for (Spell spell : spells) {
-            final String key = spell.getRu().getName().replace(" ", "_");
-            preferences.edit().remove(key).apply();
-            preferences.edit().putBoolean(key, spell.isFavorite()).apply();
-        }
-
-    }
 }

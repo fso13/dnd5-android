@@ -1,4 +1,4 @@
-package com.example.myapplication.fragment;
+package ru.drudenko.dnd.fragment;
 
 import android.content.Intent;
 import android.os.Build;
@@ -21,22 +21,22 @@ import androidx.appcompat.widget.SearchView;
 import androidx.core.view.MenuItemCompat;
 import androidx.fragment.app.Fragment;
 
-import com.example.myapplication.R;
-import com.example.myapplication.activity.MainActivity;
-import com.example.myapplication.activity.SpellActivity;
-import com.example.myapplication.adapter.SpellAdapter;
-import com.example.myapplication.di.App;
-import com.example.myapplication.model.magic.ClassInfo;
-import com.example.myapplication.model.magic.Clazz;
-import com.example.myapplication.model.magic.InfoSpell;
-import com.example.myapplication.model.magic.Spell;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
+
+import ru.drudenko.dnd.R;
+import ru.drudenko.dnd.activity.MainActivity;
+import ru.drudenko.dnd.activity.SpellActivity;
+import ru.drudenko.dnd.adapter.SpellAdapter;
+import ru.drudenko.dnd.di.App;
+import ru.drudenko.dnd.model.magic.ClassInfo;
+import ru.drudenko.dnd.model.magic.Clazz;
+import ru.drudenko.dnd.model.magic.InfoSpell;
+import ru.drudenko.dnd.model.magic.Spell;
 
 public class SpellsFavoriteFragment extends Fragment {
 

@@ -1,4 +1,4 @@
-package com.example.myapplication.model.magic;
+package ru.drudenko.dnd.model.magic;
 
 import java.io.Serializable;
 
