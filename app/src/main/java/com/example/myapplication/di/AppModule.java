@@ -59,7 +59,7 @@ public class AppModule {
             List<Spell> spells = (List<Spell>) in.readObject();
             for (Spell spell : spells) {
                 final String key = spell.getRu().getName().replace(" ", "_");
-                spell.setFavorite(preferences.getBoolean(key, spell.isFavorite()));
+                spell.setFavorite(preferences.getBoolean(key, false));
             }
             return spells;
         } catch (Exception e) {
@@ -122,7 +122,7 @@ public class AppModule {
 
             for (Monster monster : monsters) {
                 final String key = "MONSTER_" + monster.getName().replace(" ", "_");
-                monster.setFavorite(preferences.getBoolean(key, monster.isFavorite()));
+                monster.setFavorite(preferences.getBoolean(key, false));
             }
 
         } catch (Exception e) {
