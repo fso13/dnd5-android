@@ -1,8 +1,8 @@
 package ru.drudenko.dnd.model.monster;
 
 
-import com.example.myapplication.model.AlwaysListTypeAdapterFactory;
 import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 import java.util.LinkedList;
@@ -23,7 +23,7 @@ public class Monster implements Serializable {
     private String str;
     private String dex;
     private String con;
-    @JsonAdapter(AlwaysListTypeAdapterFactory.class)
+    @SerializedName("int")
     private String intilect;
     private String wis;
     private String cha;

@@ -35,7 +35,7 @@ public class MonsterActionFragment extends Fragment {
         TextView action = root.findViewById(R.id.textView_action);
         StringBuilder r = new StringBuilder();
         for (Trait t : monster.getAction()) {
-            r.append(t.toString()).append("\n\n");
+            r.append(t.toString()).append("\n");
         }
         action.setText(r.toString());
 
