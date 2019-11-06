@@ -19,7 +19,7 @@ public class SpellActivity extends AppCompatActivity {
         setContentView(R.layout.activity_spell);
         Bundle bundle = getIntent().getExtras();
 
-        TextView info = findViewById(R.id.textView_cr);
+        TextView info = findViewById(R.id.textView_spell_info);
         info.setText(bundle.getString("SPELL_INFO"));
         actionBar.setTitle(bundle.getString("SPELL_NAME"));
 
