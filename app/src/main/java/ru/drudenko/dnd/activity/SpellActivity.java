@@ -20,7 +20,7 @@ public class SpellActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
 
         TextView info = findViewById(R.id.textView_spell_info);
-        info.setText(bundle.getString("SPELL_INFO"));
+        info.setText(bundle.getString("SPELL_INFO") + "\n\n");
         actionBar.setTitle(bundle.getString("SPELL_NAME"));
 
     }
