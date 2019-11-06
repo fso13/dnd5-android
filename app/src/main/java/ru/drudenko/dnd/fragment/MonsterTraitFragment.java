@@ -1,6 +1,7 @@
 package ru.drudenko.dnd.fragment;
 
 import android.os.Bundle;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,9 +36,9 @@ public class MonsterTraitFragment extends Fragment {
         TextView trait = root.findViewById(R.id.textView_trait);
         StringBuilder r = new StringBuilder();
         for (Trait t : monster.getTrait()) {
-            r.append(t.toString()).append("\n");
+            r.append(t.toString());
         }
-        trait.setText(r.toString());
+        trait.setText(Html.fromHtml(r.toString()), TextView.BufferType.SPANNABLE);
 
 
         return root;

@@ -36,7 +36,7 @@ public class MonsterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ActionBar actionBar = getSupportActionBar();
-
+        actionBar.setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.activity_monster);
         Bundle bundle = getIntent().getExtras();
 
@@ -77,6 +77,12 @@ public class MonsterActivity extends AppCompatActivity {
             Matcher matcher = Pattern.compile("(\\d+)").matcher(monster.getSpeed());
             if (matcher.find()) {
                 speed.setText(matcher.group());
+            }
+
+            String[] details = monster.getSpeed().split(",");
+            if (details.length > 1) {
+                TextView speedDetails = findViewById(R.id.textView_speed_details);
+                speedDetails.setText(details[1]);
             }
 
         }
