@@ -7,8 +7,8 @@ android {
         applicationId "ru.drudenko.dnd"
         minSdkVersion 15
         targetSdkVersion 29
-        versionCode 1911072
-        versionName "19.11.07.2"
+        versionCode 1911073
+        versionName "19.11.07.3"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

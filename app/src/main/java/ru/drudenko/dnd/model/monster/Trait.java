@@ -40,22 +40,22 @@ public class Trait implements Serializable {
     public String toString() {
         StringBuilder r = new StringBuilder();
         if (name != null) {
-            r.append(name).append('\n');
+            r.append("<font color=#B31000>").append(name).append("</font><br>");
         }
 
         if (text != null) {
             for (String a : text) {
-                r.append(a).append('\n');
+                r.append(a).append("<br>");
             }
         }
 
         if (attack != null) {
             for (String a : attack) {
-                r.append(a).append('\n');
+                r.append(a).append("<br>");
             }
         }
 
-        r.append('\n');
+        r.append("<br>");
 
         return r.toString();
     }

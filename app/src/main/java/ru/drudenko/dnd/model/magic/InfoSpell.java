@@ -99,17 +99,16 @@ public class InfoSpell implements Serializable {
     public void setSource(String source) {
         this.source = source;
     }
-
     @Override
     public String toString() {
         return
-                        "Школа: " + school + '\n' +
-                        "Уровень:   " + level + '\n' +
-                        "Время накладывания:    " + castingTime + '\n' +
-                        "Дистанция: " + range + '\n' +
-                        "Компоненты:    " + components + '\n' +
-                        "Длительность:  " + duration + '\n' +
-                        "Описание:\n" + text;
+                "<font color=#B31000>Школа:</font> " + school + "<br>" +
+                        "<font color=#B31000>Уровень:</font> " + level + "<br>" +
+                        "<font color=#B31000>Время накладывания:</font> " + castingTime + "<br>" +
+                        "<font color=#B31000>Дистанция:</font> " + range + "<br>" +
+                        "<font color=#B31000>Компоненты:</font> " + components + "<br>" +
+                        "<font color=#B31000>Длительность:</font> " + duration + "<br>" +
+                        "<font color=#B31000>Описание:</font><br>" + text;
     }
 }
 
