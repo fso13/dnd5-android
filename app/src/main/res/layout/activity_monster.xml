@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_constraintEnd_toEndOf="parent"
@@ -8,67 +9,189 @@
     app:layout_constraintTop_toTopOf="parent">
 
     <TextView
-        android:id="@+id/textView_info"
-        android:layout_width="0dp"
+        android:id="@+id/textView_exp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="11dp"
-        android:layout_marginLeft="11dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="11dp"
-        android:layout_marginRight="11dp"
-        android:background="@drawable/my_border"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="24dp"
         android:paddingLeft="5dp"
         android:paddingTop="5dp"
         android:text="TextView"
         android:textColor="@color/textColor"
         android:textIsSelectable="true"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView_cr"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView_info2"
-        android:layout_width="0dp"
+        android:id="@+id/textView_cr"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="11dp"
-        android:layout_marginLeft="11dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="11dp"
-        android:layout_marginRight="11dp"
-        android:background="@drawable/my_border"
+        android:layout_marginStart="75dp"
+        android:layout_marginLeft="75dp"
+        android:layout_marginTop="24dp"
         android:paddingLeft="5dp"
         android:paddingTop="5dp"
         android:text="TextView"
         android:textColor="@color/textColor"
         android:textIsSelectable="true"
         android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tablayout"
+        android:layout_width="478dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_info" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:tabGravity="fill"
+        app:tabMode="fixed"
+        app:tabSelectedTextColor="#F70303"
+        app:tabTextColor="#FFFFFF">
 
-    <TextView
-        android:id="@+id/textView_text"
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="способности" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="черты" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="действия" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="описание" />
+    </com.google.android.material.tabs.TabLayout>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewpager"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="11dp"
-        android:layout_marginLeft="11dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="11dp"
-        android:layout_marginRight="11dp"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/my_border"
-        android:paddingLeft="5dp"
-        android:paddingTop="5dp"
-        android:text="TextView"
-        android:textColor="@color/textColor"
-        android:textIsSelectable="true"
-        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_info2" />
+        app:layout_constraintTop_toBottomOf="@+id/tablayout" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="478dp"
+        android:layout_height="104dp"
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/textView_cr"
+        tools:layout_editor_absoluteX="1dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView_speed"
+                android:layout_width="101dp"
+                android:layout_height="42dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="348dp"
+                android:layout_marginLeft="348dp"
+                android:layout_marginTop="11dp"
+                android:gravity="center"
+                android:text="-"
+                android:textColor="#FFFFFF"
+                android:textSize="36sp" />
+
+            <TextView
+                android:id="@+id/textView_hp"
+                android:layout_width="101dp"
+                android:layout_height="42dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="189dp"
+                android:layout_marginLeft="189dp"
+                android:layout_marginTop="12dp"
+                android:gravity="center"
+                android:text="- ХП"
+                android:textColor="#FFFFFF"
+                android:textSize="36sp" />
+
+            <EditText
+                android:id="@+id/editText_hp_dice"
+                android:layout_width="101dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="189dp"
+                android:layout_marginLeft="189dp"
+                android:layout_marginBottom="11dp"
+                android:ems="10"
+                android:gravity="center"
+                android:inputType="textPersonName"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/textView_ac"
+                android:layout_width="101dp"
+                android:layout_height="42dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="34dp"
+                android:layout_marginLeft="34dp"
+                android:layout_marginTop="11dp"
+                android:gravity="center"
+                android:text="- КД"
+                android:textColor="#FFFFFF"
+                android:textSize="36sp" />
+
+            <EditText
+                android:id="@+id/editText_ac_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="7dp"
+                android:layout_marginLeft="7dp"
+                android:layout_marginBottom="11dp"
+                android:ems="10"
+                android:gravity="center"
+                android:inputType="textPersonName"
+                android:text="класс защиты"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/editText4"
+                android:layout_width="101dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="348dp"
+                android:layout_marginLeft="348dp"
+                android:layout_marginBottom="12dp"
+                android:ems="10"
+                android:gravity="center"
+                android:inputType="textPersonName"
+                android:text="клеток"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp" />
+        </RelativeLayout>
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
