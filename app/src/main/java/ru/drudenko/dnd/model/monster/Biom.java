@@ -18,7 +18,7 @@ public enum Biom {
 
     ;
 
-    private String ru;
+    public String ru;
 
     Biom(String ru) {
         this.ru = ru;
@@ -40,4 +40,6 @@ public enum Biom {
         }
         return list;
     }
+
+
 }

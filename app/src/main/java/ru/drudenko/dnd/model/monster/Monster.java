@@ -31,6 +31,8 @@ public class Monster implements Serializable {
     private String cr;
     private String biom;
     private String sType;
+    private String senses;
+    private String skill;
 
     private List<Trait> trait;
     private List<Trait> action;
@@ -38,6 +40,22 @@ public class Monster implements Serializable {
     private boolean isFavorite;
 
     private List<Biom> bioms = null;
+
+    public String getSenses() {
+        return senses != null ? senses : "";
+    }
+
+    public void setSenses(String senses) {
+        this.senses = senses;
+    }
+
+    public String getSkill() {
+        return skill;
+    }
+
+    public void setSkill(String skill) {
+        this.skill = skill;
+    }
 
     public String getName() {
         return name;
