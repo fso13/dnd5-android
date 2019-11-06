@@ -13,6 +13,9 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import ru.drudenko.dnd.R;
 import ru.drudenko.dnd.adapter.ViewPagerAdapter;
 import ru.drudenko.dnd.fragment.MonsterAbilityFragment;
@@ -71,7 +74,10 @@ public class MonsterActivity extends AppCompatActivity {
         }
         if (monster.getSpeed() != null) {
             TextView speed = findViewById(R.id.textView_speed);
-            speed.setText(monster.getSpeed().replaceAll("\\D+", ""));
+            Matcher matcher = Pattern.compile("(\\d+)").matcher(monster.getSpeed());
+            if (matcher.find()) {
+                speed.setText(matcher.group());
+            }
 
         }
         actionBar.setTitle(monster.getName());
