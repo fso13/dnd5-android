@@ -35,7 +35,7 @@ public class MonsterTraitFragment extends Fragment {
         TextView trait = root.findViewById(R.id.textView_trait);
         StringBuilder r = new StringBuilder();
         for (Trait t : monster.getTrait()) {
-            r.append(t.toString()).append("\n\n");
+            r.append(t.toString()).append("\n");
         }
         trait.setText(r.toString());
 

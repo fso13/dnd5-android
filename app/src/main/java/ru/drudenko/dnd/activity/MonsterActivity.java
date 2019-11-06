@@ -4,7 +4,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
@@ -54,7 +53,7 @@ public class MonsterActivity extends AppCompatActivity {
             TextView ac = findViewById(R.id.textView_ac);
             ac.setText(acc[0] + "КД");
             if (acc.length > 1) {
-                EditText acType = findViewById(R.id.editText_ac_type);
+                TextView acType = findViewById(R.id.editText_ac_type);
                 acType.setText(acc[1].substring(0, acc[1].length() - 1));
             }
         }
@@ -66,7 +65,7 @@ public class MonsterActivity extends AppCompatActivity {
             hp.setText(hpp[0] + "ХП");
 
             if (hpp.length > 1) {
-                EditText hpDice = findViewById(R.id.editText_hp_dice);
+                TextView hpDice = findViewById(R.id.editText_hp_dice);
                 hpDice.setText(hpp[1].substring(0, hpp[1].length() - 1));
             }
         }

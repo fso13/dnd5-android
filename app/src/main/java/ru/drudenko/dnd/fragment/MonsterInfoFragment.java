@@ -32,7 +32,7 @@ public class MonsterInfoFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_monster_info, container, false);
 
         TextView info = root.findViewById(R.id.textView_info);
-        info.setText(monster.getFiction());
+        info.setText(monster.getFiction().trim());
 
         return root;
     }

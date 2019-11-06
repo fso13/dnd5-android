@@ -1,11 +1,15 @@
 package ru.drudenko.dnd.model.monster;
 
+import com.google.gson.annotations.JsonAdapter;
+
 import java.io.Serializable;
 import java.util.List;
 
 public class Trait implements Serializable {
     private String name;
+    @JsonAdapter(AlwaysListTypeAdapterFactory.class)
     private List<String> text;
+    @JsonAdapter(AlwaysListTypeAdapterFactory.class)
     private List<String> attack;
 
     public String getName() {
