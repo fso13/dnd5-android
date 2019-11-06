@@ -1,11 +1,12 @@
 package ru.drudenko.dnd.model.monster;
 
 
+import com.example.myapplication.model.AlwaysListTypeAdapterFactory;
+import com.google.gson.annotations.JsonAdapter;
+
 import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
-
-import ru.drudenko.dnd.fragment.MonstersAllFragment;
 
 public class Monster implements Serializable {
     static final long serialVersionUID = -8686024160072043140L;
@@ -22,6 +23,7 @@ public class Monster implements Serializable {
     private String str;
     private String dex;
     private String con;
+    @JsonAdapter(AlwaysListTypeAdapterFactory.class)
     private String intilect;
     private String wis;
     private String cha;
@@ -33,9 +35,10 @@ public class Monster implements Serializable {
     private String sType;
     private String senses;
     private String skill;
-
-    private List<Trait> trait;
-    private List<Trait> action;
+    @JsonAdapter(AlwaysListTypeAdapterFactory.class)
+    private List<Trait> trait = new LinkedList<>();
+    @JsonAdapter(AlwaysListTypeAdapterFactory.class)
+    private List<Trait> action = new LinkedList<>();
 
     private boolean isFavorite;
 
@@ -246,43 +249,4 @@ public class Monster implements Serializable {
         return s + "(" + (int) Math.floor((Double.valueOf(s) - 10) / 2) + ")";
     }
 
-    public String getInfo1() {
-        return "Класс защиты:" + ac + '\n' +
-                "ХП:" + hp + '\n' +
-                "Сложность: " + cr + " (" + MonstersAllFragment.exps.get(cr) + ")\n" +
-                "Скорость:" + speed;
-    }
-
-    public String getInfo2() {
-        return "Сила:" + getChr(str) + '\t' +
-                "Ловкость:" + getChr(dex) + '\t' +
-                "Телосложение:" + getChr(con) + '\n' +
-                "Интеллект:" + getChr(intilect) + '\t' +
-                "Мудрость:" + getChr(wis) + '\t' +
-                "Харизма:" + getChr(cha);
-    }
-
-    public String getText() {
-        StringBuilder r = new StringBuilder(fiction + '\n' +
-                "Размер: " + size + '\n' +
-                "Тип: " + type + '(' + sType + ")\n" +
-                "Мировозрение: " + alignment + '\n' +
-                "Пассивное восприятие: " + passive + '\n' +
-                "Языки: " + languages + '\n');
-        if (trait != null) {
-            r.append("Черты:").append('\n');
-            for (Trait t : trait) {
-                r.append(t.toString());
-            }
-        }
-
-        if (action != null) {
-            r.append("Действия:").append('\n');
-            for (Trait a : action) {
-                r.append(a.toString());
-            }
-        }
-
-        return r.toString().trim();
-    }
 }

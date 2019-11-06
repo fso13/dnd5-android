@@ -17,6 +17,9 @@ import com.google.android.material.tabs.TabLayout;
 import ru.drudenko.dnd.R;
 import ru.drudenko.dnd.adapter.ViewPagerAdapter;
 import ru.drudenko.dnd.fragment.MonsterAbilityFragment;
+import ru.drudenko.dnd.fragment.MonsterActionFragment;
+import ru.drudenko.dnd.fragment.MonsterInfoFragment;
+import ru.drudenko.dnd.fragment.MonsterTraitFragment;
 import ru.drudenko.dnd.fragment.MonstersAllFragment;
 import ru.drudenko.dnd.model.monster.Monster;
 
@@ -87,9 +90,9 @@ public class MonsterActivity extends AppCompatActivity {
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new MonsterAbilityFragment(monster), "способности");
-        adapter.addFragment(new MonsterAbilityFragment(monster), "черты");
-        adapter.addFragment(new MonsterAbilityFragment(monster), "действия");
-        adapter.addFragment(new MonsterAbilityFragment(monster), "описание");
+        adapter.addFragment(new MonsterTraitFragment(monster), "черты");
+        adapter.addFragment(new MonsterActionFragment(monster), "действия");
+        adapter.addFragment(new MonsterInfoFragment(monster), "описание");
         viewPager.setAdapter(adapter);
     }
 

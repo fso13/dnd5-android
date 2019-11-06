@@ -55,8 +55,15 @@ public class MonsterAbilityFragment extends Fragment {
         TextView navik = root.findViewById(R.id.textView_navik);
         navik.setText(monster.getSkill());
 
+        TextView size = root.findViewById(R.id.textView_size);
+        size.setText(monster.getSize());
+
         TextView chuvstva = root.findViewById(R.id.textView_chuvstva);
-        chuvstva.setText(monster.getPassive() + "," + monster.getSenses());
+        String pv = "Пассивное восприятие: " + monster.getPassive();
+        if (monster.getSenses() != null) {
+            pv = pv + "," + monster.getSenses();
+        }
+        chuvstva.setText(pv);
 
         TextView lang = root.findViewById(R.id.textView_lang);
         lang.setText(monster.getLanguages());
