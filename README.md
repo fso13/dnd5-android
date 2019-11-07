@@ -26,5 +26,3 @@
 |Фильтр заклинаний по классам|<img src="https://github.com/dimarudenk/dnd5Spells/blob/master/screen/s_filter_class.jpg" width="250">|
 |Фильтр заклинаний по уровням|<img src="https://github.com/dimarudenk/dnd5Spells/blob/master/screen/s_filter_level.jpg" width="250">|
 |описание заклинания|<img src="https://github.com/dimarudenk/dnd5Spells/blob/master/screen/s.jpg" width="250">|
-## Realise nodes
-
