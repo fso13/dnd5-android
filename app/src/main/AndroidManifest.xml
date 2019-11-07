@@ -3,7 +3,7 @@
     package="ru.drudenko.dnd">
 
     <application
-        android:name="ru.drudenko.dnd.di.App"
+        android:name=".di.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="ru.drudenko.dnd.activity.MainActivity"
+            android:name=".activity.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -20,9 +20,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="ru.drudenko.dnd.fragment.SpellsAllFragment" />
-        <activity android:name="ru.drudenko.dnd.activity.SpellActivity" />
-        <activity android:name="ru.drudenko.dnd.activity.MonsterActivity" />
+        <activity android:name=".fragment.SpellsAllFragment" />
+        <activity android:name=".activity.SpellActivity" />
+        <activity
+            android:name=".activity.MonsterActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

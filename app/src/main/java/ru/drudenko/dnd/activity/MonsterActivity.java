@@ -7,8 +7,8 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
@@ -35,9 +35,14 @@ public class MonsterActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
+
         setContentView(R.layout.activity_monster);
+        Toolbar toolbar = findViewById(R.id.toolbar1);
+        setSupportActionBar(toolbar);
+
+//        ActionBar actionBar = getSupportActionBar();
+//        actionBar.setDisplayHomeAsUpEnabled(true);
+//        setContentView(R.layout.activity_monster);
         Bundle bundle = getIntent().getExtras();
 
         monster = (Monster) bundle.get("MONSTER");
@@ -86,7 +91,7 @@ public class MonsterActivity extends AppCompatActivity {
             }
 
         }
-        actionBar.setTitle(monster.getName());
+        toolbar.setTitle(monster.getName());
 
 
         viewPager = findViewById(R.id.viewpager);
