@@ -11,6 +11,7 @@
         android:layout_height="match_parent"
         android:layout_margin="10dp"
         android:text="TextView"
+        android:textColorLink="@color/colorPrimary"
         android:textColor="@color/textColor"
         android:textSize="18sp" />
 </ScrollView>
