@@ -1,6 +1,7 @@
 package ru.drudenko.dnd.fragment;
 
 import android.os.Bundle;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,7 +33,7 @@ public class MonsterInfoFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_monster_info, container, false);
 
         TextView info = root.findViewById(R.id.textView_info);
-        info.setText(monster.getFiction().trim() + "\n\n");
+        info.setText(Html.fromHtml(monster.getFiction().trim() + "<br><br>"), TextView.BufferType.SPANNABLE);
 
         return root;
     }
