@@ -77,7 +77,8 @@ public class Monster implements Serializable {
     }
 
     public String getSize() {
-        return size;
+        return Size.valueOf(size).text;
+
     }
 
     public void setSize(String size) {
