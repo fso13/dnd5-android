@@ -1,14 +1,36 @@
+# Eclipse
+.classpath
+.project
+.settings/
+
+
+# Intellij
+**/.idea/
 *.iml
+*.iws
+*.ipr
+
+# Maven
+log/
+target/
+
+# Gradle
 .gradle
-/local.properties
-/.idea/caches
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/navEditor.xml
-/.idea/assetWizardSettings.xml
+build/
+reports/
+
+# Other
+*.log
+**/classes/*
+catalina.*/
+bin
+*.episode
+rpm_config_override/
+activemq-data/
+out/
+
 .DS_Store
-/build
-/captures
-.externalNativeBuild
-.cxx
+
+build
+My Application.iml
+local.properties
