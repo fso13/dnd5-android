@@ -50,13 +50,13 @@ public class MonsterActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-//        ActionBar actionBar = getSupportActionBar();
-//        setContentView(R.layout.activity_monster);
         Bundle bundle = getIntent().getExtras();
 
         monster = (Monster) bundle.get("MONSTER");
 
         AppBarLayout appBarLayout = findViewById(R.id.app_bar);
+        CollapsingToolbarLayout toolbarLayout = findViewById(R.id.toolbar_layout);
+        toolbarLayout.setTitle(monster.getName());
 
         try {
 
@@ -64,10 +64,7 @@ public class MonsterActivity extends AppCompatActivity {
             appBarLayout.setBackground(getDrawableFromAssets(name));
         } catch (Exception e) {
             appBarLayout.setExpanded(false, false);
-            System.err.println(e);
         }
-        CollapsingToolbarLayout toolbarLayout = findViewById(R.id.toolbar_layout);
-        toolbarLayout.setTitle(monster.getName());
 
         if (monster.getCr() != null) {
             TextView cr = findViewById(R.id.textView_cr);
