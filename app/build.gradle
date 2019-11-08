@@ -1,14 +1,21 @@
 apply plugin: 'com.android.application'
 
 android {
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
+    }
+
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
     defaultConfig {
         applicationId "ru.drudenko.dnd"
         minSdkVersion 15
         targetSdkVersion 29
-        versionCode 1911074
-        versionName "19.11.07.4"
+        versionCode 1911081
+        versionName "19.11.08.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -33,4 +40,5 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     annotationProcessor 'com.google.dagger:dagger-android-processor:2.25.2'
     annotationProcessor "com.google.dagger:dagger-compiler:2.25.2"
+
 }
