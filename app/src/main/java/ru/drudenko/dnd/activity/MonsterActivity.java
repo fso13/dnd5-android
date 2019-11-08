@@ -1,5 +1,6 @@
 package ru.drudenko.dnd.activity;
 
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
@@ -7,12 +8,15 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
+import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.tabs.TabLayout;
 
+import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -31,16 +35,39 @@ public class MonsterActivity extends AppCompatActivity {
     private TabLayout tabLayout;
     private Monster monster;
 
+    public Drawable getDrawableFromAssets(String path) throws IOException {
+        return Drawable.createFromStream(getAssets().open(path), null);
+    }
+
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
+
         setContentView(R.layout.activity_monster);
+        Toolbar toolbar = findViewById(R.id.toolbar1);
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+//        ActionBar actionBar = getSupportActionBar();
+//        setContentView(R.layout.activity_monster);
         Bundle bundle = getIntent().getExtras();
 
         monster = (Monster) bundle.get("MONSTER");
+
+        AppBarLayout appBarLayout = findViewById(R.id.app_bar);
+
+        try {
+
+            String name = monster.getName().substring(monster.getName().indexOf("(") + 1, monster.getName().indexOf(")")).trim().toUpperCase().replace(" ", "_") + ".jpg";
+            appBarLayout.setBackground(getDrawableFromAssets(name));
+        } catch (Exception e) {
+            appBarLayout.setExpanded(false, false);
+            System.err.println(e);
+        }
+        CollapsingToolbarLayout toolbarLayout = findViewById(R.id.toolbar_layout);
+        toolbarLayout.setTitle(monster.getName());
 
         if (monster.getCr() != null) {
             TextView cr = findViewById(R.id.textView_cr);
@@ -86,7 +113,7 @@ public class MonsterActivity extends AppCompatActivity {
             }
 
         }
-        actionBar.setTitle(monster.getName());
+        toolbar.setTitle(monster.getName());
 
 
         viewPager = findViewById(R.id.viewpager);

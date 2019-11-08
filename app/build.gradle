@@ -7,8 +7,8 @@ android {
         applicationId "ru.drudenko.dnd"
         minSdkVersion 15
         targetSdkVersion 29
-        versionCode 1911074
-        versionName "19.11.07.4"
+        versionCode 1911081
+        versionName "19.11.08.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -33,4 +33,5 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     annotationProcessor 'com.google.dagger:dagger-android-processor:2.25.2'
     annotationProcessor "com.google.dagger:dagger-compiler:2.25.2"
+
 }
