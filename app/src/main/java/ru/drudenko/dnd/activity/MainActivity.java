@@ -8,11 +8,17 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.artwl.update.Constants;
+import com.artwl.update.UpdateChecker;
+import com.artwl.update.UpdateDialog;
+import com.artwl.update.UpdateNotice;
+import com.artwl.update.entity.UpdateDescription;
 import com.google.android.material.navigation.NavigationView;
 
 import javax.inject.Inject;
@@ -21,7 +27,9 @@ import ru.drudenko.dnd.BuildConfig;
 import ru.drudenko.dnd.R;
 import ru.drudenko.dnd.di.App;
 
-public class MainActivity extends AppCompatActivity {
+
+public class MainActivity extends AppCompatActivity implements UpdateNotice {
+    private static final String APP_UPDATE_SERVER_URL = "http://updatecheck";
 
     @Inject
     Context context;
@@ -41,15 +49,25 @@ public class MainActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_all_spells, R.id.nav_favorite_spells, R.id.nav_all_monsters, R.id.nav_favorite_monsters)
+                R.id.nav_all_spells, R.id.nav_favorite_spells, R.id.nav_all_monsters, R.id.nav_favorite_monsters, R.id.nav_item_update)
                 .setDrawerLayout(drawer)
                 .build();
+
 
         TextView versionName = navigationView.getHeaderView(0).findViewById(R.id.textViewVersion);
         versionName.setText("v." + BuildConfig.VERSION_NAME);
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+        navigationView.setNavigationItemSelectedListener(menuItem -> {
+            if (menuItem.getItemId() == R.id.nav_item_update) {
+                UpdateChecker.checkForCustomNotice(MainActivity.this, APP_UPDATE_SERVER_URL, MainActivity.this);
+            }
+
+            return true;
+        });
+
         ((App) getApplication()).getComponent().inject(this);
     }
 
@@ -65,5 +83,22 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    @Override
+    public void showCustomNotice(UpdateDescription description) {
+        UpdateDialog d = new UpdateDialog();
+        Bundle args = new Bundle();
+        args.putString(Constants.APK_UPDATE_CONTENT, description.updateMessage);
+        args.putString(Constants.APK_DOWNLOAD_URL, description.url);
+        args.putBoolean(Constants.APK_IS_AUTO_INSTALL, true);
+        args.putBoolean(Constants.APK_CHECK_EXTERNAL, true);
+        d.setArguments(args);
+
+        // http://blog.csdn.net/chenshufei2/article/details/48747149
+        // Don't use default d.show(mContext.getSupportFragmentManager(), null);
+        FragmentTransaction ft = this.getSupportFragmentManager().beginTransaction();
+        ft.add(d, this.getClass().getSimpleName());
+        ft.commitAllowingStateLoss();
     }
 }
