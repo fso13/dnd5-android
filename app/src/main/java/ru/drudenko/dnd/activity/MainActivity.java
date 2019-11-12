@@ -64,8 +64,9 @@ public class MainActivity extends AppCompatActivity implements UpdateNotice {
         navigationView.setNavigationItemSelectedListener(menuItem -> {
             if (menuItem.getItemId() == R.id.nav_item_update) {
                 UpdateChecker.checkForCustomNotice(MainActivity.this, APP_UPDATE_SERVER_URL, this);
+            } else {
+                NavigationUI.setupWithNavController(navigationView, navController);
             }
-
             return true;
         });
 
