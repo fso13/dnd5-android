@@ -6,6 +6,8 @@
 
 # Intellij
 **/.idea/
+**/.idea/misc.xml
+**/.idea/*
 *.iml
 *.iws
 *.ipr
