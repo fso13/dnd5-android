@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.view.Menu;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -49,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements UpdateNotice {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_all_spells, R.id.nav_favorite_spells, R.id.nav_all_monsters, R.id.nav_favorite_monsters, R.id.nav_item_update)
+                R.id.nav_all_spells, R.id.nav_favorite_spells, R.id.nav_all_monsters, R.id.nav_favorite_monsters)
                 .setDrawerLayout(drawer)
                 .build();
 
@@ -59,16 +58,6 @@ public class MainActivity extends AppCompatActivity implements UpdateNotice {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-
-        navigationView.setNavigationItemSelectedListener(menuItem -> {
-            if (menuItem.getItemId() == R.id.nav_item_update) {
-                UpdateChecker.checkForCustomNotice(MainActivity.this, APP_UPDATE_SERVER_URL, this);
-            } else {
-                NavigationUI.setupWithNavController(navigationView, navController);
-            }
-            return true;
-        });
-
         ((App) getApplication()).getComponent().inject(this);
 
         Runnable runnable = new Runnable() {
@@ -77,9 +66,9 @@ public class MainActivity extends AppCompatActivity implements UpdateNotice {
                 while (true) {
                     synchronized (this) {
                         try {
-                            System.out.println("vchsdnvcnmxsz");
-                            wait(5 * 60_000);
+                            wait(10_000);
                             UpdateChecker.checkForCustomNotice(MainActivity.this, APP_UPDATE_SERVER_URL, MainActivity.this);
+                            wait(5 * 60_000);
                         } catch (Exception e) {
                         }
                     }
@@ -122,10 +111,6 @@ public class MainActivity extends AppCompatActivity implements UpdateNotice {
                 FragmentTransaction ft = this.getSupportFragmentManager().beginTransaction();
                 ft.add(d, this.getClass().getSimpleName());
                 ft.commitAllowingStateLoss();
-            } else {
-                Toast toast = Toast.makeText(getApplicationContext(),
-                        "Нет новых версий!", Toast.LENGTH_SHORT);
-                toast.show();
             }
         }
     }
