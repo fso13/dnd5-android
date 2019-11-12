@@ -1,7 +1,6 @@
 package ru.drudenko.dnd.activity;
 
 import android.content.Context;
-import android.content.pm.PackageInfo;
 import android.os.Bundle;
 import android.view.Menu;
 import android.widget.TextView;
@@ -32,7 +31,7 @@ import ru.drudenko.dnd.di.App;
 
 public class MainActivity extends AppCompatActivity implements UpdateNotice {
     private static final String APP_UPDATE_SERVER_URL = "https://dnd5-webapi.herokuapp.com/application/version";
-
+    private boolean isUpdating = false;
     @Inject
     Context context;
 
@@ -64,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements UpdateNotice {
 
         navigationView.setNavigationItemSelectedListener(menuItem -> {
             if (menuItem.getItemId() == R.id.nav_item_update) {
-                UpdateChecker.checkForCustomNotice(MainActivity.this, APP_UPDATE_SERVER_URL, MainActivity.this);
+                UpdateChecker.checkForCustomNotice(MainActivity.this, APP_UPDATE_SERVER_URL, this);
             }
 
             return true;
@@ -89,29 +88,28 @@ public class MainActivity extends AppCompatActivity implements UpdateNotice {
 
     @Override
     public void showCustomNotice(UpdateDescription description) {
-        try {
-            PackageInfo pInfo = context.getPackageManager().getPackageInfo(getPackageName(), 0);
+        if (isUpdating) {
+            Toast toast = Toast.makeText(getApplicationContext(), "Приложение уже обновляется", Toast.LENGTH_SHORT);
+            toast.show();
+            return;
+        }
+        long version = BuildConfig.VERSION_CODE;
+        if (description.versionCode > version) {
+            UpdateDialog d = new UpdateDialog();
+            Bundle args = new Bundle();
+            args.putString(Constants.APK_UPDATE_CONTENT, description.updateMessage);
+            args.putString(Constants.APK_DOWNLOAD_URL, description.url);
+            args.putBoolean(Constants.APK_IS_AUTO_INSTALL, false);
+            args.putBoolean(Constants.APK_CHECK_EXTERNAL, true);
+            d.setArguments(args);
 
-            long version = pInfo.versionCode;
-            if (description.versionCode > version) {
-                UpdateDialog d = new UpdateDialog();
-                Bundle args = new Bundle();
-                args.putString(Constants.APK_UPDATE_CONTENT, description.updateMessage);
-                args.putString(Constants.APK_DOWNLOAD_URL, description.url);
-                args.putBoolean(Constants.APK_IS_AUTO_INSTALL, true);
-                args.putBoolean(Constants.APK_CHECK_EXTERNAL, true);
-                d.setArguments(args);
-
-                FragmentTransaction ft = this.getSupportFragmentManager().beginTransaction();
-                ft.add(d, this.getClass().getSimpleName());
-                ft.commitAllowingStateLoss();
-            } else {
-                Toast toast = Toast.makeText(getApplicationContext(),
-                        "Нет новых версий!", Toast.LENGTH_SHORT);
-                toast.show();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+            FragmentTransaction ft = this.getSupportFragmentManager().beginTransaction();
+            ft.add(d, this.getClass().getSimpleName());
+            ft.commitAllowingStateLoss();
+        } else {
+            Toast toast = Toast.makeText(getApplicationContext(),
+                    "Нет новых версий!", Toast.LENGTH_SHORT);
+            toast.show();
         }
     }
 }
