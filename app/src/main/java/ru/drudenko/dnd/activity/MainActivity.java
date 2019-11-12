@@ -1,9 +1,11 @@
 package ru.drudenko.dnd.activity;
 
 import android.content.Context;
+import android.content.pm.PackageInfo;
 import android.os.Bundle;
 import android.view.Menu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -29,7 +31,7 @@ import ru.drudenko.dnd.di.App;
 
 
 public class MainActivity extends AppCompatActivity implements UpdateNotice {
-    private static final String APP_UPDATE_SERVER_URL = "http://updatecheck";
+    private static final String APP_UPDATE_SERVER_URL = "https://dnd5-webapi.herokuapp.com/application/version";
 
     @Inject
     Context context;
@@ -87,18 +89,29 @@ public class MainActivity extends AppCompatActivity implements UpdateNotice {
 
     @Override
     public void showCustomNotice(UpdateDescription description) {
-        UpdateDialog d = new UpdateDialog();
-        Bundle args = new Bundle();
-        args.putString(Constants.APK_UPDATE_CONTENT, description.updateMessage);
-        args.putString(Constants.APK_DOWNLOAD_URL, description.url);
-        args.putBoolean(Constants.APK_IS_AUTO_INSTALL, true);
-        args.putBoolean(Constants.APK_CHECK_EXTERNAL, true);
-        d.setArguments(args);
+        try {
+            PackageInfo pInfo = context.getPackageManager().getPackageInfo(getPackageName(), 0);
 
-        // http://blog.csdn.net/chenshufei2/article/details/48747149
-        // Don't use default d.show(mContext.getSupportFragmentManager(), null);
-        FragmentTransaction ft = this.getSupportFragmentManager().beginTransaction();
-        ft.add(d, this.getClass().getSimpleName());
-        ft.commitAllowingStateLoss();
+            long version = pInfo.versionCode;
+            if (description.versionCode > version) {
+                UpdateDialog d = new UpdateDialog();
+                Bundle args = new Bundle();
+                args.putString(Constants.APK_UPDATE_CONTENT, description.updateMessage);
+                args.putString(Constants.APK_DOWNLOAD_URL, description.url);
+                args.putBoolean(Constants.APK_IS_AUTO_INSTALL, true);
+                args.putBoolean(Constants.APK_CHECK_EXTERNAL, true);
+                d.setArguments(args);
+
+                FragmentTransaction ft = this.getSupportFragmentManager().beginTransaction();
+                ft.add(d, this.getClass().getSimpleName());
+                ft.commitAllowingStateLoss();
+            } else {
+                Toast toast = Toast.makeText(getApplicationContext(),
+                        "Нет новых версий!", Toast.LENGTH_SHORT);
+                toast.show();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
