@@ -29,7 +29,7 @@ import ru.drudenko.dnd.dialog.DnDUpdateDialog;
 
 
 public class MainActivity extends AppCompatActivity implements UpdateNotice {
-    private static final String APP_UPDATE_SERVER_URL = "https://dnd5-webapi.herokuapp.com/application/version";
+    private static final String APP_UPDATE_SERVER_URL = "https://raw.githubusercontent.com/dimarudenk/dnd5Spells/develop/release.json";
     @Inject
     Context context;
     private AppBarConfiguration mAppBarConfiguration;
