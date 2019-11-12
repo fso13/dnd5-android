@@ -8,14 +8,18 @@ android {
         abortOnError false
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
     compileSdkVersion 29
-    buildToolsVersion "29.0.2"
+    buildToolsVersion '29.0.2'
     defaultConfig {
         applicationId "ru.drudenko.dnd"
-        minSdkVersion 15
+        minSdkVersion 21
         targetSdkVersion 29
-        versionCode 1911083
-        versionName "19.11.08.3"
+        versionCode 1911121
+        versionName "19.11.12.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -40,5 +44,12 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     annotationProcessor 'com.google.dagger:dagger-android-processor:2.25.2'
     annotationProcessor "com.google.dagger:dagger-compiler:2.25.2"
+    implementation 'com.github.systembugtj:autoupdate:2.1.0'
 
+    implementation 'com.google.code.gson:gson:2.8.4'
+    implementation 'com.google.guava:guava:23.3-android'
+    implementation 'com.squareup.okhttp3:okhttp:3.10.0'
+    implementation 'com.squareup.okio:okio:1.14.0'
+    implementation "io.reactivex.rxjava2:rxjava:2.1.1"
+    implementation "io.reactivex.rxjava2:rxandroid:2.0.2"
 }
