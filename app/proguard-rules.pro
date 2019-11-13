@@ -19,3 +19,4 @@
 # If you keep the line number information, uncomment thiuses-permissions to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+-keep class com.conouch.browasa.entity.** { *; }
