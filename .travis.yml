@@ -77,8 +77,8 @@ android_phases:
   - phase: &deploy
       provider: releases
       edge: true
-      api_key:
-        secure: VUHO7YfdI2yZAwvUfg4ZasQBtpD/+yeU44Rjo8wM4wgLLlFIgQ/66XbHA2qzab/X5/Dsl7MUThSmJFsLZx89fLiMwEBx0z4dEFLF0AZi8beKA0AjireOxTHOCTQUB4msMYH8LHuwXIf2GwOgmE971rdkXBIr4McmNz+gQp2Zt4eSLRWhlX2rRFU8+/QJN1uof/+JfvEpdTtydYmlCs41IivpKoanYTBlHUuau/wf8coM/kwuab3bEfOBc+/Xp4OY071Ap+g9zX6A4z+Rp3cTqa/ceFQPk6MvBwWPhPZcWYMErtknOfi/yQbc7rEBOFAFsp0lUjNGSyYuEOIbBYyqtrateQEyUhouAHUL/jBj1t9fb6Dv8XNALwXcW/joTdRgCQBoeK/C+3tPK8PPvLs4UhKyyxmcpFg+SyjbHpsEQlqZrgsUYszBwxJfkN2dFXHLBMmOAQ7dEISv0C6ovGoMZ7kfTqLnJf8z8fnJzkRUNbhaapW/1leIb+4xN4XtNDtH0u/f6EXb08seyXJKpk20xCWs/Cea02y8C8+MPmTgKj8iz615fvc/RCa2PQajDU83chikO8S1//AMBQ2eOQ2HpZnxpKFGzYFFfyk5kXi5eLvYkLivIrNd/3Ts9wk/APXXVFOuBB6CQWfX7ZlCko69aLK1n8Nc9IV5LfNaLxDlPGI=
+      user: ${GITHUB_USERNAME}
+      password: ${GITHUB_PASSWORD}
       file_glob: true
       file:
         - $TRAVIS_BUILD_DIR/app/build/outputs/apk/release/*.apk
