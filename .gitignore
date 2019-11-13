@@ -3,9 +3,10 @@
 .project
 .settings/
 
-
 # Intellij
 **/.idea/
+**/.idea/misc.xml
+**/.idea/*
 *.iml
 *.iws
 *.ipr
@@ -17,6 +18,7 @@ target/
 # Gradle
 .gradle
 build/
+release/
 reports/
 
 # Other
@@ -34,3 +36,4 @@ out/
 build
 My Application.iml
 local.properties
+.idea/misc.xml
