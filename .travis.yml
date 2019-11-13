@@ -79,7 +79,7 @@ android_phases:
   - phase: &deploy
       provider: releases
       api_key:
-        secure: 30d920eb751500cab61a9d1c7b76084bcce99c15
+        secure: ppFVN1NWsqXYYWtekUlrbrZOZljenepblTIrdn73uVffFaY9EaNFBLuOFPLTAzxVdKjJVv0uKpZ23sDck1IG7vp13hAeeXWocb8YkJrxRO8DEKPHC+GHRolfm33EjcdL0Y54mAJzgcLTwZeMsJUdRhdjp02h+QwqUPnx+0FlaIuUhhNm9jdzMb+EJlhWQevKtMuOhuT9ByAtHieSjyY9i0romBxzFkCj/j5a8RMCrMbXwB/Y7eX0KywmXd/XLh2wauuix7L7gcbKxI/r/mNUyN32Q2HCtckyor8o+0rx4GHV1eD+KslnfqyZZATTiGht+gZqfVC++v1bgEKrPGs72k4EEkpZcwuF5t0RwfV1aNg+zhn6tKWCHz9Kjgq7XcTmFb64avx/waWQmZpsmuG5TKe4iGG/6mboQmAMBP8Iy2x7auv7/3YXVaE1yigKgIZ0QtI4nMwpfHLX0XiKljXw9oH0LWiNGE20ldKue81ZDT+R9Lk2ir4lzV7equwys+K9wtbCiolElkHoAg1gBj7jr6iF1ezQAWm2M5jpfm16VysjIikr5GOU+bZGhlWYWJbsPg46Sh8oP56wiWWT+4Hka+yGRLonX2c0oltxVfxHkOSlOnXmypd6y1e6J18LrtRzELDY3vgXVCv/oiQWuzrKueQMq2VyZQlCyOKEMqg4w1s=
       file_glob: true
       file:
         - $TRAVIS_BUILD_DIR/app/build/outputs/apk/release/*.apk
