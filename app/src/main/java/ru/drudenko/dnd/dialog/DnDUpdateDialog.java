@@ -2,6 +2,7 @@ package ru.drudenko.dnd.dialog;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -22,15 +23,21 @@ public class DnDUpdateDialog extends UpdateDialog {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle(R.string.newUpdateAvailable);
         builder.setMessage(getArguments().getString(Constants.APK_UPDATE_CONTENT))
-                .setPositiveButton(R.string.dialogPositiveButton, (dialog, id) -> {
-                    // FIRE ZE MISSILES!
-                    goToDownload();
-                    dismiss();
+                .setPositiveButton(R.string.dialogPositiveButton, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        // FIRE ZE MISSILES!
+                        DnDUpdateDialog.this.goToDownload();
+                        DnDUpdateDialog.this.dismiss();
+                    }
                 })
-                .setNegativeButton(R.string.dialogNegativeButton, (dialog, id) -> {
-                    // User cancelled the dialog
-                    isVisible.set(false);
-                    dismiss();
+                .setNegativeButton(R.string.dialogNegativeButton, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        // User cancelled the dialog
+                        isVisible.set(false);
+                        DnDUpdateDialog.this.dismiss();
+                    }
                 });
         // Create the AlertDialog object and return it
         isVisible.set(true);
