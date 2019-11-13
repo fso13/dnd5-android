@@ -26,12 +26,13 @@ android {
         applicationId "ru.drudenko.dnd"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 1911138
-        versionName "19.11.13.8"
+        versionCode 1911139
+        versionName "19.11.13.9"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
+            signingConfig signingConfigs.config
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
