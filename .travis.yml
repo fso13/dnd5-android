@@ -78,7 +78,7 @@ android_phases:
       provider: releases
       edge: true
       api_key:
-        secure: g9ACJPYoBtNYAqiq25A3GCP2yveGeMHIT6oxVhpVUscpfeFmAzCyxJgrNEg+t4m1FL9351ROAK8SEnWHwxBhqJQbiDNIu2T7C6uo77RPmgImN8lBC5USMnErOWhZDvyCW8gC2Vxp5xlsQCoJJ5xXqaP49K4XzMKAW5+CT5/TO3uj8SS9ucVNj0Sb6w8KqtCtvAirNnYK4xSYfQl5CuxN58HxoNLffvUEViRAuaahwOqDNgzBEsOLRWROpKeyJLG/P58XCdN6wxAsu8TtApq3LeZvzzamLu8haSRS1h2yT/13Ye248Kr9FDx1I1WCbZr5Cmfdth774ewkjG/lCvlO9IJc/T5odLXSEtC246QdYY+0lICZnJOH9CENkTw2oku5Xv+tiYOUpCyRJwfjDYAzS5eSIAkfYHPA4rRZ3W1BpSy4Xjnyoxqx08cVo4geYTLf1LGehi5oMSwVom/Knl6JTCOWITzf6VVMujxv4b5gHvltj1rl3KjbcFrKuoB8RsHo+MNQSbKgVGmpBpDrYi1kAS3HamL6oxQE8v7NuG73/J0OWtdwQ7ezjP7/JfXGSREBT5/7rMKHDuWZv9h7XRlLlMJYktQdy5/cl09hp9L+81SHSsDujdx4HPWc1yPBoLqNAXTgEw+TOj4dAyXLI3vQW+kgACbdl4j+q7G1JjsVI+g=
+        secure: VUHO7YfdI2yZAwvUfg4ZasQBtpD/+yeU44Rjo8wM4wgLLlFIgQ/66XbHA2qzab/X5/Dsl7MUThSmJFsLZx89fLiMwEBx0z4dEFLF0AZi8beKA0AjireOxTHOCTQUB4msMYH8LHuwXIf2GwOgmE971rdkXBIr4McmNz+gQp2Zt4eSLRWhlX2rRFU8+/QJN1uof/+JfvEpdTtydYmlCs41IivpKoanYTBlHUuau/wf8coM/kwuab3bEfOBc+/Xp4OY071Ap+g9zX6A4z+Rp3cTqa/ceFQPk6MvBwWPhPZcWYMErtknOfi/yQbc7rEBOFAFsp0lUjNGSyYuEOIbBYyqtrateQEyUhouAHUL/jBj1t9fb6Dv8XNALwXcW/joTdRgCQBoeK/C+3tPK8PPvLs4UhKyyxmcpFg+SyjbHpsEQlqZrgsUYszBwxJfkN2dFXHLBMmOAQ7dEISv0C6ovGoMZ7kfTqLnJf8z8fnJzkRUNbhaapW/1leIb+4xN4XtNDtH0u/f6EXb08seyXJKpk20xCWs/Cea02y8C8+MPmTgKj8iz615fvc/RCa2PQajDU83chikO8S1//AMBQ2eOQ2HpZnxpKFGzYFFfyk5kXi5eLvYkLivIrNd/3Ts9wk/APXXVFOuBB6CQWfX7ZlCko69aLK1n8Nc9IV5LfNaLxDlPGI=
       file_glob: true
       file:
         - $TRAVIS_BUILD_DIR/app/build/outputs/apk/release/*.apk
