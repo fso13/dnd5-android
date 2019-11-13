@@ -3,7 +3,6 @@
 .project
 .settings/
 
-
 # Intellij
 **/.idea/
 **/.idea/misc.xml
@@ -19,6 +18,7 @@ target/
 # Gradle
 .gradle
 build/
+release/
 reports/
 
 # Other
