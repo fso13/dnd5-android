@@ -32,7 +32,7 @@ cache:
 deploy:
   provider: releases
   api_key:
-    secure: 07ea766e194b73438b34e92ca51ab30f4f322f02
+    secure: 30d920eb751500cab61a9d1c7b76084bcce99c15
   file: app/build/outputs/apk/release/app-release.apk
   skip_cleanup: true
   on:
