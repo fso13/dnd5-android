@@ -77,7 +77,7 @@ android_phases:
   - phase: &deploy
       provider: releases
       edge: true
-      github_token: $github_token
+      api_key: $github_token
       file_glob: true
       file:
         - $TRAVIS_BUILD_DIR/app/build/outputs/apk/release/*.apk
