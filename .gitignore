@@ -36,3 +36,4 @@ out/
 build
 My Application.iml
 local.properties
+.idea/misc.xml
