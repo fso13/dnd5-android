@@ -29,7 +29,7 @@ import ru.drudenko.dnd.dialog.DnDUpdateDialog;
 
 
 public class MainActivity extends AppCompatActivity implements UpdateNotice {
-    private static final String APP_UPDATE_SERVER_URL = "https://raw.githubusercontent.com/fso13/dnd5-android/develop/release.json";
+    private static final String APP_UPDATE_SERVER_URL = "https://raw.githubusercontent.com/fso13/dnd5-android/master/release.json";
     @Inject
     Context context;
     private AppBarConfiguration mAppBarConfiguration;
