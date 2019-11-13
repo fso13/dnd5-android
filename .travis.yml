@@ -77,8 +77,8 @@ android_phases:
   - phase: &deploy
       provider: releases
       edge: true
-      user: ${GITHUB_USERNAME}
-      password: ${GITHUB_PASSWORD}
+      user: $GITHUB_USERNAME
+      password: $GITHUB_PASSWORD
       file_glob: true
       file:
         - $TRAVIS_BUILD_DIR/app/build/outputs/apk/release/*.apk
