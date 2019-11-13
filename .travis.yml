@@ -1,45 +1,43 @@
-sudo: false
-
 language: android
 jdk: oraclejdk8
 
 android:
   components:
-    - platform-tools
     - tools
-    - build-tools-23.0.3
-    - android-23
+  licenses:
+    - android-sdk-license-.+
 
 before_install:
   - chmod +x gradlew
 
+before_script:
+  - echo yes | ${ANDROID_HOME}tools/bin/sdkmanager "tools"
+  - echo yes | ${ANDROID_HOME}tools/bin/sdkmanager "platform-tools"
+  - echo yes | ${ANDROID_HOME}tools/bin/sdkmanager "build-tools;28.0.3"
+  - echo yes | ${ANDROID_HOME}tools/bin/sdkmanager "platforms;android-25"
+
 script:
-  - "./gradlew clean build connectedAndroidTest -PdisablePreDex --stacktrace"
+  - ./gradlew clean build
 
-after_success:
-  - sh set_tags.sh
+before_cache:
+  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
 
-notifications:
-  email: true
+cache:
+  directories:
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
+    - $HOME/.android/build-cache
 
 deploy:
   provider: releases
   api_key:
-    secure: wy43X9WESaODgKXr/ccu8OneJQzqrzy84XZcZ1KA74HN2oZzm+NAZbm1FcrzUBbyvtDWMtV8TDArsYSs4SpMMpeSdJbTkK/IMhhFZxvyQ4XBM6YEdkCKnIuLFuFTgIicHlvtbujClOLX0n+dyAKhFyXBH2N53QurmeqlLaYcMXJCdhtnNw7H+8jB/BOvhlR1j5OpG4gQQjio+1YTNGvKu6b0l8yYcLR3i0+YLVhIozwbet12GXrY/nvJAd5fwKe5hqHpGqMIVEqtSBIA+nfijPOYclHal7D3BfRP77jO/dklkAOygLxEzZQiVkfTIWREBbOsllj5bivCbZUmKhQc1lo/Wp+XPC+AO8mnBVOfYHW9l62e+pVieGDdbAdKw7vPIXBHmw2QTSbboRnQMHqU+tNXb2BmZkJGtZaHDwoPZ6xjsbxctSCpm8mn+VV1uOSBp7mHx4iXXqW+Q5YiQ2d5I3fdiAko54g4hT40KIYfSpE4022kzF42BU3apzCnpRhQnAvJid3KEdUAXANXkSxo00WC0lEx2LzxDKzNrheEmPb/uXAQa3OwpKgMP/yI1mrZ0IvAAc9q6NNxHJPeKil6yVQRLexGs3QqjAEwbN4pw1mq1V4zzoBi3Vxb9czKl6iAmVYvF1OY+ZqBHJTBdCHiTiOEbDZVG5yr7j+8VGL/lJw=
-  file:  app/build/outputs/apk/release/app*release*.apk
-  file_glob: "true"
+    secure: 07ea766e194b73438b34e92ca51ab30f4f322f02
+  file: app/build/outputs/apk/release/app-release.apk
   skip_cleanup: true
   on:
-    branch: master
     repo: fso13/dnd5-android
+    tags: true
 
-
-before_cache:
-  - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
-
-cache:
-  directories:
-    - "$HOME/.m2"
-    - "$HOME/.gradle"
-    - "$HOME/.gradle/caches/"
-    - "$HOME/.gradle/wrapper/"
+notifications:
+  email: false
