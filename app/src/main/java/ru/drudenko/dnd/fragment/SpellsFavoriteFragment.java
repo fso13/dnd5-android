@@ -122,6 +122,18 @@ public class SpellsFavoriteFragment extends Fragment {
 
             }
         });
+
+        listView.expandGroup(0);
+        listView.expandGroup(1);
+        listView.expandGroup(2);
+        listView.expandGroup(3);
+        listView.expandGroup(4);
+        listView.expandGroup(5);
+        listView.expandGroup(6);
+        listView.expandGroup(7);
+        listView.expandGroup(8);
+        listView.expandGroup(9);
+
         return root;
     }
 
