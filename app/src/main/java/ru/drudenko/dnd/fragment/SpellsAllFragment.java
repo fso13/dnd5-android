@@ -12,7 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ListView;
+import android.widget.ExpandableListView;
 import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
@@ -66,29 +66,26 @@ public class SpellsAllFragment extends Fragment {
 
         setHasOptionsMenu(true);
         View root = inflater.inflate(R.layout.fragment_spells_all, container, false);
-        ListView listView = root.findViewById(R.id.grid_view_spells);
-
+        ExpandableListView listView = root.findViewById(R.id.grid_view_spells);
 
         spellAdapter = new SpellAdapter(getContext(), spells, clazzMap);
         listView.setAdapter(spellAdapter);
-
-
-        AdapterView.OnItemClickListener itemListener = new AdapterView.OnItemClickListener() {
-
+        listView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View v,
-                                    int position, long id) {
+            public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
                 Intent intent = new Intent(getContext(), SpellActivity.class);
-                InfoSpell spell = spellAdapter.getItem(position).getRu();
-                String nameMessage = spell.getName();
-                intent.putExtra("SPELL_NAME", nameMessage);
-                String infoMessage = spell.toString();
-                intent.putExtra("SPELL_INFO", infoMessage);
-                startActivityForResult(intent, 0);
+                Object item = spellAdapter.getChild(groupPosition, childPosition);
+                if (item instanceof Spell) {
+                    InfoSpell spell = ((Spell) item).getRu();
+                    String nameMessage = spell.getName();
+                    intent.putExtra("SPELL_NAME", nameMessage);
+                    String infoMessage = spell.toString();
+                    intent.putExtra("SPELL_INFO", infoMessage);
+                    startActivityForResult(intent, 0);
+                }
+                return true;
             }
-        };
-        listView.setOnItemClickListener(itemListener);
-
+        });
 
         Spinner spinnerClass = root.findViewById(R.id.spinner_classes);
         ArrayAdapter<String> adapterClasses = new ArrayAdapter<>(this.getActivity(), R.layout.spinner_dropdown_item, classes);
@@ -121,6 +118,19 @@ public class SpellsAllFragment extends Fragment {
 
             }
         });
+
+
+        listView.expandGroup(0);
+        listView.expandGroup(1);
+        listView.expandGroup(2);
+        listView.expandGroup(3);
+        listView.expandGroup(4);
+        listView.expandGroup(5);
+        listView.expandGroup(6);
+        listView.expandGroup(7);
+        listView.expandGroup(8);
+        listView.expandGroup(9);
+
         return root;
     }
 
