@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ListView;
+import android.widget.ExpandableListView;
 import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
@@ -60,7 +60,7 @@ public class SpellsFavoriteFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         setHasOptionsMenu(true);
         View root = inflater.inflate(R.layout.activity_favorite, container, false);
-        ListView listView = root.findViewById(R.id.grid_view_spells);
+        ExpandableListView listView = root.findViewById(R.id.grid_view_spells);
 
 
         List<Spell> spells3 = new ArrayList<>();
@@ -73,21 +73,22 @@ public class SpellsFavoriteFragment extends Fragment {
         spellAdapter = new SpellAdapter(getContext(), spells3, clazzMap);
         listView.setAdapter(spellAdapter);
 
-        AdapterView.OnItemClickListener itemListener = new AdapterView.OnItemClickListener() {
-
+        listView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View v,
-                                    int position, long id) {
+            public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
                 Intent intent = new Intent(getContext(), SpellActivity.class);
-                InfoSpell spell = spellAdapter.getItem(position).getRu();
-                String nameMessage = spell.getName();
-                intent.putExtra("SPELL_NAME", nameMessage);
-                String infoMessage = spell.toString();
-                intent.putExtra("SPELL_INFO", infoMessage);
-                startActivityForResult(intent, 0);
+                Object item = spellAdapter.getChild(groupPosition, childPosition);
+                if (item instanceof Spell) {
+                    InfoSpell spell = ((Spell) item).getRu();
+                    String nameMessage = spell.getName();
+                    intent.putExtra("SPELL_NAME", nameMessage);
+                    String infoMessage = spell.toString();
+                    intent.putExtra("SPELL_INFO", infoMessage);
+                    startActivityForResult(intent, 0);
+                }
+                return true;
             }
-        };
-        listView.setOnItemClickListener(itemListener);
+        });
 
 
         Spinner spinnerClass = root.findViewById(R.id.spinner_classes);
