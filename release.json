@@ -1,5 +1,5 @@
 {
-  "url": "https://github.com/fso13/dnd5-android/releases/download/1911192/app-release.apk",
-  "versionCode": 1911192,
-  "updateMessage": "Фикс отображения версии приложения"
+  "url": "https://github.com/fso13/dnd5-android/releases/download/1911193/app-release.apk",
+  "versionCode": 1911193,
+  "updateMessage": "Фикс вибрации и нотификации при обновлении"
 }

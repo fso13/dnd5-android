@@ -1,4 +1,4 @@
-package ru.drudenko.dnd.dialog;
+package ru.drudenko.dnd.service;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -6,15 +6,12 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
-import java.util.concurrent.atomic.AtomicBoolean;
+import androidx.fragment.app.DialogFragment;
 
 import ru.drudenko.dnd.R;
-import ru.drudenko.dnd.service.Constants;
-import ru.drudenko.dnd.service.DownloadService;
-import ru.drudenko.dnd.service.UpdateDialog;
 
-public class DnDUpdateDialog extends UpdateDialog {
-    public static AtomicBoolean isVisible = new AtomicBoolean(false);
+public class UpdateDialog extends DialogFragment {
+
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -23,23 +20,19 @@ public class DnDUpdateDialog extends UpdateDialog {
         builder.setTitle(R.string.newUpdateAvailable);
         builder.setMessage(getArguments().getString(Constants.APK_UPDATE_CONTENT))
                 .setPositiveButton(R.string.dialogPositiveButton, new DialogInterface.OnClickListener() {
-                    @Override
                     public void onClick(DialogInterface dialog, int id) {
                         // FIRE ZE MISSILES!
-                        DnDUpdateDialog.this.goToDownload();
-                        DnDUpdateDialog.this.dismiss();
+                        goToDownload();
+                        dismiss();
                     }
                 })
                 .setNegativeButton(R.string.dialogNegativeButton, new DialogInterface.OnClickListener() {
-                    @Override
                     public void onClick(DialogInterface dialog, int id) {
                         // User cancelled the dialog
-                        isVisible.set(false);
-                        DnDUpdateDialog.this.dismiss();
+                        dismiss();
                     }
                 });
         // Create the AlertDialog object and return it
-        isVisible.set(true);
         return builder.create();
     }
 
