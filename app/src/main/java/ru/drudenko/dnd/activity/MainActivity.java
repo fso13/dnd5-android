@@ -3,7 +3,10 @@ package ru.drudenko.dnd.activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -20,6 +23,8 @@ import com.artwl.update.UpdateNotice;
 import com.artwl.update.entity.UpdateDescription;
 import com.google.android.material.navigation.NavigationView;
 
+import java.util.concurrent.atomic.AtomicBoolean;
+
 import javax.inject.Inject;
 
 import ru.drudenko.dnd.BuildConfig;
@@ -29,6 +34,8 @@ import ru.drudenko.dnd.dialog.DnDUpdateDialog;
 
 
 public class MainActivity extends AppCompatActivity implements UpdateNotice {
+    public static AtomicBoolean isM = new AtomicBoolean(false);
+
     private static final String APP_UPDATE_SERVER_URL = "https://raw.githubusercontent.com/fso13/dnd5-android/master/release.json";
     @Inject
     Context context;
@@ -45,6 +52,8 @@ public class MainActivity extends AppCompatActivity implements UpdateNotice {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setItemIconTintList(null);
+
+
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
@@ -55,6 +64,16 @@ public class MainActivity extends AppCompatActivity implements UpdateNotice {
 
         TextView versionName = navigationView.getHeaderView(0).findViewById(R.id.textViewVersion);
         versionName.setText("v." + BuildConfig.VERSION_NAME);
+
+        Button button = navigationView.getHeaderView(0).findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                isM.set(true);
+                UpdateChecker.checkForCustomNotice(MainActivity.this, APP_UPDATE_SERVER_URL, MainActivity.this);
+            }
+        });
+
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
@@ -111,6 +130,13 @@ public class MainActivity extends AppCompatActivity implements UpdateNotice {
                 FragmentTransaction ft = this.getSupportFragmentManager().beginTransaction();
                 ft.add(d, this.getClass().getSimpleName());
                 ft.commitAllowingStateLoss();
+            } else {
+                if (isM.get()) {
+                    Toast toast = Toast.makeText(getApplicationContext(), "Обновлений нет!", Toast.LENGTH_SHORT);
+                    toast.show();
+
+                    isM.set(false);
+                }
             }
         }
     }
