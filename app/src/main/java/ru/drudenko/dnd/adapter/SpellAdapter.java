@@ -79,7 +79,7 @@ public class SpellAdapter extends BaseExpandableListAdapter implements Filterabl
 
     @Override
     public int getGroupCount() {
-        return originalData.size();
+        return 10;
     }
 
     @Override
@@ -127,14 +127,14 @@ public class SpellAdapter extends BaseExpandableListAdapter implements Filterabl
 
         TextView textGroup = convertView.findViewById(R.id.textView2);
         textGroup.setText("Уровень: " + groupPosition);
-        textGroup.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+        textGroup.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
         textGroup.setTypeface(null, Typeface.BOLD);
         textGroup.setTextColor(Color.WHITE);
 
 
         TextView textGroup2 = convertView.findViewById(R.id.textView3);
         textGroup2.setText("Кол-во: " + getChildrenCount(groupPosition));
-        textGroup2.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+        textGroup2.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
         textGroup2.setTypeface(null, Typeface.BOLD);
         textGroup2.setTextColor(Color.WHITE);
 
@@ -200,7 +200,7 @@ public class SpellAdapter extends BaseExpandableListAdapter implements Filterabl
 
 
     public int getCount() {
-        return filteredData.size();
+        return 10;
     }
 
     public Filter getFilter() {
@@ -220,7 +220,6 @@ public class SpellAdapter extends BaseExpandableListAdapter implements Filterabl
             String[] filterString = constraint.toString().split(":");
             FilterResults results = new FilterResults();
             final Map<Integer, ArrayList<Spell>> list = originalData;
-            int count = list.size();
             final Map<Integer, ArrayList<Spell>> nlist = new TreeMap<>();
             nlist.put(0, new ArrayList<>());
             nlist.put(1, new ArrayList<>());
@@ -246,7 +245,7 @@ public class SpellAdapter extends BaseExpandableListAdapter implements Filterabl
                 }
             }
 
-            for (int i = 0; i < count; i++) {
+            for (int i = 0; i < 10; i++) {
                 for (Spell spell : list.get(i)) {
 
                     if (filter(spell)) {
