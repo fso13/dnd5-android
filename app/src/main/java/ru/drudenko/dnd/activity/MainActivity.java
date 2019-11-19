@@ -17,10 +17,6 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import com.artwl.update.Constants;
-import com.artwl.update.UpdateChecker;
-import com.artwl.update.UpdateNotice;
-import com.artwl.update.entity.UpdateDescription;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -31,6 +27,10 @@ import ru.drudenko.dnd.BuildConfig;
 import ru.drudenko.dnd.R;
 import ru.drudenko.dnd.di.App;
 import ru.drudenko.dnd.dialog.DnDUpdateDialog;
+import ru.drudenko.dnd.service.Constants;
+import ru.drudenko.dnd.service.UpdateChecker;
+import ru.drudenko.dnd.service.UpdateNotice;
+import ru.drudenko.dnd.service.entity.UpdateDescription;
 
 
 public class MainActivity extends AppCompatActivity implements UpdateNotice {
