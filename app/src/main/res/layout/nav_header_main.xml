@@ -51,4 +51,13 @@
         android:text="1.1"
         android:textColor="@color/textColor" />
 
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="#00000000"
+        android:text="\nпроверить обновление\n"
+        android:textColor="#FFFFFF" />
+
 </LinearLayout>
