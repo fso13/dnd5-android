@@ -119,6 +119,4 @@
     <string name="download_progress">скачивание:%1$d%%</string>
     <string name="download_success">Скачивание завершено, нажмите для установки</string>
     <string name="newUpdateAvailable">Поиск новой версии</string>
-
-
 </resources>
