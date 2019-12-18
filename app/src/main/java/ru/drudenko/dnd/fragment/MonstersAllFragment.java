@@ -39,7 +39,8 @@ public class MonstersAllFragment extends Fragment {
     public static List<String> bioms = Biom.getRu();
     public static List<String> expId;
     public static Map<String, String> exps = new HashMap<>();
-
+    ListView listView;
+    Monster monster;
     static {
         exps.put("Все", "Все");
         exps.put("0", "0 - 10");
@@ -137,7 +138,7 @@ public class MonstersAllFragment extends Fragment {
 
         setHasOptionsMenu(true);
         View root = inflater.inflate(R.layout.fragment_monsters_all, container, false);
-        ListView listView = root.findViewById(R.id.grid_view_monsters);
+        listView = root.findViewById(R.id.grid_view_monsters);
 
         monsterAdapter = new MonsterAdapter(getContext(), monsters);
 
@@ -150,9 +151,8 @@ public class MonstersAllFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {
                 Intent intent = new Intent(getContext(), MonsterActivity.class);
-                Monster monster = monsterAdapter.getItem(position);
+                monster = monsterAdapter.getItem(position);
                 intent.putExtra("MONSTER", monster);
-
 //                String nameMessage = monster.getName();
 //                intent.putExtra("MONSTER_NAME", nameMessage);
 //                intent.putExtra("MONSTER_INFO1", monster.getInfo1());
@@ -242,5 +242,12 @@ public class MonstersAllFragment extends Fragment {
         }
         editor.apply();
 
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        final String key = "MONSTER_" + monster.getName().replace(" ", "_");
+        monster.setFavorite(preferences.getBoolean(key, monster.isFavorite()));
+        monsterAdapter.notifyDataSetChanged();
     }
 }

@@ -4,6 +4,7 @@ import javax.inject.Singleton;
 
 import dagger.Component;
 import ru.drudenko.dnd.activity.MainActivity;
+import ru.drudenko.dnd.activity.SpellActivity;
 import ru.drudenko.dnd.fragment.MonstersAllFragment;
 import ru.drudenko.dnd.fragment.MonstersFavoriteFragment;
 import ru.drudenko.dnd.fragment.SpellsAllFragment;
@@ -22,4 +23,6 @@ public interface AppComponent {
     void inject(MonstersAllFragment target);
 
     void inject(MonstersFavoriteFragment target);
+
+    void inject(SpellActivity target);
 }

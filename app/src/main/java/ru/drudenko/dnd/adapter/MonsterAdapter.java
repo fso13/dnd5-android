@@ -26,8 +26,8 @@ import ru.drudenko.dnd.model.monster.Biom;
 import ru.drudenko.dnd.model.monster.Monster;
 
 public class MonsterAdapter extends BaseAdapter implements Filterable {
-    private List<Monster> originalData;
-    private List<Monster> filteredData;
+    public List<Monster> originalData;
+    public List<Monster> filteredData;
     private LayoutInflater mInflater;
     private ItemFilter mFilter = new ItemFilter();
     private Context context;
