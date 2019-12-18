@@ -43,6 +43,9 @@ public class MonstersFavoriteFragment extends Fragment {
 
     private MonsterAdapter monsterAdapter;
 
+    ListView listView;
+    Monster monster;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,7 +59,7 @@ public class MonstersFavoriteFragment extends Fragment {
 
         setHasOptionsMenu(true);
         View root = inflater.inflate(R.layout.fragment_monsters_all, container, false);
-        ListView listView = root.findViewById(R.id.grid_view_monsters);
+        listView = root.findViewById(R.id.grid_view_monsters);
 
         List<Monster> m = new ArrayList<>();
         for (Monster s : monsters) {
@@ -76,7 +79,7 @@ public class MonstersFavoriteFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {
                 Intent intent = new Intent(getContext(), MonsterActivity.class);
-                Monster monster = monsterAdapter.getItem(position);
+                monster = monsterAdapter.getItem(position);
 
                 intent.putExtra("MONSTER", monster);
                 startActivityForResult(intent, 0);
@@ -148,6 +151,19 @@ public class MonstersFavoriteFragment extends Fragment {
                                           }
                                       }
         );
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        final String key = "MONSTER_" + monster.getName().replace(" ", "_");
+        monster.setFavorite(preferences.getBoolean(key, monster.isFavorite()));
+
+        if (!monster.isFavorite()) {
+            monsterAdapter.originalData.remove(monster);
+            monsterAdapter.filteredData.remove(monster);
+        }
+
+        monsterAdapter.notifyDataSetChanged();
     }
 
 }

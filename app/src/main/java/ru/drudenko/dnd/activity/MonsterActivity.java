@@ -1,9 +1,12 @@
 package ru.drudenko.dnd.activity;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TextView;
 
@@ -131,15 +134,33 @@ public class MonsterActivity extends AppCompatActivity {
         viewPager.setAdapter(adapter);
     }
 
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.favorite, menu);
+
+        menu.getItem(0).setIcon(monster.isFavorite() ? R.drawable.stars_on : R.drawable.stars_off);
+        return true;
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             finish();
             return true;
         }
-        return super.onOptionsItemSelected(item);
-    }
 
-    public boolean onCreateOptionsMenu(Menu menu) {
-        return true;
+        if (item.getItemId() == R.id.action_favorite) {
+
+            monster.setFavorite(!monster.isFavorite());
+            item.setIcon(monster.isFavorite() ? R.drawable.stars_on : R.drawable.stars_off);
+            final String key = "MONSTER_" + monster.getName().replace(" ", "_");
+
+            SharedPreferences preferences = getApplicationContext().getSharedPreferences("application_preferences", Context.MODE_PRIVATE);
+            preferences.edit().remove(key).apply();
+            preferences.edit().putBoolean(key, monster.isFavorite()).apply();
+
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
