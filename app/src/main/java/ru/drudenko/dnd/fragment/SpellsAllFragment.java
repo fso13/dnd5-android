@@ -35,7 +35,6 @@ import ru.drudenko.dnd.adapter.SpellAdapter;
 import ru.drudenko.dnd.di.App;
 import ru.drudenko.dnd.model.magic.ClassInfo;
 import ru.drudenko.dnd.model.magic.Clazz;
-import ru.drudenko.dnd.model.magic.InfoSpell;
 import ru.drudenko.dnd.model.magic.Spell;
 import ru.drudenko.dnd.model.monster.Monster;
 
@@ -52,6 +51,9 @@ public class SpellsAllFragment extends Fragment {
     private SpellAdapter spellAdapter;
     @Inject
     List<Monster> monsters;
+    ExpandableListView listView;
+    private int group = 0;
+    private int child = 0;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -66,7 +68,7 @@ public class SpellsAllFragment extends Fragment {
 
         setHasOptionsMenu(true);
         View root = inflater.inflate(R.layout.fragment_spells_all, container, false);
-        ExpandableListView listView = root.findViewById(R.id.grid_view_spells);
+        listView = root.findViewById(R.id.grid_view_spells);
 
         spellAdapter = new SpellAdapter(getContext(), spells, clazzMap);
         listView.setAdapter(spellAdapter);
@@ -76,11 +78,9 @@ public class SpellsAllFragment extends Fragment {
                 Intent intent = new Intent(getContext(), SpellActivity.class);
                 Object item = spellAdapter.getChild(groupPosition, childPosition);
                 if (item instanceof Spell) {
-                    InfoSpell spell = ((Spell) item).getRu();
-                    String nameMessage = spell.getName();
-                    intent.putExtra("SPELL_NAME", nameMessage);
-                    String infoMessage = spell.toString();
-                    intent.putExtra("SPELL_INFO", infoMessage);
+                    group = groupPosition;
+                    child = childPosition;
+                    intent.putExtra("SPELL", (Spell) item);
                     startActivityForResult(intent, 0);
                 }
                 return true;
@@ -174,5 +174,13 @@ public class SpellsAllFragment extends Fragment {
             preferences.edit().putBoolean(key, spell.isFavorite()).apply();
         }
 
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Spell spell = ((Spell) listView.getExpandableListAdapter().getChild(group, child));
+        final String key = spell.getRu().getName().replace(" ", "_");
+        spell.setFavorite(preferences.getBoolean(key, spell.isFavorite()));
+        spellAdapter.notifyDataSetChanged();
     }
 }

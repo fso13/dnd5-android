@@ -29,9 +29,9 @@ import ru.drudenko.dnd.model.magic.Clazz;
 import ru.drudenko.dnd.model.magic.Spell;
 
 public class SpellAdapter extends BaseExpandableListAdapter implements Filterable {
-    private Map<Integer, ArrayList<Spell>> originalData = new TreeMap<Integer, ArrayList<Spell>>() {
+    public Map<Integer, ArrayList<Spell>> originalData = new TreeMap<Integer, ArrayList<Spell>>() {
     };
-    private Map<Integer, ArrayList<Spell>> filteredData = new TreeMap<>();
+    public Map<Integer, ArrayList<Spell>> filteredData = new TreeMap<>();
     private Map<Clazz, ClassInfo> map;
     private LayoutInflater mInflater;
     private ItemFilter mFilter = new ItemFilter();

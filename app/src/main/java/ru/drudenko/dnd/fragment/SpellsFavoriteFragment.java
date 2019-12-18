@@ -1,6 +1,7 @@
 package ru.drudenko.dnd.fragment;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -35,7 +36,6 @@ import ru.drudenko.dnd.adapter.SpellAdapter;
 import ru.drudenko.dnd.di.App;
 import ru.drudenko.dnd.model.magic.ClassInfo;
 import ru.drudenko.dnd.model.magic.Clazz;
-import ru.drudenko.dnd.model.magic.InfoSpell;
 import ru.drudenko.dnd.model.magic.Spell;
 
 public class SpellsFavoriteFragment extends Fragment {
@@ -46,8 +46,13 @@ public class SpellsFavoriteFragment extends Fragment {
     List<Spell> spells;
     @Inject
     Map<Clazz, ClassInfo> clazzMap;
+    @Inject
+    SharedPreferences preferences;
     private SpellAdapter spellAdapter;
-
+    private int group = 0;
+    private int child = 0;
+    ExpandableListView listView;
+    List<Spell> spells3;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,10 +65,10 @@ public class SpellsFavoriteFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         setHasOptionsMenu(true);
         View root = inflater.inflate(R.layout.activity_favorite, container, false);
-        ExpandableListView listView = root.findViewById(R.id.grid_view_spells);
+        listView = root.findViewById(R.id.grid_view_spells);
 
 
-        List<Spell> spells3 = new ArrayList<>();
+        spells3 = new ArrayList<>();
         for (Spell s : spells) {
             if (s.isFavorite()) {
                 spells3.add(s);
@@ -79,11 +84,9 @@ public class SpellsFavoriteFragment extends Fragment {
                 Intent intent = new Intent(getContext(), SpellActivity.class);
                 Object item = spellAdapter.getChild(groupPosition, childPosition);
                 if (item instanceof Spell) {
-                    InfoSpell spell = ((Spell) item).getRu();
-                    String nameMessage = spell.getName();
-                    intent.putExtra("SPELL_NAME", nameMessage);
-                    String infoMessage = spell.toString();
-                    intent.putExtra("SPELL_INFO", infoMessage);
+                    group = groupPosition;
+                    child = childPosition;
+                    intent.putExtra("SPELL", (Spell) item);
                     startActivityForResult(intent, 0);
                 }
                 return true;
@@ -167,5 +170,16 @@ public class SpellsFavoriteFragment extends Fragment {
         );
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Spell spell = ((Spell) listView.getExpandableListAdapter().getChild(group, child));
+        final String key = spell.getRu().getName().replace(" ", "_");
+        spell.setFavorite(preferences.getBoolean(key, spell.isFavorite()));
+        if (!spell.isFavorite()) {
+            spellAdapter.originalData.get(group).remove(spell);
+            spellAdapter.filteredData.get(group).remove(spell);
+        }
+        spellAdapter.notifyDataSetChanged();
+    }
 
 }
