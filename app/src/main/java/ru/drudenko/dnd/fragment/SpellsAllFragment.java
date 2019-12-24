@@ -54,6 +54,7 @@ public class SpellsAllFragment extends Fragment {
     private ExpandableListView listView;
     private int group = 0;
     private int child = 0;
+    private boolean expander = true;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -119,18 +120,18 @@ public class SpellsAllFragment extends Fragment {
             }
         });
 
-
-        listView.expandGroup(0);
-        listView.expandGroup(1);
-        listView.expandGroup(2);
-        listView.expandGroup(3);
-        listView.expandGroup(4);
-        listView.expandGroup(5);
-        listView.expandGroup(6);
-        listView.expandGroup(7);
-        listView.expandGroup(8);
-        listView.expandGroup(9);
-
+        if (expander) {
+            listView.expandGroup(0);
+            listView.expandGroup(1);
+            listView.expandGroup(2);
+            listView.expandGroup(3);
+            listView.expandGroup(4);
+            listView.expandGroup(5);
+            listView.expandGroup(6);
+            listView.expandGroup(7);
+            listView.expandGroup(8);
+            listView.expandGroup(9);
+        }
         return root;
     }
 
@@ -140,6 +141,8 @@ public class SpellsAllFragment extends Fragment {
         menu.clear();
         inflater.inflate(R.menu.main, menu);
         MenuItem item = menu.findItem(R.id.action_search);
+        inflater.inflate(R.menu.expand, menu);
+
         SearchView searchView = new SearchView(((MainActivity) getContext()).getSupportActionBar().getThemedContext());
         MenuItemCompat.setShowAsAction(item, MenuItemCompat.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW | MenuItemCompat.SHOW_AS_ACTION_IF_ROOM);
         MenuItemCompat.setActionView(item, searchView);
@@ -182,5 +185,38 @@ public class SpellsAllFragment extends Fragment {
         final String key = spell.getRu().getName().replace(" ", "_");
         spell.setFavorite(preferences.getBoolean(key, spell.isFavorite()));
         spellAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_expand) {
+            expander = !expander;
+
+            if (expander) {
+                listView.expandGroup(0);
+                listView.expandGroup(1);
+                listView.expandGroup(2);
+                listView.expandGroup(3);
+                listView.expandGroup(4);
+                listView.expandGroup(5);
+                listView.expandGroup(6);
+                listView.expandGroup(7);
+                listView.expandGroup(8);
+                listView.expandGroup(9);
+            } else {
+                listView.collapseGroup(0);
+                listView.collapseGroup(1);
+                listView.collapseGroup(2);
+                listView.collapseGroup(3);
+                listView.collapseGroup(4);
+                listView.collapseGroup(5);
+                listView.collapseGroup(6);
+                listView.collapseGroup(7);
+                listView.collapseGroup(8);
+                listView.collapseGroup(9);
+            }
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

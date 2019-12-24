@@ -25,6 +25,7 @@ public class MasterHelpFragment extends Fragment {
 
     private ExpandableListView listView;
     private HelpAdapter adapter;
+    private boolean expander = true;
 
 
     public MasterHelpFragment() {
@@ -57,10 +58,12 @@ public class MasterHelpFragment extends Fragment {
                 return true;
             }
         });
-        listView.expandGroup(0);
-        listView.expandGroup(1);
-        listView.expandGroup(2);
-        listView.expandGroup(3);
+        if (expander) {
+            listView.expandGroup(0);
+            listView.expandGroup(1);
+            listView.expandGroup(2);
+            listView.expandGroup(3);
+        }
         return root;
     }
 
@@ -70,6 +73,8 @@ public class MasterHelpFragment extends Fragment {
         menu.clear();
         inflater.inflate(R.menu.main, menu);
         MenuItem item = menu.findItem(R.id.action_search);
+        inflater.inflate(R.menu.expand, menu);
+
         SearchView searchView = new SearchView(((MainActivity) getContext()).getSupportActionBar().getThemedContext());
         MenuItemCompat.setShowAsAction(item, MenuItemCompat.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW | MenuItemCompat.SHOW_AS_ACTION_IF_ROOM);
         MenuItemCompat.setActionView(item, searchView);
@@ -92,6 +97,27 @@ public class MasterHelpFragment extends Fragment {
                                           }
                                       }
         );
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_expand) {
+            expander = !expander;
+
+            if (expander) {
+                listView.expandGroup(0);
+                listView.expandGroup(1);
+                listView.expandGroup(2);
+                listView.expandGroup(3);
+            } else {
+                listView.collapseGroup(0);
+                listView.collapseGroup(1);
+                listView.collapseGroup(2);
+                listView.collapseGroup(3);
+            }
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 
