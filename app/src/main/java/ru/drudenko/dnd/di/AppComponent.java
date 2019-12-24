@@ -5,10 +5,10 @@ import javax.inject.Singleton;
 import dagger.Component;
 import ru.drudenko.dnd.activity.MainActivity;
 import ru.drudenko.dnd.activity.SpellActivity;
-import ru.drudenko.dnd.fragment.MonstersAllFragment;
-import ru.drudenko.dnd.fragment.MonstersFavoriteFragment;
-import ru.drudenko.dnd.fragment.SpellsAllFragment;
-import ru.drudenko.dnd.fragment.SpellsFavoriteFragment;
+import ru.drudenko.dnd.fragment.monster.MonstersAllFragment;
+import ru.drudenko.dnd.fragment.monster.MonstersFavoriteFragment;
+import ru.drudenko.dnd.fragment.spell.SpellsAllFragment;
+import ru.drudenko.dnd.fragment.spell.SpellsFavoriteFragment;
 
 @Singleton
 @Component(modules = {AppModule.class})

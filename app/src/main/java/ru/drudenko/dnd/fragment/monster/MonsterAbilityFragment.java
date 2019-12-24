@@ -1,4 +1,4 @@
-package ru.drudenko.dnd.fragment;
+package ru.drudenko.dnd.fragment.monster;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

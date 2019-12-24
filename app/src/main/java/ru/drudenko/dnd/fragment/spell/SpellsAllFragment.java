@@ -1,4 +1,4 @@
-package ru.drudenko.dnd.fragment;
+package ru.drudenko.dnd.fragment.spell;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -22,7 +22,6 @@ import androidx.appcompat.widget.SearchView;
 import androidx.core.view.MenuItemCompat;
 import androidx.fragment.app.Fragment;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -37,22 +36,24 @@ import ru.drudenko.dnd.di.App;
 import ru.drudenko.dnd.model.magic.ClassInfo;
 import ru.drudenko.dnd.model.magic.Clazz;
 import ru.drudenko.dnd.model.magic.Spell;
+import ru.drudenko.dnd.model.monster.Monster;
 
-public class SpellsFavoriteFragment extends Fragment {
+public class SpellsAllFragment extends Fragment {
 
     private static List<String> classes = Clazz.getRu();
     private static List<String> level = Arrays.asList("Все", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9");
     @Inject
+    SharedPreferences preferences;
+    @Inject
     List<Spell> spells;
     @Inject
     Map<Clazz, ClassInfo> clazzMap;
-    @Inject
-    SharedPreferences preferences;
     private SpellAdapter spellAdapter;
+    @Inject
+    List<Monster> monsters;
+    private ExpandableListView listView;
     private int group = 0;
     private int child = 0;
-    ExpandableListView listView;
-    List<Spell> spells3;
     private boolean expander = true;
 
     @Override
@@ -65,21 +66,13 @@ public class SpellsFavoriteFragment extends Fragment {
     @RequiresApi(api = Build.VERSION_CODES.N)
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+
         setHasOptionsMenu(true);
-        View root = inflater.inflate(R.layout.activity_favorite, container, false);
+        View root = inflater.inflate(R.layout.fragment_spells_all, container, false);
         listView = root.findViewById(R.id.grid_view_spells);
 
-
-        spells3 = new ArrayList<>();
-        for (Spell s : spells) {
-            if (s.isFavorite()) {
-                spells3.add(s);
-            }
-        }
-
-        spellAdapter = new SpellAdapter(getContext(), spells3, clazzMap);
+        spellAdapter = new SpellAdapter(getContext(), spells, clazzMap);
         listView.setAdapter(spellAdapter);
-
         listView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override
             public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
@@ -94,7 +87,6 @@ public class SpellsFavoriteFragment extends Fragment {
                 return true;
             }
         });
-
 
         Spinner spinnerClass = root.findViewById(R.id.spinner_classes);
         ArrayAdapter<String> adapterClasses = new ArrayAdapter<>(this.getActivity(), R.layout.spinner_dropdown_item, classes);
@@ -176,14 +168,22 @@ public class SpellsFavoriteFragment extends Fragment {
     }
 
     @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+
+        for (Spell spell : spells) {
+            final String key = spell.getRu().getName().replace(" ", "_");
+            preferences.edit().remove(key).apply();
+            preferences.edit().putBoolean(key, spell.isFavorite()).apply();
+        }
+
+    }
+
+    @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         Spell spell = ((Spell) listView.getExpandableListAdapter().getChild(group, child));
         final String key = spell.getRu().getName().replace(" ", "_");
         spell.setFavorite(preferences.getBoolean(key, spell.isFavorite()));
-        if (!spell.isFavorite()) {
-            spellAdapter.originalData.get(group).remove(spell);
-            spellAdapter.filteredData.get(group).remove(spell);
-        }
         spellAdapter.notifyDataSetChanged();
     }
 
@@ -219,5 +219,4 @@ public class SpellsFavoriteFragment extends Fragment {
         }
         return super.onOptionsItemSelected(item);
     }
-
 }

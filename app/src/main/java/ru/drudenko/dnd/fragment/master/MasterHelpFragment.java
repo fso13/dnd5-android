@@ -1,4 +1,4 @@
-package ru.drudenko.dnd.fragment;
+package ru.drudenko.dnd.fragment.master;
 
 import android.content.Intent;
 import android.os.Bundle;

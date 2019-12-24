@@ -7,31 +7,31 @@
 
     <fragment
         android:id="@+id/nav_all_spells"
-        android:name="ru.drudenko.dnd.fragment.SpellsAllFragment"
+        android:name="ru.drudenko.dnd.fragment.spell.SpellsAllFragment"
         android:label="@string/menu_all_spells"
         tools:layout="@layout/fragment_spells_all" />
 
     <fragment
         android:id="@+id/nav_favorite_spells"
-        android:name="ru.drudenko.dnd.fragment.SpellsFavoriteFragment"
+        android:name="ru.drudenko.dnd.fragment.spell.SpellsFavoriteFragment"
         android:label="@string/menu_favorite_spells"
         tools:layout="@layout/activity_favorite" />
 
     <fragment
         android:id="@+id/nav_all_monsters"
-        android:name="ru.drudenko.dnd.fragment.MonstersAllFragment"
+        android:name="ru.drudenko.dnd.fragment.monster.MonstersAllFragment"
         android:label="@string/menu_all_monsters"
         tools:layout="@layout/fragment_spells_all" />
 
     <fragment
         android:id="@+id/nav_favorite_monsters"
-        android:name="ru.drudenko.dnd.fragment.MonstersFavoriteFragment"
+        android:name="ru.drudenko.dnd.fragment.monster.MonstersFavoriteFragment"
         android:label="@string/menu_favorite_monsters"
         tools:layout="@layout/activity_favorite" />
 
     <fragment
         android:id="@+id/nav_master_help"
-        android:name="ru.drudenko.dnd.fragment.MasterHelpFragment"
+        android:name="ru.drudenko.dnd.fragment.master.MasterHelpFragment"
         android:label="@string/menu_master_help"
         tools:layout="@layout/fragment_master_help" />
 </navigation>

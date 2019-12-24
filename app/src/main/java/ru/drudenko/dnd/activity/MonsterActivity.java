@@ -25,11 +25,11 @@ import java.util.regex.Pattern;
 
 import ru.drudenko.dnd.R;
 import ru.drudenko.dnd.adapter.ViewPagerAdapter;
-import ru.drudenko.dnd.fragment.MonsterAbilityFragment;
-import ru.drudenko.dnd.fragment.MonsterActionFragment;
-import ru.drudenko.dnd.fragment.MonsterInfoFragment;
-import ru.drudenko.dnd.fragment.MonsterTraitFragment;
-import ru.drudenko.dnd.fragment.MonstersAllFragment;
+import ru.drudenko.dnd.fragment.monster.MonsterAbilityFragment;
+import ru.drudenko.dnd.fragment.monster.MonsterActionFragment;
+import ru.drudenko.dnd.fragment.monster.MonsterInfoFragment;
+import ru.drudenko.dnd.fragment.monster.MonsterTraitFragment;
+import ru.drudenko.dnd.fragment.monster.MonstersAllFragment;
 import ru.drudenko.dnd.model.monster.Monster;
 
 

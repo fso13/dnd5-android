@@ -35,7 +35,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".fragment.SpellsAllFragment" />
+        <activity android:name=".fragment.spell.SpellsAllFragment" />
         <activity android:name=".activity.SpellActivity" />
         <activity
             android:name=".activity.MonsterActivity"

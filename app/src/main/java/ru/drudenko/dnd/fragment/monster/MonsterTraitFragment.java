@@ -1,4 +1,4 @@
-package ru.drudenko.dnd.fragment;
+package ru.drudenko.dnd.fragment.monster;
 
 import android.os.Bundle;
 import android.text.Html;
@@ -11,13 +11,14 @@ import androidx.fragment.app.Fragment;
 
 import ru.drudenko.dnd.R;
 import ru.drudenko.dnd.model.monster.Monster;
+import ru.drudenko.dnd.model.monster.Trait;
 
 
-public class MonsterInfoFragment extends Fragment {
+public class MonsterTraitFragment extends Fragment {
 
     private final Monster monster;
 
-    public MonsterInfoFragment(Monster monster) {
+    public MonsterTraitFragment(Monster monster) {
         this.monster = monster;
     }
 
@@ -30,10 +31,15 @@ public class MonsterInfoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View root = inflater.inflate(R.layout.fragment_monster_info, container, false);
+        View root = inflater.inflate(R.layout.fragment_monster_trait, container, false);
 
-        TextView info = root.findViewById(R.id.textView_info);
-        info.setText(Html.fromHtml(monster.getFiction().trim() + "<br><br>"), TextView.BufferType.SPANNABLE);
+        TextView trait = root.findViewById(R.id.textView_trait);
+        StringBuilder r = new StringBuilder();
+        for (Trait t : monster.getTrait()) {
+            r.append(t.toString());
+        }
+        trait.setText(Html.fromHtml(r.toString()), TextView.BufferType.SPANNABLE);
+
 
         return root;
     }
