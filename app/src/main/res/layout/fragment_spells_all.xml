@@ -16,6 +16,7 @@
         android:cacheColorHint="#FFFFFF"
         android:divider="@color/colorPrimary"
         android:dividerHeight="1dp"
+        android:childDivider="@color/colorPrimary"
         android:textColor="@color/textColor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -10,6 +10,7 @@
     <string name="menu_favorite_spells">Любимые заклинания</string>
     <string name="menu_all_monsters">Монстры</string>
     <string name="menu_favorite_monsters">Любимые монстры</string>
+    <string name="menu_master_help">Ширма мастера</string>
 
     <string name="spinner_class">Класс</string>
     <string name="spinner_level">Уровень</string>

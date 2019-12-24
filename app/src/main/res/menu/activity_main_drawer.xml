@@ -27,5 +27,10 @@
             android:icon="@drawable/ic_menu_monster_favorite"
             android:textColor="@color/textColor"
             android:title="@string/menu_favorite_monsters" />
+        <item
+            android:id="@+id/nav_master_help"
+            android:icon="@drawable/ic_menu_master_help"
+            android:textColor="@color/textColor"
+            android:title="@string/menu_master_help" />
     </group>
 </menu>

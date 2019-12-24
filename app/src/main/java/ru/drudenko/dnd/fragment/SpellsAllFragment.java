@@ -51,7 +51,7 @@ public class SpellsAllFragment extends Fragment {
     private SpellAdapter spellAdapter;
     @Inject
     List<Monster> monsters;
-    ExpandableListView listView;
+    private ExpandableListView listView;
     private int group = 0;
     private int child = 0;
 
