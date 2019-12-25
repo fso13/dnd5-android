@@ -1,6 +1,7 @@
 package ru.drudenko.dnd.activity;
 
 import android.os.Bundle;
+import android.text.Html;
 import android.view.MenuItem;
 import android.widget.TextView;
 
@@ -27,12 +28,12 @@ public class HelpActivity extends AppCompatActivity {
         StringBuilder text = new StringBuilder();
 
         for (CustomItem item : customItems) {
-            text.append(item.getName()).append("\n");
-            text.append(item.getText()).append("\n\n");
+            text.append("<b>").append(item.getName()).append("</b><br>");
+            text.append(item.getText()).append("<br><br>");
         }
 
         TextView info = findViewById(R.id.textView);
-        info.setText((text + "\n\n"));
+        info.setText(Html.fromHtml(text + "<br><br>"), TextView.BufferType.SPANNABLE);
     }
 
     @Override

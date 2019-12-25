@@ -25,6 +25,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="TextView"
+                android:textSize="18sp"
                 android:textColor="@color/textColor" />
 
             <com.google.android.material.tabs.TabLayout
