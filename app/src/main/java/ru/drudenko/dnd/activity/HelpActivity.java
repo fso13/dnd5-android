@@ -1,9 +1,9 @@
 package ru.drudenko.dnd.activity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.text.Html;
 import android.view.MenuItem;
-import android.widget.TextView;
+import android.webkit.WebView;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +15,7 @@ import ru.drudenko.dnd.model.CustomItem;
 
 public class HelpActivity extends AppCompatActivity {
 
+    @SuppressLint("ResourceAsColor")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,8 +33,17 @@ public class HelpActivity extends AppCompatActivity {
             text.append(item.getText()).append("<br><br>");
         }
 
-        TextView info = findViewById(R.id.textView);
-        info.setText(Html.fromHtml(text + "<br><br>"), TextView.BufferType.SPANNABLE);
+        WebView info = findViewById(R.id.textView);
+
+        info.loadDataWithBaseURL(null, "<style>\n" +
+                "    table {\n" +
+                "        border-collapse: collapse;\n" +
+                "    }\n" +
+                "\n" +
+                "    table, th, td {\n" +
+                "        border: 1px solid red;\n" +
+                "    }\n" +
+                "</style><body style=\"background-color:black; color: white\">" + text + "<br><br></body>", "text/html", "utf-8", null);
     }
 
     @Override
