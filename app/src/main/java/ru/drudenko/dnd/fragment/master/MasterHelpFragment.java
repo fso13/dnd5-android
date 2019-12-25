@@ -2,123 +2,98 @@ package ru.drudenko.dnd.fragment.master;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ExpandableListView;
+import android.widget.ListView;
 
-import androidx.appcompat.widget.SearchView;
-import androidx.core.view.MenuItemCompat;
-import androidx.fragment.app.Fragment;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.ListFragment;
 
-import ru.drudenko.dnd.R;
+import java.util.ArrayList;
+
 import ru.drudenko.dnd.activity.HelpActivity;
-import ru.drudenko.dnd.activity.MainActivity;
-import ru.drudenko.dnd.adapter.HelpAdapter;
+import ru.drudenko.dnd.adapter.SingleAdapter;
 import ru.drudenko.dnd.model.CustomItem;
 
 
-public class MasterHelpFragment extends Fragment {
+public class MasterHelpFragment extends ListFragment {
 
-    private ExpandableListView listView;
-    private HelpAdapter adapter;
-    private boolean expander = true;
+    private String[] data = new String[]{"Сражение", "Состояния", "Виды урона", "Укрытие"};
 
-
-    public MasterHelpFragment() {
-        // Required empty public constructor
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        SingleAdapter adapter = new SingleAdapter(getActivity(), data);
+        setListAdapter(adapter);
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onListItemClick(@NonNull ListView l, @NonNull View v, int position, long id) {
+        super.onListItemClick(l, v, position, id);
 
-    }
+        switch (position) {
+            case 0:
+                Intent intent = new Intent(getContext(), MasterActionActivity.class);
+                startActivityForResult(intent, 0);
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        setHasOptionsMenu(true);
-        View root = inflater.inflate(R.layout.fragment_master_help, container, false);
-        listView = root.findViewById(R.id.list_help);
-        adapter = new HelpAdapter(getContext());
-        listView.setAdapter(adapter);
-        listView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
-            @Override
-            public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
-                Intent intent = new Intent(getContext(), HelpActivity.class);
-                Object item = adapter.getChild(groupPosition, childPosition);
-                if (item instanceof CustomItem) {
-                    intent.putExtra("CustomItem", (CustomItem) item);
-                    startActivityForResult(intent, 0);
-                }
-                return true;
-            }
-        });
-        if (expander) {
-            listView.expandGroup(0);
-            listView.expandGroup(1);
-            listView.expandGroup(2);
-            listView.expandGroup(3);
+                break;
+            case 1:
+                intent = new Intent(getContext(), HelpActivity.class);
+
+                ArrayList<CustomItem> m2 = new ArrayList<>();
+                m2.add(new CustomItem("Безсознательный", "• Находящееся без сознания существо«недееспособно», не способно перемещаться и говорить, а также не осознаёт своё окружение.\n• Существо роняет всё, что держит, и падаетничком.\n• Существо автоматически проваливаетспасброски Силы и Ловкости."));
+                m2.add(new CustomItem("Испуганный", "• Испуганное существо совершает с помехойпроверки характеристик и броски атаки, пока источник его страха находится в пределах его линии обзора.\n• Существо не способно добровольноприблизиться к источнику своего страха"));
+                m2.add(new CustomItem("Невидимый", "• Невидимое существо невозможно увидеть безпомощи магии или особого чувства.  Местонахождение существа можно определить по шуму, который оно издаёт, или по оставленным им следам.\n• Броски атаки по невидимому существусовершаются с помехой, а его броски атаки с преимуществом."));
+                m2.add(new CustomItem("Недееспособный", "• Недееспособное существо не может совершатьдействия и реакции"));
+                m2.add(new CustomItem("Оглохший", "• Оглохшее существо ничего не слышит иавтоматически проваливает все проверкихарактеристик, связанные со слухом"));
+                m2.add(new CustomItem("Опутанный", "• Скорость опутанного существа равна 0, и ононе получает выгоды ни от каких бонусов кскорости.\n• Броски атаки по такому существу совершаютсяс преимуществом, а его броски атаки спомехой.\n• Существо совершает с помехой спасброскиЛовкости"));
+                m2.add(new CustomItem("Схваченный", "• Скорость схваченного существа равна 0.\n• Состояние оканчивается, если схватившийстановится недееспособен.\n• Это состояние также оканчивается, если какойлибо эффект выводит схваченное существо иззоны досягаемости того, кто его удерживает."));
+                m2.add(new CustomItem("Окаманевший", "•Существо превращается в камень.\n• Существо «недееспособно», не способнодвигаться и говорить, а также не осознаёт своё окружение.\n• Броски атаки по существу совершаются спреимуществом.\n• Существо автоматически проваливаетспасброски Силы и Ловкости.\n• Существо получает сопротивление ко всемвидам урона, ядам и болезням"));
+                m2.add(new CustomItem("Ослеплённый", "• Ослеплённое существо ничего не видит иавтоматически проваливает все проверкихарактеристик, связанные со зрением.\n• Броски атаки по такому существу совершаются спреимуществом, а его броски атаки совершаются с помехой"));
+                m2.add(new CustomItem("Очарованный", "• Очарованное существо не может атаковатьтого, кто его очаровал, а также делать егоцелью умения или магического эффекта,причиняющего вред.\n• Искуситель совершает с преимуществом всепроверки характеристик при социальномвзаимодействии с очарованным существом."));
+                m2.add(new CustomItem("Ошеломлённый/парализованный", "•Существо «недееспособно», не способноперемещаться.\n• Существо автоматически проваливаетспасброски Силы и Ловкости.\n• Броски атаки по существу совершаются спреимуществом"));
+                m2.add(new CustomItem("Сбитый с ног", "• Сбитое с ног существо способно перемещатьсятолько ползком, пока не встанет, прервав темсамым это состояние.\n• Существо совершает с помехой броски атаки.\n• Броски атаки по существу совершаются спреимуществом, если нападающий находится впределах 5 футов от него. В противном случаеброски атаки совершаются с помехой"));
+                m2.add(new CustomItem("Отравленный", "• Отравленное существо совершает с помехойброски атаки и проверки характеристик."));
+
+                intent.putExtra("CustomItems", m2);
+
+                startActivityForResult(intent, 0);
+
+                break;
+            case 2:
+                intent = new Intent(getContext(), HelpActivity.class);
+
+                ArrayList<CustomItem> m3 = new ArrayList<>();
+                m3.add(new CustomItem("Дробящий", "Тяжёлые силовые атаки — молотом, падением, сдавливанием и т. п. — причиняют дробящий урон"));
+                m3.add(new CustomItem("Звук", "Оглушительные звуковые волны, такие как от заклинания волна грома, причиняют урон звуком"));
+                m3.add(new CustomItem("Излучение", "Урон излучением, причиняемый заклинанием небесный огонь жреца и карающим оружием ангела, опаляют плоть как огонь и переполняют дух силой"));
+                m3.add(new CustomItem("Кислота", "Едкое дыхание чёрного дракона и растворяющая слизь чёрного пудинга причиняют урон кислотой"));
+                m3.add(new CustomItem("Колющий", "Колющие и пронзающие атаки, включая удары копьём и укусы чудовищ, причиняют колющий урон"));
+                m3.add(new CustomItem("Некротическая энергия.", "Некротическая энергия, излучаемая некоторой нежитью и такими заклинаниями как леденящее прикосновение, иссушают плоть и даже душу"));
+                m3.add(new CustomItem("Огонь", "Красный дракон, выдыхающий пламя, и многие заклинания, создающие жар, причиняют урон огнём"));
+                m3.add(new CustomItem("Психическая энергия", "Атаки силой разума, такие как у иллитидов, причиняют урон психической энергией."));
+                m3.add(new CustomItem("Рубящий", "Мечи, топоры и когти чудовищ причиняют рубящий урон"));
+                m3.add(new CustomItem("Силовое поле", "Силовое поле это чистая магия, сфокусированная в разрушительную силу. Чаще всего силовым полем причиняют урон заклинания, такие как волшебная стрела и божественное оружие"));
+                m3.add(new CustomItem("Холод", "Лютый холод от копья ледяного дьявола и морозное дыхание белого дракона причиняют урон холодом"));
+                m3.add(new CustomItem("Электричество", "Заклинание молния и дыханиесинего дракона причиняют урон электричеством"));
+                m3.add(new CustomItem("Яд", "Ядовитые укусы и токсичное дыхание зелёного дракона причиняют урон ядом"));
+
+                intent.putExtra("CustomItems", m3);
+
+                startActivityForResult(intent, 0);
+                break;
+            case 3:
+                intent = new Intent(getContext(), HelpActivity.class);
+                ArrayList<CustomItem> m4 = new ArrayList<>();
+
+                m4.add(new CustomItem("Укрытие на 1/2", "Бонус к КД +2"));
+                m4.add(new CustomItem("Укрытие на 3/4", "Бонус к КД +5"));
+                m4.add(new CustomItem("Полное укрытие ", "При полном укрытии вас нельзя атаковать и накладывать на васзаклинания."));
+
+                intent.putExtra("CustomItems", m4);
+
+                startActivityForResult(intent, 0);
+
+                break;
         }
-        return root;
     }
-
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-        menu.clear();
-        inflater.inflate(R.menu.main, menu);
-        MenuItem item = menu.findItem(R.id.action_search);
-        inflater.inflate(R.menu.expand, menu);
-
-        SearchView searchView = new SearchView(((MainActivity) getContext()).getSupportActionBar().getThemedContext());
-        MenuItemCompat.setShowAsAction(item, MenuItemCompat.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW | MenuItemCompat.SHOW_AS_ACTION_IF_ROOM);
-        MenuItemCompat.setActionView(item, searchView);
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                adapter.getFilter().filter(query);
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                adapter.getFilter().filter(newText);
-                return false;
-            }
-        });
-        searchView.setOnClickListener(new View.OnClickListener() {
-                                          @Override
-                                          public void onClick(View v) {
-                                          }
-                                      }
-        );
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.action_expand) {
-            expander = !expander;
-
-            if (expander) {
-                listView.expandGroup(0);
-                listView.expandGroup(1);
-                listView.expandGroup(2);
-                listView.expandGroup(3);
-            } else {
-                listView.collapseGroup(0);
-                listView.collapseGroup(1);
-                listView.collapseGroup(2);
-                listView.collapseGroup(3);
-            }
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-
 }

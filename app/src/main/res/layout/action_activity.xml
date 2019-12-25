@@ -22,11 +22,10 @@
 
             <TextView
                 android:id="@+id/textView4"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="TextView"
-                android:textColor="@color/textColor"
-                tools:text="За один раунд игрок может совершить:  перемещение + одно действие + одно бонусное действие + одну реакцию." />
+                android:textColor="@color/textColor" />
 
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tablayout"
@@ -34,17 +33,17 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView4"
                 app:tabGravity="fill"
                 app:tabIndicatorColor="@color/colorPrimary"
                 app:tabMode="scrollable"
                 app:tabSelectedTextColor="#F70303"
-                app:tabTextColor="#FFFFFF"
-                tools:layout_editor_absoluteY="77dp">
+                app:tabTextColor="#FFFFFF">
 
                 <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Перемещение" />
+                    android:text="Перемещение"></com.google.android.material.tabs.TabItem>
 
                 <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"
@@ -54,7 +53,7 @@
                 <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Бонусные действи" />
+                    android:text="Бонусные действия" />
 
                 <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"

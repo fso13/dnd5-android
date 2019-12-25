@@ -7,6 +7,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.ArrayList;
+
 import ru.drudenko.dnd.R;
 import ru.drudenko.dnd.model.CustomItem;
 
@@ -20,13 +22,17 @@ public class HelpActivity extends AppCompatActivity {
         setContentView(R.layout.activity_singl);
         Bundle bundle = getIntent().getExtras();
 
-        CustomItem customItem = (CustomItem) bundle.get("CustomItem");
+        ArrayList<CustomItem> customItems = (ArrayList<CustomItem>) bundle.get("CustomItems");
+
+        StringBuilder text = new StringBuilder();
+
+        for (CustomItem item : customItems) {
+            text.append(item.getName()).append("\n");
+            text.append(item.getText()).append("\n\n");
+        }
 
         TextView info = findViewById(R.id.textView);
-        info.setText((customItem.getText() + "\n\n"));
-        actionBar.setTitle(customItem.getName());
-
-
+        info.setText((text + "\n\n"));
     }
 
     @Override

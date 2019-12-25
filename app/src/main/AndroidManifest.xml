@@ -36,11 +36,13 @@
             </intent-filter>
         </activity>
         <activity android:name=".fragment.spell.SpellsAllFragment" />
+        <activity android:name=".fragment.master.MasterHelpFragment" />
         <activity android:name=".activity.SpellActivity" />
         <activity
             android:name=".activity.MonsterActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activity.HelpActivity" />
+        <activity android:name=".fragment.master.MasterActionActivity" />
 
         <service
             android:name="ru.drudenko.dnd.service.DownloadService"
