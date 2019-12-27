@@ -17,7 +17,7 @@ import ru.drudenko.dnd.model.CustomItem;
 
 public class MasterHelpFragment extends ListFragment {
 
-    private String[] data = new String[]{"Сражение", "Состояния", "Виды урона", "Укрытие", "Броня", "Оружие"};
+    private String[] data = new String[]{"Сражение", "Состояния", "Виды урона", "Укрытие", "Броня", "Оружие", "Снаряжение"};
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -520,6 +520,138 @@ public class MasterHelpFragment extends ListFragment {
                         "</tbody></table>"));
 
                 intent.putExtra("CustomItems", m6);
+
+                startActivityForResult(intent, 0);
+
+                break;
+
+            case 6:
+                intent = new Intent(getContext(), HelpActivity.class);
+                ArrayList<CustomItem> m7 = new ArrayList<>();
+
+
+                m7.add(new CustomItem("Снаряжение", "<div><span class=\"cls_012\">Зелья лечения</span></div>\n" +
+                        "<table>\n" +
+                        "    <tbody>\n" +
+                        "    <tr class=\"table_header\">\n" +
+                        "        <td>Зелье...</td>\n" +
+                        "        <td>Редкость</td>\n" +
+                        "        <td>Хитов восст</td>\n" +
+                        "        <td>Цена</td>\n" +
+                        "    </tr>\n" +
+                        "    <tr>\n" +
+                        "        <td>лечения</td>\n" +
+                        "        <td>Обычная</td>\n" +
+                        "        <td>2к4 + 2</td>\n" +
+                        "        <td>50 зм</td>\n" +
+                        "    </tr>\n" +
+                        "    <tr>\n" +
+                        "        <td>большого лечения</td>\n" +
+                        "        <td>Необычная</td>\n" +
+                        "        <td>4к4 + 4</td>\n" +
+                        "        <td>51-250 зм</td>\n" +
+                        "    </tr>\n" +
+                        "    <tr>\n" +
+                        "        <td>отличного лечения</td>\n" +
+                        "        <td>Редкая</td>\n" +
+                        "        <td>8к4 + 8</td>\n" +
+                        "        <td>251-2500 зм</td>\n" +
+                        "    </tr>\n" +
+                        "    <tr>\n" +
+                        "        <td>превосходного лечения</td>\n" +
+                        "        <td>Очень редкая</td>\n" +
+                        "        <td>10к4 + 20</td>\n" +
+                        "        <td>2501-25000 зм</td>\n" +
+                        "    </tr>\n" +
+                        "    </tbody>\n" +
+                        "</table>\n" +
+                        "<br>\n" +
+                        "<div><span class=\"cls_012\">Алхимический огонь.</span><span class=\"cls_013\"> Действ.: метнуть на ≤ 20 футов (д.ат. по сущ.</span>\n" +
+                        "</div>\n" +
+                        "<div><span class=\"cls_013\">или предмету импровизир. ор.). Попал - урон огнём 1к4 в начале</span></div>\n" +
+                        "<div><span class=\"cls_013\">каждого своего хода. Окончить эфф. - действ.: пров. Лов. Сл10.</span></div>\n" +
+                        "<div><span class=\"cls_012\">Блок и лебёдка.</span><span class=\"cls_013\"> Поднять вес ×4.</span></div>\n" +
+                        "<div><span class=\"cls_012\">Верёвка.</span><span class=\"cls_013\"> 2 хита, порвать - пров. Сил Сл17.</span></div>\n" +
+                        "<div><span class=\"cls_012\">Замок.</span><span class=\"cls_013\"> Вскрыть - пров. Лов. Сл15.</span></div>\n" +
+                        "<div><span class=\"cls_012\">Зелье лечения.</span><span class=\"cls_013\"> Действ: выпить или дать др. сущ. - восст. 2к4+2 хита.</span>\n" +
+                        "</div>\n" +
+                        "<div><span class=\"cls_012\">Калтропы.</span><span\n" +
+                        "        class=\"cls_013\"> Действ.: рассыпать на 5×5 фт. Все сущ., входящие в эту</span></div>\n" +
+                        "<div><span class=\"cls_013\">область: спас. Лов. Сл15, останавливаются и кол. урон 1. Пока не</span></div>\n" +
+                        "<div><span class=\"cls_013\">восстановит ≥1 хит, скор. ↓ на 10 фт. Движение с скор./2 - без спас.</span></div>\n" +
+                        "<div><span class=\"cls_012\">Кандалы.</span><span\n" +
+                        "        class=\"cls_013\"> Удерживают сущ. Маленького и Среднего размера, имеют</span></div>\n" +
+                        "<div><span class=\"cls_013\">15 хитов. Сбежать: пров. Лов. или Сил. (Сл20). Вскрыть: воровские</span></div>\n" +
+                        "<div><span class=\"cls_013\">инстр. - пров.Лов. Сл15.</span></div>\n" +
+                        "<div><span class=\"cls_012\">Кислота.</span><span\n" +
+                        "        class=\"cls_013\"> Действ.: вылить на сущ. в ≤5 фт или метнуть на ≤20 фт,</span></div>\n" +
+                        "<div><span class=\"cls_013\">(д.ат. по сущ. или предмету импровизир. ор.). Попал - урон кисл. 2к6.</span></div>\n" +
+                        "<div><span class=\"cls_012\">Колчан.</span><span class=\"cls_013\"> Вмещает 20 стрел.</span></div>\n" +
+                        "<div><span class=\"cls_012\">Комплект для лазания.</span><span\n" +
+                        "        class=\"cls_013\"> Действ.: закрепиться на высоте (падение/</span></div>\n" +
+                        "<div><span class=\"cls_013\">подъем на ≤25 фт. от места крепления) или открепиться.</span></div>\n" +
+                        "<div><span class=\"cls_012\">Комплект целителя.</span><span\n" +
+                        "        class=\"cls_013\"> Действ. - -1 исп.: стабилизировать сущ. с 0</span></div>\n" +
+                        "<div><span class=\"cls_013\">хитов без пров. Мдр(Медицина). (имеет 10 исп.).</span></div>\n" +
+                        "<div><span class=\"cls_012\">Контейнер для арбалетных болтов.</span><span class=\"cls_013\"> Вмещает 20 болтов.</span></div>\n" +
+                        "<div><span class=\"cls_012\">Контейнер для карт и свитков.</span><span class=\"cls_013\"> Хранит: бумага(10л.)/пергамент(5л.)</span>\n" +
+                        "</div>\n" +
+                        "<div><span class=\"cls_012\">Кошель.</span><span class=\"cls_013\"> Хранит 20 снарядов пращи/50 иголок духовой трубки, и т.д.</span>\n" +
+                        "</div>\n" +
+                        "<div><span class=\"cls_012\">Лампа.</span><span class=\"cls_013\"> Ярк.св. 15 фт, тускл.св. ещё 30 фт. 6 ч. от 0,5л. масла (1фляга)</span>\n" +
+                        "</div>\n" +
+                        "<div><span class=\"cls_012\">Ломик.</span><span class=\"cls_013\"> Если рычаг поможет - пров. Сил. с преим.</span></div>\n" +
+                        "<div><span class=\"cls_012\">Масло.</span><span class=\"cls_013\"> 1 фляга (0,5 литра). Действ.: облить сущ. в ≤5 фт, или метнуть</span>\n" +
+                        "</div>\n" +
+                        "<div><span class=\"cls_013\">на ≤20 фт, (д.ат. по сущ. или предмету импровизир. ор.). Попал - в</span></div>\n" +
+                        "<div><span class=\"cls_013\">течении 1 мин. если цель получает урон огнём, то получает доп. урон</span></div>\n" +
+                        "<div><span class=\"cls_013\">огнём 5. Или можно вылить масло на землю 5×5 фт. (если пол ровный).</span></div>\n" +
+                        "<div><span class=\"cls_013\">Если масло поджечь - горит 2 раунда, причиняя урон огнём 5 всем</span></div>\n" +
+                        "<div><span class=\"cls_013\">сущ., входящим в эту область или оканчивающим в ней ход (1/ход).</span></div>\n" +
+                        "<div><span class=\"cls_012\">Металлические шарики.</span><span\n" +
+                        "        class=\"cls_013\"> Действ.: рассыпать на 10×10 фт. Сущ.,</span></div>\n" +
+                        "<div><span class=\"cls_013\">перемещающиеся по этой области: спас. Лов. Сл10, провал - падает</span></div>\n" +
+                        "<div><span class=\"cls_013\">ничком. Движение с скор./2 - без спас.</span></div>\n" +
+                        "<div><span class=\"cls_012\">Охотничий капкан.</span><span\n" +
+                        "        class=\"cls_013\"> Действ.: установить ловушку - крепится толстой</span></div>\n" +
+                        "<div><span class=\"cls_013\">цепью к неподвижн. предмету. Наступившее сущ. -спас. Лов. Сл13,</span></div>\n" +
+                        "<div><span class=\"cls_013\">провал - кол. урон 1к4 и прекращает движ. Пока не освободится -</span></div>\n" +
+                        "<div><span class=\"cls_013\">перемещения ограничены длиной цепи (≈1м.). Любое сущ. - действ.:</span></div>\n" +
+                        "<div><span class=\"cls_013\">высвободить себя или др.сущ. (пров. Сил. Сл13,). Каждый провал.</span></div>\n" +
+                        "<div><span class=\"cls_013\">пров. - кол. урон 1 по пойманному.</span></div>\n" +
+                        "<div><span class=\"cls_012\">Противоядие.</span><span class=\"cls_013\"> 1 час - спас. от яда с преим. (не нежить, не конструкт)</span>\n" +
+                        "</div>\n" +
+                        "<div><span class=\"cls_012\">Свеча.</span><span class=\"cls_013\"> Ярк.св. 5 фт, тускл.св. ещё 5 фт. (1 ч.)</span></div>\n" +
+                        "<div><span class=\"cls_012\">Столовый набор:</span><span\n" +
+                        "        class=\"cls_013\"> чашка, столовые приборы, сковорода, тарелка</span></div>\n" +
+                        "<div><span class=\"cls_012\">Святая вода.</span><span class=\"cls_013\"> Действ.: облить сущ. в ≤5 фт, или метнуть на ≤20 фт,</span>\n" +
+                        "</div>\n" +
+                        "<div><span class=\"cls_013\">(д.ат. по сущ. или предмету импровизир. ор.). Попал - если цель изверг</span></div>\n" +
+                        "<div><span class=\"cls_013\">или нежить - урон излуч. 2к6. Жрец или паладин: создать святую воду</span></div>\n" +
+                        "<div><span class=\"cls_013\">- ритуал: 1 час, толчёное серебро (25 зм), яч.закл.1 ур.</span></div>\n" +
+                        "<div><span class=\"cls_012\">Таран, портативный.</span><span\n" +
+                        "        class=\"cls_013\"> +4 к пров. Сил. на вышибание дверей. Если</span></div>\n" +
+                        "<div><span class=\"cls_013\">помогают - с преим.</span></div>\n" +
+                        "<div><span class=\"cls_012\">Трутница.</span><span\n" +
+                        "        class=\"cls_013\"> Розжиг факела — 1 действ. Розжиг др. огня - 1 мин.</span></div>\n" +
+                        "<div><span class=\"cls_012\">Увеличительное стекло.</span><span\n" +
+                        "        class=\"cls_013\"> Розжиг огня - свет солнца, трут, 5 мин.</span></div>\n" +
+                        "<div><span class=\"cls_013\">Пров. хар-к для оценки или исслед. мелких предметов -с преим.</span></div>\n" +
+                        "<div><span class=\"cls_012\">Факел.</span><span class=\"cls_013\"> Ярк.св. 20 фт, тускл.св. ещё 20 фт. (1 ч.). Р.ат. - урон огнём 1.</span>\n" +
+                        "</div>\n" +
+                        "<div><span class=\"cls_012\">Фонарь, закрытый.</span><span class=\"cls_013\"> Ярк.св. 30 фт, тускл.св. ещё 30 фт. (6 ч. от 0,5л.</span>\n" +
+                        "</div>\n" +
+                        "<div><span class=\"cls_013\">масла (1фляга)). Действ.: опустить козырёк - только тускл.св. 5 фт.</span></div>\n" +
+                        "<div><span class=\"cls_012\">Фонарь, направленный.</span><span\n" +
+                        "        class=\"cls_013\"> Ярк.св. 60 фт. конус, тускл.св. ещё 60 фт.</span></div>\n" +
+                        "<div><span class=\"cls_013\">(6 ч. от 0,5л. масла (1фляга)).</span></div>\n" +
+                        "<div><span class=\"cls_012\">Цепь.</span><span class=\"cls_013\"> 10 хитов, порвать - пров. Сил. Сл20.</span></div>\n" +
+                        "<div><span class=\"cls_012\">Яд, простой.</span><span class=\"cls_013\"> Действ: покрыть ядом 1 руб. или кол. ор. или 3 боепр.</span>\n" +
+                        "</div>\n" +
+                        "<div><span class=\"cls_013\">Яд активен 1 мин. Цель отравленного ор. или боепр. - спас. Тел Сл10.</span></div>\n" +
+                        "<div><span class=\"cls_013\">Провал - урон ядом 1к4.</span></div>"));
+
+                intent.putExtra("CustomItems", m7);
 
                 startActivityForResult(intent, 0);
 

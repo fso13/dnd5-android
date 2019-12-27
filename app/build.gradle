@@ -29,8 +29,8 @@ android {
         applicationId "ru.drudenko.dnd"
         minSdkVersion 24
         targetSdkVersion 29
-        versionCode 1912253
-        versionName "19.12.25.3"
+        versionCode 1912271
+        versionName "19.12.27.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

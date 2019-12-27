@@ -35,15 +35,47 @@ public class HelpActivity extends AppCompatActivity {
 
         WebView info = findViewById(R.id.textView);
 
-        info.loadDataWithBaseURL(null, "<style>\n" +
-                "    table {\n" +
-                "        border-collapse: collapse;\n" +
-                "    }\n" +
+        info.loadDataWithBaseURL(null, "    <style>\n" +
+                "        table {\n" +
+                "            border-collapse: collapse;\n" +
+                "        }\n" +
                 "\n" +
-                "    table, th, td {\n" +
-                "        border: 1px solid red;\n" +
-                "    }\n" +
-                "</style><body style=\"background-color:black; color: white\">" + text + "<br><br></body>", "text/html", "utf-8", null);
+                "        table, th, td {\n" +
+                "            border: 1px solid red;\n" +
+                "        }\n" +
+                "\n" +
+                "        span.cls_012 {\n" +
+                "            font-family: Times, serif;\n" +
+                "            color: red;\n" +
+                "            font-weight: bold;\n" +
+                "            font-style: normal;\n" +
+                "            text-decoration: none\n" +
+                "        }\n" +
+                "\n" +
+                "        div.cls_012 {\n" +
+                "            font-family: Times, serif;\n" +
+                "            color: rgb(255, 255, 255);\n" +
+                "            font-weight: bold;\n" +
+                "            font-style: normal;\n" +
+                "            text-decoration: none\n" +
+                "        }\n" +
+                "\n" +
+                "        span.cls_013 {\n" +
+                "            font-family: Times, serif;\n" +
+                "            color: rgb(255, 255, 255);\n" +
+                "            font-weight: normal;\n" +
+                "            font-style: normal;\n" +
+                "            text-decoration: none\n" +
+                "        }\n" +
+                "\n" +
+                "        div.cls_013 {\n" +
+                "            font-family: Times, serif;\n" +
+                "            color: rgb(255, 255, 255);\n" +
+                "            font-weight: normal;\n" +
+                "            font-style: normal;\n" +
+                "            text-decoration: none\n" +
+                "        }\n" +
+                "    </style><body style=\"background-color:black; color: white\">" + text + "<br><br></body>", "text/html", "utf-8", null);
     }
 
     @Override
