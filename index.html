@@ -28,6 +28,7 @@
 
     <!-- FAVICON -->
     <link href="images/favicon.png" rel="shortcut icon">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <style>
     /*!
  * Bootstrap v4.1.1 (https://getbootstrap.com/)
@@ -7085,11 +7086,13 @@
         height: 400px;
         width: 100%;
     }
+    .mySlides {display:none;}
 
     /*# sourceMappingURL=maps/style.css.map */
 
     </style>
     <style></style>
+
 
 </head>
 
@@ -7117,11 +7120,43 @@
                 </div>
 
             </div>
-            <div class="col-md-6 text-center ">
+            <div class="w3-content w3-display-container">
+
+                <button class="w3-button w3-display-bottomleft" onclick="plusDivs(-1)">&#10094;
+                </button>
+                <button class="w3-button w3-display-bottomright" onclick="plusDivs(+1)">&#10095;
+                </button>
                 <br>
-                <img alt="screenshot" class="img-fluid"
-                     src="https://github.com/fso13/dnd5-android/raw/develop/screen/menu.jpg"
-                     width="300">
+                <img alt="Меню" class="mySlides" width="300"
+                     src="https://github.com/fso13/dnd5-android/raw/develop/screen/menu.jpg">
+                <img alt="Бестиарий" class="mySlides" width="300"
+                     src="https://github.com/fso13/dnd5-android/raw/develop/screen/m_all.jpg">
+                <img alt="Закладки для манстров" class="mySlides" width="300"
+                     src="https://github.com/fso13/dnd5-android/raw/develop/screen/m_f.jpg">
+                <img alt="Фильтр монстров по среде обитания" class="mySlides" width="300"
+                     src="https://github.com/fso13/dnd5-android/raw/develop/screen/m_filter_biom.jpg">
+                <img alt="Фильтр монстров по сложности" class="mySlides" width="300"
+                     src="https://github.com/fso13/dnd5-android/raw/develop/screen/m_filter_cr.jpg">
+                <img alt="Действия монстров" class="mySlides" width="300"
+                     src="https://github.com/fso13/dnd5-android/raw/develop/screen/m_action.jpg">
+                <img alt="Черты монстров" class="mySlides" width="300"
+                     src="https://github.com/fso13/dnd5-android/raw/develop/screen/m_chert.jpg">
+                <img alt="Способности монстров" class="mySlides" width="300"
+                     src="https://github.com/fso13/dnd5-android/raw/develop/screen/m_sposobnosty.jpg">
+                <img alt="Описание монстра" class="mySlides" width="300"
+                     src="https://github.com/fso13/dnd5-android/raw/develop/screen/m_t.jpg">
+                <img alt="Список заклинаний" class="mySlides" width="300"
+                     src="https://github.com/fso13/dnd5-android/raw/develop/screen/s_all.jpg">
+                <img alt="Поиск заклинаний по названию" class="mySlides" width="300"
+                     src="https://github.com/fso13/dnd5-android/raw/develop/screen/s_search.jpg">
+                <img alt="Закладки для заклинаний" class="mySlides" width="300"
+                     src="https://github.com/fso13/dnd5-android/raw/develop/screen/s_f.jpg">
+                <img alt="Фильтр заклинаний по классам" class="mySlides" width="300"
+                     src="https://github.com/fso13/dnd5-android/raw/develop/screen/s_filter_class.jpg">
+                <img alt="Фильтр заклинаний по уровням" class="mySlides" width="300"
+                     src="https://github.com/fso13/dnd5-android/raw/develop/screen/s_filter_level.jpg">
+                <img alt="описание заклинания" class="mySlides" width="300"
+                     src="https://github.com/fso13/dnd5-android/raw/develop/screen/s.jpg">
             </div>
 
         </div>
@@ -7194,7 +7229,7 @@
         </div>
     </div>
     <div class="text-center bg-dark py-2">
-        <small class="text-secondary"> Dungeon and Dragons 5</small class="text-secondary">
+        <small class="text-secondary"> Dungeon and Dragons 5</small>
     </div>
 </footer>
 
@@ -7213,4 +7248,21 @@
 <script src="js/custom.js"></script>
 </body>
 
+<script>
+var slideIndex = 0;
+carousel();
+
+function carousel() {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";
+  }
+  slideIndex++;
+  if (slideIndex > x.length) {slideIndex = 1}
+  x[slideIndex-1].style.display = "block";
+  setTimeout(carousel, 2000); // Change image every 2 seconds
+}
+
+</script>
 </html>
