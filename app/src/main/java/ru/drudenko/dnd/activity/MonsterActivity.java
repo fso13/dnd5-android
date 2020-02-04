@@ -62,8 +62,15 @@ public class MonsterActivity extends AppCompatActivity {
         toolbarLayout.setTitle(monster.getName());
 
         try {
+            String name;
+            int indexOf = monster.getName().indexOf("(");
+            if (indexOf >= 0) {
+                name = monster.getName().substring(indexOf + 1, monster.getName().indexOf(")")).trim().toUpperCase().replace(" ", "_") + ".jpg";
+            } else {
+                indexOf = monster.getName().indexOf("[");
+                name = monster.getName().substring(indexOf + 1, monster.getName().indexOf("]")).trim().toUpperCase().replace(" ", "_") + ".jpg";
+            }
 
-            String name = monster.getName().substring(monster.getName().indexOf("(") + 1, monster.getName().indexOf(")")).trim().toUpperCase().replace(" ", "_") + ".jpg";
             appBarLayout.setBackground(getDrawableFromAssets(name));
         } catch (Exception e) {
             appBarLayout.setExpanded(false, false);
