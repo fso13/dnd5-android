@@ -131,7 +131,6 @@ public class MonsterAdapter extends BaseAdapter implements Filterable {
             final ArrayList<Monster> nlist = new ArrayList<>(count);
 
 
-
             for (int i = 0; i < count; i++) {
                 Monster monster = list.get(i);
 
@@ -173,7 +172,11 @@ public class MonsterAdapter extends BaseAdapter implements Filterable {
         @SuppressWarnings("unchecked")
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
-            filteredData = (ArrayList<Monster>) results.values;
+            if (results.values == null) {
+                filteredData = new ArrayList<>();
+            } else {
+                filteredData = (ArrayList<Monster>) results.values;
+            }
             notifyDataSetChanged();
         }
 
