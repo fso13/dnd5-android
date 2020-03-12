@@ -20,9 +20,17 @@ cache:
 stages:
   - name: Build and deploy release on tags
     if: tag IS present
-
 notifications:
-  slack: w1583953032-wxd636305:8z7eMa5bPnj9IgFTaOp7qRI1
+  slack:
+#    if: tag IS present
+    rooms:
+      - secure: G3o0JzskRQhXQAviU+q2IadlUOD03xW0b6CsMr8Nq/iASIPGOTD0sNeZ9UN+bMYGd/a/sD3s0jcbDRww0iFZx4LxfS7QAZdVrbsqpv6O1NhEEwT53Dg5MZLXZbi0INOvdIvlICol3p6/74ao18+XgIQKbq4jtN+YTTTCo+9D4BAdWXZ+YUKyjb0WluepXIQgzQ7awCAWoOmHJz8POO9I87dWDCcs2P7VmSAAq185qKMk7FQnTnwW0+KUM7V2HIceBGje9O0mtnjMUr86TLiEfAieK8SPJe7/FPtxT9UT8+hb4DNi/jl27KFVfTGcZoN5tQDeK0qE59pgYzont85tpYFI1yk9Jf5VyvcSllQlGY4Yg8D1yyQeIBAVVAjqvox6eiJ3t2qDueXosCidx0lesTgMP0tP50KCzfyjKtFqCC1SJdoTnriSHopqQmHiJFbbQILklpx7AgBALCKbIqMXBKKSjYa5N0hs4ZgH0QS2ROEJ0UNo6ddjtUcLxFJB6j5kMTsZINCJvufEDpqH3EDumvl5Mz0aUB2LN4Ie2VRFeFloKnDxv6Zawkc/rKr8Ra9YMGMmHciK1pvmnW3htValpdIe61OMtyENAAhseuyN4iOvmHpXqhcNCYC9Uz0R2LEFEgpiiPlFlOSSLITYxy2cHuFa+M6jagolY2fy0gzoBbs=
+    on_success: always
+    on_failure: always
+    template:
+      - "Repo %{repository_slug} %{result} build (<%{build_url}|#%{build_number}>) for commit (<%{compare_url}|%{commit}>) on branch %{branch}."
+      - "Execution time: %{duration}"
+      - "Message: %{message}"
 android_phases:
   - phase: &before_install
       # check if OpenJDK8 is installed and install if missing
