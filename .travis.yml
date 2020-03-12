@@ -21,6 +21,8 @@ stages:
   - name: Build and deploy release on tags
     if: tag IS present
 
+notifications:
+  slack: w1583953032-wxd636305:8z7eMa5bPnj9IgFTaOp7qRI1
 android_phases:
   - phase: &before_install
       # check if OpenJDK8 is installed and install if missing
