@@ -34,7 +34,6 @@ import ru.drudenko.dnd.activity.MainActivity;
 import ru.drudenko.dnd.activity.SpellActivity;
 import ru.drudenko.dnd.adapter.SpellAdapter;
 import ru.drudenko.dnd.di.App;
-import ru.drudenko.dnd.model.magic.ClassInfo;
 import ru.drudenko.dnd.model.magic.Clazz;
 import ru.drudenko.dnd.model.magic.Spell;
 
@@ -44,8 +43,6 @@ public class SpellsFavoriteFragment extends Fragment {
     private static List<String> level = Arrays.asList("Все", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9");
     @Inject
     List<Spell> spells;
-    @Inject
-    Map<Clazz, ClassInfo> clazzMap;
     @Inject
     SharedPreferences preferences;
     private SpellAdapter spellAdapter;
@@ -77,7 +74,7 @@ public class SpellsFavoriteFragment extends Fragment {
             }
         }
 
-        spellAdapter = new SpellAdapter(getContext(), spells3, clazzMap);
+        spellAdapter = new SpellAdapter(getContext(), spells3);
         listView.setAdapter(spellAdapter);
 
         listView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
@@ -178,7 +175,7 @@ public class SpellsFavoriteFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         Spell spell = ((Spell) listView.getExpandableListAdapter().getChild(group, child));
-        final String key = spell.getRu().getName().replace(" ", "_");
+        final String key = spell.getName().replace(" ", "_");
         spell.setFavorite(preferences.getBoolean(key, spell.isFavorite()));
         if (!spell.isFavorite()) {
             spellAdapter.originalData.get(group).remove(spell);

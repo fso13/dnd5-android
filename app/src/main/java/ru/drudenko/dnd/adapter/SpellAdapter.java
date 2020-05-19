@@ -24,15 +24,12 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import ru.drudenko.dnd.R;
-import ru.drudenko.dnd.model.magic.ClassInfo;
-import ru.drudenko.dnd.model.magic.Clazz;
 import ru.drudenko.dnd.model.magic.Spell;
 
 public class SpellAdapter extends BaseExpandableListAdapter implements Filterable {
     public Map<Integer, ArrayList<Spell>> originalData = new TreeMap<Integer, ArrayList<Spell>>() {
     };
     public Map<Integer, ArrayList<Spell>> filteredData = new TreeMap<>();
-    private Map<Clazz, ClassInfo> map;
     private LayoutInflater mInflater;
     private ItemFilter mFilter = new ItemFilter();
     private String classFilterText = "Все";
@@ -40,7 +37,7 @@ public class SpellAdapter extends BaseExpandableListAdapter implements Filterabl
     private String nameFilterText = "";
     private Context context;
 
-    public SpellAdapter(Context context, List<Spell> data, Map<Clazz, ClassInfo> map) {
+    public SpellAdapter(Context context, List<Spell> data) {
         this.context = context;
         originalData.put(0, new ArrayList<>());
         originalData.put(1, new ArrayList<>());
@@ -65,16 +62,15 @@ public class SpellAdapter extends BaseExpandableListAdapter implements Filterabl
         filteredData.put(9, new ArrayList<>());
 
         for (Spell spell : data) {
-            originalData.get(Integer.parseInt(spell.getEn().getLevel())).add(spell);
-            filteredData.get(Integer.parseInt(spell.getEn().getLevel())).add(spell);
+            originalData.get(Integer.parseInt(spell.getLevel())).add(spell);
+            filteredData.get(Integer.parseInt(spell.getLevel())).add(spell);
         }
 
-        this.map = map;
         mInflater = LayoutInflater.from(context);
     }
 
     private boolean isBelong(String filterClass, Spell spell) {
-        return map.get(Clazz.fromRu(filterClass)).getSpells().contains(spell.getEn().getName());
+        return spell.getClasses().contains(filterClass);
     }
 
     @Override
@@ -165,8 +161,7 @@ public class SpellAdapter extends BaseExpandableListAdapter implements Filterabl
         viewHolder.textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
         viewHolder.textView.setTypeface(null, Typeface.BOLD);
         viewHolder.textView.setTextColor(Color.WHITE);
-        viewHolder.textView.setText(spell.getRu().getName());
-
+        viewHolder.textView.setText(spell.getName());
 
         viewHolder.toggleButton.setChecked(spell.isFavorite());
         viewHolder.toggleButton.setTextOff("");
@@ -249,7 +244,7 @@ public class SpellAdapter extends BaseExpandableListAdapter implements Filterabl
                 for (Spell spell : list.get(i)) {
 
                     if (filter(spell)) {
-                        nlist.get(Integer.parseInt(spell.getEn().getLevel())).add(spell);
+                        nlist.get(Integer.parseInt(spell.getLevel())).add(spell);
                     }
                 }
 
@@ -263,7 +258,7 @@ public class SpellAdapter extends BaseExpandableListAdapter implements Filterabl
 
         @RequiresApi(api = Build.VERSION_CODES.N)
         private boolean filter(Spell spell) {
-            return ("".equals(nameFilterText) || spell.getRu().getName().toLowerCase().contains(nameFilterText)) && (levelFilterText.equals("Все") || spell.getEn().getLevel().equals(levelFilterText)) && (classFilterText.equals("Все") || isBelong(classFilterText, spell));
+            return ("".equals(nameFilterText) || spell.getName().toLowerCase().contains(nameFilterText)) && (levelFilterText.equals("Все") || spell.getLevel().equals(levelFilterText)) && (classFilterText.equals("Все") || isBelong(classFilterText, spell));
         }
 
         @SuppressWarnings("unchecked")
