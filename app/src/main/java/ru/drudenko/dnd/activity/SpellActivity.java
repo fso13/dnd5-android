@@ -36,9 +36,8 @@ public class SpellActivity extends AppCompatActivity {
         spell = (Spell) bundle.get("SPELL");
 
         TextView info = findViewById(R.id.textView_spell_info);
-        info.setText(Html.fromHtml(spell.getRu().toString() + "\n\n"), TextView.BufferType.SPANNABLE);
-        actionBar.setTitle(spell.getRu().getName());
-
+        info.setText(spell.getText() + "\n\n" + "Источник: " + spell.getSource() + "\n\n", TextView.BufferType.SPANNABLE);
+        actionBar.setTitle(spell.getName());
 
     }
 
@@ -61,7 +60,7 @@ public class SpellActivity extends AppCompatActivity {
 
             spell.setFavorite(!spell.isFavorite());
             item.setIcon(spell.isFavorite() ? R.drawable.stars_on : R.drawable.stars_off);
-            final String key = spell.getRu().getName().replace(" ", "_");
+            final String key = spell.getName().replace(" ", "_");
 
             SharedPreferences preferences = getApplicationContext().getSharedPreferences("application_preferences", Context.MODE_PRIVATE);
             preferences.edit().remove(key).apply();
@@ -75,7 +74,7 @@ public class SpellActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        final String key = spell.getRu().getName().replace(" ", "_");
+        final String key = spell.getName().replace(" ", "_");
         SharedPreferences preferences = getApplicationContext().getSharedPreferences("application_preferences", Context.MODE_PRIVATE);
         preferences.edit().remove(key).apply();
         preferences.edit().putBoolean(key, spell.isFavorite()).apply();

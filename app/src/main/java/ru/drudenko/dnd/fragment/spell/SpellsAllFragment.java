@@ -24,7 +24,6 @@ import androidx.fragment.app.Fragment;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -33,7 +32,6 @@ import ru.drudenko.dnd.activity.MainActivity;
 import ru.drudenko.dnd.activity.SpellActivity;
 import ru.drudenko.dnd.adapter.SpellAdapter;
 import ru.drudenko.dnd.di.App;
-import ru.drudenko.dnd.model.magic.ClassInfo;
 import ru.drudenko.dnd.model.magic.Clazz;
 import ru.drudenko.dnd.model.magic.Spell;
 import ru.drudenko.dnd.model.monster.Monster;
@@ -46,8 +44,6 @@ public class SpellsAllFragment extends Fragment {
     SharedPreferences preferences;
     @Inject
     List<Spell> spells;
-    @Inject
-    Map<Clazz, ClassInfo> clazzMap;
     private SpellAdapter spellAdapter;
     @Inject
     List<Monster> monsters;
@@ -71,7 +67,7 @@ public class SpellsAllFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_spells_all, container, false);
         listView = root.findViewById(R.id.grid_view_spells);
 
-        spellAdapter = new SpellAdapter(getContext(), spells, clazzMap);
+        spellAdapter = new SpellAdapter(getContext(), spells);
         listView.setAdapter(spellAdapter);
         listView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override
@@ -172,7 +168,7 @@ public class SpellsAllFragment extends Fragment {
         super.onDestroyView();
 
         for (Spell spell : spells) {
-            final String key = spell.getRu().getName().replace(" ", "_");
+            final String key = spell.getName().replace(" ", "_");
             preferences.edit().remove(key).apply();
             preferences.edit().putBoolean(key, spell.isFavorite()).apply();
         }
@@ -182,7 +178,7 @@ public class SpellsAllFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         Spell spell = ((Spell) listView.getExpandableListAdapter().getChild(group, child));
-        final String key = spell.getRu().getName().replace(" ", "_");
+        final String key = spell.getName().replace(" ", "_");
         spell.setFavorite(preferences.getBoolean(key, spell.isFavorite()));
         spellAdapter.notifyDataSetChanged();
     }
