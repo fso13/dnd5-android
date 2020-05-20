@@ -13,7 +13,7 @@
         android:paddingTop="15dp"
         android:paddingRight="5dp"
         android:paddingBottom="25dp"
-        android:textColorLink="@color/colorPrimary"
         android:textColor="@color/textColor"
+        android:textColorLink="@color/colorPrimary"
         android:textSize="18sp" />
 </ScrollView>

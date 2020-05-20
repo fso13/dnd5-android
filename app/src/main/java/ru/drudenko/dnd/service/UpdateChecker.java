@@ -56,10 +56,6 @@ public class UpdateChecker extends Fragment {
     private String mHttpVerb;
     private UpdateNotice mNotice;
 
-    public void setNotice(UpdateNotice notice) {
-        mNotice = notice;
-    }
-
     /**
      * Delegate update handling to custom notice.
      *
@@ -122,7 +118,6 @@ public class UpdateChecker extends Fragment {
                                       boolean isAutoInstall, boolean checkExternal, String httpVerb) {
         checkForAutoUpdate(fragmentActivity, checkUpdateServerUrl, isAutoInstall, checkExternal, httpVerb, NOTICE_DIALOG);
     }
-
 
     /**
      * Show a Notification if an update is available for download. Callable in a
@@ -192,6 +187,24 @@ public class UpdateChecker extends Fragment {
         content.add(updateChecker, null).commit();
     }
 
+    /**
+     * Check if a network available
+     */
+    public static boolean isNetworkAvailable(Context context) {
+        boolean connected = false;
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (cm != null) {
+            NetworkInfo ni = cm.getActiveNetworkInfo();
+            if (ni != null) {
+                connected = ni.isConnected();
+            }
+        }
+        return connected;
+    }
+
+    public void setNotice(UpdateNotice notice) {
+        mNotice = notice;
+    }
 
     /**
      * This class is a Fragment. Check for the method you have chosen.
@@ -266,7 +279,6 @@ public class UpdateChecker extends Fragment {
         });
     }
 
-
     private void parseJson(String json) {
         UpdateDescription description = new Gson().fromJson(json, UpdateDescription.class);
 
@@ -334,21 +346,6 @@ public class UpdateChecker extends Fragment {
         noti.flags = android.app.Notification.FLAG_AUTO_CANCEL;
         NotificationManager notificationManager = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.notify(0, noti);
-    }
-
-    /**
-     * Check if a network available
-     */
-    public static boolean isNetworkAvailable(Context context) {
-        boolean connected = false;
-        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        if (cm != null) {
-            NetworkInfo ni = cm.getActiveNetworkInfo();
-            if (ni != null) {
-                connected = ni.isConnected();
-            }
-        }
-        return connected;
     }
 
 

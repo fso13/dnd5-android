@@ -22,9 +22,6 @@ import androidx.appcompat.widget.SearchView;
 import androidx.core.view.MenuItemCompat;
 import androidx.fragment.app.Fragment;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.inject.Inject;
 
 import ru.drudenko.dnd.R;
@@ -37,14 +34,8 @@ import ru.drudenko.dnd.model.monster.Monster;
 public class MonstersFavoriteFragment extends Fragment {
     @Inject
     SharedPreferences preferences;
-
-    @Inject
-    List<Monster> monsters;
-
+    private Monster monster;
     private MonsterAdapter monsterAdapter;
-
-    ListView listView;
-    Monster monster;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -59,17 +50,10 @@ public class MonstersFavoriteFragment extends Fragment {
 
         setHasOptionsMenu(true);
         View root = inflater.inflate(R.layout.fragment_monsters_all, container, false);
-        listView = root.findViewById(R.id.grid_view_monsters);
-
-        List<Monster> m = new ArrayList<>();
-        for (Monster s : monsters) {
-            if (s.isFavorite()) {
-                m.add(s);
-            }
-        }
+        ListView listView = root.findViewById(R.id.grid_view_monsters);
 
 
-        monsterAdapter = new MonsterAdapter(getContext(), m);
+        monsterAdapter = new MonsterAdapter(getContext(), ((App) getActivity().getApplication()).monstersFavorite, ((App) getActivity().getApplication()), preferences);
         listView.setAdapter(monsterAdapter);
 
 
@@ -159,8 +143,14 @@ public class MonstersFavoriteFragment extends Fragment {
         monster.setFavorite(preferences.getBoolean(key, monster.isFavorite()));
 
         if (!monster.isFavorite()) {
-            monsterAdapter.originalData.remove(monster);
+            monsterAdapter.list.remove(monster);
             monsterAdapter.filteredData.remove(monster);
+            ((App) getActivity().getApplication()).monstersFavorite.remove(monster);
+            ((App) getActivity().getApplication()).monsters.get(((App) getActivity().getApplication()).monsters.indexOf(monster)).setFavorite(false);
+
+        } else {
+            ((App) getActivity().getApplication()).monstersFavorite.add(monster);
+            ((App) getActivity().getApplication()).monsters.get(((App) getActivity().getApplication()).monsters.indexOf(monster)).setFavorite(true);
         }
 
         monsterAdapter.notifyDataSetChanged();

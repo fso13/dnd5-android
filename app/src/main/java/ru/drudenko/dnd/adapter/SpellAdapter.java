@@ -1,6 +1,7 @@
 package ru.drudenko.dnd.adapter;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Build;
@@ -24,6 +25,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import ru.drudenko.dnd.R;
+import ru.drudenko.dnd.di.App;
 import ru.drudenko.dnd.model.magic.Spell;
 
 public class SpellAdapter extends BaseExpandableListAdapter implements Filterable {
@@ -36,8 +38,10 @@ public class SpellAdapter extends BaseExpandableListAdapter implements Filterabl
     private String levelFilterText = "Все";
     private String nameFilterText = "";
     private Context context;
+    private App app;
+    private SharedPreferences preferences;
 
-    public SpellAdapter(Context context, List<Spell> data) {
+    public SpellAdapter(Context context, List<Spell> data, App app, SharedPreferences preferences) {
         this.context = context;
         originalData.put(0, new ArrayList<>());
         originalData.put(1, new ArrayList<>());
@@ -60,7 +64,8 @@ public class SpellAdapter extends BaseExpandableListAdapter implements Filterabl
         filteredData.put(7, new ArrayList<>());
         filteredData.put(8, new ArrayList<>());
         filteredData.put(9, new ArrayList<>());
-
+        this.app = app;
+        this.preferences = preferences;
         for (Spell spell : data) {
             originalData.get(Integer.parseInt(spell.getLevel())).add(spell);
             filteredData.get(Integer.parseInt(spell.getLevel())).add(spell);
@@ -176,9 +181,22 @@ public class SpellAdapter extends BaseExpandableListAdapter implements Filterabl
                         viewHolder.toggleButton.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.start_on));
                         spell.setFavorite(true);
 
+                        app.spellsFavorite.add(spell);
+                        app.spells.get(app.spells.indexOf(spell)).setFavorite(true);
+
+                        final String key = spell.getName().replace(" ", "_");
+//            preferences.edit().remove(key).apply();
+                        preferences.edit().putBoolean(key, true).apply();
+
+
                     } else {
                         viewHolder.toggleButton.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.start_off));
                         spell.setFavorite(false);
+                        app.spellsFavorite.remove(spell);
+                        app.spells.get(app.spells.indexOf(spell)).setFavorite(false);
+
+                        final String key = spell.getName().replace(" ", "_");
+                        preferences.edit().putBoolean(key, false).apply();
                     }
 
                 }

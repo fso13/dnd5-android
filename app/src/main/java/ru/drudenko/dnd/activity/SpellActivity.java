@@ -3,7 +3,6 @@ package ru.drudenko.dnd.activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.text.Html;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -12,18 +11,13 @@ import android.widget.TextView;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.List;
-
-import javax.inject.Inject;
-
 import ru.drudenko.dnd.R;
 import ru.drudenko.dnd.di.App;
 import ru.drudenko.dnd.model.magic.Spell;
 
 public class SpellActivity extends AppCompatActivity {
     private Spell spell;
-    @Inject
-    List<Spell> spells;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,6 +59,16 @@ public class SpellActivity extends AppCompatActivity {
             SharedPreferences preferences = getApplicationContext().getSharedPreferences("application_preferences", Context.MODE_PRIVATE);
             preferences.edit().remove(key).apply();
             preferences.edit().putBoolean(key, spell.isFavorite()).apply();
+
+            if (spell.isFavorite()) {
+                ((App) getApplication()).spellsFavorite.add(spell);
+                ((App) getApplication()).spells.get(((App) getApplication()).spells.indexOf(spell)).setFavorite(true);
+
+            } else {
+                ((App) getApplication()).spellsFavorite.remove(spell);
+                ((App) getApplication()).spells.get(((App) getApplication()).spells.indexOf(spell)).setFavorite(true);
+
+            }
 
             return true;
         }

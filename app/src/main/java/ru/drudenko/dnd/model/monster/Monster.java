@@ -44,6 +44,10 @@ public class Monster implements Serializable {
 
     private List<Biom> bioms = null;
 
+    public static String getChr(String s) {
+        return s + "(" + (int) Math.floor((Double.valueOf(s) - 10) / 2) + ")";
+    }
+
     public String getSenses() {
         return senses != null ? senses : "";
     }
@@ -246,8 +250,19 @@ public class Monster implements Serializable {
         isFavorite = favorite;
     }
 
-    public static String getChr(String s) {
-        return s + "(" + (int) Math.floor((Double.valueOf(s) - 10) / 2) + ")";
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Monster monster = (Monster) o;
+
+        return name.equals(monster.name);
     }
 
+    @Override
+    public int hashCode() {
+        return name.hashCode();
+    }
 }

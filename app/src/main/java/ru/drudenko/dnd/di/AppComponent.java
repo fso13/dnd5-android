@@ -25,4 +25,6 @@ public interface AppComponent {
     void inject(MonstersFavoriteFragment target);
 
     void inject(SpellActivity target);
+
+    void inject(App target);
 }

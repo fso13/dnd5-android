@@ -34,7 +34,6 @@ import ru.drudenko.dnd.adapter.SpellAdapter;
 import ru.drudenko.dnd.di.App;
 import ru.drudenko.dnd.model.magic.Clazz;
 import ru.drudenko.dnd.model.magic.Spell;
-import ru.drudenko.dnd.model.monster.Monster;
 
 public class SpellsAllFragment extends Fragment {
 
@@ -42,11 +41,8 @@ public class SpellsAllFragment extends Fragment {
     private static List<String> level = Arrays.asList("Все", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9");
     @Inject
     SharedPreferences preferences;
-    @Inject
-    List<Spell> spells;
     private SpellAdapter spellAdapter;
-    @Inject
-    List<Monster> monsters;
+
     private ExpandableListView listView;
     private int group = 0;
     private int child = 0;
@@ -67,7 +63,7 @@ public class SpellsAllFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_spells_all, container, false);
         listView = root.findViewById(R.id.grid_view_spells);
 
-        spellAdapter = new SpellAdapter(getContext(), spells);
+        spellAdapter = new SpellAdapter(getContext(), ((App) getActivity().getApplication()).spells, ((App) getActivity().getApplication()), preferences);
         listView.setAdapter(spellAdapter);
         listView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override
@@ -167,9 +163,9 @@ public class SpellsAllFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
 
-        for (Spell spell : spells) {
+        for (Spell spell : ((App) getActivity().getApplication()).spells) {
             final String key = spell.getName().replace(" ", "_");
-            preferences.edit().remove(key).apply();
+//            preferences.edit().remove(key).apply();
             preferences.edit().putBoolean(key, spell.isFavorite()).apply();
         }
 
@@ -180,6 +176,14 @@ public class SpellsAllFragment extends Fragment {
         Spell spell = ((Spell) listView.getExpandableListAdapter().getChild(group, child));
         final String key = spell.getName().replace(" ", "_");
         spell.setFavorite(preferences.getBoolean(key, spell.isFavorite()));
+        if (spell.isFavorite()) {
+            ((App) getActivity().getApplication()).spellsFavorite.add(spell);
+            ((App) getActivity().getApplication()).spells.get(((App) getActivity().getApplication()).spells.indexOf(spell)).setFavorite(true);
+        } else {
+            ((App) getActivity().getApplication()).spellsFavorite.remove(spell);
+            ((App) getActivity().getApplication()).spells.get(((App) getActivity().getApplication()).spells.indexOf(spell)).setFavorite(false);
+
+        }
         spellAdapter.notifyDataSetChanged();
     }
 

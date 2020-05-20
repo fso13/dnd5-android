@@ -34,8 +34,6 @@ import ru.drudenko.dnd.model.monster.Monster;
 
 
 public class MonsterActivity extends AppCompatActivity {
-    private ViewPager viewPager;
-    private TabLayout tabLayout;
     private Monster monster;
 
     public Drawable getDrawableFromAssets(String path) throws IOException {
@@ -123,10 +121,10 @@ public class MonsterActivity extends AppCompatActivity {
         toolbar.setTitle(monster.getName());
 
 
-        viewPager = findViewById(R.id.viewpager);
+        ViewPager viewPager = findViewById(R.id.viewpager);
         setupViewPager(viewPager);
 
-        tabLayout = findViewById(R.id.tablayout);
+        TabLayout tabLayout = findViewById(R.id.tablayout);
         tabLayout.setupWithViewPager(viewPager);
 
 
