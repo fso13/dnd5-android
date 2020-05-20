@@ -11,7 +11,7 @@
         android:layout_height="match_parent"
         android:layout_margin="10dp"
         android:text="Вы можете совершить провоцированную атаку, если враждебное существо, которое Вы видите, покидает Вашу досягаемость. Для этого Вы реакцией совершаете одну рукопашную атаку по спровоцировавшему существу. Эта атака прерывает перемещение спровоцировавшего существа, происходя как раз перед тем, как оно покинет пределы вашей досягаемости. Телепортация не провоцирует атаки. (Книга игрока стр.195) "
-        android:textColorLink="@color/colorPrimary"
         android:textColor="@color/textColor"
+        android:textColorLink="@color/colorPrimary"
         android:textSize="18sp" />
 </ScrollView>

@@ -1,6 +1,7 @@
 package ru.drudenko.dnd.adapter;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Build;
@@ -22,11 +23,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ru.drudenko.dnd.R;
+import ru.drudenko.dnd.di.App;
 import ru.drudenko.dnd.model.monster.Biom;
 import ru.drudenko.dnd.model.monster.Monster;
 
 public class MonsterAdapter extends BaseAdapter implements Filterable {
-    public List<Monster> originalData;
+    public List<Monster> list;
     public List<Monster> filteredData;
     private LayoutInflater mInflater;
     private ItemFilter mFilter = new ItemFilter();
@@ -35,12 +37,15 @@ public class MonsterAdapter extends BaseAdapter implements Filterable {
     private String biomFilterText = "Все";
     private String levelFilterText = "Все";
     private String nameFilterText = "";
+    private App app;
+    private SharedPreferences preferences;
 
-    public MonsterAdapter(Context context, List<Monster> data) {
+    public MonsterAdapter(Context context, List<Monster> data, App app, SharedPreferences preferences) {
         this.context = context;
+        this.list = data;
         this.filteredData = data;
-        this.originalData = data;
-
+        this.app = app;
+        this.preferences = preferences;
         mInflater = LayoutInflater.from(context);
     }
 
@@ -80,13 +85,24 @@ public class MonsterAdapter extends BaseAdapter implements Filterable {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (buttonView.isPressed()) {
+
+                    final String key = "MONSTER_" + monster.getName().replace(" ", "_");
+                    preferences.edit().remove(key);
+                    preferences.edit().putBoolean(key, isChecked);
+
                     if (isChecked) {
                         viewHolder.toggleButton.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.start_on));
                         monster.setFavorite(true);
 
+                        app.monstersFavorite.add(monster);
+                        app.monsters.get(app.monsters.indexOf(monster)).setFavorite(true);
+
                     } else {
                         viewHolder.toggleButton.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.start_off));
                         monster.setFavorite(false);
+
+                        app.monstersFavorite.remove(monster);
+                        app.monsters.get(app.monsters.indexOf(monster)).setFavorite(false);
                     }
 
                 }
@@ -125,7 +141,6 @@ public class MonsterAdapter extends BaseAdapter implements Filterable {
 
             FilterResults results = new FilterResults();
 
-            final List<Monster> list = originalData;
 
             int count = list.size();
             final ArrayList<Monster> nlist = new ArrayList<>(count);

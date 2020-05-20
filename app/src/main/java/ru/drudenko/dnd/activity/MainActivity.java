@@ -34,9 +34,8 @@ import ru.drudenko.dnd.service.entity.UpdateDescription;
 
 
 public class MainActivity extends AppCompatActivity implements UpdateNotice {
-    public static AtomicBoolean isM = new AtomicBoolean(false);
-
     private static final String APP_UPDATE_SERVER_URL = "https://raw.githubusercontent.com/fso13/dnd5-android/master/release.json";
+    public static AtomicBoolean isM = new AtomicBoolean(false);
     @Inject
     Context context;
     private AppBarConfiguration mAppBarConfiguration;

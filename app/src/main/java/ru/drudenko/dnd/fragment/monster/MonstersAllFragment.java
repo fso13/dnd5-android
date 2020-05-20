@@ -36,11 +36,10 @@ import ru.drudenko.dnd.model.monster.Biom;
 import ru.drudenko.dnd.model.monster.Monster;
 
 public class MonstersAllFragment extends Fragment {
-    public static List<String> bioms = Biom.getRu();
-    public static List<String> expId;
     public static Map<String, String> exps = new HashMap<>();
-    ListView listView;
-    Monster monster;
+    static List<String> bioms = Biom.getRu();
+    static List<String> expId;
+
     static {
         exps.put("Все", "Все");
         exps.put("0", "0 - 10");
@@ -119,12 +118,8 @@ public class MonstersAllFragment extends Fragment {
 
     @Inject
     SharedPreferences preferences;
-
-    @Inject
-    List<Monster> monsters;
-
-
-    MonsterAdapter monsterAdapter;
+    private MonsterAdapter monsterAdapter;
+    private Monster monster;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -138,9 +133,9 @@ public class MonstersAllFragment extends Fragment {
 
         setHasOptionsMenu(true);
         View root = inflater.inflate(R.layout.fragment_monsters_all, container, false);
-        listView = root.findViewById(R.id.grid_view_monsters);
+        ListView listView = root.findViewById(R.id.grid_view_monsters);
 
-        monsterAdapter = new MonsterAdapter(getContext(), monsters);
+        monsterAdapter = new MonsterAdapter(getContext(), ((App) getActivity().getApplication()).monsters, ((App) getActivity().getApplication()), preferences);
 
         listView.setAdapter(monsterAdapter);
 
@@ -235,7 +230,7 @@ public class MonstersAllFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         SharedPreferences.Editor editor = preferences.edit();
-        for (Monster monster : monsters) {
+        for (Monster monster : ((App) getActivity().getApplication()).monsters) {
             final String key = "MONSTER_" + monster.getName().replace(" ", "_");
             editor.remove(key);
             editor.putBoolean(key, monster.isFavorite());
@@ -249,5 +244,14 @@ public class MonstersAllFragment extends Fragment {
         final String key = "MONSTER_" + monster.getName().replace(" ", "_");
         monster.setFavorite(preferences.getBoolean(key, monster.isFavorite()));
         monsterAdapter.notifyDataSetChanged();
+
+
+        if (monster.isFavorite()) {
+            ((App) getActivity().getApplication()).monstersFavorite.add(monster);
+            ((App) getActivity().getApplication()).monsters.get(((App) getActivity().getApplication()).monsters.indexOf(monster)).setFavorite(true);
+        } else {
+            ((App) getActivity().getApplication()).monstersFavorite.remove(monster);
+            ((App) getActivity().getApplication()).monsters.get(((App) getActivity().getApplication()).monsters.indexOf(monster)).setFavorite(false);
+        }
     }
 }

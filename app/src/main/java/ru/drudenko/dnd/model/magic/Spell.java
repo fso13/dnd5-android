@@ -34,16 +34,16 @@ public class Spell implements Serializable {
         return ritual;
     }
 
+    public void setRitual(String ritual) {
+        this.ritual = ritual;
+    }
+
     public List<String> getClasses() {
         return classes;
     }
 
     public void setClasses(List<String> classes) {
         this.classes = classes;
-    }
-
-    public void setRitual(String ritual) {
-        this.ritual = ritual;
     }
 
     public String getSchool() {
@@ -116,6 +116,21 @@ public class Spell implements Serializable {
 
     public void setFavorite(boolean favorite) {
         isFavorite = favorite;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Spell spell = (Spell) o;
+
+        return name.equals(spell.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return name.hashCode();
     }
 }
 

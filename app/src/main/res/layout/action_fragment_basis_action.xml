@@ -19,22 +19,22 @@
             android:paddingEnd="@dimen/nav_header_vertical_spacing">
 
             <TextView
-                android:textSize="18sp"
                 android:id="@+id/textView1"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="Атака"
-                android:textColor="@color/colorPrimary" />
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp" />
 
             <TextView
-                android:textSize="18sp"
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:text="Дальнобойная атака (Книга игрока стр. 195)\nРукопашная атака (Книга игрока стр. 195)\nЗахват (Книга игрока стр. 195)\nТолкание существа (Книга игрока стр. 196)"
-                android:textColor="@color/textColor" />
+                android:textColor="@color/textColor"
+                android:textSize="18sp" />
         </TableRow>
 
         <TableRow
@@ -44,22 +44,22 @@
             android:paddingEnd="@dimen/nav_header_vertical_spacing">
 
             <TextView
-                android:textSize="18sp"
                 android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="Накладывание заклинания"
-                android:textColor="@color/colorPrimary" />
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp" />
 
             <TextView
-                android:textSize="18sp"
                 android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:text="Используйте заклинание (Книга игрока стр. 192)"
-                android:textColor="@color/textColor" />
+                android:textColor="@color/textColor"
+                android:textSize="18sp" />
         </TableRow>
 
         <TableRow
@@ -69,22 +69,22 @@
             android:paddingEnd="@dimen/nav_header_vertical_spacing">
 
             <TextView
-                android:textSize="18sp"
                 android:id="@+id/textView5"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="Рывок"
-                android:textColor="@color/colorPrimary" />
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp" />
 
             <TextView
-                android:textSize="18sp"
                 android:id="@+id/textView6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:text="Скорость удваивается (Книга игрока стр. 193)"
-                android:textColor="@color/textColor" />
+                android:textColor="@color/textColor"
+                android:textSize="18sp" />
         </TableRow>
 
         <TableRow
@@ -94,22 +94,22 @@
             android:paddingEnd="@dimen/nav_header_vertical_spacing">
 
             <TextView
-                android:textSize="18sp"
                 android:id="@+id/textView7"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="Отход"
-                android:textColor="@color/colorPrimary" />
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp" />
 
             <TextView
-                android:textSize="18sp"
                 android:id="@+id/textView8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:text="Если Вы совершаете действие Отход, то до конца текущего хода ваше перемещение не провоцирует атаки (Книга игрока стр. 192)"
-                android:textColor="@color/textColor" />
+                android:textColor="@color/textColor"
+                android:textSize="18sp" />
         </TableRow>
 
         <TableRow
@@ -119,22 +119,22 @@
             android:paddingEnd="@dimen/nav_header_vertical_spacing">
 
             <TextView
-                android:textSize="18sp"
                 android:id="@+id/textView9"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="Уклонение"
-                android:textColor="@color/colorPrimary" />
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp" />
 
             <TextView
-                android:textSize="18sp"
                 android:id="@+id/textView10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:text="До начала вашего следующего хода все броски атаки по вам совершаются с помехой, и спасброски Ловкости вы совершаете с преимуществом, если вы видите  атакующего. (Книга игрока стр. 193)"
-                android:textColor="@color/textColor" />
+                android:textColor="@color/textColor"
+                android:textSize="18sp" />
         </TableRow>
 
         <TableRow
@@ -144,22 +144,22 @@
             android:paddingEnd="@dimen/nav_header_vertical_spacing">
 
             <TextView
-                android:textSize="18sp"
                 android:id="@+id/textView11"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="Помощь"
-                android:textColor="@color/colorPrimary" />
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp" />
 
             <TextView
-                android:textSize="18sp"
                 android:id="@+id/textView12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:text="Существо, которому Вы помогаете совершит свое действие с преимуществом (Книга игрока стр. 193)"
-                android:textColor="@color/textColor" />
+                android:textColor="@color/textColor"
+                android:textSize="18sp" />
         </TableRow>
 
         <TableRow
@@ -169,22 +169,22 @@
             android:paddingEnd="@dimen/nav_header_vertical_spacing">
 
             <TextView
-                android:textSize="18sp"
                 android:id="@+id/textView13"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="Засада"
-                android:textColor="@color/colorPrimary" />
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp" />
 
             <TextView
-                android:textSize="18sp"
                 android:id="@+id/textView14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:text="Вы совершаете проверку Ловкости (Скрытность), пытаясь спрятаться, используя правила из гл.7 Книги игрока  (Книга игрока стр.192)"
-                android:textColor="@color/textColor" />
+                android:textColor="@color/textColor"
+                android:textSize="18sp" />
         </TableRow>
 
         <TableRow
@@ -194,22 +194,22 @@
             android:paddingEnd="@dimen/nav_header_vertical_spacing">
 
             <TextView
-                android:textSize="18sp"
                 android:id="@+id/textView15"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="Подготовка"
-                android:textColor="@color/colorPrimary" />
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp" />
 
             <TextView
-                android:textSize="18sp"
                 android:id="@+id/textView16"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:text="Оставьте действие в качестве Реакции (Книга игрока стр.192)"
-                android:textColor="@color/textColor" />
+                android:textColor="@color/textColor"
+                android:textSize="18sp" />
         </TableRow>
 
         <TableRow
@@ -219,22 +219,22 @@
             android:paddingEnd="@dimen/nav_header_vertical_spacing">
 
             <TextView
-                android:textSize="18sp"
                 android:id="@+id/textView17"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="Поиск"
-                android:textColor="@color/colorPrimary" />
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp" />
 
             <TextView
-                android:textSize="18sp"
                 android:id="@+id/textView18"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:text="Совершите проверку (Анилиз или Внимательность) (Книга игрока стр. 193)"
-                android:textColor="@color/textColor" />
+                android:textColor="@color/textColor"
+                android:textSize="18sp" />
         </TableRow>
 
         <TableRow
@@ -244,22 +244,22 @@
             android:paddingEnd="@dimen/nav_header_vertical_spacing">
 
             <TextView
-                android:textSize="18sp"
                 android:id="@+id/textView19"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="Использование предмета"
-                android:textColor="@color/colorPrimary" />
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp" />
 
             <TextView
-                android:textSize="18sp"
                 android:id="@+id/textView20"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:text="Если предмет требует действия для его использования, вы совершаете действие Использование предмета. Это действие также пригодится, если вы хотите в течение хода взаимодействовать сразу с несколькими предметами. (Книга игрока стр. 192)  Обычно Вы взаимодействуете с предметами во время других действий, например, вынимаете меч частью атаки. (Примеры – Книга игрока стр. 190)"
-                android:textColor="@color/textColor" />
+                android:textColor="@color/textColor"
+                android:textSize="18sp" />
         </TableRow>
     </TableLayout>
 </ScrollView>

@@ -4,14 +4,17 @@ import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.text.Html;
+import android.util.Base64;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
 import java.lang.reflect.Type;
 import java.util.Collections;
 import java.util.Comparator;
@@ -53,33 +56,21 @@ public class AppModule {
         try {
             SharedPreferences preferences = application.getApplicationContext().getSharedPreferences("application_preferences", Context.MODE_PRIVATE);
             StringBuilder total = new StringBuilder();
-            BufferedReader r = new BufferedReader(new InputStreamReader(application.getResources().openRawResource(R.raw.spells)));
+            BufferedReader r = new BufferedReader(new InputStreamReader(application.getResources().openRawResource(R.raw.spell)));
             for (String line; (line = r.readLine()) != null; ) {
                 total.append(line).append('\n');
             }
-            List<Spell> spells = SpellService.getAllSpells(Html.fromHtml(total.toString()).toString());
 
-            total = new StringBuilder();
-            r = new BufferedReader(new InputStreamReader(application.getResources().openRawResource(R.raw.name)));
-            for (String line; (line = r.readLine()) != null; ) {
-                total.append(line).append('\n');
-            }
-            List<Spell> spells1 = SpellService.getAllSpells(spells, total.toString());
+            ByteArrayInputStream fis = new ByteArrayInputStream(Base64.decode(total.toString(), Base64.DEFAULT));
+            ObjectInputStream in = new ObjectInputStream(fis);
+            in.close();
 
-
-            for (Spell spell : spells1) {
+            List<Spell> spells = (List<Spell>) in.readObject();
+            for (Spell spell : spells) {
                 final String key = spell.getName().replace(" ", "_");
-                spell.setFavorite(preferences.getBoolean(key, spell.isFavorite()));
+                spell.setFavorite(preferences.getBoolean(key, false));
             }
-
-            Collections.sort(spells1, new Comparator<Spell>() {
-                @Override
-                public int compare(Spell o1, Spell o2) {
-                    int c = o1.getLevel().compareTo(o2.getLevel());
-                    return c == 0 ? o1.getName().compareTo(o2.getName()) : c;
-                }
-            });
-            return spells1;
+            return spells;
         } catch (Exception e) {
             e.printStackTrace();
         }

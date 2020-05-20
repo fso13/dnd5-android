@@ -22,10 +22,8 @@ import androidx.appcompat.widget.SearchView;
 import androidx.core.view.MenuItemCompat;
 import androidx.fragment.app.Fragment;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -42,14 +40,11 @@ public class SpellsFavoriteFragment extends Fragment {
     private static List<String> classes = Clazz.getRu();
     private static List<String> level = Arrays.asList("Все", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9");
     @Inject
-    List<Spell> spells;
-    @Inject
     SharedPreferences preferences;
     private SpellAdapter spellAdapter;
     private int group = 0;
     private int child = 0;
-    ExpandableListView listView;
-    List<Spell> spells3;
+    private ExpandableListView listView;
     private boolean expander = true;
 
     @Override
@@ -67,14 +62,7 @@ public class SpellsFavoriteFragment extends Fragment {
         listView = root.findViewById(R.id.grid_view_spells);
 
 
-        spells3 = new ArrayList<>();
-        for (Spell s : spells) {
-            if (s.isFavorite()) {
-                spells3.add(s);
-            }
-        }
-
-        spellAdapter = new SpellAdapter(getContext(), spells3);
+        spellAdapter = new SpellAdapter(getContext(), ((App) getActivity().getApplication()).spellsFavorite, ((App) getActivity().getApplication()), preferences);
         listView.setAdapter(spellAdapter);
 
         listView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
@@ -180,7 +168,12 @@ public class SpellsFavoriteFragment extends Fragment {
         if (!spell.isFavorite()) {
             spellAdapter.originalData.get(group).remove(spell);
             spellAdapter.filteredData.get(group).remove(spell);
+            ((App) getActivity().getApplication()).spellsFavorite.remove(spell);
+
+        } else {
+            ((App) getActivity().getApplication()).spellsFavorite.add(spell);
         }
+
         spellAdapter.notifyDataSetChanged();
     }
 
