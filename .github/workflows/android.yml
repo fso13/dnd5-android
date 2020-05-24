@@ -22,6 +22,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         tag_name: v1.0.0
-        asset_path: app/build/outputs/apk/debug/app-release.apk
+        asset_path: app/build/outputs/apk/release/app-release.apk
         asset_name: app-release.apk
         asset_content_type: application/zip
