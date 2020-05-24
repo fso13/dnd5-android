@@ -1,5 +1,4 @@
 ## Android приложение для помощи игрокам и мастерам для игры в D&D 5e.
-[![Build Status](https://travis-ci.com/fso13/dnd5-android.svg?token=8gtxMe2jeDjnmttMcUdx&branch=develop)](https://travis-ci.com/fso13/dnd5-android)
 
 ## Возможности
 * список заклинаний
