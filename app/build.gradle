@@ -29,8 +29,8 @@ android {
         applicationId "ru.drudenko.dnd"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 2005243
-        versionName "20.05.24.3"
+        versionCode 2005245
+        versionName "20.05.24.5"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -63,4 +63,11 @@ dependencies {
     implementation 'com.squareup.okio:okio:1.14.0'
     implementation "io.reactivex.rxjava2:rxjava:2.1.1"
     implementation "io.reactivex.rxjava2:rxandroid:2.0.2"
+}
+
+task createReleaseTag {
+    def tagName = android.defaultConfig.versionCode
+    println tagName
+    ("git tag $tagName").execute()
+    ("git push origin --tags").execute()
 }

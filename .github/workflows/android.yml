@@ -15,7 +15,7 @@ jobs:
         with:
           java-version: 1.8
       - name: Build debug apk
-        run: ./gradlew clean build
+        run: ./gradlew clean createReleaseTag assembleRelease
 
       - name: Get the version
         run: echo ::set-env name=RELEASE_VERSION::$(echo ${GITHUB_REF:10})
