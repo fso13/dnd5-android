@@ -24,7 +24,7 @@ jobs:
         uses: ShaunLWM/action-release-debugapk@master
         env:
           USERNAME: fso13
-          TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TOKEN: 399b597e7dde1222a41e2642f7e6b030848fe109
+          GITHUB_TOKEN: 399b597e7dde1222a41e2642f7e6b030848fe109
           APP_FOLDER: app
           RELEASE_TITLE: New Build
