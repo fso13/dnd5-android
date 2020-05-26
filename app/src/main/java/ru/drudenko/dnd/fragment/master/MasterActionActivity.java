@@ -17,8 +17,6 @@ import ru.drudenko.dnd.adapter.ViewPagerAdapter;
 
 
 public class MasterActionActivity extends AppCompatActivity {
-    private ViewPager viewPager;
-    private TabLayout tabLayout;
 
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
@@ -28,16 +26,17 @@ public class MasterActionActivity extends AppCompatActivity {
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setTitle("Сражение");
         setContentView(R.layout.action_activity);
 
-        viewPager = findViewById(R.id.viewpager);
+        ViewPager viewPager = findViewById(R.id.viewpager);
         setupViewPager(viewPager);
 
         TextView info = findViewById(R.id.textView4);
 
         info.setText("За один раунд игрок может совершить:  перемещение + одно действие + одно бонусное действие + одну реакцию.");
 
-        tabLayout = findViewById(R.id.tablayout);
+        TabLayout tabLayout = findViewById(R.id.tablayout);
         tabLayout.setupWithViewPager(viewPager);
 
 

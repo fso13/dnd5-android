@@ -24,4 +24,4 @@
 |Закладки для заклинаний|<img src="https://github.com/fso13/dnd5-android/raw/develop/screen/s_f.jpg" width="250">|
 |Фильтр заклинаний по классам|<img src="https://github.com/fso13/dnd5-android/raw/develop/screen/s_filter_class.jpg" width="250">|
 |Фильтр заклинаний по уровням|<img src="https://github.com/fso13/dnd5-android/raw/develop/screen/s_filter_level.jpg" width="250">|
-|описание заклинания|<img src="https://github.com/fso13/dnd5-android/raw/develop/screen/s.jpg" width="250">|
+|Описание заклинания|<img src="https://github.com/fso13/dnd5-android/raw/develop/screen/s.jpg" width="250">|

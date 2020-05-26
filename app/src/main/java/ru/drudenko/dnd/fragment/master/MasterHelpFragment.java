@@ -55,6 +55,7 @@ public class MasterHelpFragment extends ListFragment {
                 m2.add(new CustomItem("Отравленный", "• Отравленное существо совершает с помехойброски атаки и проверки характеристик."));
 
                 intent.putExtra("CustomItems", m2);
+                intent.putExtra("title", "Состояния");
 
                 startActivityForResult(intent, 0);
 
@@ -78,6 +79,7 @@ public class MasterHelpFragment extends ListFragment {
                 m3.add(new CustomItem("Яд", "Ядовитые укусы и токсичное дыхание зелёного дракона причиняют урон ядом"));
 
                 intent.putExtra("CustomItems", m3);
+                intent.putExtra("title", "Виды урона");
 
                 startActivityForResult(intent, 0);
                 break;
@@ -90,6 +92,7 @@ public class MasterHelpFragment extends ListFragment {
                 m4.add(new CustomItem("Полное укрытие ", "При полном укрытии вас нельзя атаковать и накладывать на васзаклинания."));
 
                 intent.putExtra("CustomItems", m4);
+                intent.putExtra("title", "Укрытие");
 
                 startActivityForResult(intent, 0);
 
@@ -226,6 +229,7 @@ public class MasterHelpFragment extends ListFragment {
                         "    </tbody></table>"));
 
                 intent.putExtra("CustomItems", m5);
+                intent.putExtra("title", "Броня");
 
                 startActivityForResult(intent, 0);
 
@@ -520,6 +524,7 @@ public class MasterHelpFragment extends ListFragment {
                         "</tbody></table>"));
 
                 intent.putExtra("CustomItems", m6);
+                intent.putExtra("title", "Оружие");
 
                 startActivityForResult(intent, 0);
 
@@ -652,6 +657,7 @@ public class MasterHelpFragment extends ListFragment {
                         "<div><span class=\"cls_013\">Провал - урон ядом 1к4.</span></div>"));
 
                 intent.putExtra("CustomItems", m7);
+                intent.putExtra("title", "Снаряжение");
 
                 startActivityForResult(intent, 0);
 

@@ -25,7 +25,8 @@ public class HelpActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
 
         ArrayList<CustomItem> customItems = (ArrayList<CustomItem>) bundle.get("CustomItems");
-
+        String title = (String) bundle.get("title");
+        actionBar.setTitle(title);
         StringBuilder text = new StringBuilder();
 
         for (CustomItem item : customItems) {
