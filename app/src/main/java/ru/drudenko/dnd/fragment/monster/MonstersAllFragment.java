@@ -140,21 +140,11 @@ public class MonstersAllFragment extends Fragment {
         listView.setAdapter(monsterAdapter);
 
 
-        AdapterView.OnItemClickListener itemListener = new AdapterView.OnItemClickListener() {
-
-            @Override
-            public void onItemClick(AdapterView<?> parent, View v,
-                                    int position, long id) {
-                Intent intent = new Intent(getContext(), MonsterActivity.class);
-                monster = monsterAdapter.getItem(position);
-                intent.putExtra("MONSTER", monster);
-//                String nameMessage = monster.getName();
-//                intent.putExtra("MONSTER_NAME", nameMessage);
-//                intent.putExtra("MONSTER_INFO1", monster.getInfo1());
-//                intent.putExtra("MONSTER_INFO2", monster.getInfo2());
-//                intent.putExtra("MONSTER_TEXT", monster.getText());
-                startActivityForResult(intent, 0);
-            }
+        AdapterView.OnItemClickListener itemListener = (parent, v, position, id) -> {
+            Intent intent = new Intent(getContext(), MonsterActivity.class);
+            monster = monsterAdapter.getItem(position);
+            intent.putExtra("MONSTER", monster);
+            startActivityForResult(intent, 0);
         };
         listView.setOnItemClickListener(itemListener);
 
@@ -218,11 +208,8 @@ public class MonstersAllFragment extends Fragment {
                 return false;
             }
         });
-        searchView.setOnClickListener(new View.OnClickListener() {
-                                          @Override
-                                          public void onClick(View v) {
-                                          }
-                                      }
+        searchView.setOnClickListener(v -> {
+                }
         );
     }
 

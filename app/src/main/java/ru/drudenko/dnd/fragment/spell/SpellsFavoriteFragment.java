@@ -65,19 +65,16 @@ public class SpellsFavoriteFragment extends Fragment {
         spellAdapter = new SpellAdapter(getContext(), ((App) getActivity().getApplication()).spellsFavorite, ((App) getActivity().getApplication()), preferences);
         listView.setAdapter(spellAdapter);
 
-        listView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
-            @Override
-            public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
-                Intent intent = new Intent(getContext(), SpellActivity.class);
-                Object item = spellAdapter.getChild(groupPosition, childPosition);
-                if (item instanceof Spell) {
-                    group = groupPosition;
-                    child = childPosition;
-                    intent.putExtra("SPELL", (Spell) item);
-                    startActivityForResult(intent, 0);
-                }
-                return true;
+        listView.setOnChildClickListener((parent, v, groupPosition, childPosition, id) -> {
+            Intent intent = new Intent(getContext(), SpellActivity.class);
+            Object item = spellAdapter.getChild(groupPosition, childPosition);
+            if (item instanceof Spell) {
+                group = groupPosition;
+                child = childPosition;
+                intent.putExtra("SPELL", (Spell) item);
+                startActivityForResult(intent, 0);
             }
+            return true;
         });
 
 
@@ -152,11 +149,8 @@ public class SpellsFavoriteFragment extends Fragment {
                 return false;
             }
         });
-        searchView.setOnClickListener(new View.OnClickListener() {
-                                          @Override
-                                          public void onClick(View v) {
-                                          }
-                                      }
+        searchView.setOnClickListener(v -> {
+                }
         );
     }
 

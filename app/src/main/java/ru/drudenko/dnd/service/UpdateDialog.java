@@ -2,7 +2,6 @@ package ru.drudenko.dnd.service;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -19,18 +18,14 @@ public class UpdateDialog extends DialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle(R.string.newUpdateAvailable);
         builder.setMessage(getArguments().getString(Constants.APK_UPDATE_CONTENT))
-                .setPositiveButton(R.string.dialogPositiveButton, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        // FIRE ZE MISSILES!
-                        goToDownload();
-                        dismiss();
-                    }
+                .setPositiveButton(R.string.dialogPositiveButton, (dialog, id) -> {
+                    // FIRE ZE MISSILES!
+                    goToDownload();
+                    dismiss();
                 })
-                .setNegativeButton(R.string.dialogNegativeButton, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        // User cancelled the dialog
-                        dismiss();
-                    }
+                .setNegativeButton(R.string.dialogNegativeButton, (dialog, id) -> {
+                    // User cancelled the dialog
+                    dismiss();
                 });
         // Create the AlertDialog object and return it
         return builder.create();

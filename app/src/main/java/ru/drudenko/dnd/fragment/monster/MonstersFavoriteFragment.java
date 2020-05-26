@@ -129,11 +129,8 @@ public class MonstersFavoriteFragment extends Fragment {
                 return false;
             }
         });
-        searchView.setOnClickListener(new View.OnClickListener() {
-                                          @Override
-                                          public void onClick(View v) {
-                                          }
-                                      }
+        searchView.setOnClickListener(v -> {
+                }
         );
     }
 

@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
-import android.widget.CompoundButton;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.TextView;
@@ -173,33 +172,30 @@ public class SpellAdapter extends BaseExpandableListAdapter implements Filterabl
         viewHolder.toggleButton.setTextOn("");
 
         viewHolder.toggleButton.setBackgroundDrawable(ContextCompat.getDrawable(context, spell.isFavorite() ? R.drawable.start_on : R.drawable.start_off));
-        viewHolder.toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (buttonView.isPressed()) {
-                    if (isChecked) {
-                        viewHolder.toggleButton.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.start_on));
-                        spell.setFavorite(true);
+        viewHolder.toggleButton.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (buttonView.isPressed()) {
+                if (isChecked) {
+                    viewHolder.toggleButton.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.start_on));
+                    spell.setFavorite(true);
 
-                        app.spellsFavorite.add(spell);
-                        app.spells.get(app.spells.indexOf(spell)).setFavorite(true);
+                    app.spellsFavorite.add(spell);
+                    app.spells.get(app.spells.indexOf(spell)).setFavorite(true);
 
-                        final String key = spell.getName().replace(" ", "_");
+                    final String key = spell.getName().replace(" ", "_");
 //            preferences.edit().remove(key).apply();
-                        preferences.edit().putBoolean(key, true).apply();
+                    preferences.edit().putBoolean(key, true).apply();
 
 
-                    } else {
-                        viewHolder.toggleButton.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.start_off));
-                        spell.setFavorite(false);
-                        app.spellsFavorite.remove(spell);
-                        app.spells.get(app.spells.indexOf(spell)).setFavorite(false);
+                } else {
+                    viewHolder.toggleButton.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.start_off));
+                    spell.setFavorite(false);
+                    app.spellsFavorite.remove(spell);
+                    app.spells.get(app.spells.indexOf(spell)).setFavorite(false);
 
-                        final String key = spell.getName().replace(" ", "_");
-                        preferences.edit().putBoolean(key, false).apply();
-                    }
-
+                    final String key = spell.getName().replace(" ", "_");
+                    preferences.edit().putBoolean(key, false).apply();
                 }
+
             }
         });
 

@@ -3,7 +3,6 @@ package ru.drudenko.dnd.activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,7 +38,6 @@ public class MainActivity extends AppCompatActivity implements UpdateNotice {
     @Inject
     Context context;
     private AppBarConfiguration mAppBarConfiguration;
-    private DnDUpdateDialog d = new DnDUpdateDialog();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -65,12 +63,9 @@ public class MainActivity extends AppCompatActivity implements UpdateNotice {
         versionName.setText("v." + BuildConfig.VERSION_NAME);
 
         Button button = navigationView.getHeaderView(0).findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                isM.set(true);
-                UpdateChecker.checkForCustomNotice(MainActivity.this, APP_UPDATE_SERVER_URL, MainActivity.this);
-            }
+        button.setOnClickListener(v -> {
+            isM.set(true);
+            UpdateChecker.checkForCustomNotice(MainActivity.this, APP_UPDATE_SERVER_URL, MainActivity.this);
         });
 
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -118,7 +113,7 @@ public class MainActivity extends AppCompatActivity implements UpdateNotice {
         if (!DnDUpdateDialog.isVisible.get()) {
             long version = BuildConfig.VERSION_CODE;
             if (description.versionCode > version) {
-                d = new DnDUpdateDialog();
+                DnDUpdateDialog d = new DnDUpdateDialog();
                 Bundle args = new Bundle();
                 args.putString(Constants.APK_UPDATE_CONTENT, description.updateMessage);
                 args.putString(Constants.APK_DOWNLOAD_URL, description.url);
