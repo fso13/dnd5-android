@@ -56,7 +56,7 @@ dependencies {
     annotationProcessor 'com.google.dagger:dagger-android-processor:2.25.2'
     annotationProcessor "com.google.dagger:dagger-compiler:2.25.2"
     implementation 'com.github.systembugtj:autoupdate:2.1.0'
-
+    implementation 'androidx.appcompat:appcompat:1.0.0'
     implementation 'com.google.code.gson:gson:2.8.4'
     implementation 'com.google.guava:guava:23.3-android'
     implementation 'com.squareup.okhttp3:okhttp:3.10.0'

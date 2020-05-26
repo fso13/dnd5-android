@@ -12,7 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ExpandableListView;
+import android.widget.ListView;
 import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
@@ -42,11 +42,7 @@ public class SpellsAllFragment extends Fragment {
     @Inject
     SharedPreferences preferences;
     private SpellAdapter spellAdapter;
-
-    private ExpandableListView listView;
-    private int group = 0;
-    private int child = 0;
-    private boolean expander = true;
+    private Spell spell;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -61,21 +57,20 @@ public class SpellsAllFragment extends Fragment {
 
         setHasOptionsMenu(true);
         View root = inflater.inflate(R.layout.fragment_spells_all, container, false);
-        listView = root.findViewById(R.id.grid_view_spells);
+        ListView listView = root.findViewById(R.id.grid_view_spells);
 
         spellAdapter = new SpellAdapter(getContext(), ((App) getActivity().getApplication()).spells, ((App) getActivity().getApplication()), preferences);
         listView.setAdapter(spellAdapter);
-        listView.setOnChildClickListener((parent, v, groupPosition, childPosition, id) -> {
+
+        AdapterView.OnItemClickListener itemListener = (parent, v, position, id) -> {
             Intent intent = new Intent(getContext(), SpellActivity.class);
-            Object item = spellAdapter.getChild(groupPosition, childPosition);
-            if (item instanceof Spell) {
-                group = groupPosition;
-                child = childPosition;
-                intent.putExtra("SPELL", (Spell) item);
+            spell = spellAdapter.getItem(position);
+            if (spell != null) {
+                intent.putExtra("SPELL", (Spell) spell);
                 startActivityForResult(intent, 0);
             }
-            return true;
-        });
+        };
+        listView.setOnItemClickListener(itemListener);
 
         Spinner spinnerClass = root.findViewById(R.id.spinner_classes);
         ArrayAdapter<String> adapterClasses = new ArrayAdapter<>(this.getActivity(), R.layout.spinner_dropdown_item, classes);
@@ -109,18 +104,7 @@ public class SpellsAllFragment extends Fragment {
             }
         });
 
-        if (expander) {
-            listView.expandGroup(0);
-            listView.expandGroup(1);
-            listView.expandGroup(2);
-            listView.expandGroup(3);
-            listView.expandGroup(4);
-            listView.expandGroup(5);
-            listView.expandGroup(6);
-            listView.expandGroup(7);
-            listView.expandGroup(8);
-            listView.expandGroup(9);
-        }
+
         return root;
     }
 
@@ -130,7 +114,6 @@ public class SpellsAllFragment extends Fragment {
         menu.clear();
         inflater.inflate(R.menu.main, menu);
         MenuItem item = menu.findItem(R.id.action_search);
-        inflater.inflate(R.menu.expand, menu);
 
         SearchView searchView = new SearchView(((MainActivity) getContext()).getSupportActionBar().getThemedContext());
         MenuItemCompat.setShowAsAction(item, MenuItemCompat.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW | MenuItemCompat.SHOW_AS_ACTION_IF_ROOM);
@@ -159,7 +142,6 @@ public class SpellsAllFragment extends Fragment {
 
         for (Spell spell : ((App) getActivity().getApplication()).spells) {
             final String key = spell.getName().replace(" ", "_");
-//            preferences.edit().remove(key).apply();
             preferences.edit().putBoolean(key, spell.isFavorite()).apply();
         }
 
@@ -167,50 +149,15 @@ public class SpellsAllFragment extends Fragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Spell spell = ((Spell) listView.getExpandableListAdapter().getChild(group, child));
         final String key = spell.getName().replace(" ", "_");
         spell.setFavorite(preferences.getBoolean(key, spell.isFavorite()));
         if (spell.isFavorite()) {
-            ((App) getActivity().getApplication()).spellsFavorite.add(spell);
             ((App) getActivity().getApplication()).spells.get(((App) getActivity().getApplication()).spells.indexOf(spell)).setFavorite(true);
         } else {
-            ((App) getActivity().getApplication()).spellsFavorite.remove(spell);
             ((App) getActivity().getApplication()).spells.get(((App) getActivity().getApplication()).spells.indexOf(spell)).setFavorite(false);
 
         }
         spellAdapter.notifyDataSetChanged();
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.action_expand) {
-            expander = !expander;
-
-            if (expander) {
-                listView.expandGroup(0);
-                listView.expandGroup(1);
-                listView.expandGroup(2);
-                listView.expandGroup(3);
-                listView.expandGroup(4);
-                listView.expandGroup(5);
-                listView.expandGroup(6);
-                listView.expandGroup(7);
-                listView.expandGroup(8);
-                listView.expandGroup(9);
-            } else {
-                listView.collapseGroup(0);
-                listView.collapseGroup(1);
-                listView.collapseGroup(2);
-                listView.collapseGroup(3);
-                listView.collapseGroup(4);
-                listView.collapseGroup(5);
-                listView.collapseGroup(6);
-                listView.collapseGroup(7);
-                listView.collapseGroup(8);
-                listView.collapseGroup(9);
-            }
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
 }

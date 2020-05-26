@@ -2,8 +2,12 @@ package ru.drudenko.dnd.di;
 
 import android.app.Application;
 
+import androidx.recyclerview.widget.SortedList;
+
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.SortedSet;
 
 import javax.inject.Inject;
 
@@ -20,6 +24,7 @@ public class App extends Application {
 
     public List<Spell> spellsFavorite = new ArrayList<>();
     public List<Monster> monstersFavorite = new ArrayList<>();
+
 
     private AppComponent component;
 

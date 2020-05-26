@@ -9,7 +9,7 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseExpandableListAdapter;
+import android.widget.BaseAdapter;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.TextView;
@@ -20,17 +20,14 @@ import androidx.core.content.ContextCompat;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
 
 import ru.drudenko.dnd.R;
 import ru.drudenko.dnd.di.App;
 import ru.drudenko.dnd.model.magic.Spell;
 
-public class SpellAdapter extends BaseExpandableListAdapter implements Filterable {
-    public Map<Integer, ArrayList<Spell>> originalData = new TreeMap<Integer, ArrayList<Spell>>() {
-    };
-    public Map<Integer, ArrayList<Spell>> filteredData = new TreeMap<>();
+public class SpellAdapter extends BaseAdapter implements Filterable {
+    private List<Spell> originalData;
+    private List<Spell> filteredData;
     private LayoutInflater mInflater;
     private ItemFilter mFilter = new ItemFilter();
     private String classFilterText = "Все";
@@ -42,34 +39,10 @@ public class SpellAdapter extends BaseExpandableListAdapter implements Filterabl
 
     public SpellAdapter(Context context, List<Spell> data, App app, SharedPreferences preferences) {
         this.context = context;
-        originalData.put(0, new ArrayList<>());
-        originalData.put(1, new ArrayList<>());
-        originalData.put(2, new ArrayList<>());
-        originalData.put(3, new ArrayList<>());
-        originalData.put(4, new ArrayList<>());
-        originalData.put(5, new ArrayList<>());
-        originalData.put(6, new ArrayList<>());
-        originalData.put(7, new ArrayList<>());
-        originalData.put(8, new ArrayList<>());
-        originalData.put(9, new ArrayList<>());
-
-        filteredData.put(0, new ArrayList<>());
-        filteredData.put(1, new ArrayList<>());
-        filteredData.put(2, new ArrayList<>());
-        filteredData.put(3, new ArrayList<>());
-        filteredData.put(4, new ArrayList<>());
-        filteredData.put(5, new ArrayList<>());
-        filteredData.put(6, new ArrayList<>());
-        filteredData.put(7, new ArrayList<>());
-        filteredData.put(8, new ArrayList<>());
-        filteredData.put(9, new ArrayList<>());
         this.app = app;
         this.preferences = preferences;
-        for (Spell spell : data) {
-            originalData.get(Integer.parseInt(spell.getLevel())).add(spell);
-            filteredData.get(Integer.parseInt(spell.getLevel())).add(spell);
-        }
-
+        originalData = new ArrayList<>(data);
+        filteredData = new ArrayList<>(data);
         mInflater = LayoutInflater.from(context);
     }
 
@@ -77,73 +50,20 @@ public class SpellAdapter extends BaseExpandableListAdapter implements Filterabl
         return spell.getClasses().contains(filterClass);
     }
 
-    @Override
-    public int getGroupCount() {
-        return 10;
+    public int getCount() {
+        return filteredData.size();
+    }
+
+    public Spell getItem(int position) {
+        return filteredData.get(position);
+    }
+
+    public long getItemId(int position) {
+        return position;
     }
 
     @Override
-    public int getChildrenCount(int groupPosition) {
-        return filteredData.get(groupPosition).size();
-    }
-
-    @Override
-    public Object getGroup(int groupPosition) {
-        return filteredData.get(groupPosition);
-    }
-
-    @Override
-    public Object getChild(int groupPosition, int childPosition) {
-        return filteredData.get(groupPosition).get(childPosition);
-    }
-
-    @Override
-    public long getGroupId(int groupPosition) {
-        return groupPosition;
-    }
-
-    @Override
-    public long getChildId(int groupPosition, int childPosition) {
-        return childPosition;
-    }
-
-    @Override
-    public boolean hasStableIds() {
-        return true;
-    }
-
-    @Override
-    public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
-        if (convertView == null) {
-            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.spell_list_view_item_layout_level, null);
-        }
-
-        if (isExpanded) {
-            //Изменяем что-нибудь, если текущая Group раскрыта
-        } else {
-            //Изменяем что-нибудь, если текущая Group скрыта
-        }
-
-        TextView textGroup = convertView.findViewById(R.id.textView2);
-        textGroup.setText("Уровень: " + groupPosition);
-        textGroup.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
-        textGroup.setTypeface(null, Typeface.BOLD);
-        textGroup.setTextColor(Color.WHITE);
-
-
-        TextView textGroup2 = convertView.findViewById(R.id.textView3);
-        textGroup2.setText("Кол-во: " + getChildrenCount(groupPosition));
-        textGroup2.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
-        textGroup2.setTypeface(null, Typeface.BOLD);
-        textGroup2.setTextColor(Color.WHITE);
-
-        return convertView;
-
-    }
-
-    @Override
-    public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         final View view;
         final ViewHolder viewHolder;
 
@@ -160,12 +80,12 @@ public class SpellAdapter extends BaseExpandableListAdapter implements Filterabl
             view = convertView;
         }
 
-        final Spell spell = filteredData.get(groupPosition).get(childPosition);
+        final Spell spell = filteredData.get(position);
 
         viewHolder.textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
         viewHolder.textView.setTypeface(null, Typeface.BOLD);
         viewHolder.textView.setTextColor(Color.WHITE);
-        viewHolder.textView.setText(spell.getName());
+        viewHolder.textView.setText(String.format("%s: %s", spell.getLevel(), spell.getName()));
 
         viewHolder.toggleButton.setChecked(spell.isFavorite());
         viewHolder.toggleButton.setTextOff("");
@@ -182,7 +102,6 @@ public class SpellAdapter extends BaseExpandableListAdapter implements Filterabl
                     app.spells.get(app.spells.indexOf(spell)).setFavorite(true);
 
                     final String key = spell.getName().replace(" ", "_");
-//            preferences.edit().remove(key).apply();
                     preferences.edit().putBoolean(key, true).apply();
 
 
@@ -202,21 +121,11 @@ public class SpellAdapter extends BaseExpandableListAdapter implements Filterabl
         return view;
     }
 
-    @Override
-    public boolean isChildSelectable(int groupPosition, int childPosition) {
-        return true;
-    }
-
-
-    public int getCount() {
-        return 10;
-    }
-
     public Filter getFilter() {
         return mFilter;
     }
 
-    private class ViewHolder {
+    private static class ViewHolder {
         TextView textView;
         ToggleButton toggleButton;
     }
@@ -225,21 +134,11 @@ public class SpellAdapter extends BaseExpandableListAdapter implements Filterabl
         @RequiresApi(api = Build.VERSION_CODES.N)
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
-
+            filteredData.clear();
+            ArrayList<Spell> spells = new ArrayList<>();
             String[] filterString = constraint.toString().split(":");
             FilterResults results = new FilterResults();
-            final Map<Integer, ArrayList<Spell>> list = originalData;
-            final Map<Integer, ArrayList<Spell>> nlist = new TreeMap<>();
-            nlist.put(0, new ArrayList<>());
-            nlist.put(1, new ArrayList<>());
-            nlist.put(2, new ArrayList<>());
-            nlist.put(3, new ArrayList<>());
-            nlist.put(4, new ArrayList<>());
-            nlist.put(5, new ArrayList<>());
-            nlist.put(6, new ArrayList<>());
-            nlist.put(7, new ArrayList<>());
-            nlist.put(8, new ArrayList<>());
-            nlist.put(9, new ArrayList<>());
+
 
             if (filterString.length == 1) {
                 nameFilterText = filterString[0].toLowerCase();
@@ -254,18 +153,16 @@ public class SpellAdapter extends BaseExpandableListAdapter implements Filterabl
                 }
             }
 
-            for (int i = 0; i < 10; i++) {
-                for (Spell spell : list.get(i)) {
+            for (Spell spell : originalData) {
 
-                    if (filter(spell)) {
-                        nlist.get(Integer.parseInt(spell.getLevel())).add(spell);
-                    }
+                if (filter(spell)) {
+                    spells.add(spell);
                 }
-
             }
 
-            results.values = nlist;
-            results.count = nlist.size();
+
+            results.values = spells;
+            results.count = spells.size();
 
             return results;
         }
@@ -278,13 +175,13 @@ public class SpellAdapter extends BaseExpandableListAdapter implements Filterabl
         @SuppressWarnings("unchecked")
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
-            filteredData = (Map<Integer, ArrayList<Spell>>) results.values;
+            if (results.values == null) {
+                filteredData = new ArrayList<>();
+            } else {
+                filteredData = (ArrayList<Spell>) results.values;
+            }
             notifyDataSetChanged();
         }
-
     }
-
-
 }
 
-//in your Activity or Fragment where of Adapter is instantiated :

@@ -43,7 +43,7 @@ public class MonsterAdapter extends BaseAdapter implements Filterable {
     public MonsterAdapter(Context context, List<Monster> data, App app, SharedPreferences preferences) {
         this.context = context;
         this.list = data;
-        this.filteredData = data;
+        this.filteredData = new ArrayList<>(data);
         this.app = app;
         this.preferences = preferences;
         mInflater = LayoutInflater.from(context);
@@ -81,31 +81,28 @@ public class MonsterAdapter extends BaseAdapter implements Filterable {
         viewHolder.toggleButton.setTextOn("");
 
         viewHolder.toggleButton.setBackgroundDrawable(ContextCompat.getDrawable(context, monster.isFavorite() ? R.drawable.start_on : R.drawable.start_off));
-        viewHolder.toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (buttonView.isPressed()) {
+        viewHolder.toggleButton.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (buttonView.isPressed()) {
 
-                    final String key = "MONSTER_" + monster.getName().replace(" ", "_");
-                    preferences.edit().remove(key);
-                    preferences.edit().putBoolean(key, isChecked);
+                final String key = "MONSTER_" + monster.getName().replace(" ", "_");
+                preferences.edit().remove(key);
+                preferences.edit().putBoolean(key, isChecked);
 
-                    if (isChecked) {
-                        viewHolder.toggleButton.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.start_on));
-                        monster.setFavorite(true);
+                if (isChecked) {
+                    viewHolder.toggleButton.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.start_on));
+                    monster.setFavorite(true);
 
-                        app.monstersFavorite.add(monster);
-                        app.monsters.get(app.monsters.indexOf(monster)).setFavorite(true);
+                    app.monstersFavorite.add(monster);
+                    app.monsters.get(app.monsters.indexOf(monster)).setFavorite(true);
 
-                    } else {
-                        viewHolder.toggleButton.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.start_off));
-                        monster.setFavorite(false);
+                } else {
+                    viewHolder.toggleButton.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.start_off));
+                    monster.setFavorite(false);
 
-                        app.monstersFavorite.remove(monster);
-                        app.monsters.get(app.monsters.indexOf(monster)).setFavorite(false);
-                    }
-
+                    app.monstersFavorite.remove(monster);
+                    app.monsters.get(app.monsters.indexOf(monster)).setFavorite(false);
                 }
+
             }
         });
 
@@ -167,8 +164,6 @@ public class MonsterAdapter extends BaseAdapter implements Filterable {
                 if (filter(monster)) {
                     nlist.add(monster);
                 }
-
-
             }
 
             results.values = nlist;
