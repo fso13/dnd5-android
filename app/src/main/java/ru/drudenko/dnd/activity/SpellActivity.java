@@ -30,7 +30,7 @@ public class SpellActivity extends AppCompatActivity {
         spell = (Spell) bundle.get("SPELL");
 
         TextView info = findViewById(R.id.textView_spell_info);
-        info.setText(String.format("Уровень: %s\n\n%s\n\nИсточник: %s\n\n", spell.getLevel(), spell.getText(), spell.getSource()), TextView.BufferType.SPANNABLE);
+        info.setText(String.format("Уровень: %s\n\n%s\n\nИсточник: %s\n\n", spell.getLevel(), spell.getDescription(), spell.getSource()), TextView.BufferType.SPANNABLE);
         actionBar.setTitle(spell.getName());
 
     }

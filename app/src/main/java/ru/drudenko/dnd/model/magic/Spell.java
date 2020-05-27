@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.List;
 
 public class Spell implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     private String name;
     private String ritual;
     private String school;
@@ -131,6 +133,11 @@ public class Spell implements Serializable {
     @Override
     public int hashCode() {
         return name.hashCode();
+    }
+
+    public String getDescription() {
+
+        return text.contains("Классы") ? text : text + "\n\n" + classes;
     }
 }
 

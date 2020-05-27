@@ -65,6 +65,20 @@ public class AppModule {
             in.close();
 
             List<Spell> spells = (List<Spell>) in.readObject();
+
+//            List<Spell> spells = SpellService.getAllSpells(total.toString());
+//
+//                        ByteArrayOutputStream fileOutputStream
+//                    = new ByteArrayOutputStream();
+//            ObjectOutputStream objectOutputStream
+//                    = new ObjectOutputStream(fileOutputStream);
+//            objectOutputStream.writeObject(spells);
+//            objectOutputStream.flush();
+//            objectOutputStream.close();
+//
+//
+//            String s = Base64.encodeToString(fileOutputStream.toByteArray(),Base64.DEFAULT);
+
             for (Spell spell : spells) {
                 final String key = spell.getName().replace(" ", "_");
                 spell.setFavorite(preferences.getBoolean(key, false));
