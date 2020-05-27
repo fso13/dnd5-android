@@ -1,5 +1,5 @@
 {
-  "url": "https://github.com/fso13/dnd5-android/releases/download/2005262/app-release.apk",
-  "versionCode": 2005262,
-  "updateMessage": "Исправление багов"
+  "url": "https://github.com/fso13/dnd5-android/releases/download/2005270/app-release.apk",
+  "versionCode": 2005270,
+  "updateMessage": "Фикс долгого перехода между вкладками"
 }
