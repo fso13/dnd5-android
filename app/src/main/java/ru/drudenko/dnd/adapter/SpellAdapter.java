@@ -150,11 +150,6 @@ public class SpellAdapter extends BaseAdapter implements Filterable {
 
             System.out.println("filters:" + constraint);
 
-            if (constraint.equals("class:Все") || constraint.equals("level:Все")) {
-                results.values = originalData;
-                results.count = originalData.size();
-                return results;
-            }
 
             if (filterString.length == 1) {
                 nameFilterText = filterString[0].toLowerCase();
