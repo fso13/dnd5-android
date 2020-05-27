@@ -3,7 +3,6 @@ package ru.drudenko.dnd.di;
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.text.Html;
 import android.util.Base64;
 
 import com.google.gson.Gson;
@@ -16,8 +15,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.lang.reflect.Type;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -94,27 +91,32 @@ public class AppModule {
     @Singleton
     public List<Monster> provideListMonsters() {
         try {
+            System.out.println("Start parse monster: " + System.currentTimeMillis());
+
             SharedPreferences preferences = application.getApplicationContext().getSharedPreferences("application_preferences", Context.MODE_PRIVATE);
 
             StringBuilder total = new StringBuilder();
-            BufferedReader r = new BufferedReader(new InputStreamReader(application.getResources().openRawResource(R.raw.monsters)));
+            BufferedReader r = new BufferedReader(new InputStreamReader(application.getResources().openRawResource(R.raw.monster)));
             for (String line; (line = r.readLine()) != null; ) {
                 total.append(line).append('\n');
             }
-            List<Monster> monsters = SpellService.getAllMonsters(Html.fromHtml(total.toString()).toString());
 
+            ByteArrayInputStream fis = new ByteArrayInputStream(Base64.decode(total.toString(), Base64.DEFAULT));
+            ObjectInputStream in = new ObjectInputStream(fis);
+            in.close();
 
-            Collections.sort(monsters, new Comparator<Monster>() {
-                @Override
-                public int compare(Monster o1, Monster o2) {
-                    return o1.getName().compareTo(o2.getName());
-                }
-            });
+            List<Monster> monsters = (List<Monster>) in.readObject();
+            System.out.println("start sorting monster: " + System.currentTimeMillis());
+            System.out.println("end sorting monster: " + System.currentTimeMillis());
 
             for (Monster monster : monsters) {
                 final String key = "MONSTER_" + monster.getName().replace(" ", "_");
                 monster.setFavorite(preferences.getBoolean(key, false));
             }
+
+            System.out.println("end setFavorite monster: " + System.currentTimeMillis());
+            System.out.println("finish parse monster: " + System.currentTimeMillis());
+
             return monsters;
 
         } catch (Exception e) {

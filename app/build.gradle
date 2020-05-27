@@ -27,10 +27,10 @@ android {
     defaultConfig {
 //        multiDexEnabled true
         applicationId "ru.drudenko.dnd"
-        minSdkVersion 21
+        minSdkVersion 23
         targetSdkVersion 29
-        versionCode 2005270
-        versionName "20.05.27.0"
+        versionCode 2005271
+        versionName "20.05.27.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
