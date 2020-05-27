@@ -36,48 +36,24 @@
 
     <Spinner
         android:id="@+id/spinner_level"
-        android:layout_width="103dp"
-        android:layout_height="39dp"
-        android:layout_marginStart="8dp"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="15dp"
         android:paddingTop="10dp"
         android:text="@string/spinner_level"
         android:verticalScrollbarPosition="right"
-        app:layout_constraintStart_toEndOf="@+id/textView21"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
         android:id="@+id/spinner_classes"
         android:layout_width="150dp"
         android:layout_height="40dp"
-        android:layout_marginStart="8dp"
         android:layout_marginRight="15dp"
         android:paddingTop="10dp"
         android:text="@string/spinner_class"
         android:verticalScrollbarPosition="left"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView22"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView21"
-        android:layout_width="75dp"
-        android:layout_height="19dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginBottom="2dp"
-        android:text="Уровень"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/toolbar3"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/textView22"
-        android:layout_width="63dp"
-        android:layout_height="19dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginBottom="2dp"
-        android:text="Класс"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/toolbar3"
-        app:layout_constraintStart_toEndOf="@+id/spinner_level" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

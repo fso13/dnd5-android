@@ -54,6 +54,8 @@ public class SpellsAllFragment extends Fragment {
     @RequiresApi(api = Build.VERSION_CODES.N)
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+        long l1 = System.currentTimeMillis();
+        System.out.println("Start onCreateView spells: " + l1);
 
         setHasOptionsMenu(true);
         View root = inflater.inflate(R.layout.fragment_spells_all, container, false);
@@ -62,11 +64,13 @@ public class SpellsAllFragment extends Fragment {
         spellAdapter = new SpellAdapter(getContext(), ((App) getActivity().getApplication()).spells, ((App) getActivity().getApplication()), preferences);
         listView.setAdapter(spellAdapter);
 
+        long l2 = System.currentTimeMillis();
+        System.out.println("Start adapter spells: " + l2);
         AdapterView.OnItemClickListener itemListener = (parent, v, position, id) -> {
             Intent intent = new Intent(getContext(), SpellActivity.class);
             spell = spellAdapter.getItem(position);
             if (spell != null) {
-                intent.putExtra("SPELL", (Spell) spell);
+                intent.putExtra("SPELL", spell);
                 startActivityForResult(intent, 0);
             }
         };
@@ -104,7 +108,8 @@ public class SpellsAllFragment extends Fragment {
             }
         });
 
-
+        long l3 = System.currentTimeMillis();
+        System.out.println("finish  spells: " + l3);
         return root;
     }
 
@@ -134,17 +139,6 @@ public class SpellsAllFragment extends Fragment {
         searchView.setOnClickListener(v -> {
                 }
         );
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-
-        for (Spell spell : ((App) getActivity().getApplication()).spells) {
-            final String key = spell.getName().replace(" ", "_");
-            preferences.edit().putBoolean(key, spell.isFavorite()).apply();
-        }
-
     }
 
     @Override

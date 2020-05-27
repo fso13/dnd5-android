@@ -54,6 +54,8 @@ public class AppModule {
     @Singleton
     public List<Spell> provideListSpells() {
         try {
+            long l1 = System.currentTimeMillis();
+            System.out.println("Start parse spells: " + l1);
             SharedPreferences preferences = application.getApplicationContext().getSharedPreferences("application_preferences", Context.MODE_PRIVATE);
             StringBuilder total = new StringBuilder();
             BufferedReader r = new BufferedReader(new InputStreamReader(application.getResources().openRawResource(R.raw.spell)));
@@ -70,6 +72,9 @@ public class AppModule {
                 final String key = spell.getName().replace(" ", "_");
                 spell.setFavorite(preferences.getBoolean(key, false));
             }
+
+            long l2 = System.currentTimeMillis();
+            System.out.println("finish parse spells: " + l2);
             return spells;
         } catch (Exception e) {
             e.printStackTrace();

@@ -20,6 +20,7 @@ import androidx.core.content.ContextCompat;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import ru.drudenko.dnd.R;
 import ru.drudenko.dnd.di.App;
@@ -68,6 +69,7 @@ public class SpellAdapter extends BaseAdapter implements Filterable {
         final ViewHolder viewHolder;
 
         if (convertView == null) {
+            System.out.println("convertView == null, pos:" + position);
             viewHolder = new ViewHolder();
             convertView = mInflater.inflate(R.layout.spell_list_view_item_layout, parent, false);
             viewHolder.textView = convertView.findViewById(R.id.textView2);
@@ -76,6 +78,8 @@ public class SpellAdapter extends BaseAdapter implements Filterable {
             view = convertView;
 
         } else {
+            System.out.println("convertView != null, pos:" + position);
+
             viewHolder = (ViewHolder) convertView.getTag();
             view = convertView;
         }
@@ -125,7 +129,12 @@ public class SpellAdapter extends BaseAdapter implements Filterable {
         return mFilter;
     }
 
-    private static class ViewHolder {
+    @Override
+    public boolean hasStableIds() {
+        return true;
+    }
+
+    private class ViewHolder {
         TextView textView;
         ToggleButton toggleButton;
     }
@@ -135,10 +144,17 @@ public class SpellAdapter extends BaseAdapter implements Filterable {
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
             filteredData.clear();
-            ArrayList<Spell> spells = new ArrayList<>();
+
             String[] filterString = constraint.toString().split(":");
             FilterResults results = new FilterResults();
 
+            System.out.println("filters:" + constraint);
+
+            if (constraint.equals("class:Все") || constraint.equals("level:Все")) {
+                results.values = originalData;
+                results.count = originalData.size();
+                return results;
+            }
 
             if (filterString.length == 1) {
                 nameFilterText = filterString[0].toLowerCase();
@@ -153,13 +169,7 @@ public class SpellAdapter extends BaseAdapter implements Filterable {
                 }
             }
 
-            for (Spell spell : originalData) {
-
-                if (filter(spell)) {
-                    spells.add(spell);
-                }
-            }
-
+            List<Spell> spells = originalData.stream().filter(this::filter).collect(Collectors.toList());
 
             results.values = spells;
             results.count = spells.size();
