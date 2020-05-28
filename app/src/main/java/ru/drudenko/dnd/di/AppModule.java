@@ -80,7 +80,7 @@ public class AppModule {
 //            String s = Base64.encodeToString(fileOutputStream.toByteArray(),Base64.DEFAULT);
 
             for (Spell spell : spells) {
-                final String key = spell.getName().replace(" ", "_");
+                final String key = spell.getName().toUpperCase().replace(" ", "_");
                 spell.setFavorite(preferences.getBoolean(key, false));
             }
 

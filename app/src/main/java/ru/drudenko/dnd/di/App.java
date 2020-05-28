@@ -1,6 +1,7 @@
 package ru.drudenko.dnd.di;
 
 import android.app.Application;
+import android.content.SharedPreferences;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +10,7 @@ import javax.inject.Inject;
 
 import ru.drudenko.dnd.model.magic.Spell;
 import ru.drudenko.dnd.model.monster.Monster;
+import ru.drudenko.dnd.service.SpellFavoriteService;
 
 public class App extends Application {
 
@@ -18,9 +20,12 @@ public class App extends Application {
     @Inject
     public List<Monster> monsters;
 
+    @Inject
+    public SharedPreferences sharedPreferences;
+
     public List<Spell> spellsFavorite = new ArrayList<>();
     public List<Monster> monstersFavorite = new ArrayList<>();
-
+    public SpellFavoriteService spellFavoriteService;
 
     private AppComponent component;
 
@@ -46,6 +51,8 @@ public class App extends Application {
                 monstersFavorite.add(s);
             }
         }
+
+        spellFavoriteService = new SpellFavoriteService(sharedPreferences, this);
     }
 
 

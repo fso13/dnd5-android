@@ -1,7 +1,6 @@
 package ru.drudenko.dnd.fragment.spell;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -25,8 +24,6 @@ import androidx.fragment.app.Fragment;
 import java.util.Arrays;
 import java.util.List;
 
-import javax.inject.Inject;
-
 import ru.drudenko.dnd.R;
 import ru.drudenko.dnd.activity.MainActivity;
 import ru.drudenko.dnd.activity.SpellActivity;
@@ -39,8 +36,6 @@ public class SpellsAllFragment extends Fragment {
 
     private static List<String> classes = Clazz.getRu();
     private static List<String> level = Arrays.asList("Все", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9");
-    @Inject
-    SharedPreferences preferences;
     private SpellAdapter spellAdapter;
     private Spell spell;
 
@@ -61,7 +56,7 @@ public class SpellsAllFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_spells_all, container, false);
         ListView listView = root.findViewById(R.id.grid_view_spells);
 
-        spellAdapter = new SpellAdapter(getContext(), ((App) getActivity().getApplication()).spells, ((App) getActivity().getApplication()), preferences);
+        spellAdapter = new SpellAdapter(getContext(), ((App) getActivity().getApplication()).spells, ((App) getActivity().getApplication()));
         listView.setAdapter(spellAdapter);
 
         long l2 = System.currentTimeMillis();
@@ -143,14 +138,7 @@ public class SpellsAllFragment extends Fragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        final String key = spell.getName().replace(" ", "_");
-        spell.setFavorite(preferences.getBoolean(key, spell.isFavorite()));
-        if (spell.isFavorite()) {
-            ((App) getActivity().getApplication()).spells.get(((App) getActivity().getApplication()).spells.indexOf(spell)).setFavorite(true);
-        } else {
-            ((App) getActivity().getApplication()).spells.get(((App) getActivity().getApplication()).spells.indexOf(spell)).setFavorite(false);
-
-        }
+        ((App) getActivity().getApplication()).spellFavoriteService.setFavorite(spell, spell.isFavorite());
         spellAdapter.notifyDataSetChanged();
     }
 

@@ -1,7 +1,6 @@
 package ru.drudenko.dnd.adapter;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Build;
@@ -36,12 +35,11 @@ public class SpellAdapter extends BaseAdapter implements Filterable {
     private String nameFilterText = "";
     private Context context;
     private App app;
-    private SharedPreferences preferences;
 
-    public SpellAdapter(Context context, List<Spell> data, App app, SharedPreferences preferences) {
+
+    public SpellAdapter(Context context, List<Spell> data, App app) {
         this.context = context;
         this.app = app;
-        this.preferences = preferences;
         originalData = new ArrayList<>(data);
         filteredData = new ArrayList<>(data);
         mInflater = LayoutInflater.from(context);
@@ -100,24 +98,12 @@ public class SpellAdapter extends BaseAdapter implements Filterable {
             if (buttonView.isPressed()) {
                 if (isChecked) {
                     viewHolder.toggleButton.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.start_on));
-                    spell.setFavorite(true);
-
-                    app.spellsFavorite.add(spell);
-                    app.spells.get(app.spells.indexOf(spell)).setFavorite(true);
-
-                    final String key = spell.getName().replace(" ", "_");
-                    preferences.edit().putBoolean(key, true).apply();
-
 
                 } else {
                     viewHolder.toggleButton.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.start_off));
-                    spell.setFavorite(false);
-                    app.spellsFavorite.remove(spell);
-                    app.spells.get(app.spells.indexOf(spell)).setFavorite(false);
-
-                    final String key = spell.getName().replace(" ", "_");
-                    preferences.edit().putBoolean(key, false).apply();
                 }
+
+                app.spellFavoriteService.setFavorite(spell, isChecked);
 
             }
         });
