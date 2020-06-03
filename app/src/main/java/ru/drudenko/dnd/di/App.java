@@ -4,6 +4,8 @@ import android.app.Application;
 import android.content.SharedPreferences;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -52,6 +54,14 @@ public class App extends Application {
             }
         }
 
+        Comparator<Spell> compareById = (Spell o1, Spell o2) -> {
+            int i = o1.getLevel().compareTo(o2.getLevel());
+            if (i == 0) {
+                return o1.getName().compareTo(o2.getName());
+            }
+            return i;
+        };
+        Collections.sort(spellsFavorite, compareById);
         spellFavoriteService = new SpellFavoriteService(sharedPreferences, this);
     }
 

@@ -79,9 +79,17 @@ public class AppModule {
 //
 //            String s = Base64.encodeToString(fileOutputStream.toByteArray(),Base64.DEFAULT);
 
+            Spell delete = null;
             for (Spell spell : spells) {
-                final String key = spell.getName().toUpperCase().replace(" ", "_");
-                spell.setFavorite(preferences.getBoolean(key, false));
+                if (spell.getName().equals("Гнев Гор")) {
+                    delete = spell;
+                } else {
+                    final String key = spell.getName().toUpperCase().replace(" ", "_");
+                    spell.setFavorite(preferences.getBoolean(key, false));
+                }
+            }
+            if (delete != null) {
+                spells.remove(delete);
             }
 
             long l2 = System.currentTimeMillis();
