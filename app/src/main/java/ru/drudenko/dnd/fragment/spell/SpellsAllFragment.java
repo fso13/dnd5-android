@@ -35,9 +35,38 @@ import ru.drudenko.dnd.model.magic.Spell;
 public class SpellsAllFragment extends Fragment {
 
     private static List<String> classes = Clazz.getRu();
-    private static List<String> level = Arrays.asList("Все", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9");
+
+    private static List<String> level = Arrays.asList("Все",
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9");
+
+    private static List<String> schools = Arrays.asList("Все",
+            "Прорицание",
+            "Магия Пустоты",
+            "Некромантия",
+            "Иллюзия",
+            "Очарование",
+            "Воплощение",
+            "Иллюзия",
+            "Вызов",
+            "Ритуал",
+            "Пустота",
+            "Вызов",
+            "Преобразование",
+            "Ограждение",
+            "Воплощение");
+
     private SpellAdapter spellAdapter;
     private Spell spell;
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -102,6 +131,23 @@ public class SpellsAllFragment extends Fragment {
 
             }
         });
+
+        Spinner spinnerSchools = root.findViewById(R.id.spinner_schools);
+        ArrayAdapter<String> adapterSchools = new ArrayAdapter<>(this.getActivity(), R.layout.spinner_dropdown_item, schools);
+        adapterSchools.setDropDownViewResource(R.layout.spinner_dropdown_item);
+        spinnerSchools.setAdapter(adapterSchools);
+        spinnerSchools.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                spellAdapter.getFilter().filter("school:" + schools.get(position));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
 
         long l3 = System.currentTimeMillis();
         System.out.println("finish  spells: " + l3);

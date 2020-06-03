@@ -32,6 +32,7 @@ public class SpellAdapter extends BaseAdapter implements Filterable {
     private ItemFilter mFilter = new ItemFilter();
     private String classFilterText = "Все";
     private String levelFilterText = "Все";
+    private String schoolFilterText = "Все";
     private String nameFilterText = "";
     private Context context;
     private App app;
@@ -139,7 +140,7 @@ public class SpellAdapter extends BaseAdapter implements Filterable {
 
             if (filterString.length == 1) {
                 nameFilterText = filterString[0].toLowerCase();
-            } else if (filterString.length == 2) {
+            } else if (filterString.length == 3) {
 
                 if (filterString[0].equals("level")) {
                     levelFilterText = filterString[1];
@@ -147,6 +148,10 @@ public class SpellAdapter extends BaseAdapter implements Filterable {
 
                 if (filterString[0].equals("class")) {
                     classFilterText = filterString[1];
+                }
+
+                if (filterString[0].equals("school")) {
+                    schoolFilterText = filterString[2];
                 }
             }
 
@@ -160,7 +165,10 @@ public class SpellAdapter extends BaseAdapter implements Filterable {
 
         @RequiresApi(api = Build.VERSION_CODES.N)
         private boolean filter(Spell spell) {
-            return ("".equals(nameFilterText) || spell.getName().toLowerCase().contains(nameFilterText)) && (levelFilterText.equals("Все") || spell.getLevel().equals(levelFilterText)) && (classFilterText.equals("Все") || isBelong(classFilterText, spell));
+            return ("".equals(nameFilterText) || spell.getName().toLowerCase().contains(nameFilterText)) &&
+                    (levelFilterText.equalsIgnoreCase("Все") || spell.getLevel().equals(levelFilterText)) &&
+                    (schoolFilterText.equalsIgnoreCase("Все") || schoolFilterText.equalsIgnoreCase(spell.getSchool())) &&
+                    (classFilterText.equalsIgnoreCase("Все") || isBelong(classFilterText, spell));
         }
 
         @SuppressWarnings("unchecked")
