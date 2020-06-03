@@ -20,7 +20,7 @@
 
     <Spinner
         android:id="@+id/spinner_level"
-        android:layout_width="99dp"
+        android:layout_width="85dp"
         android:layout_height="39dp"
         android:layout_marginStart="16dp"
         android:paddingTop="10dp"
@@ -44,7 +44,7 @@
 
     <Spinner
         android:id="@+id/spinner_schools"
-        android:layout_width="150dp"
+        android:layout_width="165dp"
         android:layout_height="40dp"
         android:layout_marginStart="8dp"
         android:paddingTop="10dp"

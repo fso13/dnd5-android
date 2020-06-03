@@ -46,8 +46,13 @@ public class SpellAdapter extends BaseAdapter implements Filterable {
         mInflater = LayoutInflater.from(context);
     }
 
-    private boolean isBelong(String filterClass, Spell spell) {
+    private boolean isBelongClass(String filterClass, Spell spell) {
         return spell.getClasses().contains(filterClass);
+    }
+
+    private boolean isBelongSchool(String schoolFilterText, Spell spell) {
+        String school = spell.getSchool() == null ? spell.getText().substring(0, spell.getText().indexOf('\n')) : spell.getSchool();
+        return school != null && school.toUpperCase().contains(schoolFilterText.toUpperCase());
     }
 
     public int getCount() {
@@ -140,7 +145,7 @@ public class SpellAdapter extends BaseAdapter implements Filterable {
 
             if (filterString.length == 1) {
                 nameFilterText = filterString[0].toLowerCase();
-            } else if (filterString.length == 3) {
+            } else if (filterString.length == 2) {
 
                 if (filterString[0].equals("level")) {
                     levelFilterText = filterString[1];
@@ -151,7 +156,7 @@ public class SpellAdapter extends BaseAdapter implements Filterable {
                 }
 
                 if (filterString[0].equals("school")) {
-                    schoolFilterText = filterString[2];
+                    schoolFilterText = filterString[1];
                 }
             }
 
@@ -167,8 +172,8 @@ public class SpellAdapter extends BaseAdapter implements Filterable {
         private boolean filter(Spell spell) {
             return ("".equals(nameFilterText) || spell.getName().toLowerCase().contains(nameFilterText)) &&
                     (levelFilterText.equalsIgnoreCase("Все") || spell.getLevel().equals(levelFilterText)) &&
-                    (schoolFilterText.equalsIgnoreCase("Все") || schoolFilterText.equalsIgnoreCase(spell.getSchool())) &&
-                    (classFilterText.equalsIgnoreCase("Все") || isBelong(classFilterText, spell));
+                    (schoolFilterText.equalsIgnoreCase("Все") || isBelongSchool(schoolFilterText, spell)) &&
+                    (classFilterText.equalsIgnoreCase("Все") || isBelongClass(classFilterText, spell));
         }
 
         @SuppressWarnings("unchecked")
