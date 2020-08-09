@@ -30,17 +30,25 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:autoLink="web"
+        android:padding="15px"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:text="@string/nav_header_title"
+        android:text="dnd5-webapi.herokuapp.com/spells"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textColor="@color/textColor" />
+        android:textColor="@color/textColor"
+        android:textColorLink="@color/colorPrimary"
+        android:textSize="12sp" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/nav_header_subtitle"
-        android:textColor="@color/textColor" />
+        android:autoLink="web"
+        android:padding="15px"
+        android:text="Поддержи \tyasobe.ru/na/dnd5"
+        android:textColor="@color/textColor"
+        android:textColorLink="@color/colorPrimary"
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/textViewVersion"
