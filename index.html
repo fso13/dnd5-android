@@ -7154,6 +7154,7 @@
                        href="https://github.com/fso13/dnd5-android/releases/download/2005270/app-release.apk">Скачать</a>
                     <br>
                     <br>
+                    <p id="download_count" class="text-white mb-5"></p>
                     <iframe allowtransparency="true"
                             frameborder="0" height="25" scrolling="no"
                             src="https://money.yandex.ru/quickpay/button-widget?targets=%D0%9F%D0%BE%D0%B4%D0%B4%D0%B5%D1%80%D0%B6%D0%BA%D0%B0%20%D1%81%D0%B0%D0%B9%D1%82%D0%B0%20%D0%B8%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F(%D0%BD%D0%B0%20%D1%85%D0%BE%D1%81%D1%82%D0%B8%D0%BD%D0%B3)&default-sum=100&button-text=13&yamoney-payment-type=on&button-size=s&button-color=orange&successURL=&quickpay=small&account=41001853413229&"
@@ -7326,5 +7327,19 @@ function carousel() {
 
 
 
+</script>
+
+<script>
+    getDownloadCount();
+
+    function getDownloadCount() {
+        fetch("https://api.github.com/repos/fso13/dnd5-android/releases")
+    .then(response => response.json())
+            .then(result => {
+                document.getElementById("download_count").innerHTML = "Количество скачиваний: " + result[0].assets[0].download_count;
+            })
+
+        setTimeout(getDownloadCount, 120000); // Change image every 2 seconds
+    }
 </script>
 </html>
