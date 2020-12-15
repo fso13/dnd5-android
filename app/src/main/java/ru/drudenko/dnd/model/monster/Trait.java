@@ -6,11 +6,22 @@ import java.io.Serializable;
 import java.util.List;
 
 public class Trait implements Serializable {
+    static final long serialVersionUID = 1562145748214355218L;
+
     private String name;
     @JsonAdapter(AlwaysListTypeAdapterFactory.class)
     private List<String> text;
     @JsonAdapter(AlwaysListTypeAdapterFactory.class)
     private List<String> attack;
+
+    public Trait() {
+    }
+
+    public Trait(String name, List<String> text, List<String> attack) {
+        this.name = name;
+        this.text = text;
+        this.attack = attack;
+    }
 
     public String getName() {
         return name;

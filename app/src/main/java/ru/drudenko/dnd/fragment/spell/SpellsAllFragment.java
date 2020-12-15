@@ -9,6 +9,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -32,8 +33,9 @@ import ru.drudenko.dnd.di.App;
 import ru.drudenko.dnd.model.magic.Clazz;
 import ru.drudenko.dnd.model.magic.Spell;
 
-public class SpellsAllFragment extends Fragment {
-
+public class SpellsAllFragment extends Fragment implements AbsListView.OnScrollListener {
+    private int visibleLastIndex = 0;
+    private int visibleItemCount;
     private static List<String> classes = Clazz.getRu();
 
     private static List<String> level = Arrays.asList("Все",
@@ -78,7 +80,7 @@ public class SpellsAllFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         long l1 = System.currentTimeMillis();
-        System.out.println("Start onCreateView spells: " + l1);
+//        System.out.println("Start onCreateView spells: " + l1);
 
         setHasOptionsMenu(true);
         View root = inflater.inflate(R.layout.fragment_spells_all, container, false);
@@ -88,7 +90,7 @@ public class SpellsAllFragment extends Fragment {
         listView.setAdapter(spellAdapter);
 
         long l2 = System.currentTimeMillis();
-        System.out.println("Start adapter spells: " + l2);
+//        System.out.println("Start adapter spells: " + l2);
         AdapterView.OnItemClickListener itemListener = (parent, v, position, id) -> {
             Intent intent = new Intent(getContext(), SpellActivity.class);
             spell = spellAdapter.getItem(position);
@@ -98,6 +100,8 @@ public class SpellsAllFragment extends Fragment {
             }
         };
         listView.setOnItemClickListener(itemListener);
+
+        listView.setOnScrollListener(this);
 
         Spinner spinnerClass = root.findViewById(R.id.spinner_classes);
         ArrayAdapter<String> adapterClasses = new ArrayAdapter<>(this.getActivity(), R.layout.spinner_dropdown_item, classes);
@@ -149,8 +153,25 @@ public class SpellsAllFragment extends Fragment {
 
 
         long l3 = System.currentTimeMillis();
-        System.out.println("finish  spells: " + l3);
+//        System.out.println("finish  spells: " + l3);
         return root;
+    }
+
+    public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+        this.visibleItemCount = visibleItemCount;
+        visibleLastIndex = firstVisibleItem + visibleItemCount - 1;
+    }
+
+    /**
+     * Called when the sliding state changes
+     */
+    @Override
+    public void onScrollStateChanged(AbsListView view, int scrollState) {
+        int itemsLastIndex = spellAdapter.getCount() - 1;    //Index of the Last Item of Data Set
+        int lastIndex = itemsLastIndex + 1;             //Add the loadMoreView item at the bottom
+        if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE && visibleLastIndex == lastIndex) {
+            //If it's automatic loading, you can put asynchronous loading data code here.
+        }
     }
 
     @Override

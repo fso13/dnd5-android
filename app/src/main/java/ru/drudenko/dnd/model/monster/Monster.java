@@ -44,8 +44,40 @@ public class Monster implements Serializable {
 
     private List<Biom> bioms = null;
 
+
+    public Monster(String name, String fiction, String size, String type, String alignment, String ac, String hp, String speed, String str, String dex, String con, String intilect, String wis, String cha, String passive, String languages, String cr, String biom, String sType, String senses, String skill, List<Trait> trait, boolean isFavorite, List<Trait> action) {
+        this.name = name;
+        this.fiction = fiction;
+        this.size = size;
+        this.type = type;
+        this.alignment = alignment;
+        this.ac = ac;
+        this.hp = hp;
+        this.speed = speed;
+        this.str = str;
+        this.dex = dex;
+        this.con = con;
+        this.intilect = intilect;
+        this.wis = wis;
+        this.cha = cha;
+        this.passive = passive;
+        this.languages = languages;
+        this.cr = cr;
+        this.biom = biom;
+        this.sType = sType;
+        this.senses = senses;
+        this.skill = skill;
+        this.trait = trait;
+        this.action = action;
+        this.isFavorite = isFavorite;
+    }
+
     public static String getChr(String s) {
         return s + "(" + (int) Math.floor((Double.valueOf(s) - 10) / 2) + ")";
+    }
+
+    public String getB() {
+        return biom;
     }
 
     public String getSenses() {

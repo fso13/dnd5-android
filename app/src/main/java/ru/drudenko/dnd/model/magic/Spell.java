@@ -24,6 +24,21 @@ public class Spell implements Serializable {
     public Spell() {
     }
 
+    public Spell(String name, String ritual, String school, String level, String castingTime, String range, String components, String duration, String text, String source, List<String> classes, boolean isFavorite) {
+        this.name = name;
+        this.ritual = ritual;
+        this.school = school;
+        this.level = level;
+        this.castingTime = castingTime;
+        this.range = range;
+        this.components = components;
+        this.duration = duration;
+        this.text = text;
+        this.source = source;
+        this.classes = classes;
+        this.isFavorite = isFavorite;
+    }
+
     public String getName() {
         return name;
     }

@@ -166,5 +166,4 @@ public class SpellsFavoriteFragment extends Fragment {
         ((App) getActivity().getApplication()).spellFavoriteService.setFavorite(spell, spell.isFavorite());
         spellAdapter.notifyDataSetChanged();
     }
-
 }
