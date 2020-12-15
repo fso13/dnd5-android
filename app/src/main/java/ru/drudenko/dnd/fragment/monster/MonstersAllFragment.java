@@ -9,6 +9,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -35,7 +36,7 @@ import ru.drudenko.dnd.di.App;
 import ru.drudenko.dnd.model.monster.Biom;
 import ru.drudenko.dnd.model.monster.Monster;
 
-public class MonstersAllFragment extends Fragment {
+public class MonstersAllFragment extends Fragment implements AbsListView.OnScrollListener{
     public static Map<String, String> exps = new HashMap<>();
     static List<String> bioms = Biom.getRu();
     static List<String> expId;
@@ -138,6 +139,7 @@ public class MonstersAllFragment extends Fragment {
         monsterAdapter = new MonsterAdapter(getContext(), ((App) getActivity().getApplication()).monsters, ((App) getActivity().getApplication()), preferences);
 
         listView.setAdapter(monsterAdapter);
+        listView.setOnScrollListener(this);
 
 
         AdapterView.OnItemClickListener itemListener = (parent, v, position, id) -> {
@@ -184,6 +186,14 @@ public class MonstersAllFragment extends Fragment {
 
 
         return root;
+    }
+
+    @Override
+    public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+    }
+
+    @Override
+    public void onScrollStateChanged(AbsListView view, int scrollState) {
     }
 
     @Override

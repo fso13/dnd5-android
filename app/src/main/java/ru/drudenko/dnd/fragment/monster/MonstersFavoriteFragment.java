@@ -10,6 +10,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -31,7 +32,7 @@ import ru.drudenko.dnd.adapter.MonsterAdapter;
 import ru.drudenko.dnd.di.App;
 import ru.drudenko.dnd.model.monster.Monster;
 
-public class MonstersFavoriteFragment extends Fragment {
+public class MonstersFavoriteFragment extends Fragment implements AbsListView.OnScrollListener {
     @Inject
     SharedPreferences preferences;
     private Monster monster;
@@ -70,6 +71,7 @@ public class MonstersFavoriteFragment extends Fragment {
             }
         };
         listView.setOnItemClickListener(itemListener);
+        listView.setOnScrollListener(this);
 
         Spinner spinnerClass = root.findViewById(R.id.spinner_level);
 
@@ -105,6 +107,14 @@ public class MonstersFavoriteFragment extends Fragment {
         });
 
         return root;
+    }
+
+    @Override
+    public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+    }
+
+    @Override
+    public void onScrollStateChanged(AbsListView view, int scrollState) {
     }
 
     @Override

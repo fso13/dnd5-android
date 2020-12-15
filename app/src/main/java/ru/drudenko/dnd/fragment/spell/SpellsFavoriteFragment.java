@@ -9,6 +9,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -32,7 +33,7 @@ import ru.drudenko.dnd.di.App;
 import ru.drudenko.dnd.model.magic.Clazz;
 import ru.drudenko.dnd.model.magic.Spell;
 
-public class SpellsFavoriteFragment extends Fragment {
+public class SpellsFavoriteFragment extends Fragment implements AbsListView.OnScrollListener{
 
     private static List<String> classes = Clazz.getRu();
     private static List<String> level = Arrays.asList("Все", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9");
@@ -80,6 +81,7 @@ public class SpellsFavoriteFragment extends Fragment {
             }
         };
         listView.setOnItemClickListener(itemListener);
+        listView.setOnScrollListener(this);
 
 
         Spinner spinnerClass = root.findViewById(R.id.spinner_classes);
@@ -131,6 +133,15 @@ public class SpellsFavoriteFragment extends Fragment {
         });
 
         return root;
+    }
+
+
+    @Override
+    public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+    }
+
+    @Override
+    public void onScrollStateChanged(AbsListView view, int scrollState) {
     }
 
     @Override

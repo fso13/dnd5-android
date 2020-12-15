@@ -45,7 +45,7 @@
         android:layout_height="wrap_content"
         android:autoLink="web"
         android:padding="15px"
-        android:text="Поддержи \tyasobe.ru/na/dnd5"
+        android:text="Поддержи \tsobe.ru/na/dnd5"
         android:textColor="@color/textColor"
         android:textColorLink="@color/colorPrimary"
         android:textSize="16sp" />
