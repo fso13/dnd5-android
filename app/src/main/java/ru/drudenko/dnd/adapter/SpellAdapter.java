@@ -26,16 +26,16 @@ import ru.drudenko.dnd.di.App;
 import ru.drudenko.dnd.model.magic.Spell;
 
 public class SpellAdapter extends BaseAdapter implements Filterable {
-    private List<Spell> originalData;
+    private final List<Spell> originalData;
+    private final LayoutInflater mInflater;
+    private final ItemFilter mFilter = new ItemFilter();
+    private final Context context;
+    private final App app;
     private List<Spell> filteredData;
-    private LayoutInflater mInflater;
-    private ItemFilter mFilter = new ItemFilter();
     private String classFilterText = "Все";
     private String levelFilterText = "Все";
     private String schoolFilterText = "Все";
     private String nameFilterText = "";
-    private Context context;
-    private App app;
 
 
     public SpellAdapter(Context context, List<Spell> data, App app) {

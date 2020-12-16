@@ -16,19 +16,10 @@ public enum Clazz {
 
     ;
 
-    private String ru;
+    private final String ru;
 
     Clazz(String ru) {
         this.ru = ru;
-    }
-
-    public static Clazz fromRu(String ru) {
-        for (Clazz clazz : Clazz.values()) {
-            if (clazz.ru.equals(ru)) {
-                return clazz;
-            }
-        }
-        return null;
     }
 
     public static List<String> getRu() {

@@ -36,7 +36,7 @@ import ru.drudenko.dnd.di.App;
 import ru.drudenko.dnd.model.monster.Biom;
 import ru.drudenko.dnd.model.monster.Monster;
 
-public class MonstersAllFragment extends Fragment implements AbsListView.OnScrollListener{
+public class MonstersAllFragment extends Fragment implements AbsListView.OnScrollListener {
     public static Map<String, String> exps = new HashMap<>();
     static List<String> bioms = Biom.getRu();
     static List<String> expId;

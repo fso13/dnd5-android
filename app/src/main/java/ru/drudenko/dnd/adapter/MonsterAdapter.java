@@ -27,17 +27,16 @@ import ru.drudenko.dnd.model.monster.Biom;
 import ru.drudenko.dnd.model.monster.Monster;
 
 public class MonsterAdapter extends BaseAdapter implements Filterable {
+    private final LayoutInflater mInflater;
+    private final ItemFilter mFilter = new ItemFilter();
+    private final Context context;
+    private final App app;
+    private final SharedPreferences preferences;
     public List<Monster> list;
     public List<Monster> filteredData;
-    private LayoutInflater mInflater;
-    private ItemFilter mFilter = new ItemFilter();
-    private Context context;
-
     private String biomFilterText = "Все";
     private String levelFilterText = "Все";
     private String nameFilterText = "";
-    private App app;
-    private SharedPreferences preferences;
 
     public MonsterAdapter(Context context, List<Monster> data, App app, SharedPreferences preferences) {
         this.context = context;

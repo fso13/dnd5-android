@@ -15,6 +15,7 @@ import ru.drudenko.dnd.model.magic.Spell;
 
 public class SpellActivity extends AppCompatActivity {
     private Spell spell;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

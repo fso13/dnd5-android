@@ -33,11 +33,11 @@ import ru.drudenko.dnd.di.App;
 import ru.drudenko.dnd.model.magic.Clazz;
 import ru.drudenko.dnd.model.magic.Spell;
 
-public class SpellsFavoriteFragment extends Fragment implements AbsListView.OnScrollListener{
+public class SpellsFavoriteFragment extends Fragment implements AbsListView.OnScrollListener {
 
-    private static List<String> classes = Clazz.getRu();
-    private static List<String> level = Arrays.asList("Все", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9");
-    private static List<String> schools = Arrays.asList("Все",
+    private static final List<String> classes = Clazz.getRu();
+    private static final List<String> level = Arrays.asList("Все", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9");
+    private static final List<String> schools = Arrays.asList("Все",
             "Прорицание",
             "Магия Пустоты",
             "Некромантия",

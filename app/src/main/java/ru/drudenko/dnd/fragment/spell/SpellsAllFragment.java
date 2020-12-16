@@ -34,8 +34,8 @@ import ru.drudenko.dnd.model.magic.Clazz;
 import ru.drudenko.dnd.model.magic.Spell;
 
 public class SpellsAllFragment extends Fragment implements AbsListView.OnScrollListener {
-    private static List<String> classes = Clazz.getRu();
-    private static List<String> level = Arrays.asList("Все",
+    private static final List<String> classes = Clazz.getRu();
+    private static final List<String> level = Arrays.asList("Все",
             "0",
             "1",
             "2",
@@ -47,7 +47,7 @@ public class SpellsAllFragment extends Fragment implements AbsListView.OnScrollL
             "8",
             "9");
 
-    private static List<String> schools = Arrays.asList("Все",
+    private static final List<String> schools = Arrays.asList("Все",
             "Прорицание",
             "Магия Пустоты",
             "Некромантия",

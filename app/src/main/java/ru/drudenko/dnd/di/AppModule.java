@@ -17,7 +17,7 @@ import ru.drudenko.dnd.model.monster.Monster;
 @Module
 public class AppModule {
 
-    private Application application;
+    private final Application application;
 
     public AppModule(Application application) {
         this.application = application;
