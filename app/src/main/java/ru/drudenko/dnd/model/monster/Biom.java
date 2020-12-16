@@ -18,7 +18,7 @@ public enum Biom {
 
     ;
 
-    public String ru;
+    public final String ru;
 
     Biom(String ru) {
         this.ru = ru;

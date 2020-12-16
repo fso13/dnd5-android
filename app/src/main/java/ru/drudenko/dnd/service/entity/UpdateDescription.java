@@ -5,8 +5,8 @@ package ru.drudenko.dnd.service.entity;
  */
 
 public class UpdateDescription {
-    public String url = "";
+    public final String url = "";
     public String updateMessage = "";
-    public int versionCode = 0;
+    public final int versionCode = 0;
     public String isAutoInstall;
 }

@@ -25,10 +25,9 @@ public class Monster implements Serializable {
     private final String languages;
     private final String cr;
     private final String biom;
-    private final String sType;
     private final String senses;
     private final String skill;
-    private String fiction = "";
+    private String fiction;
     private List<Trait> trait;
     private List<Trait> action;
 
@@ -56,7 +55,6 @@ public class Monster implements Serializable {
         this.languages = languages;
         this.cr = cr;
         this.biom = biom;
-        this.sType = sType;
         this.senses = senses;
         this.skill = skill;
         this.trait = trait;
@@ -65,7 +63,7 @@ public class Monster implements Serializable {
     }
 
     public static String getChr(String s) {
-        return s + "(" + (int) Math.floor((Double.valueOf(s) - 10) / 2) + ")";
+        return s + "(" + (int) Math.floor((Double.parseDouble(s) - 10) / 2) + ")";
     }
 
 
@@ -85,6 +83,9 @@ public class Monster implements Serializable {
 
 
     public String getFiction() {
+        if (fiction == null) {
+            fiction = "";
+        }
         return fiction;
     }
 

@@ -8,5 +8,5 @@
     <fragment
         android:name="ru.drudenko.dnd.fragment.master.MasterHelpFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></fragment>
+        android:layout_height="match_parent" />
 </LinearLayout>

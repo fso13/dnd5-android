@@ -1,5 +1,7 @@
 package ru.drudenko.dnd.model.monster;
 
+import androidx.annotation.NonNull;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -30,6 +32,7 @@ public class Trait implements Serializable {
         return attack;
     }
 
+    @NonNull
     @Override
     public String toString() {
         StringBuilder r = new StringBuilder();

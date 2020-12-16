@@ -70,18 +70,18 @@ public class MonsterAbilityFragment extends Fragment {
 
         TextView biom = root.findViewById(R.id.textView_biom);
 
-        String biomString = "";
+        StringBuilder biomString = new StringBuilder();
         List<Biom> monsterBiom = monster.getBiom();
         for (int i = 0; i < monsterBiom.size(); i++) {
             Biom biom1 = monsterBiom.get(i);
             if (i == 0) {
-                biomString = biom1.ru;
+                biomString = new StringBuilder(biom1.ru);
             } else {
-                biomString = biomString + "," + biom1.ru;
+                biomString.append(",").append(biom1.ru);
 
             }
         }
-        biom.setText(biomString);
+        biom.setText(biomString.toString());
 
         return root;
     }

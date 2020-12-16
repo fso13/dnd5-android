@@ -37,9 +37,9 @@ import ru.drudenko.dnd.model.monster.Biom;
 import ru.drudenko.dnd.model.monster.Monster;
 
 public class MonstersAllFragment extends Fragment implements AbsListView.OnScrollListener {
-    public static Map<String, String> exps = new HashMap<>();
-    static List<String> bioms = Biom.getRu();
-    static List<String> expId;
+    public static final Map<String, String> exps = new HashMap<>();
+    static final List<String> bioms = Biom.getRu();
+    static final List<String> expId;
 
     static {
         exps.put("Все", "Все");
@@ -197,7 +197,7 @@ public class MonstersAllFragment extends Fragment implements AbsListView.OnScrol
     }
 
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         menu.clear();
         inflater.inflate(R.menu.main, menu);

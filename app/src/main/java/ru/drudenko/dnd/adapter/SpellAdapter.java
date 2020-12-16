@@ -69,11 +69,10 @@ public class SpellAdapter extends BaseAdapter implements Filterable {
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
-        final View view;
+        View view;
         final ViewHolder viewHolder;
 
         if (convertView == null) {
-//            System.out.println("convertView == null, pos:" + position);
             viewHolder = new ViewHolder();
             convertView = mInflater.inflate(R.layout.spell_list_view_item_layout, parent, false);
             viewHolder.textView = convertView.findViewById(R.id.textView2);
@@ -82,8 +81,6 @@ public class SpellAdapter extends BaseAdapter implements Filterable {
             view = convertView;
 
         } else {
-//            System.out.println("convertView != null, pos:" + position);
-
             viewHolder = (ViewHolder) convertView.getTag();
             view = convertView;
         }
@@ -126,7 +123,7 @@ public class SpellAdapter extends BaseAdapter implements Filterable {
         return true;
     }
 
-    private class ViewHolder {
+    private static class ViewHolder {
         TextView textView;
         ToggleButton toggleButton;
     }

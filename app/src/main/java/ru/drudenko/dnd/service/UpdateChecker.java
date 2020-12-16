@@ -12,6 +12,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
@@ -21,6 +22,7 @@ import com.google.common.base.Strings;
 import com.google.gson.Gson;
 
 import java.io.IOException;
+import java.util.Locale;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -53,7 +55,6 @@ public class UpdateChecker extends Fragment {
     private int mTypeOfNotice;
     private boolean mIsAutoInstall;
     private boolean mCheckExternal;
-    private String mHttpVerb;
     private UpdateNotice mNotice;
 
     /**
@@ -210,14 +211,14 @@ public class UpdateChecker extends Fragment {
      * This class is a Fragment. Check for the method you have chosen.
      */
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         mContext = this.getActivity();
         Bundle args = getArguments();
         mTypeOfNotice = args.getInt(NOTICE_TYPE_KEY);
         mIsAutoInstall = args.getBoolean(APK_IS_AUTO_INSTALL);
         mCheckExternal = args.getBoolean(APK_CHECK_EXTERNAL);
-        mHttpVerb = args.getString(HTTP_VERB);
+        String mHttpVerb = args.getString(HTTP_VERB);
         String url = args.getString(APP_UPDATE_SERVER_URL);
 
         if (Strings.isNullOrEmpty(mHttpVerb)) {
@@ -255,9 +256,7 @@ public class UpdateChecker extends Fragment {
         sendPost(url)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(content -> {
-                    parseJson(content);
-                });
+                .subscribe(this::parseJson);
     }
 
     private Observable<String> sendPost(String url) {
@@ -291,7 +290,7 @@ public class UpdateChecker extends Fragment {
             if (mTypeOfNotice == NOTICE_CUSTOM && mNotice != null) {
                 mNotice.showCustomNotice(description);
             } else if (description.versionCode > versionCode) {
-                description.updateMessage += String.format(" [%d --> %d]", versionCode, description.versionCode);
+                description.updateMessage += String.format(Locale.forLanguageTag("ru"), " [%d --> %d]", versionCode, description.versionCode);
 
                 if (mTypeOfNotice == NOTICE_NOTIFICATION ||
                         (mTypeOfNotice == NOTICE_CUSTOM && mNotice == null)) {
@@ -302,8 +301,8 @@ public class UpdateChecker extends Fragment {
             } else {
                 Log.i(TAG, mContext.getString(R.string.app_no_new_update) + "Remote: " + description.versionCode);
             }
-        } catch (PackageManager.NameNotFoundException ignored) {
-            Log.e(TAG, "parse json error", ignored);
+        } catch (PackageManager.NameNotFoundException e) {
+            Log.e(TAG, "parse json error", e);
         }
     }
 

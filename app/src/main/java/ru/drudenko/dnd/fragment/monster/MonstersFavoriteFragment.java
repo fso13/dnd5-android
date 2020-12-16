@@ -58,17 +58,12 @@ public class MonstersFavoriteFragment extends Fragment implements AbsListView.On
         listView.setAdapter(monsterAdapter);
 
 
-        AdapterView.OnItemClickListener itemListener = new AdapterView.OnItemClickListener() {
+        AdapterView.OnItemClickListener itemListener = (parent, v, position, id) -> {
+            Intent intent = new Intent(getContext(), MonsterActivity.class);
+            monster = monsterAdapter.getItem(position);
 
-            @Override
-            public void onItemClick(AdapterView<?> parent, View v,
-                                    int position, long id) {
-                Intent intent = new Intent(getContext(), MonsterActivity.class);
-                monster = monsterAdapter.getItem(position);
-
-                intent.putExtra("MONSTER", monster);
-                startActivityForResult(intent, 0);
-            }
+            intent.putExtra("MONSTER", monster);
+            startActivityForResult(intent, 0);
         };
         listView.setOnItemClickListener(itemListener);
         listView.setOnScrollListener(this);

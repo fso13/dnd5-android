@@ -25,8 +25,8 @@ public class App extends Application {
     @Inject
     public SharedPreferences sharedPreferences;
 
-    public List<Spell> spellsFavorite = new ArrayList<>();
-    public List<Monster> monstersFavorite = new ArrayList<>();
+    public final List<Spell> spellsFavorite = new ArrayList<>();
+    public final List<Monster> monstersFavorite = new ArrayList<>();
     public SpellFavoriteService spellFavoriteService;
 
     private AppComponent component;

@@ -32,7 +32,7 @@ public class MonsterAdapter extends BaseAdapter implements Filterable {
     private final Context context;
     private final App app;
     private final SharedPreferences preferences;
-    public List<Monster> list;
+    public final List<Monster> list;
     public List<Monster> filteredData;
     private String biomFilterText = "Все";
     private String levelFilterText = "Все";
@@ -83,9 +83,8 @@ public class MonsterAdapter extends BaseAdapter implements Filterable {
             if (buttonView.isPressed()) {
 
                 final String key = "MONSTER_" + monster.getName().replace(" ", "_");
-                preferences.edit().remove(key);
-                preferences.edit().putBoolean(key, isChecked);
-
+                preferences.edit().remove(key).apply();
+                preferences.edit().putBoolean(key, isChecked).apply();
                 if (isChecked) {
                     viewHolder.toggleButton.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.start_on));
                     monster.setFavorite(true);
@@ -123,7 +122,7 @@ public class MonsterAdapter extends BaseAdapter implements Filterable {
         return mFilter;
     }
 
-    private class ViewHolder {
+    private static class ViewHolder {
         TextView textView;
         ToggleButton toggleButton;
     }
