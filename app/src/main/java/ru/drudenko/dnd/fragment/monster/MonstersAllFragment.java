@@ -38,8 +38,8 @@ import ru.drudenko.dnd.model.monster.Monster;
 
 public class MonstersAllFragment extends Fragment implements AbsListView.OnScrollListener {
     public static final Map<String, String> exps = new HashMap<>();
-    static final List<String> bioms = Biom.getRu();
-    static final List<String> expId;
+    public static final List<String> bioms = Biom.getRu();
+    public static final List<String> expId;
 
     static {
         exps.put("Все", "Все");
