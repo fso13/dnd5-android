@@ -2,13 +2,12 @@ package ru.drudenko.dnd.di;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 import ru.drudenko.dnd.model.monster.Monster;
 import ru.drudenko.dnd.model.monster.Trait;
 
 public class ConstantMonsters {
-    public List<Monster> monsters = new ArrayList<>();
+    public ArrayList<Monster> monsters = new ArrayList<>(557);
 
     public ConstantMonsters() {
         add1();

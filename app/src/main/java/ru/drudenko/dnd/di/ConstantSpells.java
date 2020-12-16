@@ -2,13 +2,12 @@ package ru.drudenko.dnd.di;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 import ru.drudenko.dnd.model.magic.Spell;
 
 public class ConstantSpells {
 
-    public List<Spell> spells = new ArrayList();
+    public ArrayList<Spell> spells = new ArrayList(1783);
 
 
     public ConstantSpells() {
