@@ -1,7 +1,5 @@
 package ru.drudenko.dnd.activity;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -25,6 +23,7 @@ import java.util.regex.Pattern;
 
 import ru.drudenko.dnd.R;
 import ru.drudenko.dnd.adapter.ViewPagerAdapter;
+import ru.drudenko.dnd.di.App;
 import ru.drudenko.dnd.di.ConstantMonsters;
 import ru.drudenko.dnd.fragment.monster.MonsterAbilityFragment;
 import ru.drudenko.dnd.fragment.monster.MonsterActionFragment;
@@ -155,17 +154,16 @@ public class MonsterActivity extends AppCompatActivity {
         }
 
         if (item.getItemId() == R.id.action_favorite) {
-
-            monster.setFavorite(!monster.isFavorite());
+            ((App) getApplication()).monsterFavoriteService.setFavorite(monster, !monster.isFavorite());
             item.setIcon(monster.isFavorite() ? R.drawable.stars_on : R.drawable.stars_off);
-            final String key = "MONSTER_" + monster.getName().replace(" ", "_");
-
-            SharedPreferences preferences = getApplicationContext().getSharedPreferences("application_preferences", Context.MODE_PRIVATE);
-            preferences.edit().remove(key).apply();
-            preferences.edit().putBoolean(key, monster.isFavorite()).apply();
-
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onDestroy() {
+        ((App) getApplication()).monsterFavoriteService.setFavorite(monster, monster.isFavorite());
+        super.onDestroy();
     }
 }

@@ -19,7 +19,6 @@ public class SpellActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ((App) getApplication()).getComponent().inject(this);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.activity_spell);
@@ -62,6 +61,5 @@ public class SpellActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         ((App) getApplication()).spellFavoriteService.setFavorite(spell, spell.isFavorite());
-
     }
 }

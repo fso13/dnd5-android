@@ -19,14 +19,13 @@ import androidx.core.content.ContextCompat;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import ru.drudenko.dnd.R;
 import ru.drudenko.dnd.di.App;
 import ru.drudenko.dnd.model.magic.Spell;
 
 public class SpellAdapter extends BaseAdapter implements Filterable {
-    private final List<Spell> originalData;
+    private final List<Spell> list;
     private final LayoutInflater mInflater;
     private final ItemFilter mFilter = new ItemFilter();
     private final Context context;
@@ -36,14 +35,19 @@ public class SpellAdapter extends BaseAdapter implements Filterable {
     private String levelFilterText = "Все";
     private String schoolFilterText = "Все";
     private String nameFilterText = "";
+    private CharSequence constraintAdapter;
 
 
     public SpellAdapter(Context context, List<Spell> data, App app) {
         this.context = context;
         this.app = app;
-        originalData = new ArrayList<>(data);
+        list = data;
         filteredData = new ArrayList<>(data);
         mInflater = LayoutInflater.from(context);
+    }
+
+    public CharSequence getConstraintAdapter() {
+        return constraintAdapter;
     }
 
     private boolean isBelongClass(String filterClass, Spell spell) {
@@ -101,13 +105,13 @@ public class SpellAdapter extends BaseAdapter implements Filterable {
             if (buttonView.isPressed()) {
                 if (isChecked) {
                     viewHolder.toggleButton.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.start_on));
-
                 } else {
                     viewHolder.toggleButton.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.start_off));
                 }
 
                 app.spellFavoriteService.setFavorite(spell, isChecked);
-
+                getFilter().filter(constraintAdapter);
+                notifyDataSetChanged();
             }
         });
 
@@ -132,13 +136,9 @@ public class SpellAdapter extends BaseAdapter implements Filterable {
         @RequiresApi(api = Build.VERSION_CODES.N)
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
-            filteredData.clear();
-
+            constraintAdapter = constraint;
             String[] filterString = constraint.toString().split(":");
             FilterResults results = new FilterResults();
-
-//            System.out.println("filters:" + constraint);
-
 
             if (filterString.length == 1) {
                 nameFilterText = filterString[0].toLowerCase();
@@ -157,10 +157,17 @@ public class SpellAdapter extends BaseAdapter implements Filterable {
                 }
             }
 
-            List<Spell> spells = originalData.stream().filter(this::filter).collect(Collectors.toList());
+            List<Spell> nlist = new ArrayList<>();
+            for (int i = 0; i < list.size(); i++) {
+                Spell originalDatum = list.get(i);
+                if (filter(originalDatum)) {
+                    nlist.add(originalDatum);
+                }
+            }
 
-            results.values = spells;
-            results.count = spells.size();
+            results.values = nlist;
+            results.count = nlist.size();
+
 
             return results;
         }

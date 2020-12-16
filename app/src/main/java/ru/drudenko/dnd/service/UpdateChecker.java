@@ -49,7 +49,6 @@ public class UpdateChecker extends Fragment {
 
     private static final String TAG = "UpdateChecker";
     private static final String HTTP_VERB = "httpverb";
-    private static final String CUSTOM_NOTICE = "custom_notice";
 
     private FragmentActivity mContext;
     private int mTypeOfNotice;
@@ -57,27 +56,12 @@ public class UpdateChecker extends Fragment {
     private boolean mCheckExternal;
     private UpdateNotice mNotice;
 
-    /**
-     * Delegate update handling to custom notice.
-     *
-     * @param fragmentActivity
-     * @param checkUpdateServerUrl
-     */
     public static void checkForCustomNotice(FragmentActivity fragmentActivity,
                                             String checkUpdateServerUrl,
                                             UpdateNotice notice) {
         checkForCustomNotice(fragmentActivity, checkUpdateServerUrl, "GET", notice);
     }
 
-    /**
-     * Delegate udpate handling to custom notice
-     *
-     * @param fragmentActivity     Required.
-     * @param fragmentActivity
-     * @param checkUpdateServerUrl
-     * @param httpVerb
-     * @param notice
-     */
     public static void checkForCustomNotice(FragmentActivity fragmentActivity,
                                             String checkUpdateServerUrl,
                                             String httpVerb,
@@ -85,48 +69,18 @@ public class UpdateChecker extends Fragment {
         checkForAutoUpdate(fragmentActivity, checkUpdateServerUrl, true, true, httpVerb, NOTICE_CUSTOM, notice);
     }
 
-    /**
-     * Show a Dialog if an update is available for download. Callable in a
-     * FragmentActivity. Number of checks after the dialog will be shown:
-     * default, 5
-     *
-     * @param fragmentActivity     Required.
-     * @param fragmentActivity
-     * @param checkUpdateServerUrl
-     * @param isAutoInstall
-     * @param checkExternal
-     */
     public static void checkForDialog(FragmentActivity fragmentActivity,
                                       String checkUpdateServerUrl,
                                       boolean isAutoInstall, boolean checkExternal) {
         checkForDialog(fragmentActivity, checkUpdateServerUrl, isAutoInstall, checkExternal, "GET");
     }
 
-    /**
-     * Show a Dialog if an update is available for download. Callable in a
-     * FragmentActivity. Number of checks after the dialog will be shown:
-     * default, 5
-     *
-     * @param fragmentActivity     Required.
-     * @param fragmentActivity
-     * @param checkUpdateServerUrl
-     * @param isAutoInstall
-     * @param checkExternal
-     * @param httpVerb
-     */
     public static void checkForDialog(FragmentActivity fragmentActivity,
                                       String checkUpdateServerUrl,
                                       boolean isAutoInstall, boolean checkExternal, String httpVerb) {
         checkForAutoUpdate(fragmentActivity, checkUpdateServerUrl, isAutoInstall, checkExternal, httpVerb, NOTICE_DIALOG);
     }
 
-    /**
-     * Show a Notification if an update is available for download. Callable in a
-     * FragmentActivity Specify the number of checks after the notification will
-     * be shown.
-     *
-     * @param fragmentActivity Required.
-     */
     public static void checkForNotification(FragmentActivity fragmentActivity,
                                             String checkUpdateServerUrl,
                                             boolean isAutoInstall,
@@ -134,13 +88,6 @@ public class UpdateChecker extends Fragment {
         checkForNotification(fragmentActivity, checkUpdateServerUrl, isAutoInstall, checkExternal, "GET");
     }
 
-    /**
-     * Show a Notification if an update is available for download. Callable in a
-     * FragmentActivity Specify the number of checks after the notification will
-     * be shown.
-     *
-     * @param fragmentActivity Required.
-     */
     public static void checkForNotification(FragmentActivity fragmentActivity,
                                             String checkUpdateServerUrl,
                                             boolean isAutoInstall,
@@ -149,16 +96,6 @@ public class UpdateChecker extends Fragment {
         checkForAutoUpdate(fragmentActivity, checkUpdateServerUrl, isAutoInstall, checkExternal, httpVerb, NOTICE_NOTIFICATION);
     }
 
-    /**
-     * Check whether has update available, notice with dialog, notification or custom notice.
-     *
-     * @param fragmentActivity
-     * @param checkUpdateServerUrl
-     * @param isAutoInstall
-     * @param checkExternal
-     * @param httpVerb
-     * @param typeOfNotice
-     */
     public static void checkForAutoUpdate(FragmentActivity fragmentActivity,
                                           String checkUpdateServerUrl,
                                           boolean isAutoInstall,
@@ -188,9 +125,6 @@ public class UpdateChecker extends Fragment {
         content.add(updateChecker, null).commit();
     }
 
-    /**
-     * Check if a network available
-     */
     public static boolean isNetworkAvailable(Context context) {
         boolean connected = false;
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -207,9 +141,6 @@ public class UpdateChecker extends Fragment {
         mNotice = notice;
     }
 
-    /**
-     * This class is a Fragment. Check for the method you have chosen.
-     */
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
@@ -247,10 +178,6 @@ public class UpdateChecker extends Fragment {
         }
     }
 
-    /**
-     * Heart of the library. Check if an update is available for download
-     * parsing the desktop Play Store page of the app
-     */
     private void checkForUpdates(final String url) {
 
         sendPost(url)
@@ -306,9 +233,6 @@ public class UpdateChecker extends Fragment {
         }
     }
 
-    /**
-     * Show dialog
-     */
     private void showDialog(String content, String apkUrl, boolean isAutoInstall, boolean checkExternal) {
         UpdateDialog d = new UpdateDialog();
         Bundle args = new Bundle();
@@ -325,9 +249,6 @@ public class UpdateChecker extends Fragment {
         ft.commitAllowingStateLoss();//注意这里使用commitAllowingStateLoss()
     }
 
-    /**
-     * Show Notification
-     */
     private void showNotification(String content, String apkUrl, boolean isAutoInstall, boolean checkExternal) {
         android.app.Notification noti;
         Intent myIntent = new Intent(mContext, DownloadService.class);
@@ -346,6 +267,4 @@ public class UpdateChecker extends Fragment {
         NotificationManager notificationManager = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.notify(0, noti);
     }
-
-
 }

@@ -1,7 +1,6 @@
 package ru.drudenko.dnd.adapter;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Build;
@@ -31,20 +30,23 @@ public class MonsterAdapter extends BaseAdapter implements Filterable {
     private final ItemFilter mFilter = new ItemFilter();
     private final Context context;
     private final App app;
-    private final SharedPreferences preferences;
     public final List<Monster> list;
     public List<Monster> filteredData;
     private String biomFilterText = "Все";
     private String levelFilterText = "Все";
     private String nameFilterText = "";
+    private CharSequence constraintAdapter;
 
-    public MonsterAdapter(Context context, List<Monster> data, App app, SharedPreferences preferences) {
+    public MonsterAdapter(Context context, List<Monster> data, App app) {
         this.context = context;
         this.list = data;
         this.filteredData = new ArrayList<>(data);
         this.app = app;
-        this.preferences = preferences;
         mInflater = LayoutInflater.from(context);
+    }
+
+    public CharSequence getConstraintAdapter() {
+        return constraintAdapter;
     }
 
     @Override
@@ -82,28 +84,26 @@ public class MonsterAdapter extends BaseAdapter implements Filterable {
         viewHolder.toggleButton.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (buttonView.isPressed()) {
 
-                final String key = "MONSTER_" + monster.getName().replace(" ", "_");
-                preferences.edit().remove(key).apply();
-                preferences.edit().putBoolean(key, isChecked).apply();
                 if (isChecked) {
                     viewHolder.toggleButton.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.start_on));
-                    monster.setFavorite(true);
-
-                    app.monstersFavorite.add(monster);
-                    app.monsters.get(app.monsters.indexOf(monster)).setFavorite(true);
-
                 } else {
                     viewHolder.toggleButton.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.start_off));
-                    monster.setFavorite(false);
-
-                    app.monstersFavorite.remove(monster);
-                    app.monsters.get(app.monsters.indexOf(monster)).setFavorite(false);
                 }
+
+                app.monsterFavoriteService.setFavorite(monster, isChecked);
+                getFilter().filter(constraintAdapter);
+                notifyDataSetChanged();
 
             }
         });
 
         return view;
+    }
+
+
+    @Override
+    public boolean hasStableIds() {
+        return true;
     }
 
     public int getCount() {
@@ -131,6 +131,7 @@ public class MonsterAdapter extends BaseAdapter implements Filterable {
         @RequiresApi(api = Build.VERSION_CODES.N)
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
+            constraintAdapter = constraint;
             String[] filterString = constraint.toString().split(":");
 
             FilterResults results = new FilterResults();
@@ -140,24 +141,22 @@ public class MonsterAdapter extends BaseAdapter implements Filterable {
             final ArrayList<Monster> nlist = new ArrayList<>(count);
 
 
-            for (int i = 0; i < count; i++) {
-                Monster monster = list.get(i);
+            if (filterString.length == 1) {
+                nameFilterText = filterString[0].toLowerCase();
+            } else if (filterString.length == 2) {
 
-                if (filterString.length == 1) {
-                    nameFilterText = filterString[0].toLowerCase();
-                } else if (filterString.length == 2) {
-
-                    if (filterString[0].equals("exp")) {
-                        levelFilterText = filterString[1];
-                    }
-
-                    if (filterString[0].equals("biom")) {
-                        biomFilterText = filterString[1];
-                    }
-
+                if (filterString[0].equals("exp")) {
+                    levelFilterText = filterString[1];
                 }
 
+                if (filterString[0].equals("biom")) {
+                    biomFilterText = filterString[1];
+                }
 
+            }
+
+            for (int i = 0; i < count; i++) {
+                Monster monster = list.get(i);
                 if (filter(monster)) {
                     nlist.add(monster);
                 }
@@ -188,8 +187,4 @@ public class MonsterAdapter extends BaseAdapter implements Filterable {
         }
 
     }
-
-
 }
-
-//in your Activity or Fragment where of Adapter is instantiated :
