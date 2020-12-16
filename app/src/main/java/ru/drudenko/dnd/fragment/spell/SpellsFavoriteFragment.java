@@ -22,35 +22,16 @@ import androidx.appcompat.widget.SearchView;
 import androidx.core.view.MenuItemCompat;
 import androidx.fragment.app.Fragment;
 
-import java.util.Arrays;
-import java.util.List;
-
 import ru.drudenko.dnd.R;
 import ru.drudenko.dnd.activity.MainActivity;
 import ru.drudenko.dnd.activity.SpellActivity;
 import ru.drudenko.dnd.adapter.SpellAdapter;
 import ru.drudenko.dnd.di.App;
-import ru.drudenko.dnd.model.magic.Clazz;
+import ru.drudenko.dnd.di.ConstantSpells;
 import ru.drudenko.dnd.model.magic.Spell;
 
 public class SpellsFavoriteFragment extends Fragment implements AbsListView.OnScrollListener {
 
-    private static final List<String> classes = Clazz.getRu();
-    private static final List<String> level = Arrays.asList("Все", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9");
-    private static final List<String> schools = Arrays.asList("Все",
-            "Прорицание",
-            "Магия Пустоты",
-            "Некромантия",
-            "Иллюзия",
-            "Очарование",
-            "Воплощение",
-            "Вызов",
-            "Ритуал",
-            "Пустота",
-            "Вызов",
-            "Преобразование",
-            "Ограждение",
-            "Воплощение");
     private SpellAdapter spellAdapter;
     private Spell spell;
 
@@ -85,13 +66,13 @@ public class SpellsFavoriteFragment extends Fragment implements AbsListView.OnSc
 
 
         Spinner spinnerClass = root.findViewById(R.id.spinner_classes);
-        ArrayAdapter<String> adapterClasses = new ArrayAdapter<>(this.getActivity(), R.layout.spinner_dropdown_item, classes);
+        ArrayAdapter<String> adapterClasses = new ArrayAdapter<>(this.getActivity(), R.layout.spinner_dropdown_item, ConstantSpells.classes);
         adapterClasses.setDropDownViewResource(R.layout.spinner_dropdown_item);
         spinnerClass.setAdapter(adapterClasses);
         spinnerClass.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                spellAdapter.getFilter().filter("class:" + classes.get(position));
+                spellAdapter.getFilter().filter("class:" + ConstantSpells.classes.get(position));
             }
 
             @Override
@@ -101,13 +82,13 @@ public class SpellsFavoriteFragment extends Fragment implements AbsListView.OnSc
         });
 
         Spinner spinnerLevel = root.findViewById(R.id.spinner_level);
-        ArrayAdapter<String> adapterLevel = new ArrayAdapter<>(this.getActivity(), R.layout.spinner_dropdown_item, level);
+        ArrayAdapter<String> adapterLevel = new ArrayAdapter<>(this.getActivity(), R.layout.spinner_dropdown_item, ConstantSpells.level);
         adapterLevel.setDropDownViewResource(R.layout.spinner_dropdown_item);
         spinnerLevel.setAdapter(adapterLevel);
         spinnerLevel.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                spellAdapter.getFilter().filter("level:" + level.get(position));
+                spellAdapter.getFilter().filter("level:" + ConstantSpells.level.get(position));
             }
 
             @Override
@@ -117,13 +98,13 @@ public class SpellsFavoriteFragment extends Fragment implements AbsListView.OnSc
         });
 
         Spinner spinnerSchools = root.findViewById(R.id.spinner_schools);
-        ArrayAdapter<String> adapterSchools = new ArrayAdapter<>(this.getActivity(), R.layout.spinner_dropdown_item, schools);
+        ArrayAdapter<String> adapterSchools = new ArrayAdapter<>(this.getActivity(), R.layout.spinner_dropdown_item, ConstantSpells.schools);
         adapterSchools.setDropDownViewResource(R.layout.spinner_dropdown_item);
         spinnerSchools.setAdapter(adapterSchools);
         spinnerSchools.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                spellAdapter.getFilter().filter("school:" + schools.get(position));
+                spellAdapter.getFilter().filter("school:" + ConstantSpells.schools.get(position));
             }
 
             @Override

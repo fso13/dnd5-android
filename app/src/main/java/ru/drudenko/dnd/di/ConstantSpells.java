@@ -3,12 +3,42 @@ package ru.drudenko.dnd.di;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
+import ru.drudenko.dnd.model.magic.Clazz;
 import ru.drudenko.dnd.model.magic.Spell;
 
 public class ConstantSpells {
 
-    public final ArrayList<Spell> spells = new ArrayList<>(1783);
+    public static final List<String> classes = Clazz.getRu();
+    public static final List<String> level = Arrays.asList("Все",
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9");
+
+    public static final List<String> schools = Arrays.asList("Все",
+            "Прорицание",
+            "Магия Пустоты",
+            "Некромантия",
+            "Очарование",
+            "Воплощение",
+            "Иллюзия",
+            "Вызов",
+            "Ритуал",
+            "Пустота",
+            "Вызов",
+            "Преобразование",
+            "Ограждение",
+            "Воплощение");
+
+    final ArrayList<Spell> spells = new ArrayList<>(1783);
 
 
     public ConstantSpells() {

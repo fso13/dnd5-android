@@ -30,6 +30,7 @@ import ru.drudenko.dnd.activity.MainActivity;
 import ru.drudenko.dnd.activity.MonsterActivity;
 import ru.drudenko.dnd.adapter.MonsterAdapter;
 import ru.drudenko.dnd.di.App;
+import ru.drudenko.dnd.di.ConstantMonsters;
 import ru.drudenko.dnd.model.monster.Monster;
 
 public class MonstersFavoriteFragment extends Fragment implements AbsListView.OnScrollListener {
@@ -70,13 +71,13 @@ public class MonstersFavoriteFragment extends Fragment implements AbsListView.On
 
         Spinner spinnerClass = root.findViewById(R.id.spinner_level);
 
-        ArrayAdapter<String> adapterClasses = new ArrayAdapter<>(this.getActivity(), R.layout.spinner_dropdown_item, MonstersAllFragment.expId);
+        ArrayAdapter<String> adapterClasses = new ArrayAdapter<>(this.getActivity(), R.layout.spinner_dropdown_item, ConstantMonsters.expId);
         adapterClasses.setDropDownViewResource(R.layout.spinner_dropdown_item);
         spinnerClass.setAdapter(adapterClasses);
         spinnerClass.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                monsterAdapter.getFilter().filter("exp:" + MonstersAllFragment.expId.get(position));
+                monsterAdapter.getFilter().filter("exp:" + ConstantMonsters.expId.get(position));
             }
 
             @Override
@@ -86,13 +87,13 @@ public class MonstersFavoriteFragment extends Fragment implements AbsListView.On
         });
 
         Spinner spinnerBiom = root.findViewById(R.id.spinner_biom);
-        ArrayAdapter<String> adapterLevel = new ArrayAdapter<>(this.getActivity(), R.layout.spinner_dropdown_item, MonstersAllFragment.bioms);
+        ArrayAdapter<String> adapterLevel = new ArrayAdapter<>(this.getActivity(), R.layout.spinner_dropdown_item, ConstantMonsters.bioms);
         adapterLevel.setDropDownViewResource(R.layout.spinner_dropdown_item);
         spinnerBiom.setAdapter(adapterLevel);
         spinnerBiom.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                monsterAdapter.getFilter().filter("biom:" + MonstersAllFragment.bioms.get(position));
+                monsterAdapter.getFilter().filter("biom:" + ConstantMonsters.bioms.get(position));
             }
 
             @Override

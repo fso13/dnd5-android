@@ -25,11 +25,11 @@ import java.util.regex.Pattern;
 
 import ru.drudenko.dnd.R;
 import ru.drudenko.dnd.adapter.ViewPagerAdapter;
+import ru.drudenko.dnd.di.ConstantMonsters;
 import ru.drudenko.dnd.fragment.monster.MonsterAbilityFragment;
 import ru.drudenko.dnd.fragment.monster.MonsterActionFragment;
 import ru.drudenko.dnd.fragment.monster.MonsterInfoFragment;
 import ru.drudenko.dnd.fragment.monster.MonsterTraitFragment;
-import ru.drudenko.dnd.fragment.monster.MonstersAllFragment;
 import ru.drudenko.dnd.model.monster.Monster;
 
 
@@ -79,7 +79,7 @@ public class MonsterActivity extends AppCompatActivity {
             cr.setText("Опасность " + monster.getCr());
 
             TextView exp = findViewById(R.id.textView_exp);
-            exp.setText(MonstersAllFragment.exps.get(monster.getCr()) + " опыт");
+            exp.setText(ConstantMonsters.exps.get(monster.getCr()) + " опыт");
 
         }
 
