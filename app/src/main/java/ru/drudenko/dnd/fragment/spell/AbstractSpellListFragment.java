@@ -35,7 +35,7 @@ abstract class AbstractSpellListFragment extends Fragment implements AbsListView
     protected SpellAdapter spellAdapter;
     protected Spell spell;
 
-    abstract List<Spell> getSpellList();
+   protected abstract List<Spell> getSpellList();
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     public View onCreateView(@NonNull LayoutInflater inflater,

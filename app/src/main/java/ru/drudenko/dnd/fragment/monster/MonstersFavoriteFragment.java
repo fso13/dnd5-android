@@ -8,7 +8,7 @@ import ru.drudenko.dnd.model.monster.Monster;
 public class MonstersFavoriteFragment extends AbstractMonsterListFragment {
 
     @Override
-    List<Monster> getMonstersList() {
+    protected List<Monster> getMonstersList() {
         return ((App) getActivity().getApplication()).monstersFavorite;
     }
 }

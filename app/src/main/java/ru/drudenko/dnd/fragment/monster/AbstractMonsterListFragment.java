@@ -35,7 +35,7 @@ abstract class AbstractMonsterListFragment extends Fragment implements AbsListVi
     protected MonsterAdapter monsterAdapter;
     protected Monster monster;
 
-    abstract List<Monster> getMonstersList();
+    protected abstract List<Monster> getMonstersList();
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     public View onCreateView(@NonNull LayoutInflater inflater,
