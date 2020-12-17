@@ -1,6 +1,7 @@
 package ru.drudenko.dnd.fragment.monster;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,10 +9,7 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
-import java.util.List;
-
 import ru.drudenko.dnd.R;
-import ru.drudenko.dnd.model.monster.Biom;
 import ru.drudenko.dnd.model.monster.Monster;
 
 
@@ -69,19 +67,7 @@ public class MonsterAbilityFragment extends Fragment {
         lang.setText(monster.getLanguages());
 
         TextView biom = root.findViewById(R.id.textView_biom);
-
-        StringBuilder biomString = new StringBuilder();
-        List<Biom> monsterBiom = monster.getBiom();
-        for (int i = 0; i < monsterBiom.size(); i++) {
-            Biom biom1 = monsterBiom.get(i);
-            if (i == 0) {
-                biomString = new StringBuilder(biom1.ru);
-            } else {
-                biomString.append(",").append(biom1.ru);
-
-            }
-        }
-        biom.setText(biomString.toString());
+        biom.setText(TextUtils.join(",", monster.getBioms()));
 
         return root;
     }

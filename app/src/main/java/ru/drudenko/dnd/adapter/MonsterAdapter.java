@@ -22,7 +22,6 @@ import java.util.List;
 
 import ru.drudenko.dnd.R;
 import ru.drudenko.dnd.di.App;
-import ru.drudenko.dnd.model.monster.Biom;
 import ru.drudenko.dnd.model.monster.Monster;
 
 public class MonsterAdapter extends BaseAdapter implements Filterable {
@@ -172,7 +171,7 @@ public class MonsterAdapter extends BaseAdapter implements Filterable {
         private boolean filter(Monster monster) {
             return ("".equals(nameFilterText) || monster.getName().toLowerCase().contains(nameFilterText)) &&
                     (levelFilterText.equals("Все") || monster.getCr().equals(levelFilterText)) &&
-                    (biomFilterText.equals("Все") || monster.getBiom().contains(Biom.fromRu(biomFilterText)));
+                    (biomFilterText.equals("Все") || monster.getBioms().contains(biomFilterText));
         }
 
         @SuppressWarnings("unchecked")

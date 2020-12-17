@@ -3,7 +3,8 @@ package ru.drudenko.dnd.model.monster;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.LinkedList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class Monster implements Serializable {
@@ -24,17 +25,13 @@ public class Monster implements Serializable {
     private final String passive;
     private final String languages;
     private final String cr;
-    private final String biom;
+    private final List<String> bioms;
     private final String senses;
     private final String skill;
     private String fiction;
     private List<Trait> trait;
     private List<Trait> action;
-
     private boolean isFavorite;
-
-    private List<Biom> bioms = null;
-
 
     public Monster(String name, String fiction, String size, String type, String alignment, String ac, String hp, String speed, String str, String dex, String con, String intilect, String wis, String cha, String passive, String languages, String cr, String biom, String sType, String senses, String skill, List<Trait> trait, boolean isFavorite, List<Trait> action) {
         this.name = name;
@@ -54,7 +51,10 @@ public class Monster implements Serializable {
         this.passive = passive;
         this.languages = languages;
         this.cr = cr;
-        this.biom = biom;
+        this.bioms = new ArrayList<>(Collections.singletonList("Все"));
+        if (biom != null) {
+            bioms.addAll(Arrays.asList(biom.split(",")));
+        }
         this.senses = senses;
         this.skill = skill;
         this.trait = trait;
@@ -95,66 +95,57 @@ public class Monster implements Serializable {
 
     }
 
+    public List<String> getBioms() {
+        return bioms;
+    }
 
     public String getType() {
         return type;
     }
 
-
     public String getAlignment() {
         return alignment;
     }
-
 
     public String getAc() {
         return ac;
     }
 
-
     public String getHp() {
         return hp;
     }
-
 
     public String getSpeed() {
         return speed;
     }
 
-
     public String getStr() {
         return str;
     }
-
 
     public String getDex() {
         return dex;
     }
 
-
     public String getCon() {
         return con;
     }
-
 
     public String getIntilect() {
         return intilect;
     }
 
-
     public String getWis() {
         return wis;
     }
-
 
     public String getCha() {
         return cha;
     }
 
-
     public String getPassive() {
         return passive;
     }
-
 
     public String getLanguages() {
         return languages;
@@ -163,21 +154,6 @@ public class Monster implements Serializable {
     public String getCr() {
         return cr;
     }
-
-
-    public List<Biom> getBiom() {
-        if (bioms != null) {
-            return bioms;
-        }
-
-        bioms = new LinkedList<>();
-        String[] bb = biom == null ? new String[]{"All"} : biom.split(",");
-        for (int i = 0; i < bb.length; i++) {
-            bioms.add(i, Biom.valueOf(bb[i].trim()));
-        }
-        return bioms;
-    }
-
 
     public List<Trait> getTrait() {
         if (trait == null) {

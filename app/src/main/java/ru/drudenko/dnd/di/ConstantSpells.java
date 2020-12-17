@@ -5,12 +5,19 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import ru.drudenko.dnd.model.magic.Clazz;
 import ru.drudenko.dnd.model.magic.Spell;
 
 public class ConstantSpells {
 
-    public static final List<String> classes = Clazz.getRu();
+    public static final List<String> classes = Arrays.asList("Все",
+            "Бард",
+            "Жрец",
+            "Друид",
+            "Паладин",
+            "Рейнджер",
+            "Чародей",
+            "Колдун",
+            "Волшебник");
     public static final List<String> level = Arrays.asList("Все",
             "0",
             "1",
