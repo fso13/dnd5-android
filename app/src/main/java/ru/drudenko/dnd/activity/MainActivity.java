@@ -1,6 +1,6 @@
 package ru.drudenko.dnd.activity;
 
-import android.content.Context;
+
 import android.os.Bundle;
 import android.view.Menu;
 import android.widget.Button;
@@ -20,8 +20,6 @@ import com.google.android.material.navigation.NavigationView;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import javax.inject.Inject;
-
 import ru.drudenko.dnd.BuildConfig;
 import ru.drudenko.dnd.R;
 import ru.drudenko.dnd.di.App;
@@ -35,8 +33,6 @@ import ru.drudenko.dnd.service.entity.UpdateDescription;
 public class MainActivity extends AppCompatActivity implements UpdateNotice {
     private static final String APP_UPDATE_SERVER_URL = "https://raw.githubusercontent.com/fso13/dnd5-android/master/release.json";
     public static final AtomicBoolean isM = new AtomicBoolean(false);
-    @Inject
-    Context context;
     private AppBarConfiguration mAppBarConfiguration;
 
     @Override
@@ -60,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements UpdateNotice {
 
 
         TextView versionName = navigationView.getHeaderView(0).findViewById(R.id.textViewVersion);
-        versionName.setText("v." + BuildConfig.VERSION_NAME);
+        versionName.setText(String.format("v.%s", BuildConfig.VERSION_NAME));
 
         Button button = navigationView.getHeaderView(0).findViewById(R.id.button);
         button.setOnClickListener(v -> {

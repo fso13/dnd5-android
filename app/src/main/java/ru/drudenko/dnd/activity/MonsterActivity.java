@@ -75,17 +75,17 @@ public class MonsterActivity extends AppCompatActivity {
 
         if (monster.getCr() != null) {
             TextView cr = findViewById(R.id.textView_cr);
-            cr.setText("Опасность " + monster.getCr());
+            cr.setText(String.format("Опасность %s", monster.getCr()));
 
             TextView exp = findViewById(R.id.textView_exp);
-            exp.setText(ConstantMonsters.exps.get(monster.getCr()) + " опыт");
+            exp.setText(String.format("%s опыт", ConstantMonsters.exps.get(monster.getCr())));
 
         }
 
         if (monster.getAc() != null) {
             String[] acc = monster.getAc().split("\\(");
             TextView ac = findViewById(R.id.textView_ac);
-            ac.setText(acc[0] + "КД");
+            ac.setText(String.format("%sКД", acc[0]));
             if (acc.length > 1) {
                 TextView acType = findViewById(R.id.editText_ac_type);
                 acType.setText(acc[1].substring(0, acc[1].length() - 1));
@@ -96,7 +96,7 @@ public class MonsterActivity extends AppCompatActivity {
             String[] hpp = monster.getHp().split("\\(");
 
             TextView hp = findViewById(R.id.textView_hp);
-            hp.setText(hpp[0] + "ХП");
+            hp.setText(String.format("%sХП", hpp[0]));
 
             if (hpp.length > 1) {
                 TextView hpDice = findViewById(R.id.editText_hp_dice);

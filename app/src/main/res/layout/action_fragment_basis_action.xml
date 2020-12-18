@@ -23,7 +23,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="Атака"
+                android:text="@string/attack"
                 android:textColor="@color/colorPrimary"
                 android:textSize="18sp" />
 
@@ -32,7 +32,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:text="Дальнобойная атака (Книга игрока стр. 195)\nРукопашная атака (Книга игрока стр. 195)\nЗахват (Книга игрока стр. 195)\nТолкание существа (Книга игрока стр. 196)"
+                android:text="@string/ranged_attack"
                 android:textColor="@color/textColor"
                 android:textSize="18sp" />
         </TableRow>
@@ -48,7 +48,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="Накладывание заклинания"
+                android:text="@string/cast_spell"
                 android:textColor="@color/colorPrimary"
                 android:textSize="18sp" />
 
@@ -57,7 +57,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:text="Используйте заклинание (Книга игрока стр. 192)"
+                android:text="@string/using_spell"
                 android:textColor="@color/textColor"
                 android:textSize="18sp" />
         </TableRow>
@@ -73,7 +73,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="Рывок"
+                android:text="@string/dash"
                 android:textColor="@color/colorPrimary"
                 android:textSize="18sp" />
 
@@ -82,7 +82,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:text="Скорость удваивается (Книга игрока стр. 193)"
+                android:text="@string/speed_doubles"
                 android:textColor="@color/textColor"
                 android:textSize="18sp" />
         </TableRow>
@@ -98,7 +98,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="Отход"
+                android:text="@string/retreat"
                 android:textColor="@color/colorPrimary"
                 android:textSize="18sp" />
 
@@ -107,7 +107,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:text="Если Вы совершаете действие Отход, то до конца текущего хода ваше перемещение не провоцирует атаки (Книга игрока стр. 192)"
+                android:text="@string/retreat_description"
                 android:textColor="@color/textColor"
                 android:textSize="18sp" />
         </TableRow>
@@ -123,7 +123,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="Уклонение"
+                android:text="@string/evasion"
                 android:textColor="@color/colorPrimary"
                 android:textSize="18sp" />
 
@@ -132,7 +132,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:text="До начала вашего следующего хода все броски атаки по вам совершаются с помехой, и спасброски Ловкости вы совершаете с преимуществом, если вы видите  атакующего. (Книга игрока стр. 193)"
+                android:text="@string/evasion_description"
                 android:textColor="@color/textColor"
                 android:textSize="18sp" />
         </TableRow>
@@ -148,7 +148,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="Помощь"
+                android:text="@string/help"
                 android:textColor="@color/colorPrimary"
                 android:textSize="18sp" />
 
@@ -157,7 +157,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:text="Существо, которому Вы помогаете совершит свое действие с преимуществом (Книга игрока стр. 193)"
+                android:text="@string/help_description"
                 android:textColor="@color/textColor"
                 android:textSize="18sp" />
         </TableRow>
@@ -173,7 +173,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="Засада"
+                android:text="@string/wait"
                 android:textColor="@color/colorPrimary"
                 android:textSize="18sp" />
 
@@ -182,7 +182,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:text="Вы совершаете проверку Ловкости (Скрытность), пытаясь спрятаться, используя правила из гл.7 Книги игрока  (Книга игрока стр.192)"
+                android:text="@string/wait_description"
                 android:textColor="@color/textColor"
                 android:textSize="18sp" />
         </TableRow>
@@ -198,7 +198,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="Подготовка"
+                android:text="@string/preparation"
                 android:textColor="@color/colorPrimary"
                 android:textSize="18sp" />
 
@@ -207,7 +207,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:text="Оставьте действие в качестве Реакции (Книга игрока стр.192)"
+                android:text="@string/preparation_description"
                 android:textColor="@color/textColor"
                 android:textSize="18sp" />
         </TableRow>
@@ -223,7 +223,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="Поиск"
+                android:text="@string/search"
                 android:textColor="@color/colorPrimary"
                 android:textSize="18sp" />
 
@@ -232,7 +232,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:text="Совершите проверку (Анилиз или Внимательность) (Книга игрока стр. 193)"
+                android:text="@string/search_description"
                 android:textColor="@color/textColor"
                 android:textSize="18sp" />
         </TableRow>
@@ -248,7 +248,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="Использование предмета"
+                android:text="@string/using"
                 android:textColor="@color/colorPrimary"
                 android:textSize="18sp" />
 
@@ -257,7 +257,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:text="Если предмет требует действия для его использования, вы совершаете действие Использование предмета. Это действие также пригодится, если вы хотите в течение хода взаимодействовать сразу с несколькими предметами. (Книга игрока стр. 192)  Обычно Вы взаимодействуете с предметами во время других действий, например, вынимаете меч частью атаки. (Примеры – Книга игрока стр. 190)"
+                android:text="@string/using_description"
                 android:textColor="@color/textColor"
                 android:textSize="18sp" />
         </TableRow>
