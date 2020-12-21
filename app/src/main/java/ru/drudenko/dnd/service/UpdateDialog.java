@@ -1,11 +1,11 @@
 package ru.drudenko.dnd.service;
 
-import android.app.AlertDialog;
+
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 
 import ru.drudenko.dnd.R;
@@ -13,7 +13,6 @@ import ru.drudenko.dnd.R;
 public class UpdateDialog extends DialogFragment {
 
 
-    @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Use the Builder class for convenient dialog construction
