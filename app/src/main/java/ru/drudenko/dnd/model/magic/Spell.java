@@ -7,7 +7,7 @@ import java.util.List;
 public class Spell implements Serializable {
 
     private final String name;
-    private final String ritual;
+    private final boolean ritual;
     private final String school;
     private final String level;
     private final String castingTime;
@@ -22,7 +22,7 @@ public class Spell implements Serializable {
 
     public Spell(String name, String ritual, String school, String level, String castingTime, String range, String components, String duration, String text, String source, List<String> classes, boolean isFavorite) {
         this.name = name;
-        this.ritual = ritual;
+        this.ritual = Boolean.getBoolean(ritual);
         this.school = school;
         this.level = level;
         this.castingTime = castingTime;
@@ -39,7 +39,7 @@ public class Spell implements Serializable {
         return name;
     }
 
-    public String getRitual() {
+    public boolean getRitual() {
         return ritual;
     }
 
