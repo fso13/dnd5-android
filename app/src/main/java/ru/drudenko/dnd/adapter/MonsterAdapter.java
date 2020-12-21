@@ -133,7 +133,7 @@ public class MonsterAdapter extends BaseAdapter implements Filterable {
             constraintAdapter = constraint;
             String[] filterString = constraint.toString().split(":");
 
-            FilterResults results = new FilterResults();
+            var results = new FilterResults();
 
 
             int count = list.size();

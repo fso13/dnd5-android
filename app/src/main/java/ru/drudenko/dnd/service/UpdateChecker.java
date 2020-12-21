@@ -111,9 +111,9 @@ public class UpdateChecker extends Fragment {
                                           boolean checkExternal,
                                           String httpVerb,
                                           int typeOfNotice, UpdateNotice notice) {
-        FragmentTransaction content = fragmentActivity.getSupportFragmentManager().beginTransaction();
-        UpdateChecker updateChecker = new UpdateChecker();
-        Bundle args = new Bundle();
+        var content = fragmentActivity.getSupportFragmentManager().beginTransaction();
+        var updateChecker = new UpdateChecker();
+        var args = new Bundle();
         args.putInt(NOTICE_TYPE_KEY, typeOfNotice);
         args.putString(APP_UPDATE_SERVER_URL, checkUpdateServerUrl);
         args.putBoolean(APK_IS_AUTO_INSTALL, isAutoInstall);
@@ -127,7 +127,7 @@ public class UpdateChecker extends Fragment {
 
     public static boolean isNetworkAvailable(Context context) {
         boolean connected = false;
-        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        var cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         if (cm != null) {
             NetworkInfo ni = cm.getActiveNetworkInfo();
             if (ni != null) {
@@ -145,12 +145,12 @@ public class UpdateChecker extends Fragment {
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         mContext = this.getActivity();
-        Bundle args = getArguments();
+        var args = getArguments();
         mTypeOfNotice = args.getInt(NOTICE_TYPE_KEY);
         mIsAutoInstall = args.getBoolean(APK_IS_AUTO_INSTALL);
         mCheckExternal = args.getBoolean(APK_CHECK_EXTERNAL);
-        String mHttpVerb = args.getString(HTTP_VERB);
-        String url = args.getString(APP_UPDATE_SERVER_URL);
+        var mHttpVerb = args.getString(HTTP_VERB);
+        var url = args.getString(APP_UPDATE_SERVER_URL);
 
         if (Strings.isNullOrEmpty(mHttpVerb)) {
             mHttpVerb = "POST";
@@ -169,11 +169,11 @@ public class UpdateChecker extends Fragment {
             String description = "Update Checker Notification";
 
             int importance = NotificationManager.IMPORTANCE_DEFAULT;
-            NotificationChannel channel = new NotificationChannel(UPDATE_CHANNEL_ID, "UpdateCheckerNotification", importance);
+            var channel = new NotificationChannel(UPDATE_CHANNEL_ID, "UpdateCheckerNotification", importance);
             channel.setDescription(description);
             // Register the channel with the system; you can't change the importance
             // or other notification behaviors after this
-            NotificationManager notificationManager = getActivity().getSystemService(NotificationManager.class);
+            var notificationManager = getActivity().getSystemService(NotificationManager.class);
             notificationManager.createNotificationChannel(channel);
         }
     }
