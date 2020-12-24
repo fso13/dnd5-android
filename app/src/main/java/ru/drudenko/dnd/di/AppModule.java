@@ -35,7 +35,7 @@ public class AppModule {
     public List<Spell> provideListSpells() {
         try {
             SharedPreferences preferences = application.getApplicationContext().getSharedPreferences("application_preferences", Context.MODE_PRIVATE);
-            List<Spell> spells = new ConstantSpells().spells;
+            List<Spell> spells = ConstantSpells.spells;
             for (Spell spell : spells) {
                 final String key = spell.getName().toUpperCase().replace(" ", "_");
                 spell.setFavorite(preferences.getBoolean(key, false));
@@ -60,7 +60,7 @@ public class AppModule {
     public List<Monster> provideListMonsters() {
         try {
             SharedPreferences preferences = application.getApplicationContext().getSharedPreferences("application_preferences", Context.MODE_PRIVATE);
-            List<Monster> monsters = new ConstantMonsters().monsters;
+            List<Monster> monsters = ConstantMonsters.monsters;
             for (Monster monster : monsters) {
                 final String key = "MONSTER_" + monster.getName().replace(" ", "_");
                 monster.setFavorite(preferences.getBoolean(key, false));
