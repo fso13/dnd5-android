@@ -1,6 +1,7 @@
 package ru.drudenko.dnd.activity;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -9,16 +10,18 @@ import android.widget.TextView;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.text.MessageFormat;
+
 import ru.drudenko.dnd.R;
 import ru.drudenko.dnd.di.App;
 import ru.drudenko.dnd.model.magic.Spell;
 
 public class SpellActivity extends AppCompatActivity {
     private Spell spell;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ((App) getApplication()).getComponent().inject(this);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.activity_spell);
@@ -26,8 +29,37 @@ public class SpellActivity extends AppCompatActivity {
 
         spell = (Spell) bundle.get("SPELL");
 
-        TextView info = findViewById(R.id.textView_spell_info);
-        info.setText(String.format("Уровень: %s\n\n%s\n\nИсточник: %s\n\n", spell.getLevel(), spell.getDescription(), spell.getSource()), TextView.BufferType.SPANNABLE);
+        TextView level = findViewById(R.id.spell_level);
+        level.setText(spell.getLevel(), TextView.BufferType.SPANNABLE);
+
+        TextView school = findViewById(R.id.spell_school);
+        school.setText(spell.getSchool(), TextView.BufferType.SPANNABLE);
+        if (spell.getRitual()) {
+            school.setText(MessageFormat.format("{0}, {1}", school.getText(), "Ритуал"), TextView.BufferType.SPANNABLE);
+        }
+
+        TextView castingTime = findViewById(R.id.spell_castingTime);
+        castingTime.setText(spell.getCastingTime(), TextView.BufferType.SPANNABLE);
+
+        TextView range = findViewById(R.id.spell_range);
+        range.setText(spell.getRange(), TextView.BufferType.SPANNABLE);
+
+        TextView components = findViewById(R.id.spell_components);
+        components.setText(spell.getComponents(), TextView.BufferType.SPANNABLE);
+
+        TextView duration = findViewById(R.id.spell_duration);
+        duration.setText(spell.getDuration(), TextView.BufferType.SPANNABLE);
+
+        TextView classes = findViewById(R.id.spell_classes);
+        classes.setText(TextUtils.join(", ", spell.getClasses()), TextView.BufferType.SPANNABLE);
+
+        TextView source = findViewById(R.id.spell_source);
+        source.setText(spell.getSource(), TextView.BufferType.SPANNABLE);
+
+        TextView descrioption = findViewById(R.id.spell_descrioption);
+        descrioption.setText(spell.getText(), TextView.BufferType.SPANNABLE);
+
+//        info.setText(String.format("Уровень: %s\n\n%s\n\nИсточник: %s\n\n", spell.getLevel(), spell.getDescription(), spell.getSource()), TextView.BufferType.SPANNABLE);
         actionBar.setTitle(spell.getName());
 
     }
@@ -61,6 +93,5 @@ public class SpellActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         ((App) getApplication()).spellFavoriteService.setFavorite(spell, spell.isFavorite());
-
     }
 }

@@ -12,6 +12,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
@@ -21,6 +22,7 @@ import com.google.common.base.Strings;
 import com.google.gson.Gson;
 
 import java.io.IOException;
+import java.util.Locale;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -47,36 +49,19 @@ public class UpdateChecker extends Fragment {
 
     private static final String TAG = "UpdateChecker";
     private static final String HTTP_VERB = "httpverb";
-    private static final String CUSTOM_NOTICE = "custom_notice";
 
     private FragmentActivity mContext;
     private int mTypeOfNotice;
     private boolean mIsAutoInstall;
     private boolean mCheckExternal;
-    private String mHttpVerb;
     private UpdateNotice mNotice;
 
-    /**
-     * Delegate update handling to custom notice.
-     *
-     * @param fragmentActivity
-     * @param checkUpdateServerUrl
-     */
     public static void checkForCustomNotice(FragmentActivity fragmentActivity,
                                             String checkUpdateServerUrl,
                                             UpdateNotice notice) {
         checkForCustomNotice(fragmentActivity, checkUpdateServerUrl, "GET", notice);
     }
 
-    /**
-     * Delegate udpate handling to custom notice
-     *
-     * @param fragmentActivity     Required.
-     * @param fragmentActivity
-     * @param checkUpdateServerUrl
-     * @param httpVerb
-     * @param notice
-     */
     public static void checkForCustomNotice(FragmentActivity fragmentActivity,
                                             String checkUpdateServerUrl,
                                             String httpVerb,
@@ -84,48 +69,18 @@ public class UpdateChecker extends Fragment {
         checkForAutoUpdate(fragmentActivity, checkUpdateServerUrl, true, true, httpVerb, NOTICE_CUSTOM, notice);
     }
 
-    /**
-     * Show a Dialog if an update is available for download. Callable in a
-     * FragmentActivity. Number of checks after the dialog will be shown:
-     * default, 5
-     *
-     * @param fragmentActivity     Required.
-     * @param fragmentActivity
-     * @param checkUpdateServerUrl
-     * @param isAutoInstall
-     * @param checkExternal
-     */
     public static void checkForDialog(FragmentActivity fragmentActivity,
                                       String checkUpdateServerUrl,
                                       boolean isAutoInstall, boolean checkExternal) {
         checkForDialog(fragmentActivity, checkUpdateServerUrl, isAutoInstall, checkExternal, "GET");
     }
 
-    /**
-     * Show a Dialog if an update is available for download. Callable in a
-     * FragmentActivity. Number of checks after the dialog will be shown:
-     * default, 5
-     *
-     * @param fragmentActivity     Required.
-     * @param fragmentActivity
-     * @param checkUpdateServerUrl
-     * @param isAutoInstall
-     * @param checkExternal
-     * @param httpVerb
-     */
     public static void checkForDialog(FragmentActivity fragmentActivity,
                                       String checkUpdateServerUrl,
                                       boolean isAutoInstall, boolean checkExternal, String httpVerb) {
         checkForAutoUpdate(fragmentActivity, checkUpdateServerUrl, isAutoInstall, checkExternal, httpVerb, NOTICE_DIALOG);
     }
 
-    /**
-     * Show a Notification if an update is available for download. Callable in a
-     * FragmentActivity Specify the number of checks after the notification will
-     * be shown.
-     *
-     * @param fragmentActivity Required.
-     */
     public static void checkForNotification(FragmentActivity fragmentActivity,
                                             String checkUpdateServerUrl,
                                             boolean isAutoInstall,
@@ -133,13 +88,6 @@ public class UpdateChecker extends Fragment {
         checkForNotification(fragmentActivity, checkUpdateServerUrl, isAutoInstall, checkExternal, "GET");
     }
 
-    /**
-     * Show a Notification if an update is available for download. Callable in a
-     * FragmentActivity Specify the number of checks after the notification will
-     * be shown.
-     *
-     * @param fragmentActivity Required.
-     */
     public static void checkForNotification(FragmentActivity fragmentActivity,
                                             String checkUpdateServerUrl,
                                             boolean isAutoInstall,
@@ -148,16 +96,6 @@ public class UpdateChecker extends Fragment {
         checkForAutoUpdate(fragmentActivity, checkUpdateServerUrl, isAutoInstall, checkExternal, httpVerb, NOTICE_NOTIFICATION);
     }
 
-    /**
-     * Check whether has update available, notice with dialog, notification or custom notice.
-     *
-     * @param fragmentActivity
-     * @param checkUpdateServerUrl
-     * @param isAutoInstall
-     * @param checkExternal
-     * @param httpVerb
-     * @param typeOfNotice
-     */
     public static void checkForAutoUpdate(FragmentActivity fragmentActivity,
                                           String checkUpdateServerUrl,
                                           boolean isAutoInstall,
@@ -173,9 +111,9 @@ public class UpdateChecker extends Fragment {
                                           boolean checkExternal,
                                           String httpVerb,
                                           int typeOfNotice, UpdateNotice notice) {
-        FragmentTransaction content = fragmentActivity.getSupportFragmentManager().beginTransaction();
-        UpdateChecker updateChecker = new UpdateChecker();
-        Bundle args = new Bundle();
+        var content = fragmentActivity.getSupportFragmentManager().beginTransaction();
+        var updateChecker = new UpdateChecker();
+        var args = new Bundle();
         args.putInt(NOTICE_TYPE_KEY, typeOfNotice);
         args.putString(APP_UPDATE_SERVER_URL, checkUpdateServerUrl);
         args.putBoolean(APK_IS_AUTO_INSTALL, isAutoInstall);
@@ -187,12 +125,9 @@ public class UpdateChecker extends Fragment {
         content.add(updateChecker, null).commit();
     }
 
-    /**
-     * Check if a network available
-     */
     public static boolean isNetworkAvailable(Context context) {
         boolean connected = false;
-        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        var cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         if (cm != null) {
             NetworkInfo ni = cm.getActiveNetworkInfo();
             if (ni != null) {
@@ -206,19 +141,16 @@ public class UpdateChecker extends Fragment {
         mNotice = notice;
     }
 
-    /**
-     * This class is a Fragment. Check for the method you have chosen.
-     */
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         mContext = this.getActivity();
-        Bundle args = getArguments();
+        var args = getArguments();
         mTypeOfNotice = args.getInt(NOTICE_TYPE_KEY);
         mIsAutoInstall = args.getBoolean(APK_IS_AUTO_INSTALL);
         mCheckExternal = args.getBoolean(APK_CHECK_EXTERNAL);
-        mHttpVerb = args.getString(HTTP_VERB);
-        String url = args.getString(APP_UPDATE_SERVER_URL);
+        var mHttpVerb = args.getString(HTTP_VERB);
+        var url = args.getString(APP_UPDATE_SERVER_URL);
 
         if (Strings.isNullOrEmpty(mHttpVerb)) {
             mHttpVerb = "POST";
@@ -237,27 +169,21 @@ public class UpdateChecker extends Fragment {
             String description = "Update Checker Notification";
 
             int importance = NotificationManager.IMPORTANCE_DEFAULT;
-            NotificationChannel channel = new NotificationChannel(UPDATE_CHANNEL_ID, "UpdateCheckerNotification", importance);
+            var channel = new NotificationChannel(UPDATE_CHANNEL_ID, "UpdateCheckerNotification", importance);
             channel.setDescription(description);
             // Register the channel with the system; you can't change the importance
             // or other notification behaviors after this
-            NotificationManager notificationManager = getActivity().getSystemService(NotificationManager.class);
+            var notificationManager = getActivity().getSystemService(NotificationManager.class);
             notificationManager.createNotificationChannel(channel);
         }
     }
 
-    /**
-     * Heart of the library. Check if an update is available for download
-     * parsing the desktop Play Store page of the app
-     */
     private void checkForUpdates(final String url) {
 
         sendPost(url)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(content -> {
-                    parseJson(content);
-                });
+                .subscribe(this::parseJson);
     }
 
     private Observable<String> sendPost(String url) {
@@ -291,7 +217,7 @@ public class UpdateChecker extends Fragment {
             if (mTypeOfNotice == NOTICE_CUSTOM && mNotice != null) {
                 mNotice.showCustomNotice(description);
             } else if (description.versionCode > versionCode) {
-                description.updateMessage += String.format(" [%d --> %d]", versionCode, description.versionCode);
+                description.updateMessage += String.format(Locale.forLanguageTag("ru"), " [%d --> %d]", versionCode, description.versionCode);
 
                 if (mTypeOfNotice == NOTICE_NOTIFICATION ||
                         (mTypeOfNotice == NOTICE_CUSTOM && mNotice == null)) {
@@ -302,14 +228,11 @@ public class UpdateChecker extends Fragment {
             } else {
                 Log.i(TAG, mContext.getString(R.string.app_no_new_update) + "Remote: " + description.versionCode);
             }
-        } catch (PackageManager.NameNotFoundException ignored) {
-            Log.e(TAG, "parse json error", ignored);
+        } catch (PackageManager.NameNotFoundException e) {
+            Log.e(TAG, "parse json error", e);
         }
     }
 
-    /**
-     * Show dialog
-     */
     private void showDialog(String content, String apkUrl, boolean isAutoInstall, boolean checkExternal) {
         UpdateDialog d = new UpdateDialog();
         Bundle args = new Bundle();
@@ -326,9 +249,6 @@ public class UpdateChecker extends Fragment {
         ft.commitAllowingStateLoss();//注意这里使用commitAllowingStateLoss()
     }
 
-    /**
-     * Show Notification
-     */
     private void showNotification(String content, String apkUrl, boolean isAutoInstall, boolean checkExternal) {
         android.app.Notification noti;
         Intent myIntent = new Intent(mContext, DownloadService.class);
@@ -347,6 +267,4 @@ public class UpdateChecker extends Fragment {
         NotificationManager notificationManager = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.notify(0, noti);
     }
-
-
 }

@@ -24,14 +24,19 @@ public class HelpActivity extends AppCompatActivity {
         setContentView(R.layout.activity_singl);
         Bundle bundle = getIntent().getExtras();
 
-        ArrayList<CustomItem> customItems = (ArrayList<CustomItem>) bundle.get("CustomItems");
+        Object o = bundle.get("CustomItems");
         String title = (String) bundle.get("title");
         actionBar.setTitle(title);
         StringBuilder text = new StringBuilder();
 
-        for (CustomItem item : customItems) {
-            text.append("<b>").append(item.getName()).append("</b><br>");
-            text.append(item.getText()).append("<br><br>");
+        if (o instanceof ArrayList<?>) {
+            for (Object obj : ((ArrayList<?>) o)) {
+                if (obj instanceof CustomItem) {
+                    CustomItem item = (CustomItem) obj;
+                    text.append("<b>").append(item.getName()).append("</b><br>");
+                    text.append(item.getText()).append("<br><br>");
+                }
+            }
         }
 
         WebView info = findViewById(R.id.textView);

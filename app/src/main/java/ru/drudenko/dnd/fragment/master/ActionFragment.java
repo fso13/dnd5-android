@@ -13,7 +13,7 @@ import ru.drudenko.dnd.R;
 
 
 public class ActionFragment extends Fragment {
-    private String text;
+    private final String text;
 
     ActionFragment(String text) {
         this.text = text;

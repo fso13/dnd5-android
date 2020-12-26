@@ -1,7 +1,5 @@
 package ru.drudenko.dnd.activity;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -25,11 +23,12 @@ import java.util.regex.Pattern;
 
 import ru.drudenko.dnd.R;
 import ru.drudenko.dnd.adapter.ViewPagerAdapter;
+import ru.drudenko.dnd.di.App;
+import ru.drudenko.dnd.di.ConstantMonsters;
 import ru.drudenko.dnd.fragment.monster.MonsterAbilityFragment;
 import ru.drudenko.dnd.fragment.monster.MonsterActionFragment;
 import ru.drudenko.dnd.fragment.monster.MonsterInfoFragment;
 import ru.drudenko.dnd.fragment.monster.MonsterTraitFragment;
-import ru.drudenko.dnd.fragment.monster.MonstersAllFragment;
 import ru.drudenko.dnd.model.monster.Monster;
 
 
@@ -76,17 +75,17 @@ public class MonsterActivity extends AppCompatActivity {
 
         if (monster.getCr() != null) {
             TextView cr = findViewById(R.id.textView_cr);
-            cr.setText("Опасность " + monster.getCr());
+            cr.setText(String.format("Опасность %s", monster.getCr()));
 
             TextView exp = findViewById(R.id.textView_exp);
-            exp.setText(MonstersAllFragment.exps.get(monster.getCr()) + " опыт");
+            exp.setText(String.format("%s опыт", ConstantMonsters.exps.get(monster.getCr())));
 
         }
 
         if (monster.getAc() != null) {
             String[] acc = monster.getAc().split("\\(");
             TextView ac = findViewById(R.id.textView_ac);
-            ac.setText(acc[0] + "КД");
+            ac.setText(String.format("%sКД", acc[0]));
             if (acc.length > 1) {
                 TextView acType = findViewById(R.id.editText_ac_type);
                 acType.setText(acc[1].substring(0, acc[1].length() - 1));
@@ -97,7 +96,7 @@ public class MonsterActivity extends AppCompatActivity {
             String[] hpp = monster.getHp().split("\\(");
 
             TextView hp = findViewById(R.id.textView_hp);
-            hp.setText(hpp[0] + "ХП");
+            hp.setText(String.format("%sХП", hpp[0]));
 
             if (hpp.length > 1) {
                 TextView hpDice = findViewById(R.id.editText_hp_dice);
@@ -155,17 +154,16 @@ public class MonsterActivity extends AppCompatActivity {
         }
 
         if (item.getItemId() == R.id.action_favorite) {
-
-            monster.setFavorite(!monster.isFavorite());
+            ((App) getApplication()).monsterFavoriteService.setFavorite(monster, !monster.isFavorite());
             item.setIcon(monster.isFavorite() ? R.drawable.stars_on : R.drawable.stars_off);
-            final String key = "MONSTER_" + monster.getName().replace(" ", "_");
-
-            SharedPreferences preferences = getApplicationContext().getSharedPreferences("application_preferences", Context.MODE_PRIVATE);
-            preferences.edit().remove(key).apply();
-            preferences.edit().putBoolean(key, monster.isFavorite()).apply();
-
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onDestroy() {
+        ((App) getApplication()).monsterFavoriteService.setFavorite(monster, monster.isFavorite());
+        super.onDestroy();
     }
 }

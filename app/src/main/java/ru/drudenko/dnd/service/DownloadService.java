@@ -14,6 +14,7 @@ import android.util.Log;
 import androidx.core.app.NotificationCompat;
 
 import java.io.File;
+import java.util.Locale;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -78,7 +79,7 @@ public class DownloadService extends IntentService {
         try {
             // apk local file paths.
             File dir = StorageUtils.getCacheDirectory(this, checkExternal);
-            String apkName = urlStr.substring(urlStr.lastIndexOf("/") + 1, urlStr.length());
+            String apkName = urlStr.substring(urlStr.lastIndexOf("/") + 1);
             File apkFile = new File(dir, apkName);
 
 
@@ -112,9 +113,9 @@ public class DownloadService extends IntentService {
             }
             sink.flush();
 
-            apkFile.setReadable(true, false);
+            boolean readable = apkFile.setReadable(true, false);
 
-            Log.d(TAG, String.format("Download Apk to %s", apkFile));
+            Log.d(TAG, String.format(Locale.forLanguageTag("ru"), "Download Apk to %s, readable: %s", apkFile, readable));
 
             mBuilder.setContentText(getString(R.string.download_success)).setProgress(0, 0, false);
 

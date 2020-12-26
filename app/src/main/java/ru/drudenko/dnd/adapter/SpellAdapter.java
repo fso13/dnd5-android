@@ -19,31 +19,35 @@ import androidx.core.content.ContextCompat;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import ru.drudenko.dnd.R;
 import ru.drudenko.dnd.di.App;
 import ru.drudenko.dnd.model.magic.Spell;
 
 public class SpellAdapter extends BaseAdapter implements Filterable {
-    private List<Spell> originalData;
+    private final List<Spell> list;
+    private final LayoutInflater mInflater;
+    private final ItemFilter mFilter = new ItemFilter();
+    private final Context context;
+    private final App app;
     private List<Spell> filteredData;
-    private LayoutInflater mInflater;
-    private ItemFilter mFilter = new ItemFilter();
     private String classFilterText = "Все";
     private String levelFilterText = "Все";
     private String schoolFilterText = "Все";
     private String nameFilterText = "";
-    private Context context;
-    private App app;
+    private CharSequence constraintAdapter;
 
 
     public SpellAdapter(Context context, List<Spell> data, App app) {
         this.context = context;
         this.app = app;
-        originalData = new ArrayList<>(data);
+        list = data;
         filteredData = new ArrayList<>(data);
         mInflater = LayoutInflater.from(context);
+    }
+
+    public CharSequence getConstraintAdapter() {
+        return constraintAdapter;
     }
 
     private boolean isBelongClass(String filterClass, Spell spell) {
@@ -69,11 +73,10 @@ public class SpellAdapter extends BaseAdapter implements Filterable {
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
-        final View view;
+        View view;
         final ViewHolder viewHolder;
 
         if (convertView == null) {
-            System.out.println("convertView == null, pos:" + position);
             viewHolder = new ViewHolder();
             convertView = mInflater.inflate(R.layout.spell_list_view_item_layout, parent, false);
             viewHolder.textView = convertView.findViewById(R.id.textView2);
@@ -82,8 +85,6 @@ public class SpellAdapter extends BaseAdapter implements Filterable {
             view = convertView;
 
         } else {
-            System.out.println("convertView != null, pos:" + position);
-
             viewHolder = (ViewHolder) convertView.getTag();
             view = convertView;
         }
@@ -104,13 +105,13 @@ public class SpellAdapter extends BaseAdapter implements Filterable {
             if (buttonView.isPressed()) {
                 if (isChecked) {
                     viewHolder.toggleButton.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.start_on));
-
                 } else {
                     viewHolder.toggleButton.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.start_off));
                 }
 
                 app.spellFavoriteService.setFavorite(spell, isChecked);
-
+                getFilter().filter(constraintAdapter);
+                notifyDataSetChanged();
             }
         });
 
@@ -126,7 +127,7 @@ public class SpellAdapter extends BaseAdapter implements Filterable {
         return true;
     }
 
-    private class ViewHolder {
+    private static class ViewHolder {
         TextView textView;
         ToggleButton toggleButton;
     }
@@ -135,13 +136,9 @@ public class SpellAdapter extends BaseAdapter implements Filterable {
         @RequiresApi(api = Build.VERSION_CODES.N)
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
-            filteredData.clear();
-
+            constraintAdapter = constraint;
             String[] filterString = constraint.toString().split(":");
             FilterResults results = new FilterResults();
-
-            System.out.println("filters:" + constraint);
-
 
             if (filterString.length == 1) {
                 nameFilterText = filterString[0].toLowerCase();
@@ -160,10 +157,17 @@ public class SpellAdapter extends BaseAdapter implements Filterable {
                 }
             }
 
-            List<Spell> spells = originalData.stream().filter(this::filter).collect(Collectors.toList());
+            List<Spell> nlist = new ArrayList<>();
+            for (int i = 0; i < list.size(); i++) {
+                Spell originalDatum = list.get(i);
+                if (filter(originalDatum)) {
+                    nlist.add(originalDatum);
+                }
+            }
 
-            results.values = spells;
-            results.count = spells.size();
+            results.values = nlist;
+            results.count = nlist.size();
+
 
             return results;
         }

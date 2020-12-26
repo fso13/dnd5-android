@@ -17,7 +17,7 @@ import ru.drudenko.dnd.model.CustomItem;
 
 public class MasterHelpFragment extends ListFragment {
 
-    private String[] data = new String[]{"Сражение", "Состояния", "Виды урона", "Укрытие", "Броня", "Оружие", "Снаряжение"};
+    private final String[] data = new String[]{"Сражение", "Состояния", "Виды урона", "Укрытие", "Броня", "Оружие", "Снаряжение"};
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {

@@ -1,116 +1,90 @@
 package ru.drudenko.dnd.model.magic;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Spell implements Serializable {
-    private static final long serialVersionUID = 1L;
 
-    private String name;
-    private String ritual;
-    private String school;
-    private String level;
-    private String castingTime;
-    private String range;
-    private String components;
-    private String duration;
-    private String text;
-    private String source;
+    private final String name;
+    private final boolean ritual;
+    private final String school;
+    private final String level;
+    private final String castingTime;
+    private final String range;
+    private final String components;
+    private final String duration;
+    private final String text;
+    private final String source;
     private List<String> classes;
 
     private boolean isFavorite;
 
-
-    public Spell() {
+    public Spell(String name, String ritual, String school, String level, String castingTime, String range, String components, String duration, String text, String source, List<String> classes, boolean isFavorite) {
+        this.name = name;
+        this.ritual = Boolean.getBoolean(ritual);
+        this.school = school;
+        this.level = level;
+        this.castingTime = castingTime;
+        this.range = range;
+        this.components = components;
+        this.duration = duration;
+        this.text = text;
+        this.source = source;
+        this.classes = classes;
+        this.isFavorite = isFavorite;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getRitual() {
+    public boolean getRitual() {
         return ritual;
     }
 
-    public void setRitual(String ritual) {
-        this.ritual = ritual;
-    }
-
     public List<String> getClasses() {
+        if (classes == null) {
+            classes = new ArrayList<>();
+        }
         return classes;
-    }
-
-    public void setClasses(List<String> classes) {
-        this.classes = classes;
     }
 
     public String getSchool() {
         return school;
     }
 
-    public void setSchool(String school) {
-        this.school = school;
-    }
-
     public String getLevel() {
         return level;
-    }
-
-    public void setLevel(String level) {
-        this.level = level;
     }
 
     public String getCastingTime() {
         return castingTime;
     }
 
-    public void setCastingTime(String castingTime) {
-        this.castingTime = castingTime;
-    }
-
     public String getRange() {
         return range;
-    }
-
-    public void setRange(String range) {
-        this.range = range;
     }
 
     public String getComponents() {
         return components;
     }
 
-    public void setComponents(String components) {
-        this.components = components;
-    }
 
     public String getDuration() {
         return duration;
     }
 
-    public void setDuration(String duration) {
-        this.duration = duration;
-    }
 
     public String getText() {
         return text;
     }
 
-    public void setText(String text) {
-        this.text = text;
-    }
 
     public String getSource() {
         return source;
     }
 
-    public void setSource(String source) {
-        this.source = source;
-    }
 
     public boolean isFavorite() {
         return isFavorite;
