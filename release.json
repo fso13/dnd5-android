@@ -1,5 +1,5 @@
 {
-  "url": "https://github.com/fso13/dnd5-android/releases/download/2008090/app-release.apk",
-  "versionCode": 2008090,
+  "url": "https://github.com/fso13/dnd5-android/releases/download/2012260/app-release.apk",
+  "versionCode": 2012260,
   "updateMessage": "Фикс заклинаний рейнджера. Оптимизация старта приложения."
 }
