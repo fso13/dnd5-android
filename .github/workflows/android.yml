@@ -18,11 +18,14 @@ jobs:
         run: ./gradlew clean assembleRelease
 
       - name: Get the version
+        env:
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
         run: echo ::set-env name=RELEASE_VERSION::$(echo ${GITHUB_REF:10})
 
       - name: Create release and upload apk
         uses: underwindfall/create-release-with-debugapk@v2.0.0
         env:
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ env.RELEASE_VERSION }}
