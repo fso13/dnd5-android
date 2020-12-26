@@ -7365,7 +7365,13 @@ function carousel() {
         fetch("https://api.github.com/repos/fso13/dnd5-android/releases")
     .then(response => response.json())
             .then(result => {
-                document.getElementById("download_count").innerHTML = "Количество скачиваний: " + result[0].assets[0].download_count;
+
+
+            var total = result.reduce( function(tot, record) {
+                    return tot + record.assets[0].download_count;
+                },0);
+
+                document.getElementById("download_count").innerHTML = "Количество скачиваний: " + total;
             })
 
         setTimeout(getDownloadCount, 120000); // Change image every 2 seconds
