@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.Switch;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -150,14 +151,15 @@ public class SpellsAllFragment extends Fragment implements AbsListView.OnScrollL
         );
 
 
-        itemFavorite = menu.findItem(R.id.action_favorite).setIcon(isFavorite ? R.drawable.stars_on : R.drawable.stars_off);
-        itemFavorite.setOnMenuItemClickListener(item1 -> {
+        itemFavorite = menu.findItem(R.id.app_bar_switch);
 
+        final Switch actionView = (Switch) itemFavorite.getActionView();
+
+        actionView.setOnCheckedChangeListener((buttonView, isChecked) -> {
             isFavorite = !isFavorite;
-            item1.setIcon(isFavorite ? R.drawable.stars_on : R.drawable.stars_off);
             spellAdapter.getFilter().filter("favorite:" + isFavorite);
-            return false;
         });
+
     }
 
     @Override
