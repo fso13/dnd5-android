@@ -1,5 +1,6 @@
 package ru.drudenko.dnd.activity;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Menu;
@@ -10,7 +11,10 @@ import android.widget.TextView;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.json.JSONObject;
+
 import java.text.MessageFormat;
+import java.util.Locale;
 
 import ru.drudenko.dnd.R;
 import ru.drudenko.dnd.di.App;
@@ -62,6 +66,15 @@ public class SpellActivity extends AppCompatActivity {
 //        info.setText(String.format("Уровень: %s\n\n%s\n\nИсточник: %s\n\n", spell.getLevel(), spell.getDescription(), spell.getSource()), TextView.BufferType.SPANNABLE);
         actionBar.setTitle(spell.getName());
 
+        try {
+            JSONObject props = new JSONObject();
+
+            props.put("Android Version", String.format(Locale.getDefault(), "Версия Android: %s (%d)", Build.VERSION.RELEASE, Build.VERSION.SDK_INT));
+            props.put("monster", spell.getName());
+            ((App) getApplication()).mixpanel.track("Spell activity", props);
+
+        } catch (Exception ignored) {
+        }
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {

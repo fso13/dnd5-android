@@ -1,6 +1,7 @@
 package ru.drudenko.dnd.activity;
 
 
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.widget.Button;
@@ -18,6 +19,9 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.navigation.NavigationView;
 
+import org.json.JSONObject;
+
+import java.util.Locale;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import ru.drudenko.dnd.BuildConfig;
@@ -88,6 +92,16 @@ public class MainActivity extends AppCompatActivity implements UpdateNotice {
         thread.start();
 
 
+        try {
+            JSONObject props = new JSONObject();
+
+            props.put("Android Version", String.format(Locale.getDefault(), "Версия Android: %s (%d)", Build.VERSION.RELEASE, Build.VERSION.SDK_INT));
+            ((App) getApplication()).mixpanel.track("Main activity", props);
+
+        } catch (Exception ignored) {
+        }
+
+
     }
 
     @Override
@@ -102,6 +116,11 @@ public class MainActivity extends AppCompatActivity implements UpdateNotice {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+    @Override
+    protected void onDestroy() {
+        ((App) getApplication()).mixpanel.flush();
+        super.onDestroy();
     }
 
     @Override

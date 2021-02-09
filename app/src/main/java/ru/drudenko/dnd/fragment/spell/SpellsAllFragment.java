@@ -22,7 +22,10 @@ import androidx.appcompat.widget.SearchView;
 import androidx.core.view.MenuItemCompat;
 import androidx.fragment.app.Fragment;
 
+import org.json.JSONObject;
+
 import java.util.List;
+import java.util.Locale;
 
 import ru.drudenko.dnd.R;
 import ru.drudenko.dnd.activity.MainActivity;
@@ -112,6 +115,17 @@ public class SpellsAllFragment extends Fragment implements AbsListView.OnScrollL
 
             }
         });
+
+
+        try {
+            JSONObject props = new JSONObject();
+
+            props.put("Android Version", String.format(Locale.getDefault(), "Версия Android: %s (%d)", Build.VERSION.RELEASE, Build.VERSION.SDK_INT));
+            ((App) getActivity().getApplication()).mixpanel.track("Spell fragment activity", props);
+
+        } catch (Exception ignored) {
+        }
+
         return root;
     }
 

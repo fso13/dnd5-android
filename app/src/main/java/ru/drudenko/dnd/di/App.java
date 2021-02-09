@@ -3,6 +3,8 @@ package ru.drudenko.dnd.di;
 import android.app.Application;
 import android.content.SharedPreferences;
 
+import com.mixpanel.android.mpmetrics.MixpanelAPI;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +16,7 @@ import ru.drudenko.dnd.service.MonsterFavoriteService;
 import ru.drudenko.dnd.service.SpellFavoriteService;
 
 public class App extends Application {
+    public static final String MIXPANEL_TOKEN = "fb4524b60ad1c7da4eabf26e7bb6d714";
 
     @Inject
     public List<Spell> spells;
@@ -29,11 +32,17 @@ public class App extends Application {
     public MonsterFavoriteService monsterFavoriteService;
 
     private AppComponent component;
-
+    public MixpanelAPI mixpanel;
     @Override
     public void onCreate() {
         super.onCreate();
 
+
+// Initialize the library with your
+// Mixpanel project token, MIXPANEL_TOKEN, and a reference
+// to your application context.
+         mixpanel =
+                MixpanelAPI.getInstance(getApplicationContext(), MIXPANEL_TOKEN);
         //needs to run once to generate it
         component = DaggerAppComponent.builder()
                 .appModule(new AppModule(this))

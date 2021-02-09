@@ -17,7 +17,10 @@ import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.tabs.TabLayout;
 
+import org.json.JSONObject;
+
 import java.io.IOException;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -126,7 +129,15 @@ public class MonsterActivity extends AppCompatActivity {
         TabLayout tabLayout = findViewById(R.id.tablayout);
         tabLayout.setupWithViewPager(viewPager);
 
+        try {
+            JSONObject props = new JSONObject();
 
+            props.put("Android Version", String.format(Locale.getDefault(), "Версия Android: %s (%d)", Build.VERSION.RELEASE, Build.VERSION.SDK_INT));
+            props.put("monster", monster.getName());
+            ((App) getApplication()).mixpanel.track("Monster activity", props);
+
+        } catch (Exception ignored) {
+        }
     }
 
     private void setupViewPager(ViewPager viewPager) {

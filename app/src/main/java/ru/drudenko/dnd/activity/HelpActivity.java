@@ -1,6 +1,7 @@
 package ru.drudenko.dnd.activity;
 
 import android.annotation.SuppressLint;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.webkit.WebView;
@@ -8,9 +9,13 @@ import android.webkit.WebView;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.Locale;
 
 import ru.drudenko.dnd.R;
+import ru.drudenko.dnd.di.App;
 import ru.drudenko.dnd.model.CustomItem;
 
 public class HelpActivity extends AppCompatActivity {
@@ -39,6 +44,15 @@ public class HelpActivity extends AppCompatActivity {
             }
         }
 
+
+        try {
+            JSONObject props = new JSONObject();
+
+            props.put("Android Version", String.format(Locale.getDefault(), "Версия Android: %s (%d)", Build.VERSION.RELEASE, Build.VERSION.SDK_INT));
+            ((App) getApplication()).mixpanel.track("Help activity", props);
+
+        } catch (Exception ignored) {
+        }
         WebView info = findViewById(R.id.textView);
 
         info.loadDataWithBaseURL(null, "    <style>\n" +
