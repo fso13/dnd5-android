@@ -27,7 +27,7 @@ public class SpellActivity extends AppCompatActivity {
         setContentView(R.layout.activity_spell);
         Bundle bundle = getIntent().getExtras();
 
-        spell = (Spell) bundle.get("SPELL");
+        spell = ((App) getApplication()).spells.get((Integer) bundle.get("SPELLID"));
 
         TextView level = findViewById(R.id.spell_level);
         level.setText(spell.getLevel(), TextView.BufferType.SPANNABLE);

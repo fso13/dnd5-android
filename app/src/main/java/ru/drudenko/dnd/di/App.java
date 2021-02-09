@@ -25,7 +25,6 @@ public class App extends Application {
     public SharedPreferences sharedPreferences;
 
     public final List<Spell> spellsFavorite = new ArrayList<>();
-    public final List<Monster> monstersFavorite = new ArrayList<>();
     public SpellFavoriteService spellFavoriteService;
     public MonsterFavoriteService monsterFavoriteService;
 
@@ -45,12 +44,6 @@ public class App extends Application {
         for (Spell s : spells) {
             if (s.isFavorite()) {
                 spellsFavorite.add(s);
-            }
-        }
-
-        for (Monster m : monsters) {
-            if (m.isFavorite()) {
-                monstersFavorite.add(m);
             }
         }
 

@@ -34,6 +34,7 @@ public class SpellAdapter extends BaseAdapter implements Filterable {
     private String classFilterText = "Все";
     private String levelFilterText = "Все";
     private String schoolFilterText = "Все";
+    private String favoriteFilterText = "false";
     private String nameFilterText = "";
     private CharSequence constraintAdapter;
 
@@ -42,7 +43,8 @@ public class SpellAdapter extends BaseAdapter implements Filterable {
         this.context = context;
         this.app = app;
         list = data;
-        filteredData = new ArrayList<>(data);
+        filteredData = new ArrayList<>();
+        filteredData.addAll(data);
         mInflater = LayoutInflater.from(context);
     }
 
@@ -155,6 +157,10 @@ public class SpellAdapter extends BaseAdapter implements Filterable {
                 if (filterString[0].equals("school")) {
                     schoolFilterText = filterString[1];
                 }
+
+                if (filterString[0].equals("favorite")) {
+                    favoriteFilterText = filterString[1];
+                }
             }
 
             List<Spell> nlist = new ArrayList<>();
@@ -177,7 +183,8 @@ public class SpellAdapter extends BaseAdapter implements Filterable {
             return ("".equals(nameFilterText) || spell.getName().toLowerCase().contains(nameFilterText)) &&
                     (levelFilterText.equalsIgnoreCase("Все") || spell.getLevel().equals(levelFilterText)) &&
                     (schoolFilterText.equalsIgnoreCase("Все") || isBelongSchool(schoolFilterText, spell)) &&
-                    (classFilterText.equalsIgnoreCase("Все") || isBelongClass(classFilterText, spell));
+                    (classFilterText.equalsIgnoreCase("Все") || isBelongClass(classFilterText, spell)) &&
+                    ((spell.isFavorite() && "true".equals(favoriteFilterText) || "false".equals(favoriteFilterText)));
         }
 
         @SuppressWarnings("unchecked")
