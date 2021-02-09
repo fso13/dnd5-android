@@ -7362,7 +7362,7 @@ function carousel() {
     getDownloadCount();
 
     function getDownloadCount() {
-        fetch("https://api.github.com/repos/fso13/dnd5-android/releases")
+        fetch("https://api.github.com/repos/fso13/dnd5-android/releases?per_page=100")
     .then(response => response.json())
             .then(result => {
 
