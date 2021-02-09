@@ -52,7 +52,7 @@ public class MonsterActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         Bundle bundle = getIntent().getExtras();
 
-        monster = (Monster) bundle.get("MONSTER");
+        monster = ((App) getApplication()).monsters.get((Integer) bundle.get("MONSTERID"));
 
         AppBarLayout appBarLayout = findViewById(R.id.app_bar);
         CollapsingToolbarLayout toolbarLayout = findViewById(R.id.toolbar_layout);

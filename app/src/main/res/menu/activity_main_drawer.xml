@@ -11,22 +11,12 @@
             android:title="@string/menu_all_spells" />
 
         <item
-            android:id="@+id/nav_favorite_spells"
-            android:icon="@drawable/ic_menu_spell_favorite"
-            android:textColor="@color/textColor"
-            android:title="@string/menu_favorite_spells" />
-
-        <item
             android:id="@+id/nav_all_monsters"
             android:icon="@drawable/ic_menu_monster_all"
             android:textColor="@color/textColor"
+            android:checkable="true"
             android:title="@string/menu_all_monsters" />
 
-        <item
-            android:id="@+id/nav_favorite_monsters"
-            android:icon="@drawable/ic_menu_monster_favorite"
-            android:textColor="@color/textColor"
-            android:title="@string/menu_favorite_monsters" />
         <item
             android:id="@+id/nav_master_help"
             android:icon="@drawable/ic_menu_master_help"

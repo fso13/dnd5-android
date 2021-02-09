@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.Switch;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -31,11 +32,15 @@ import ru.drudenko.dnd.di.App;
 import ru.drudenko.dnd.di.ConstantMonsters;
 import ru.drudenko.dnd.model.monster.Monster;
 
-abstract class AbstractMonsterListFragment extends Fragment implements AbsListView.OnScrollListener {
+public class MonsterListFragment extends Fragment implements AbsListView.OnScrollListener {
     protected MonsterAdapter monsterAdapter;
     protected Monster monster;
+    protected MenuItem itemFavorite;
+    protected boolean isFavorite = false;
 
-    protected abstract List<Monster> getMonstersList();
+    protected List<Monster> getMonstersList() {
+        return ((App) getActivity().getApplication()).monsters;
+    }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -53,7 +58,7 @@ abstract class AbstractMonsterListFragment extends Fragment implements AbsListVi
             Intent intent = new Intent(getContext(), MonsterActivity.class);
             monster = monsterAdapter.getItem(position);
 
-            intent.putExtra("MONSTER", monster);
+            intent.putExtra("MONSTERID", ((App) getActivity().getApplication()).monsters.indexOf(monster));
             startActivityForResult(intent, 0);
         };
         listView.setOnItemClickListener(itemListener);
@@ -106,7 +111,7 @@ abstract class AbstractMonsterListFragment extends Fragment implements AbsListVi
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         menu.clear();
-        inflater.inflate(R.menu.main, menu);
+        inflater.inflate(R.menu.search_favorite_list, menu);
         MenuItem item = menu.findItem(R.id.action_search);
         SearchView searchView = new SearchView(((MainActivity) getContext()).getSupportActionBar().getThemedContext());
         MenuItemCompat.setShowAsAction(item, MenuItemCompat.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW | MenuItemCompat.SHOW_AS_ACTION_IF_ROOM);
@@ -127,6 +132,16 @@ abstract class AbstractMonsterListFragment extends Fragment implements AbsListVi
         searchView.setOnClickListener(v -> {
                 }
         );
+
+
+        itemFavorite = menu.findItem(R.id.app_bar_switch);
+        final Switch actionView = (Switch) itemFavorite.getActionView();
+
+        actionView.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            isFavorite = !isFavorite;
+            monsterAdapter.getFilter().filter("favorite:" + isFavorite);
+        });
+
     }
 
 

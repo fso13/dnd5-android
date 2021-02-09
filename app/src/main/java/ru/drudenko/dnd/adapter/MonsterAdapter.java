@@ -32,6 +32,7 @@ public class MonsterAdapter extends BaseAdapter implements Filterable {
     public final List<Monster> list;
     public List<Monster> filteredData;
     private String biomFilterText = "Все";
+    private String favoriteFilterText = "false";
     private String levelFilterText = "Все";
     private String nameFilterText = "";
     private CharSequence constraintAdapter;
@@ -39,7 +40,8 @@ public class MonsterAdapter extends BaseAdapter implements Filterable {
     public MonsterAdapter(Context context, List<Monster> data, App app) {
         this.context = context;
         this.list = data;
-        this.filteredData = new ArrayList<>(data);
+        this.filteredData = new ArrayList<>();
+        filteredData.addAll(data);
         this.app = app;
         mInflater = LayoutInflater.from(context);
     }
@@ -152,6 +154,10 @@ public class MonsterAdapter extends BaseAdapter implements Filterable {
                     biomFilterText = filterString[1];
                 }
 
+                if (filterString[0].equals("favorite")) {
+                    favoriteFilterText = filterString[1];
+                }
+
             }
 
             for (int i = 0; i < count; i++) {
@@ -169,9 +175,11 @@ public class MonsterAdapter extends BaseAdapter implements Filterable {
 
         @RequiresApi(api = Build.VERSION_CODES.N)
         private boolean filter(Monster monster) {
+
             return ("".equals(nameFilterText) || monster.getName().toLowerCase().contains(nameFilterText)) &&
                     (levelFilterText.equals("Все") || monster.getCr().equals(levelFilterText)) &&
-                    (biomFilterText.equals("Все") || monster.getBioms().contains(biomFilterText));
+                    (biomFilterText.equals("Все") || monster.getBioms().contains(biomFilterText)) &&
+                    ((monster.isFavorite() && "true".equals(favoriteFilterText) || "false".equals(favoriteFilterText)));
         }
 
         @SuppressWarnings("unchecked")
