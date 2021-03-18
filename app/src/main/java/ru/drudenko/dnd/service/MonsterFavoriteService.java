@@ -16,15 +16,32 @@ public class MonsterFavoriteService {
     }
 
     public void setFavorite(Monster monster, boolean isFavorite) {
-        final String key = "MONSTER_" + monster.getName().replace(" ", "_");
+        String profileName = app.getCurrent().getName().equals("Default") ? "" : app.getCurrent().getName();
+        final String key = profileName + "MONSTER_" + monster.getName().replace(" ", "_");
+
+        monster.setFavorite(isFavorite);
+
+        Monster m = null;
+        try {
+            m = app.getCurrent().getMonsters().get(app.monsters.indexOf(monster));
+        } catch (Exception ignored) {
+        }
+
+        if (m == null) {
+            try {
+                app.getCurrent().getMonsters().add((Monster) monster.clone());
+            } catch (CloneNotSupportedException e) {
+                e.printStackTrace();
+            }
+        } else {
+            m.setFavorite(isFavorite);
+        }
+
 
         if (isFavorite) {
-            monster.setFavorite(true);
-
             preferences.edit().putBoolean(key, true).apply();
 
         } else {
-            monster.setFavorite(false);
             app.monsters.get(app.monsters.indexOf(monster)).setFavorite(false);
             preferences.edit().putBoolean(key, false).apply();
         }

@@ -1,10 +1,12 @@
 package ru.drudenko.dnd.model.magic;
 
+import androidx.annotation.NonNull;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Spell implements Serializable {
+public class Spell implements Serializable, Cloneable {
 
     private final String name;
     private final boolean ritual;
@@ -92,6 +94,12 @@ public class Spell implements Serializable {
 
     public void setFavorite(boolean favorite) {
         isFavorite = favorite;
+    }
+
+    @NonNull
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 
     @Override

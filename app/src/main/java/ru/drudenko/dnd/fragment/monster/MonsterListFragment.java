@@ -33,6 +33,7 @@ import ru.drudenko.dnd.activity.MonsterActivity;
 import ru.drudenko.dnd.adapter.MonsterAdapter;
 import ru.drudenko.dnd.di.App;
 import ru.drudenko.dnd.di.ConstantMonsters;
+import ru.drudenko.dnd.model.Profile;
 import ru.drudenko.dnd.model.monster.Monster;
 
 public class MonsterListFragment extends Fragment implements AbsListView.OnScrollListener {
@@ -42,6 +43,20 @@ public class MonsterListFragment extends Fragment implements AbsListView.OnScrol
     protected boolean isFavorite = false;
 
     protected List<Monster> getMonstersList() {
+
+        Profile profile = ((App) getActivity().getApplication()).getCurrent();
+        for (Monster monster1 : ((App) getActivity().getApplication()).monsters) {
+            monster1.setFavorite(false);
+            for (Monster profileMonster : profile.getMonsters()) {
+                if (profileMonster.getName().equals(monster1.getName())) {
+                    monster1.setFavorite(profileMonster.isFavorite());
+                    break;
+                }
+            }
+        }
+        if (monsterAdapter != null) {
+            monsterAdapter.notifyDataSetChanged();
+        }
         return ((App) getActivity().getApplication()).monsters;
     }
 
@@ -54,6 +69,8 @@ public class MonsterListFragment extends Fragment implements AbsListView.OnScrol
         ListView listView = root.findViewById(R.id.grid_view_monsters);
 
         monsterAdapter = new MonsterAdapter(getContext(), getMonstersList(), ((App) getActivity().getApplication()));
+        ((App) getActivity().getApplication()).monsterAdapter = monsterAdapter;
+
         listView.setAdapter(monsterAdapter);
         listView.setOnScrollListener(this);
 
@@ -153,7 +170,6 @@ public class MonsterListFragment extends Fragment implements AbsListView.OnScrol
         });
 
     }
-
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {

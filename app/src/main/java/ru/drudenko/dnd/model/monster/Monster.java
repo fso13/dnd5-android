@@ -1,13 +1,15 @@
 package ru.drudenko.dnd.model.monster;
 
 
+import androidx.annotation.NonNull;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class Monster implements Serializable {
+public class Monster implements Serializable, Cloneable {
 
     private final String name;
     private final String size;
@@ -178,6 +180,12 @@ public class Monster implements Serializable {
         isFavorite = favorite;
     }
 
+
+    @NonNull
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
 
     @Override
     public boolean equals(Object o) {

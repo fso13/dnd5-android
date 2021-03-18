@@ -1,73 +1,20 @@
-package ru.drudenko.dnd.di;
+package ru.drudenko.dnd.service;
 
-import android.app.Application;
 import android.content.SharedPreferences;
-
-import com.mixpanel.android.mpmetrics.MixpanelAPI;
 
 import java.util.List;
 
-import javax.inject.Inject;
-
-import ru.drudenko.dnd.adapter.MonsterAdapter;
-import ru.drudenko.dnd.adapter.SpellAdapter;
 import ru.drudenko.dnd.model.Profile;
 import ru.drudenko.dnd.model.magic.Spell;
 import ru.drudenko.dnd.model.monster.Monster;
-import ru.drudenko.dnd.service.MonsterFavoriteService;
-import ru.drudenko.dnd.service.ProfileService;
-import ru.drudenko.dnd.service.SpellFavoriteService;
 
-public class App extends Application {
-    public static final String MIXPANEL_TOKEN = "fb4524b60ad1c7da4eabf26e7bb6d714";
-
-    @Inject
-    public List<Spell> spells;
-
-    @Inject
-    public List<Monster> monsters;
-
-    @Inject
+public class ProfileService {
     public List<Profile> profiles;
-
-    public MonsterAdapter monsterAdapter;
-    public SpellAdapter spellAdapter;
-
-    @Inject
     public SharedPreferences sharedPreferences;
 
-    public SpellFavoriteService spellFavoriteService;
-    public MonsterFavoriteService monsterFavoriteService;
-    public ProfileService profileService;
-
-    private AppComponent component;
-    public MixpanelAPI mixpanel;
-
-    @Override
-    public void onCreate() {
-        super.onCreate();
-
-
-// Initialize the library with your
-// Mixpanel project token, MIXPANEL_TOKEN, and a reference
-// to your application context.
-        mixpanel =
-                MixpanelAPI.getInstance(getApplicationContext(), MIXPANEL_TOKEN);
-        //needs to run once to generate it
-        component = DaggerAppComponent.builder()
-                .appModule(new AppModule(this))
-                .build();
-
-        component.inject(this);
-
-
-        spellFavoriteService = new SpellFavoriteService(sharedPreferences, this);
-        monsterFavoriteService = new MonsterFavoriteService(sharedPreferences, this);
-    }
-
-
-    public AppComponent getComponent() {
-        return component;
+    public ProfileService(List<Profile> profiles, SharedPreferences sharedPreferences) {
+        this.profiles = profiles;
+        this.sharedPreferences = sharedPreferences;
     }
 
     public void updateProfile(Profile profile, boolean isCurrent) {

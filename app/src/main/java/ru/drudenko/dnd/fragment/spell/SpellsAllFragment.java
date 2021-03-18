@@ -33,6 +33,7 @@ import ru.drudenko.dnd.activity.SpellActivity;
 import ru.drudenko.dnd.adapter.SpellAdapter;
 import ru.drudenko.dnd.di.App;
 import ru.drudenko.dnd.di.ConstantSpells;
+import ru.drudenko.dnd.model.Profile;
 import ru.drudenko.dnd.model.magic.Spell;
 
 public class SpellsAllFragment extends Fragment implements AbsListView.OnScrollListener {
@@ -42,6 +43,22 @@ public class SpellsAllFragment extends Fragment implements AbsListView.OnScrollL
     protected boolean isFavorite = false;
 
     protected List<Spell> getSpellList() {
+
+
+        Profile profile = ((App) getActivity().getApplication()).getCurrent();
+        for (Spell spell : ((App) getActivity().getApplication()).spells) {
+            spell.setFavorite(false);
+            for (Spell profileSpell : profile.getSpells()) {
+                if (profileSpell.getName().equals(spell.getName())) {
+                    spell.setFavorite(profileSpell.isFavorite());
+                    break;
+                }
+            }
+        }
+        if (spellAdapter != null) {
+            spellAdapter.notifyDataSetChanged();
+        }
+
         return ((App) getActivity().getApplication()).spells;
     }
 
@@ -55,6 +72,7 @@ public class SpellsAllFragment extends Fragment implements AbsListView.OnScrollL
 
         spellAdapter = new SpellAdapter(getContext(), getSpellList(), ((App) getActivity().getApplication()));
         listView.setAdapter(spellAdapter);
+        ((App) getActivity().getApplication()).spellAdapter = spellAdapter;
 
         AdapterView.OnItemClickListener itemListener = (parent, v, position, id) -> {
             Intent intent = new Intent(getContext(), SpellActivity.class);
