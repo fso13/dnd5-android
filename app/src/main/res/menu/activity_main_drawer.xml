@@ -31,8 +31,8 @@
 
         <item
             android:id="@+id/nav_randoms"
-            android:icon="@android:drawable/ic_menu_myplaces"
+            android:icon="@android:drawable/ic_dialog_map"
             android:textColor="@color/textColor"
-            android:title="Случайные события" />
+            android:title="@string/random_events" />
     </group>
 </menu>
