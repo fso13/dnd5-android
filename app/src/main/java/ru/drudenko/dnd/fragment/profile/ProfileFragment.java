@@ -11,6 +11,7 @@ import android.widget.ListView;
 import androidx.fragment.app.Fragment;
 
 import ru.drudenko.dnd.R;
+import ru.drudenko.dnd.adapter.ProfileAdapter;
 import ru.drudenko.dnd.di.App;
 import ru.drudenko.dnd.model.Profile;
 
