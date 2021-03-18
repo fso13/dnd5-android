@@ -15,7 +15,6 @@ import ru.drudenko.dnd.model.Profile;
 import ru.drudenko.dnd.model.magic.Spell;
 import ru.drudenko.dnd.model.monster.Monster;
 import ru.drudenko.dnd.service.MonsterFavoriteService;
-import ru.drudenko.dnd.service.ProfileService;
 import ru.drudenko.dnd.service.SpellFavoriteService;
 
 public class App extends Application {
@@ -38,7 +37,6 @@ public class App extends Application {
 
     public SpellFavoriteService spellFavoriteService;
     public MonsterFavoriteService monsterFavoriteService;
-    public ProfileService profileService;
 
     private AppComponent component;
     public MixpanelAPI mixpanel;
