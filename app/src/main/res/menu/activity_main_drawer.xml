@@ -28,5 +28,11 @@
             android:icon="@android:drawable/ic_menu_myplaces"
             android:textColor="@color/textColor"
             android:title="@string/menu_profiles" />
+
+        <item
+            android:id="@+id/nav_randoms"
+            android:icon="@android:drawable/ic_menu_myplaces"
+            android:textColor="@color/textColor"
+            android:title="Случайные события" />
     </group>
 </menu>

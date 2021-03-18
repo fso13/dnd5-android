@@ -83,6 +83,7 @@ public class ProfileAdapter extends ArrayAdapter<Profile> {
         });
         return view;
     }
+
 }
 
 //in your Activity or Fragment where of Adapter is instantiated :
