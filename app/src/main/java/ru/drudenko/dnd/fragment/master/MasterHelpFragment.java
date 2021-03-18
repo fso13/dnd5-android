@@ -9,6 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.ListFragment;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import ru.drudenko.dnd.activity.HelpActivity;
 import ru.drudenko.dnd.adapter.SingleAdapter;
@@ -17,7 +19,7 @@ import ru.drudenko.dnd.model.CustomItem;
 
 public class MasterHelpFragment extends ListFragment {
 
-    private final String[] data = new String[]{"Сражение", "Состояния", "Виды урона", "Укрытие", "Броня", "Оружие", "Снаряжение"};
+    private final List<String> data = Arrays.asList("Сражение", "Состояния", "Виды урона", "Укрытие", "Броня", "Оружие", "Снаряжение");
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {

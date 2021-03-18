@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -15,7 +16,7 @@ import ru.drudenko.dnd.adapter.ProfileAdapter;
 import ru.drudenko.dnd.di.App;
 import ru.drudenko.dnd.model.Profile;
 
-public class ProfileFragment extends Fragment {
+public class ProfileFragment extends Fragment implements AbsListView.OnScrollListener {
 
     public ProfileFragment() {
     }
@@ -37,6 +38,7 @@ public class ProfileFragment extends Fragment {
 
         ProfileAdapter adapter = new ProfileAdapter(getContext(), ((App) getActivity().getApplication()));
         listView.setAdapter(adapter);
+        listView.setOnScrollListener(this);
 
         Button button = root.findViewById(R.id.add_profile);
         button.setOnClickListener(v -> {
@@ -49,5 +51,15 @@ public class ProfileFragment extends Fragment {
         });
 
         return root;
+    }
+
+    @Override
+    public void onScrollStateChanged(AbsListView view, int scrollState) {
+
+    }
+
+    @Override
+    public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+
     }
 }

@@ -14,6 +14,7 @@ import ru.drudenko.dnd.adapter.SpellAdapter;
 import ru.drudenko.dnd.model.Profile;
 import ru.drudenko.dnd.model.magic.Spell;
 import ru.drudenko.dnd.model.monster.Monster;
+import ru.drudenko.dnd.model.random.RandomEvent;
 import ru.drudenko.dnd.service.MonsterFavoriteService;
 import ru.drudenko.dnd.service.SpellFavoriteService;
 
@@ -34,6 +35,8 @@ public class App extends Application {
 
     @Inject
     public SharedPreferences sharedPreferences;
+
+    private List<RandomEvent> randomEventList;
 
     public SpellFavoriteService spellFavoriteService;
     public MonsterFavoriteService monsterFavoriteService;
@@ -61,6 +64,8 @@ public class App extends Application {
 
         spellFavoriteService = new SpellFavoriteService(sharedPreferences, this);
         monsterFavoriteService = new MonsterFavoriteService(sharedPreferences, this);
+
+
     }
 
 

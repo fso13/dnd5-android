@@ -13,12 +13,14 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import java.util.List;
+
 import ru.drudenko.dnd.R;
 
 public class SingleAdapter extends ArrayAdapter<String> {
 
 
-    public SingleAdapter(@NonNull Context context, @NonNull String[] data) {
+    public SingleAdapter(@NonNull Context context, @NonNull List<String> data) {
         super(context, 0, data);
 
     }
