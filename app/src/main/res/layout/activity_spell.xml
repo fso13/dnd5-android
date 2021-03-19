@@ -1,224 +1,329 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:childDivider="@color/colorPrimary"
+        android:divider="@color/colorPrimary"
+        android:dividerHeight="1dp"
+        android:showDividers="middle"
         android:orientation="vertical">
 
-        <LinearLayout
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
+            android:layout_marginBottom="3dp"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/textView25"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="20dp"
                 android:text="Уровень"
                 android:textColor="@color/colorPrimary"
-                android:textSize="18dp" />
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <Space
+                android:id="@+id/space2"
+                android:layout_width="0dp"
+                android:layout_height="21dp"
+                app:layout_constraintStart_toEndOf="@+id/textView25" />
 
             <TextView
                 android:id="@+id/spell_level"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
                 android:text="TextView"
                 android:textColor="@color/textColor"
-                android:textSize="18dp" />
-        </LinearLayout>
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/space2" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
+            android:layout_marginBottom="3dp"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/textView27"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="20dp"
                 android:text="Школа"
                 android:textColor="@color/colorPrimary"
-                android:textSize="18dp" />
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <Space
+                android:id="@+id/space3"
+                android:layout_width="0dp"
+                android:layout_height="21dp"
+                app:layout_constraintStart_toEndOf="@+id/textView27" />
 
             <TextView
                 android:id="@+id/spell_school"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
                 android:text="TextView"
                 android:textColor="@color/textColor"
-                android:textSize="18dp" />
-        </LinearLayout>
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/space3" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="5dp"
+            android:layout_marginBottom="3dp"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/textView42"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="20dp"
                 android:text="Время накладывания"
                 android:textColor="@color/colorPrimary"
-                android:textSize="18dp" />
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <Space
+                android:id="@+id/space6"
+                android:layout_width="0dp"
+                android:layout_height="21dp"
+                app:layout_constraintStart_toEndOf="@+id/textView42" />
 
             <TextView
                 android:id="@+id/spell_castingTime"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
                 android:text="TextView"
                 android:textColor="@color/textColor"
-                android:textSize="18dp" />
-        </LinearLayout>
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/space6" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
+            android:layout_marginBottom="3dp"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/textView29"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="20dp"
                 android:text="Дистанция"
                 android:textColor="@color/colorPrimary"
-                android:textSize="18dp" />
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <Space
+                android:id="@+id/space7"
+                android:layout_width="0dp"
+                android:layout_height="21dp"
+                app:layout_constraintStart_toEndOf="@+id/textView29" />
 
             <TextView
                 android:id="@+id/spell_range"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
                 android:text="TextView"
                 android:textColor="@color/textColor"
-                android:textSize="18dp" />
-        </LinearLayout>
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/space7" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
+            android:layout_marginBottom="3dp"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/textView31"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="20dp"
                 android:text="Компоненты"
                 android:textColor="@color/colorPrimary"
-                android:textSize="18dp" />
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <Space
+                android:id="@+id/space4"
+                android:layout_width="0dp"
+                android:layout_height="21dp"
+                app:layout_constraintStart_toEndOf="@+id/textView31" />
 
             <TextView
                 android:id="@+id/spell_components"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
                 android:text="TextView"
                 android:textColor="@color/textColor"
-                android:textSize="18dp" />
-        </LinearLayout>
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/space4"
+                tools:layout_editor_absoluteY="0dp" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
+            android:layout_marginBottom="3dp"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/textView33"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="20dp"
                 android:text="Длительность"
                 android:textColor="@color/colorPrimary"
-                android:textSize="18dp" />
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <Space
+                android:id="@+id/space8"
+                android:layout_width="0dp"
+                android:layout_height="21dp"
+                app:layout_constraintStart_toEndOf="@+id/textView33" />
 
             <TextView
                 android:id="@+id/spell_duration"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
                 android:text="TextView"
                 android:textColor="@color/textColor"
-                android:textSize="18dp" />
-        </LinearLayout>
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/space8" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
+            android:layout_marginBottom="3dp"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/textView35"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="20dp"
                 android:text="Классы"
                 android:textColor="@color/colorPrimary"
-                android:textSize="18dp" />
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <Space
+                android:id="@+id/space9"
+                android:layout_width="0dp"
+                android:layout_height="21dp"
+                app:layout_constraintStart_toEndOf="@+id/textView35" />
 
             <TextView
                 android:id="@+id/spell_classes"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
                 android:text="TextView"
                 android:textColor="@color/textColor"
-                android:textSize="18dp" />
-        </LinearLayout>
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/space9" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
+            android:layout_marginBottom="3dp"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/textView37"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="20dp"
                 android:text="Источник"
                 android:textColor="@color/colorPrimary"
-                android:textSize="18dp" />
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <Space
+                android:id="@+id/space10"
+                android:layout_width="0dp"
+                android:layout_height="21dp"
+                app:layout_constraintStart_toEndOf="@+id/textView37" />
 
             <TextView
                 android:id="@+id/spell_source"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
                 android:text="TextView"
                 android:textColor="@color/textColor"
-                android:textSize="18dp" />
-        </LinearLayout>
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/space10" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/textView40"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
+            android:orientation="vertical" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -229,11 +334,12 @@
                 android:id="@+id/spell_descrioption"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="8dp"
                 android:layout_weight="1"
                 android:padding="10dp"
                 android:text="TextView"
                 android:textColor="@color/textColor"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
         </LinearLayout>
 
