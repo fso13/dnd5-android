@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements UpdateNotice {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_all_spells, R.id.nav_all_monsters, R.id.nav_master_help)
+                R.id.nav_all_spells, R.id.nav_all_monsters, R.id.nav_master_help, R.id.nav_profiles, R.id.nav_randoms)
                 .setDrawerLayout(drawer)
                 .build();
 

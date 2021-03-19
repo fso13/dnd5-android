@@ -2,6 +2,8 @@ package ru.drudenko.dnd.fragment.profile;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
@@ -9,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import ru.drudenko.dnd.R;
@@ -30,6 +33,7 @@ public class ProfileFragment extends Fragment implements AbsListView.OnScrollLis
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        setHasOptionsMenu(true);
 
         View root = inflater.inflate(R.layout.fragment_profile, container, false);
         ListView listView = root.findViewById(R.id.profileList);
@@ -51,6 +55,11 @@ public class ProfileFragment extends Fragment implements AbsListView.OnScrollLis
         });
 
         return root;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
     }
 
     @Override

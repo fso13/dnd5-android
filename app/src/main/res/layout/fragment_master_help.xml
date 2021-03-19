@@ -3,10 +3,14 @@
     android:id="@+id/LinearLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:divider="@color/colorPrimary"
+    android:dividerHeight="1dp"
     android:orientation="vertical">
 
     <fragment
         android:name="ru.drudenko.dnd.fragment.master.MasterHelpFragment"
+        android:divider="@color/colorPrimary"
+        android:dividerHeight="1dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </LinearLayout>

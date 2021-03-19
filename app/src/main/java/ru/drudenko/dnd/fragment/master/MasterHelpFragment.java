@@ -26,7 +26,6 @@ public class MasterHelpFragment extends ListFragment {
         super.onActivityCreated(savedInstanceState);
         SingleAdapter adapter = new SingleAdapter(getActivity(), data);
         setListAdapter(adapter);
-        getListView().setDividerHeight(1);
     }
 
     @Override
