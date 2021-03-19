@@ -54,7 +54,7 @@ public class HelpActivity extends AppCompatActivity {
         } catch (Exception ignored) {
         }
         WebView info = findViewById(R.id.textView);
-
+        info.getSettings().setDefaultFontSize(16);
         info.loadDataWithBaseURL(null, "    <style>\n" +
                 "        table {\n" +
                 "            border-collapse: collapse;\n" +

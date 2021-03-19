@@ -26,6 +26,7 @@
             android:layout_height="match_parent"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
+            android:textSize="16sp"
             app:layout_constraintEnd_toStartOf="@+id/delete_profile"
             app:layout_constraintStart_toEndOf="@+id/toggleButton" />
 

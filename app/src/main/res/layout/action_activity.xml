@@ -26,7 +26,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/textview"
                 android:textColor="@color/textColor"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tablayout"
@@ -67,6 +67,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:fillViewport="true"
+                android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tablayout"
                 tools:layout_editor_absoluteX="1dp">

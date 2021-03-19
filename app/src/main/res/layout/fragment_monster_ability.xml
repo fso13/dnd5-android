@@ -18,7 +18,7 @@
                 android:gravity="right"
                 android:text="СИЛ"
                 android:textColor="@color/colorPrimary"
-                android:textSize="24sp" />
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/textView_str"
@@ -26,14 +26,14 @@
                 android:gravity="center"
                 android:text="TextView"
                 android:textColor="@color/textColor"
-                android:textSize="24sp" />
+                android:textSize="18sp" />
 
             <TextView
                 android:layout_weight="1"
                 android:gravity="right"
                 android:text="ИНТ "
                 android:textColor="@color/colorPrimary"
-                android:textSize="24sp" />
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/textView_int"
@@ -41,7 +41,7 @@
                 android:gravity="center"
                 android:text="TextView"
                 android:textColor="@color/textColor"
-                android:textSize="24sp" />
+                android:textSize="18sp" />
 
         </TableRow>
 
@@ -54,7 +54,7 @@
                 android:gravity="right"
                 android:text="ЛОВ "
                 android:textColor="@color/colorPrimary"
-                android:textSize="24sp" />
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/textView_dex"
@@ -62,14 +62,14 @@
                 android:gravity="center"
                 android:text="TextView"
                 android:textColor="@color/textColor"
-                android:textSize="24sp" />
+                android:textSize="18sp" />
 
             <TextView
                 android:layout_weight="1"
                 android:gravity="right"
                 android:text="МДР"
                 android:textColor="@color/colorPrimary"
-                android:textSize="24sp" />
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/textView_wis"
@@ -77,7 +77,7 @@
                 android:gravity="center"
                 android:text="TextView"
                 android:textColor="@color/textColor"
-                android:textSize="24sp" />
+                android:textSize="18sp" />
         </TableRow>
 
         <TableRow
@@ -89,7 +89,7 @@
                 android:gravity="right"
                 android:text="ХАР "
                 android:textColor="@color/colorPrimary"
-                android:textSize="24sp" />
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/textView_cha"
@@ -97,14 +97,14 @@
                 android:gravity="center"
                 android:text="TextView"
                 android:textColor="@color/textColor"
-                android:textSize="24sp" />
+                android:textSize="18sp" />
 
             <TextView
                 android:layout_weight="1"
                 android:gravity="right"
                 android:text="ТЕЛ "
                 android:textColor="@color/colorPrimary"
-                android:textSize="24sp" />
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/textView_con"
@@ -112,7 +112,7 @@
                 android:gravity="center"
                 android:text="TextView"
                 android:textColor="@color/textColor"
-                android:textSize="24sp" />
+                android:textSize="18sp" />
 
         </TableRow>
 
@@ -162,7 +162,7 @@
                     android:gravity="left"
                     android:text="Размер"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="18sp" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/textView_size"
@@ -175,7 +175,7 @@
                     android:textColorHighlight="@color/textColor"
                     android:textColorHint="@color/textColor"
                     android:textColorLink="@color/colorPrimary"
-                    android:textSize="18sp" />
+                    android:textSize="16sp" />
 
             </LinearLayout>
         </TableRow>
@@ -197,7 +197,7 @@
                     android:gravity="left"
                     android:text="Навыки"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="18sp" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/textView_navik"
@@ -210,7 +210,7 @@
                     android:textColorHighlight="@color/textColor"
                     android:textColorHint="@color/textColor"
                     android:textColorLink="@color/colorPrimary"
-                    android:textSize="18sp" />
+                    android:textSize="16sp" />
 
             </LinearLayout>
         </TableRow>
@@ -232,7 +232,7 @@
                     android:gravity="left"
                     android:text="Чувства"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="18sp" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/textView_chuvstva"
@@ -245,7 +245,7 @@
                     android:textColorHighlight="@color/textColor"
                     android:textColorHint="@color/textColor"
                     android:textColorLink="@color/colorPrimary"
-                    android:textSize="18sp" />
+                    android:textSize="16sp" />
 
             </LinearLayout>
         </TableRow>
@@ -267,7 +267,7 @@
                     android:gravity="left"
                     android:text="Языки"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="18sp" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/textView_lang"
@@ -280,7 +280,7 @@
                     android:textColorHighlight="@color/textColor"
                     android:textColorHint="@color/textColor"
                     android:textColorLink="@color/colorPrimary"
-                    android:textSize="18sp" />
+                    android:textSize="16sp" />
 
             </LinearLayout>
         </TableRow>
@@ -302,7 +302,7 @@
                     android:gravity="left"
                     android:text="Окружение"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="18sp" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/textView_biom"
@@ -315,7 +315,7 @@
                     android:textColorHighlight="@color/textColor"
                     android:textColorHint="@color/textColor"
                     android:textColorLink="@color/colorPrimary"
-                    android:textSize="18sp" />
+                    android:textSize="16sp" />
 
             </LinearLayout>
         </TableRow>

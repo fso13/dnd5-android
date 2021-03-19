@@ -10,4 +10,4 @@
     android:paddingBottom="3dp"
     android:singleLine="true"
     android:textColor="@color/textColor"
-    android:textSize="20sp" />
+    android:textSize="18sp" />

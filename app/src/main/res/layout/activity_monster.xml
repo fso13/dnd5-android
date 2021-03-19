@@ -65,9 +65,9 @@
                         android:autoText="true"
                         android:text="Опастность 0"
                         android:textColor="@color/textColor"
-                        android:textSize="18sp"
-                        app:autoSizeMaxTextSize="32sp"
-                        app:autoSizeMinTextSize="18sp" />
+                        android:textSize="16sp"
+                        app:autoSizeMaxTextSize="20sp"
+                        app:autoSizeMinTextSize="16sp" />
 
                     <TextView
                         android:id="@+id/textView_exp"
@@ -77,9 +77,9 @@
                         android:autoText="true"
                         android:text="0 опыт"
                         android:textColor="@color/textColor"
-                        android:textSize="18sp"
-                        app:autoSizeMaxTextSize="32sp"
-                        app:autoSizeMinTextSize="18sp" />
+                        android:textSize="16sp"
+                        app:autoSizeMaxTextSize="20sp"
+                        app:autoSizeMinTextSize="16sp" />
 
                     <TextView
                         android:id="@+id/textView13"
@@ -111,8 +111,8 @@
                         android:gravity="center"
                         android:text="- КД"
                         android:textColor="@color/textColor"
-                        android:textSize="24sp"
-                        app:autoSizeMaxTextSize="32sp"
+                        android:textSize="18sp"
+                        app:autoSizeMaxTextSize="20sp"
                         app:autoSizeMinTextSize="18sp" />
 
                     <TextView
@@ -123,8 +123,8 @@
                         android:gravity="center"
                         android:text="- ХП"
                         android:textColor="@color/textColor"
-                        android:textSize="24sp"
-                        app:autoSizeMaxTextSize="32sp"
+                        android:textSize="18sp"
+                        app:autoSizeMaxTextSize="20sp"
                         app:autoSizeMinTextSize="18sp" />
 
                     <TextView
@@ -135,8 +135,8 @@
                         android:gravity="center"
                         android:text="    -    "
                         android:textColor="@color/textColor"
-                        android:textSize="24sp"
-                        app:autoSizeMaxTextSize="32sp"
+                        android:textSize="18sp"
+                        app:autoSizeMaxTextSize="20sp"
                         app:autoSizeMinTextSize="18sp" />
                 </TableRow>
 

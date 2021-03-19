@@ -27,6 +27,7 @@ public class RandomEventActivity extends AppCompatActivity implements AbsListVie
         Bundle bundle = getIntent().getExtras();
 
         RandomEvent randomEvent = RandomConstant.randomEventList.get((Integer) bundle.get("RANDOM_EVENT_ID"));
+        setTitle(randomEvent.getTitle());
 
         ListView listView = findViewById(R.id.events);
 

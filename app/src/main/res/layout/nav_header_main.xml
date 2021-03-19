@@ -37,7 +37,7 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="@color/textColor"
         android:textColorLink="@color/colorPrimary"
-        android:textSize="12sp" />
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/textView"

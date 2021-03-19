@@ -1,6 +1,7 @@
 package ru.drudenko.dnd.fragment.master;
 
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import ru.drudenko.dnd.R;
 import ru.drudenko.dnd.activity.HelpActivity;
 import ru.drudenko.dnd.adapter.SingleAdapter;
 import ru.drudenko.dnd.model.CustomItem;
@@ -24,6 +26,10 @@ public class MasterHelpFragment extends ListFragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        ListView lv = getListView();
+        ColorDrawable sage = new ColorDrawable(this.getResources().getColor(R.color.colorPrimary));
+        lv.setDivider(sage);
+        lv.setDividerHeight(1);
         SingleAdapter adapter = new SingleAdapter(getActivity(), data);
         setListAdapter(adapter);
     }

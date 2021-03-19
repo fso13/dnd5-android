@@ -13,5 +13,5 @@
         android:text="TextView"
         android:textColor="@color/textColor"
         android:textColorLink="@color/colorPrimary"
-        android:textSize="18sp" />
+        android:textSize="16sp" />
 </ScrollView>

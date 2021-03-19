@@ -46,6 +46,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
+                android:gravity="end"
                 android:text="TextView"
                 android:textColor="@color/textColor"
                 android:textSize="16sp"
@@ -84,6 +85,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
+                android:gravity="end"
                 android:text="TextView"
                 android:textColor="@color/textColor"
                 android:textSize="16sp"
@@ -122,6 +124,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
+                android:gravity="end"
                 android:text="TextView"
                 android:textColor="@color/textColor"
                 android:textSize="16sp"
@@ -160,6 +163,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
+                android:gravity="end"
                 android:text="TextView"
                 android:textColor="@color/textColor"
                 android:textSize="16sp"
@@ -197,6 +201,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
+                android:gravity="end"
                 android:text="TextView"
                 android:textColor="@color/textColor"
                 android:textSize="16sp"
@@ -236,6 +241,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
+                android:gravity="end"
                 android:text="TextView"
                 android:textColor="@color/textColor"
                 android:textSize="16sp"
@@ -274,6 +280,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
+                android:gravity="end"
                 android:text="TextView"
                 android:textColor="@color/textColor"
                 android:textSize="16sp"
@@ -312,6 +319,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
+                android:gravity="end"
                 android:text="TextView"
                 android:textColor="@color/textColor"
                 android:textSize="16sp"
@@ -319,11 +327,6 @@
                 app:layout_constraintStart_toEndOf="@+id/space10" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:orientation="vertical" />
 
         <LinearLayout
             android:layout_width="match_parent"

@@ -25,7 +25,7 @@
                 android:layout_weight="1"
                 android:text="@string/attack"
                 android:textColor="@color/colorPrimary"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/textView2"
@@ -34,7 +34,7 @@
                 android:layout_weight="2"
                 android:text="@string/ranged_attack"
                 android:textColor="@color/textColor"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
         </TableRow>
 
         <TableRow
@@ -50,7 +50,7 @@
                 android:layout_weight="1"
                 android:text="@string/cast_spell"
                 android:textColor="@color/colorPrimary"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/textView4"
@@ -59,7 +59,7 @@
                 android:layout_weight="2"
                 android:text="@string/using_spell"
                 android:textColor="@color/textColor"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
         </TableRow>
 
         <TableRow
@@ -75,7 +75,7 @@
                 android:layout_weight="1"
                 android:text="@string/dash"
                 android:textColor="@color/colorPrimary"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/textView6"
@@ -84,7 +84,7 @@
                 android:layout_weight="2"
                 android:text="@string/speed_doubles"
                 android:textColor="@color/textColor"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
         </TableRow>
 
         <TableRow
@@ -100,7 +100,7 @@
                 android:layout_weight="1"
                 android:text="@string/retreat"
                 android:textColor="@color/colorPrimary"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/textView8"
@@ -109,7 +109,7 @@
                 android:layout_weight="2"
                 android:text="@string/retreat_description"
                 android:textColor="@color/textColor"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
         </TableRow>
 
         <TableRow
@@ -125,7 +125,7 @@
                 android:layout_weight="1"
                 android:text="@string/evasion"
                 android:textColor="@color/colorPrimary"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/textView10"
@@ -134,7 +134,7 @@
                 android:layout_weight="2"
                 android:text="@string/evasion_description"
                 android:textColor="@color/textColor"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
         </TableRow>
 
         <TableRow
@@ -150,7 +150,7 @@
                 android:layout_weight="1"
                 android:text="@string/help"
                 android:textColor="@color/colorPrimary"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/textView12"
@@ -159,7 +159,7 @@
                 android:layout_weight="2"
                 android:text="@string/help_description"
                 android:textColor="@color/textColor"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
         </TableRow>
 
         <TableRow
@@ -175,7 +175,7 @@
                 android:layout_weight="1"
                 android:text="@string/wait"
                 android:textColor="@color/colorPrimary"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/textView14"
@@ -184,7 +184,7 @@
                 android:layout_weight="2"
                 android:text="@string/wait_description"
                 android:textColor="@color/textColor"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
         </TableRow>
 
         <TableRow
@@ -200,7 +200,7 @@
                 android:layout_weight="1"
                 android:text="@string/preparation"
                 android:textColor="@color/colorPrimary"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/textView16"
@@ -209,7 +209,7 @@
                 android:layout_weight="2"
                 android:text="@string/preparation_description"
                 android:textColor="@color/textColor"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
         </TableRow>
 
         <TableRow
@@ -225,7 +225,7 @@
                 android:layout_weight="1"
                 android:text="@string/search"
                 android:textColor="@color/colorPrimary"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/textView18"
@@ -234,7 +234,7 @@
                 android:layout_weight="2"
                 android:text="@string/search_description"
                 android:textColor="@color/textColor"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
         </TableRow>
 
         <TableRow
@@ -250,7 +250,7 @@
                 android:layout_weight="1"
                 android:text="@string/using"
                 android:textColor="@color/colorPrimary"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/textView20"
@@ -259,7 +259,7 @@
                 android:layout_weight="2"
                 android:text="@string/using_description"
                 android:textColor="@color/textColor"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
         </TableRow>
     </TableLayout>
 </ScrollView>
