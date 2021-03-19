@@ -2,4 +2,5 @@
 <resources>
     <string name="spinner_source">Источник</string>
     <string name="username">Имя профиля</string>
+    <string name="menu_randoms">Случайные события</string>
 </resources>

@@ -10,7 +10,7 @@ public class RandomConstant {
 
     static {
         randomEventList = new ArrayList<>();
-        RandomEvent event = new RandomEvent("БЕЗДЕЛУШКИ ЧАСТЬ 1 D100", 100, new ArrayList<>());
+        RandomEvent event = new RandomEvent("Безделушки часть 1 D100", 100, new ArrayList<>());
         event.getEventList().add(new RandomEvent.Event(1, 1, "Мумифицированная рука гоблина"));
         event.getEventList().add(new RandomEvent.Event(2, 2, "Кусочек кристалла, слабо светящийся в лунном свете"));
         event.getEventList().add(new RandomEvent.Event(3, 3, "Золотая монета, отчеканенная в неизвестной стране"));
@@ -114,7 +114,7 @@ public class RandomConstant {
         randomEventList.add(event);
 
 
-        RandomEvent event2 = new RandomEvent("БЕЗДЕЛУШКИ ЧАСТЬ 2 D100", 100, new ArrayList<>());
+        RandomEvent event2 = new RandomEvent("Безделушки часть 2 D100", 100, new ArrayList<>());
         event2.getEventList().add(new RandomEvent.Event(1, 1, "Круглая монетка с отверстием в центре, сделанная из какого-то странного темного металла."));
         event2.getEventList().add(new RandomEvent.Event(2, 2, "Кукла изображающая белокурого, голубоглазого ребенка. Кажется, она следит глазами за окружающими."));
         event2.getEventList().add(new RandomEvent.Event(3, 3, "Кусок ткани, который за час отчищается от любой грязи."));
@@ -218,7 +218,7 @@ public class RandomConstant {
 
         randomEventList.add(event2);
 
-        RandomEvent event3 = new RandomEvent("БЕЗДЕЛУШКИ ЧАСТЬ 3 D100", 100, new ArrayList<>());
+        RandomEvent event3 = new RandomEvent("Безделушки часть 3 D100", 100, new ArrayList<>());
         event3.getEventList().add(new RandomEvent.Event(1, 1, "1d6 медных монет в грязном кошельке."));
         event3.getEventList().add(new RandomEvent.Event(2, 2, "Шарик гуано летучей мыши, завёрнутый в восковую бумагу."));
         event3.getEventList().add(new RandomEvent.Event(3, 3, "Тонкий кинжал с пятнами крови на лезвии."));
@@ -321,7 +321,7 @@ public class RandomConstant {
         event3.getEventList().add(new RandomEvent.Event(100, 100, "Карманная ловушка."));
         randomEventList.add(event3);
 
-        RandomEvent event4 = new RandomEvent("ЗАНИМАТЕЛЬНЫЕ БЕЗДЕЛУШКИ D100", 100, new ArrayList<>());
+        RandomEvent event4 = new RandomEvent("Занимательные безделушки D100", 100, new ArrayList<>());
         event4.getEventList().add(new RandomEvent.Event(1, 1, "Маленькая фигурка птицы, сложенная из бумаги. Если ее развернуть, порвать или помять, она вскоре восстановится."));
         event4.getEventList().add(new RandomEvent.Event(2, 2, "Простой наперсток. В нем нет ничего примечательного. Абсолютно."));
         event4.getEventList().add(new RandomEvent.Event(3, 3, "Стеклянный шарик, похожий на глаз ящера. На ощупь всегда немного прохладный."));
@@ -424,7 +424,7 @@ public class RandomConstant {
         event4.getEventList().add(new RandomEvent.Event(100, 100, "Деревянный скворечник, выполненный в виде замка."));
         randomEventList.add(event4);
 
-        RandomEvent event5 = new RandomEvent("МЕБЕЛЬ В ДОМЕ D100", 100, new ArrayList<>());
+        RandomEvent event5 = new RandomEvent("Мебель в доме D100", 100, new ArrayList<>());
         event5.getEventList().add(new RandomEvent.Event(2, 2, "Анкерок (бочонок, 10 галлонов)"));
         event5.getEventList().add(new RandomEvent.Event(1, 1, "Алтарь"));
         event5.getEventList().add(new RandomEvent.Event(10, 10, "Ванна"));
@@ -514,7 +514,7 @@ public class RandomConstant {
         event5.getEventList().add(new RandomEvent.Event(99, 99, "Шкаф, для посуды"));
         randomEventList.add(event5);
 
-        RandomEvent event6 = new RandomEvent("УТВАРЬ И ЛИЧНЫЕ ПРЕДМЕТЫ D100", 100, new ArrayList<>());
+        RandomEvent event6 = new RandomEvent("Утварь и личные предметы D100", 100, new ArrayList<>());
         event6.getEventList().add(new RandomEvent.Event(1, 1, "Бинты"));
         event6.getEventList().add(new RandomEvent.Event(10, 10, "Ветошь"));
         event6.getEventList().add(new RandomEvent.Event(11, 11, "Вилка"));
@@ -594,7 +594,7 @@ public class RandomConstant {
         event6.getEventList().add(new RandomEvent.Event(99, 100, "Щётка"));
         randomEventList.add(event6);
 
-        RandomEvent event7 = new RandomEvent("РЕЛИГИОЗНЫЕ МЕБЕЛЬ И ПРЕДМЕТЫ D100", 100, new ArrayList<>());
+        RandomEvent event7 = new RandomEvent("Религиозные мебель и предметы D100", 100, new ArrayList<>());
         event7.getEventList().add(new RandomEvent.Event(1, 5, "Алтарь"));
         event7.getEventList().add(new RandomEvent.Event(11, 12, "Гонг"));
         event7.getEventList().add(new RandomEvent.Event(13, 13, "Горизонтальные перила"));
@@ -656,7 +656,7 @@ public class RandomConstant {
         event7.getEventList().add(new RandomEvent.Event(97, 100, "Ящик для подаяния"));
         randomEventList.add(event7);
 
-        RandomEvent event8 = new RandomEvent("СОДЕРЖИМОЕ ЗАГАДОЧНОЙ ШКАТУЛКИ D100", 100, new ArrayList<>());
+        RandomEvent event8 = new RandomEvent("Содержимое загадочной шкатулки D100", 100, new ArrayList<>());
         event8.getEventList().add(new RandomEvent.Event(1, 3, "Внутренние органы"));
         event8.getEventList().add(new RandomEvent.Event(15, 19, "Жидкость, тягучая"));
         event8.getEventList().add(new RandomEvent.Event(20, 22, "Жир"));
@@ -686,7 +686,7 @@ public class RandomConstant {
         event8.getEventList().add(new RandomEvent.Event(99, 100, "Щепки"));
         randomEventList.add(event8);
 
-        RandomEvent event9 = new RandomEvent("КНИГИ И СВИТКИ НА ПОЛКАХ И В БИБЛИОТЕКЕ D100", 100, new ArrayList<>());
+        RandomEvent event9 = new RandomEvent("Книги и свитки на полках и в библиотеке D100", 100, new ArrayList<>());
         event9.getEventList().add(new RandomEvent.Event(1, 2, "Алхимические заметки"));
         event9.getEventList().add(new RandomEvent.Event(100, 100, "Учебник грамматики"));
         event9.getEventList().add(new RandomEvent.Event(12, 12, "Богословский текст"));
@@ -739,7 +739,7 @@ public class RandomConstant {
         event9.getEventList().add(new RandomEvent.Event(99, 99, "Том запретного знания"));
         randomEventList.add(event9);
 
-        RandomEvent event10 = new RandomEvent("ПРЕДМЕТЫ ИСКУССТВА D100", 100, new ArrayList<>());
+        RandomEvent event10 = new RandomEvent("Предметы искусства D100", 100, new ArrayList<>());
         event10.getEventList().add(new RandomEvent.Event(1, 1, "Мраморный бюст дамы с большим носом"));
         event10.getEventList().add(new RandomEvent.Event(10, 10, "Стопка листов тонкого пергамента"));
         event10.getEventList().add(new RandomEvent.Event(100, 100, "Что-то типа стальной втулки"));
@@ -842,7 +842,7 @@ public class RandomConstant {
         event10.getEventList().add(new RandomEvent.Event(99, 99, "Медные сковородки"));
         randomEventList.add(event10);
 
-        RandomEvent event11 = new RandomEvent("ГОТИЧЕСКИЕ БЕЗДЕЛУШКИ (СТРАШИЛКИ) D100", 100, new ArrayList<>());
+        RandomEvent event11 = new RandomEvent("Готические безделушки (страшилки) D100", 100, new ArrayList<>());
         event11.getEventList().add(new RandomEvent.Event(1, 1, "Треснувшие очки, если смотреть сквозь них, временами можно увидеть странные земли, населенные ужасающими созданиями."));
         event11.getEventList().add(new RandomEvent.Event(10, 10, "Большой бронзовый ключ, украшенный эмблемой с черепом и крещеными костьми."));
         event11.getEventList().add(new RandomEvent.Event(100, 100, "Современный перевод древнего предсказания о том, что самые высокие земли падут, когда небеса заплачут кровью."));
@@ -945,7 +945,7 @@ public class RandomConstant {
         event11.getEventList().add(new RandomEvent.Event(99, 99, "Кольцо из черного камня, которое нагревается, если рядом есть эманации Царства Теней."));
         randomEventList.add(event11);
 
-        RandomEvent event12 = new RandomEvent("НЕОБЫЧНЫЕ БЕЗДЕЛУШКИ (МАГИЧЕСКИЕ) D100", 100, new ArrayList<>());
+        RandomEvent event12 = new RandomEvent("Необычные безделушки (магические) D100", 100, new ArrayList<>());
         event12.getEventList().add(new RandomEvent.Event(1, 1, "Маленький кристалл, который может уместиться на вытянутом пальце ребенка-полурослика. Мягко сияет и пульсирует, когда к нему подносят что-то красное."));
         event12.getEventList().add(new RandomEvent.Event(10, 10, "Сломанный святой меч, на нем начертано имя легендарного паладина."));
         event12.getEventList().add(new RandomEvent.Event(100, 100, "Негорящий факел. Черный как смоль факел, с золотой надписью \"Лишь в час темнейший загорюсь.\". Любые попытки зажечь его, магические или обычные, провалятся. Но, если персонаж, носящий его окажется на волоске от смерти, Негорящий Факел вспыхнет."));
@@ -1048,7 +1048,7 @@ public class RandomConstant {
         event12.getEventList().add(new RandomEvent.Event(99, 99, "Чарм из граненого черного обсидиана. Прикоснувшийся выпустит странные призрачные видения чуждого мира, абсолютно отличающегося от нашего, но в то же время, в общих чертах и формах, устрашающе похожего на наш."));
         randomEventList.add(event12);
 
-        RandomEvent event13 = new RandomEvent("БЕЗДЕЛУШКИ С СЕВЕРА D100", 100, new ArrayList<>());
+        RandomEvent event13 = new RandomEvent("Безделушки с севера D100", 100, new ArrayList<>());
         event13.getEventList().add(new RandomEvent.Event(1, 1, "Золотая статуэтка, изображающая женщину одетую для битвы, но с безмятежным выражением на лице."));
         event13.getEventList().add(new RandomEvent.Event(10, 10, "Пара непромокаемых зимних ботинок."));
         event13.getEventList().add(new RandomEvent.Event(100, 100, "Сосновая шишка, напоминающее бородатую голову."));
@@ -1151,7 +1151,7 @@ public class RandomConstant {
         event13.getEventList().add(new RandomEvent.Event(99, 99, "Серебрянная булава для волос."));
         randomEventList.add(event13);
 
-        RandomEvent event14 = new RandomEvent("НАХОДКИ В МОГИЛЕ D100", 100, new ArrayList<>());
+        RandomEvent event14 = new RandomEvent("Находки в могиле D100", 100, new ArrayList<>());
         event14.getEventList().add(new RandomEvent.Event(1, 1, "Книга с родословной похороненного. Если персонаж потратит достаточно времени на изучение, то поймет, что они с покойным родственники."));
         event14.getEventList().add(new RandomEvent.Event(10, 10, "Тело лежит на боку обнимая мумифицированного псевдодракона."));
         event14.getEventList().add(new RandomEvent.Event(100, 100, "Карта мест в округе с несколькими отметками крестиками. (Только в одном из отмеченных мест клад, в остальных ловушки)."));
@@ -1255,7 +1255,7 @@ public class RandomConstant {
 
         randomEventList.add(event14);
 
-        RandomEvent event15 = new RandomEvent("НАДГРОБИЯ D20", 20, new ArrayList<>());
+        RandomEvent event15 = new RandomEvent("Надгробия D20", 20, new ArrayList<>());
         event15.getEventList().add(new RandomEvent.Event(1, 1, "Нагромождение каменных валунов из которого растет ветвистое дерево. На небольшой деревянной дощечке надпись, выполненная, от руки: \"Прах к праху\""));
         event15.getEventList().add(new RandomEvent.Event(10, 10, "Каменная горгулья сидит над безымянной могилой. Ее пасть оскалена, а в глазницы вставлены красные самоцветы. Каждую ночь она исчезает и появляется утром. В немного другой позе."));
         event15.getEventList().add(new RandomEvent.Event(11, 11, "Земляная могила обложена по периметру камнями с магическими рунами, Могилу пересекают кованые железные полосы, как будто это клетка, сдерживающая кого-то внутри. Надгробье предупреждает: \"Берегитесь\". Сбоку на нем висит бронзовый колокол, от которого в могилу уходит железный трос."));
@@ -1279,7 +1279,7 @@ public class RandomConstant {
 
         randomEventList.add(event15);
 
-        RandomEvent event16 = new RandomEvent("ХИТРЫЕ БЕЗДЕЛУШКИ D20", 20, new ArrayList<>());
+        RandomEvent event16 = new RandomEvent("Хитрые безделушки D20", 20, new ArrayList<>());
         event16.getEventList().add(new RandomEvent.Event(1, 1, "Чешуйка серебряного дракона, которая блестит при лунном свете. Когда на нее смотришь, то кажется, что она пытается вернуться к своему ИСТИННОМУ владельцу."));
         event16.getEventList().add(new RandomEvent.Event(10, 10, "Коробка размерами 3''x4''x2'', внутри которой лежит губка, пропитанная чернилами. Прикосновение к губке отображает на ней то, к чему прикоснулась эта рука за последний час. Чернила сходят сами спустя час и не могут быть смыты. После использования губка высыхает, а чтобы наполнить ее вновь нужно потратить один флакон чернил"));
         event16.getEventList().add(new RandomEvent.Event(11, 11, "Небольшой синий камешек. Или красный? Он же только что был синий! Нет, определенно желтый..."));
@@ -1303,7 +1303,7 @@ public class RandomConstant {
 
         randomEventList.add(event16);
 
-        RandomEvent event17 = new RandomEvent("МАГИЧЕСКИЕ БЕЗДЕЛУШКИ 30ШТ.", 30, new ArrayList<>());
+        RandomEvent event17 = new RandomEvent("Магические безделушки 30шт.", 30, new ArrayList<>());
         event17.getEventList().add(new RandomEvent.Event(1, 1, "Волынка Невидимости - игрок получает невидимость, пока он играет на волынки."));
         event17.getEventList().add(new RandomEvent.Event(10, 10, "Старый Озерный Факел - этот факел автоматически загорается, когда находится в воде и потухает без воды. Можно найти по свету в водоеме."));
         event17.getEventList().add(new RandomEvent.Event(11, 11, "Сфера слез - шар, который позволит вам увидеть плачущего человека на том же плане, на котором вы сейчас находитесь. Он слегка влажный на ощупь."));
@@ -1337,7 +1337,7 @@ public class RandomConstant {
 
         randomEventList.add(event17);
 
-        RandomEvent event18 = new RandomEvent("УНИКАЛЬНЫЕ СОКРОВИЩА D100", 100, new ArrayList<>());
+        RandomEvent event18 = new RandomEvent("Уникальные сокровища D100", 100, new ArrayList<>());
         event18.getEventList().add(new RandomEvent.Event(1, 1, "Украшенные гранатами воровские инструменты."));
         event18.getEventList().add(new RandomEvent.Event(10, 10, "Записная книжка в кожаном переплёте, украшенная волшебными символами."));
         event18.getEventList().add(new RandomEvent.Event(100, 100, "Клетка с пробуженным (awakened) сверчком."));
@@ -1441,7 +1441,7 @@ public class RandomConstant {
 
         randomEventList.add(event18);
 
-        RandomEvent event19 = new RandomEvent("ДРАГОЦЕННЫЕ КАМНИ 10зм D12 (Official)", 12, new ArrayList<>());
+        RandomEvent event19 = new RandomEvent("Драгоценные камни 10зм D12 (Official)", 12, new ArrayList<>());
         event19.getEventList().add(new RandomEvent.Event(1, 1, "Азурит (непрозрачный, пёстрый тёмно-синий) (10 зм)"));
         event19.getEventList().add(new RandomEvent.Event(10, 10, "Полосчатый агат (полупрозрачный, с чередующимися коричневыми, голубыми, белыми или красными полосами) (10 зм)"));
         event19.getEventList().add(new RandomEvent.Event(11, 11, "Родохрозит (непрозрачный, светло-розовый) (10 зм)"));
@@ -1456,7 +1456,7 @@ public class RandomConstant {
         event19.getEventList().add(new RandomEvent.Event(9, 9, "Обсидиан (непрозрачный, чёрный) (10 зм)"));
         randomEventList.add(event19);
 
-        RandomEvent event20 = new RandomEvent("ДРАГОЦЕННЫЕ КАМНИ 50зм D12 (Official)", 12, new ArrayList<>());
+        RandomEvent event20 = new RandomEvent("Драгоценные камни 50зм D12 (Official)", 12, new ArrayList<>());
         event20.getEventList().add(new RandomEvent.Event(1, 1, "Гелиотроп (непрозрачный, тёмно-серый с красными вкраплениями) (50 зм)"));
         event20.getEventList().add(new RandomEvent.Event(10, 10, "Циркон (прозрачный, бледный зелёно-голубой) (50 зм)"));
         event20.getEventList().add(new RandomEvent.Event(11, 11, "Цитрин (прозрачный, жёлто-коричневый) (50 зм)"));
@@ -1471,7 +1471,7 @@ public class RandomConstant {
         event20.getEventList().add(new RandomEvent.Event(9, 9, "Хризопраз (полупрозрачный, зелёный) (50 зм)"));
         randomEventList.add(event20);
 
-        RandomEvent event21 = new RandomEvent("ДРАГОЦЕННЫЕ КАМНИ 100зм D10 (Official)", 10, new ArrayList<>());
+        RandomEvent event21 = new RandomEvent("Драгоценные камни 100зм D10 (Official)", 10, new ArrayList<>());
         event21.getEventList().add(new RandomEvent.Event(1, 1, "Аметист (прозрачный, тёмно-фиолетовый) (100 зм)"));
         event21.getEventList().add(new RandomEvent.Event(10, 10, "Янтарь (прозрачный, жёлто-золотой) (100 зм)"));
         event21.getEventList().add(new RandomEvent.Event(2, 2, "Гагат (непрозрачный, чёрный) (100 зм)"));
@@ -1484,7 +1484,7 @@ public class RandomConstant {
         event21.getEventList().add(new RandomEvent.Event(9, 9, "Шпинель (прозрачная, красная, красно-коричневая или тёмно-зелёная) (100 зм)"));
         randomEventList.add(event21);
 
-        RandomEvent event22 = new RandomEvent("ДРАГОЦЕННЫЕ КАМНИ 500зм D6 (Official)", 6, new ArrayList<>());
+        RandomEvent event22 = new RandomEvent("Драгоценные камни 500зм D6 (Official)", 6, new ArrayList<>());
         event22.getEventList().add(new RandomEvent.Event(1, 1, "Аквамарин (прозрачный, зелёно-голубой) (500 зм)"));
         event22.getEventList().add(new RandomEvent.Event(2, 2, "Александрит (прозрачный, тёмно-зелёный) (500 зм)"));
         event22.getEventList().add(new RandomEvent.Event(3, 3, "Синяя шпинель (прозрачная, синяя) (500 зм)"));
@@ -1493,7 +1493,7 @@ public class RandomConstant {
         event22.getEventList().add(new RandomEvent.Event(6, 6, "Чёрный жемчуг (непрозрачный, чисто чёрный) (500 зм)"));
         randomEventList.add(event22);
 
-        RandomEvent event23 = new RandomEvent("ДРАГОЦЕННЫЕ КАМНИ 1000зм D8 (Official)", 8, new ArrayList<>());
+        RandomEvent event23 = new RandomEvent("Драгоценные камни 1000зм D8 (Official)", 8, new ArrayList<>());
         event23.getEventList().add(new RandomEvent.Event(1, 1, "Голубой сапфир (прозрачный, от бело-голубого до умеренно синего) (1000 зм)"));
         event23.getEventList().add(new RandomEvent.Event(2, 2, "Жёлтый сапфир (прозрачный, огненно-жёлтый или жёлто-зелёный) (1000 зм)"));
         event23.getEventList().add(new RandomEvent.Event(3, 3, "Звёздчатый рубин (полупрозрачный, рубин с белёсой звездой в центре) (1000 зм)"));
@@ -1505,7 +1505,7 @@ public class RandomConstant {
 
         randomEventList.add(event23);
 
-        RandomEvent event24 = new RandomEvent("ДРАГОЦЕННЫЕ КАМНИ 10-5000зм D4 (Official)", 4, new ArrayList<>());
+        RandomEvent event24 = new RandomEvent("Драгоценные камни 10-5000зм D4 (Official)", 4, new ArrayList<>());
         event24.getEventList().add(new RandomEvent.Event(1, 1, "Глазчатый агат (полупрозАлмаз (прозрачный, сине-белый, ярко-жёлтый, розовый, коричневый или синий)(5000 зм)"));
         event24.getEventList().add(new RandomEvent.Event(2, 2, "Гиацинт (прозрачный, огненно-оранжевый) (5000 зм)"));
         event24.getEventList().add(new RandomEvent.Event(3, 3, "Рубин (прозрачный, чисто красный с переходом в тёмно-алый)(5000 зм)"));
@@ -1513,7 +1513,7 @@ public class RandomConstant {
 
         randomEventList.add(event24);
 
-        RandomEvent event25 = new RandomEvent("ПРОИЗВЕДЕНИЯ ИСКУССТВА 25зм D10 (Official)", 10, new ArrayList<>());
+        RandomEvent event25 = new RandomEvent("Произведения искусства 25зм D10 (Official)", 10, new ArrayList<>());
         event25.getEventList().add(new RandomEvent.Event(1, 1, "Серебряный кувшин (25 зм)"));
         event25.getEventList().add(new RandomEvent.Event(10, 10, "Золотой медальон с портретом возлюбленной внутри (25 зм)"));
         event25.getEventList().add(new RandomEvent.Event(2, 2, "Резная статуэтка из кости (25 зм)"));
@@ -1526,7 +1526,7 @@ public class RandomConstant {
         event25.getEventList().add(new RandomEvent.Event(9, 9, "Вышитый шёлковый носовой платок (25 зм)"));
         randomEventList.add(event25);
 
-        RandomEvent event26 = new RandomEvent("ПРОИЗВЕДЕНИЯ ИСКУССТВА 250зм D10 (Official)", 10, new ArrayList<>());
+        RandomEvent event26 = new RandomEvent("Произведения искусства 250зм D10 (Official)", 10, new ArrayList<>());
         event26.getEventList().add(new RandomEvent.Event(1, 1, "Золотое кольцо с гелиотропами (250 зм)"));
         event26.getEventList().add(new RandomEvent.Event(10, 10, "Золотая клетка для птиц, инкрустированная электрумом. (250 зм)"));
         event26.getEventList().add(new RandomEvent.Event(2, 2, "Резная статуэтка слоновой кости (250 зм)"));
@@ -1539,7 +1539,7 @@ public class RandomConstant {
         event26.getEventList().add(new RandomEvent.Event(9, 9, "Коробочка с бирюзовыми фигурками животных (250 зм)"));
         randomEventList.add(event26);
 
-        RandomEvent event27 = new RandomEvent("ПРОИЗВЕДЕНИЯ ИСКУССТВА 750зм D10 (Official)", 10, new ArrayList<>());
+        RandomEvent event27 = new RandomEvent("Произведения искусства 750зм D10 (Official)", 10, new ArrayList<>());
         event27.getEventList().add(new RandomEvent.Event(1, 1, "Серебряная чаша, декорированная лунным камнем (750 зм)"));
         event27.getEventList().add(new RandomEvent.Event(10, 10, "Расписная боевая маска из золота (750 зм)"));
         event27.getEventList().add(new RandomEvent.Event(2, 2, "Длинный меч из посеребрённой стали (750 зм)"));
@@ -1552,7 +1552,7 @@ public class RandomConstant {
         event27.getEventList().add(new RandomEvent.Event(9, 9, "Обсидиановая статуэтка с золотой инкрустацией (750 зм)"));
         randomEventList.add(event27);
 
-        RandomEvent event28 = new RandomEvent("ПРОИЗВЕДЕНИЯ ИСКУССТВА 2500зм D10 (Official)", 10, new ArrayList<>());
+        RandomEvent event28 = new RandomEvent("Произведения искусства 2500зм D10 (Official)", 10, new ArrayList<>());
         event28.getEventList().add(new RandomEvent.Event(1, 1, "Прекрасная золотая цепь с огненным опалом (2500 зм)"));
         event28.getEventList().add(new RandomEvent.Event(10, 10, "Ожерелье из маленьких розовых жемчужин (2500 зм)"));
         event28.getEventList().add(new RandomEvent.Event(2, 2, "Старинный шедевр живописи (2500 зм)"));
@@ -1565,7 +1565,7 @@ public class RandomConstant {
         event28.getEventList().add(new RandomEvent.Event(9, 9, "Глазная повязка с ложным глазом из голубого сапфира и лунного камня (2500 зм)"));
         randomEventList.add(event28);
 
-        RandomEvent event29 = new RandomEvent("ПРОИЗВЕДЕНИЯ ИСКУССТВА 7500зм D8 (Official)", 8, new ArrayList<>());
+        RandomEvent event29 = new RandomEvent("Произведения искусства 7500зм D8 (Official)", 8, new ArrayList<>());
         event29.getEventList().add(new RandomEvent.Event(1, 1, "Украшенная драгоценностями золотая корона (7500 зм)"));
         event29.getEventList().add(new RandomEvent.Event(2, 2, "Украшенное драгоценностями платиновое кольцо (7500 зм)"));
         event29.getEventList().add(new RandomEvent.Event(3, 3, "Небольшая золотая статуэтка с рубинами (7500 зм)"));
@@ -1577,7 +1577,7 @@ public class RandomConstant {
 
         randomEventList.add(event29);
 
-        RandomEvent event30 = new RandomEvent("МАГИЧЕСКИЕ И ПРОЧИЕ БЕЗДЕЛУШКИ D20", 20, new ArrayList<>());
+        RandomEvent event30 = new RandomEvent("Магические и прочие безделушки D20", 20, new ArrayList<>());
         event30.getEventList().add(new RandomEvent.Event(1, 1, "Маленькая статуэтка, изображающая человека с глазом во лбу. (1d10 x 10 зм)"));
         event30.getEventList().add(new RandomEvent.Event(10, 10, "Древний медный колокольчик, издающий мелодичный звон. (10 зм)"));
         event30.getEventList().add(new RandomEvent.Event(11, 11, "Потускневшая картина маслом, изображающая древнего монарха, осматривающего свои владения. (4d6 x 100 зм)"));
@@ -1601,7 +1601,7 @@ public class RandomConstant {
 
         randomEventList.add(event30);
 
-        RandomEvent event31 = new RandomEvent("ДИКАЯ МАГИЯ ЧАРОДЕЯ ЧАСТЬ 1", 100, new ArrayList<>());
+        RandomEvent event31 = new RandomEvent("Дикая магия чародея часть 1", 100, new ArrayList<>());
         event31.getEventList().add(new RandomEvent.Event(1, 2, "Совершайте бросок по этой таблице в начале каждого своего хода в течение следующей минуты, игнорируя результат «01–02»."));
         event31.getEventList().add(new RandomEvent.Event(11, 12, "Бросьте d10. Ваш рост изменяется на количество дюймов, равное результату броска. Если бросок нечётный, вы уменьшаетесь. Если бросок чётный, вы растёте."));
         event31.getEventList().add(new RandomEvent.Event(13, 14, "Вы накладываете заклинание смятение с центром на себе."));
@@ -1655,7 +1655,7 @@ public class RandomConstant {
 
         randomEventList.add(event31);
 
-        RandomEvent event32 = new RandomEvent("ДИКАЯ МАГИЯ ЧАРОДЕЯ ЧАСТЬ 2", 100, new ArrayList<>());
+        RandomEvent event32 = new RandomEvent("Дикая магия чародея часть 2", 100, new ArrayList<>());
         event32.getEventList().add(new RandomEvent.Event(1, 1, "Заклинатель мгновенно перемещается влево на 25 футов (или до ближайшего препятствия), на земле остается полыхающий огненный след от начального до конечной точки перемещения."));
         event32.getEventList().add(new RandomEvent.Event(10, 10, "Из рук заклинателя вылетают золотые монеты, 2d8 из них попадают в окружающих его существ, нанося при этом по 1d4-1 дробящего урона."));
         event32.getEventList().add(new RandomEvent.Event(100, 100, "Заклинатель толстеет на 50 фунтов."));
@@ -1758,7 +1758,7 @@ public class RandomConstant {
         event32.getEventList().add(new RandomEvent.Event(99, 99, "У только что сотворенного заклинания получается максимальный урон."));
         randomEventList.add(event32);
 
-        RandomEvent event33 = new RandomEvent("КОММЕНТАРИИ К ПРОМАХАМ D20", 20, new ArrayList<>());
+        RandomEvent event33 = new RandomEvent("Комментарии к промахам D20", 20, new ArrayList<>());
         event33.getEventList().add(new RandomEvent.Event(1, 1, "Удар противника вскользь попадает вам по голове, из-за чего у вас перед глазами все плывет и вы промахиваетесь."));
         event33.getEventList().add(new RandomEvent.Event(10, 10, "Противнику удается отскочить в последний момент, и вы оставляете лишь небольшой порез на его одежде."));
         event33.getEventList().add(new RandomEvent.Event(11, 11, "Противник выхватывает второе оружие и успешно парирует им вашу атаку."));
@@ -1782,7 +1782,7 @@ public class RandomConstant {
 
         randomEventList.add(event33);
 
-        RandomEvent event34 = new RandomEvent("СЛУЧАЙНЫЕ СОБЫТИЯ D100", 100, new ArrayList<>());
+        RandomEvent event34 = new RandomEvent("Случайные события D100", 100, new ArrayList<>());
         event34.getEventList().add(new RandomEvent.Event(1, 1, "Рюкзак персонажа взрывается, выбрасывая несколько новых предметов."));
         event34.getEventList().add(new RandomEvent.Event(10, 10, "Размахивающий пером драматург требует, чтобы искатели приключений пересказали ему свои героические приключения."));
         event34.getEventList().add(new RandomEvent.Event(100, 100, "Уличный оборванец кидает в искателей приключений кочан капусты."));
@@ -1886,7 +1886,7 @@ public class RandomConstant {
 
         randomEventList.add(event34);
 
-        RandomEvent event35 = new RandomEvent("СЛУЧАЙНЫЕ СОБЫТИЯ В ПОРТУ D100", 100, new ArrayList<>());
+        RandomEvent event35 = new RandomEvent("Случайные события в порту D100", 100, new ArrayList<>());
         event35.getEventList().add(new RandomEvent.Event(1, 1, "Корабль резко отчаливает, и с его палубы падает таинственный свиток."));
         event35.getEventList().add(new RandomEvent.Event(10, 10, "Все в порту слышат телепатический предсмертный крик тонущего человека."));
         event35.getEventList().add(new RandomEvent.Event(100, 100, "Торговец одеждой настаивает на том, чтобы подарить ИП новый костюм морячка."));
@@ -1990,7 +1990,7 @@ public class RandomConstant {
 
         randomEventList.add(event35);
 
-        RandomEvent event36 = new RandomEvent("СЛУЧАЙНЫЕ СОБЫТИЯ В ТАВЕРНЕ D100", 100, new ArrayList<>());
+        RandomEvent event36 = new RandomEvent("Случайные события в таверне D100", 100, new ArrayList<>());
         event36.getEventList().add(new RandomEvent.Event(1, 1, "Сегодня 10-й ежегодный конкурс по распитию Драгопламенного эля. Тот, кто выпьет больше всего Драгоплменного Эля (а он ОЧЕНЬ горячий), получит приз."));
         event36.getEventList().add(new RandomEvent.Event(10, 10, "Посреди таверны стоит корова. Все в некотором замешательстве, потому то никто не знает, кому принадлежит корова."));
         event36.getEventList().add(new RandomEvent.Event(100, 100, "Тавернщик оставляет на вашем столе единственную монету с крошечным дракончиком и говорит: \"Потратьте его побыстрее, он любит путешествовать.\" Дракон дружелюбен, однако не выпускает монету."));
@@ -2094,7 +2094,7 @@ public class RandomConstant {
 
         randomEventList.add(event36);
 
-        RandomEvent event37 = new RandomEvent("СЛУЧАЙНЫЕ СОБЫТИЯ В ТРУЩОБАХ D20", 20, new ArrayList<>());
+        RandomEvent event37 = new RandomEvent("Случайные события в трущобах D20", 20, new ArrayList<>());
         event37.getEventList().add(new RandomEvent.Event(1, 1, "Двое крупных типов криминальной наружности возвышаются над испуганной и сгорбленной фигуркой. Вы слышите, что один из головорезов говорить что-то о деньгах, а другой зловеще хрустит костяшками кулаков."));
         event37.getEventList().add(new RandomEvent.Event(10, 10, "На стене виднеется наскоро замазанный белой краской символ местной преступной банды (или целого синдиката)"));
         event37.getEventList().add(new RandomEvent.Event(11, 11, "В канаве лежит мертвец, следы на его шее явно указывают на то, что убит он был удавкой."));
@@ -2118,7 +2118,7 @@ public class RandomConstant {
 
         randomEventList.add(event37);
 
-        RandomEvent event38 = new RandomEvent("СЛУЧАЙНЫЕ СОБЫТИЯ В БОЛОТАХ D20", 20, new ArrayList<>());
+        RandomEvent event38 = new RandomEvent("Случайные события в болотах D20", 20, new ArrayList<>());
         event38.getEventList().add(new RandomEvent.Event(1, 1, "Из трясины торчат перекрученные вдруг с другом узловатые деревца, с определенного угла напоминающие сгорбленную фигуру."));
         event38.getEventList().add(new RandomEvent.Event(10, 10, "Толстые лианы многократно переплетаясь значительно затрудняют ваш путь. Единственная возможность пробраться - это прорубить дорогу сквозь них. Но шум от этого может привлечь ненужное внимание."));
         event38.getEventList().add(new RandomEvent.Event(11, 11, "Из трухлявых остатков рухнувшего ствола дерева растет пучок ярких, приятно пахнущих грибов. Выглядят они очень аппетитно, но могут оказаться ядовитыми."));
@@ -2142,7 +2142,7 @@ public class RandomConstant {
 
         randomEventList.add(event38);
 
-        RandomEvent event39 = new RandomEvent("КРИТИЧЕСКИЙ ПРОМАХ D100", 100, new ArrayList<>());
+        RandomEvent event39 = new RandomEvent("Критический промах D100", 100, new ArrayList<>());
         event39.getEventList().add(new RandomEvent.Event(1, 1, "Падаете ничком."));
         event39.getEventList().add(new RandomEvent.Event(10, 10, "В вас ударила молния, получите d10 урона электричеством."));
         event39.getEventList().add(new RandomEvent.Event(100, 100, "Вы подхватили одну из Магических Болезней."));
@@ -2246,7 +2246,7 @@ public class RandomConstant {
 
         randomEventList.add(event39);
 
-        RandomEvent event40 = new RandomEvent("МАГИЧЕСКИЕ БОЛЕЗНИ D12", 12, new ArrayList<>());
+        RandomEvent event40 = new RandomEvent("Магические болезни D12", 12, new ArrayList<>());
         event40.getEventList().add(new RandomEvent.Event(1, 1, "Драконий кашель: Зараженный кашляет сполохами огня (или другим образом, сходным с тем или иным драконьим дыханием, типа молний или льда). Достоверно неизвестно, действительно ли контакт с драконом является причиной этого заболевания. В целом, это заболевание представляет большую опасность для тех, кто ухаживает за больным, чем для самого больного, как минимум до тех пор, пока зараженный случайно не кашлянет на себя (или не подожжет свой дом)."));
         event40.getEventList().add(new RandomEvent.Event(10, 10, "Ведьмин грипп. Часто распространяется среди молодых ведьм, магов и прочих пользователей арканной магии. Считается, что заразиться можно от того, кто недостаточно хорошо владеет своими магическими способностями, однако бывает, что и опытный маг заражается. Симптомы схожи с таковыми у обычной простуды, за исключением того, что магические силы больного проявляют себя в неожиданный момент, а вокруг мага сгущается дикая магия (особо сильно проявляется во время чихания и кашля). Результатом обычно становятся разнообразные проявления волшбы, такие как временное оживление предметов или прочие минорные эффекты."));
         event40.getEventList().add(new RandomEvent.Event(11, 11, "Планарная подагра. Заболевание обычно наблюдается у тех, кто часто путешествует между измерениями. Похоже либо магия, либо чужая окружающая среда вызывают реакцию, схожую обычной подагрой, и становится причиной болей в суставах."));
@@ -2262,7 +2262,7 @@ public class RandomConstant {
 
         randomEventList.add(event40);
 
-        RandomEvent event41 = new RandomEvent("СВЯЗЬ ПЕРСОНАЖЕЙ – СЛУЖЕБНЫЕ СВЯЗИ D10", 10, new ArrayList<>());
+        RandomEvent event41 = new RandomEvent("Связь персонажей – служебные связи D10", 10, new ArrayList<>());
         event41.getEventList().add(new RandomEvent.Event(1, 1, "Слуги/последователи одного и того же мастера/учителя"));
         event41.getEventList().add(new RandomEvent.Event(10, 10, "Бывшие члены одной (ныне не существующей) организации"));
         event41.getEventList().add(new RandomEvent.Event(2, 2, "Вместе тренировались/воспитывались"));
@@ -2276,7 +2276,7 @@ public class RandomConstant {
 
         randomEventList.add(event41);
 
-        RandomEvent event42 = new RandomEvent("СВЯЗЬ ПЕРСОНАЖЕЙ – ПРИЯТЕЛЬСКИЕ СВЯЗИ D6", 6, new ArrayList<>());
+        RandomEvent event42 = new RandomEvent("Связь персонажей – приятельские связи D6", 6, new ArrayList<>());
         event42.getEventList().add(new RandomEvent.Event(1, 1, "Давние товарищи по приключениям"));
         event42.getEventList().add(new RandomEvent.Event(2, 2, "Члены гильдии"));
         event42.getEventList().add(new RandomEvent.Event(3, 3, "Вместе пьют"));
@@ -2285,7 +2285,7 @@ public class RandomConstant {
         event42.getEventList().add(new RandomEvent.Event(6, 6, "Постоянно обедают в одной таверне"));
         randomEventList.add(event42);
 
-        RandomEvent event43 = new RandomEvent("СВЯЗЬ ПЕРСОНАЖЕЙ – ДРУЖЕСКИЕ СВЯЗИ D8", 8, new ArrayList<>());
+        RandomEvent event43 = new RandomEvent("Связь персонажей – дружеские связи D8", 8, new ArrayList<>());
         event43.getEventList().add(new RandomEvent.Event(1, 1, "Друг моего друга"));
         event43.getEventList().add(new RandomEvent.Event(2, 2, "Друзья детства"));
         event43.getEventList().add(new RandomEvent.Event(3, 3, "Дружеские соперники"));
@@ -2297,7 +2297,7 @@ public class RandomConstant {
 
         randomEventList.add(event43);
 
-        RandomEvent event44 = new RandomEvent("СВЯЗЬ ПЕРСОНАЖЕЙ – СЕМЕЙНЫЕ СВЯЗИ D10", 10, new ArrayList<>());
+        RandomEvent event44 = new RandomEvent("Связь персонажей – семейные связи D10", 10, new ArrayList<>());
         event44.getEventList().add(new RandomEvent.Event(1, 1, "Дальние родственники"));
         event44.getEventList().add(new RandomEvent.Event(10, 10, "Обручены с детства"));
         event44.getEventList().add(new RandomEvent.Event(2, 2, "Братья/сестры"));
@@ -2311,7 +2311,7 @@ public class RandomConstant {
 
         randomEventList.add(event44);
 
-        RandomEvent event45 = new RandomEvent("СВЯЗЬ ПЕРСОНАЖЕЙ – ВОЕННЫЕ СВЯЗИ D12", 12, new ArrayList<>());
+        RandomEvent event45 = new RandomEvent("Связь персонажей – военные связи D12", 12, new ArrayList<>());
         event45.getEventList().add(new RandomEvent.Event(1, 1, "Служили одной стороне на последней войне"));
         event45.getEventList().add(new RandomEvent.Event(10, 10, "Дезертиры с разных сторон конфликта"));
         event45.getEventList().add(new RandomEvent.Event(11, 11, "Один спрятал другого от врагов"));
@@ -2327,7 +2327,7 @@ public class RandomConstant {
 
         randomEventList.add(event45);
 
-        RandomEvent event46 = new RandomEvent("СВЯЗЬ ПЕРСОНАЖЕЙ – ТАИНСТВЕННЫЕ СВЯЗИ D12", 12, new ArrayList<>());
+        RandomEvent event46 = new RandomEvent("Связь персонажей – таинственные связи D12", 12, new ArrayList<>());
         event46.getEventList().add(new RandomEvent.Event(1, 1, "Известна только репутация друг-друга"));
         event46.getEventList().add(new RandomEvent.Event(10, 10, "Один боготворит другого"));
         event46.getEventList().add(new RandomEvent.Event(11, 11, "Один знает секрет другого"));
@@ -2342,7 +2342,7 @@ public class RandomConstant {
         event46.getEventList().add(new RandomEvent.Event(9, 9, "Один оставил другого на верную гибель"));
         randomEventList.add(event46);
 
-        RandomEvent event47 = new RandomEvent("ФЭНТЕЗИЙНЫЕ МУЖСКИЕ ИМЕНА D20", 20, new ArrayList<>());
+        RandomEvent event47 = new RandomEvent("Фэнтезийные мужские имена D20", 20, new ArrayList<>());
         event47.getEventList().add(new RandomEvent.Event(1, 1, "Адальстейн, Аки, Алов, Альвгейр, Амунди, Ан, Андотт, Арии, Арнлауг, Арнльот, Арнольв, Арнтор, Арнфинн, Асбранд"));
         event47.getEventList().add(new RandomEvent.Event(10, 10, "Мюркьяртан Ньяль Облауд, Одд, Одди, Олаф, Олейв, Орм, Освивр, Оспак, Откель, Отрюгг, Отар Раги, Рагнар, Ранн"));
         event47.getEventList().add(new RandomEvent.Event(11, 11, "Рауд, Рёгнвальд, Рунольв, Рэв  Свейн, Свертинг, Сёльви, Сёльмунд, Сельснати, Семунд, Сёрквир, Сёрли, Сеунн"));
@@ -2366,7 +2366,7 @@ public class RandomConstant {
 
         randomEventList.add(event47);
 
-        RandomEvent event48 = new RandomEvent("ФЭНТЕЗИЙНЫЕ ЖЕНСКИЕ ИМЕНА D6", 6, new ArrayList<>());
+        RandomEvent event48 = new RandomEvent("Фэнтезийные женские имена D6", 6, new ArrayList<>());
         event48.getEventList().add(new RandomEvent.Event(1, 1, "Альвдис, Альвхейд, Арнбьёрг, Арнфрид, Асвёр, Асгерд, Астрид, Ауд, Аудбьёрг Бергтора, Ботхильд, Вальборг, Вальгерд"));
         event48.getEventList().add(new RandomEvent.Event(2, 2, "Вильборг Гейрню, Грелёд, Гримхильд, Гро, Гудлауг, Гудню, Гудрид, Гудрун, Гудфинна, Гуннхильд Ингвильд, Ингибьёрг"));
         event48.getEventList().add(new RandomEvent.Event(3, 3, "Ингигерд, Ингунн, Исгерд Йодис, Йорейд Йофрид Кормлёд Лута Нерейд Оддню, Ормхильд, Оск Раварта, Рагнейд"));
@@ -2377,7 +2377,7 @@ public class RandomConstant {
         randomEventList.add(event48);
 
 
-        RandomEvent event51 = new RandomEvent("ИЗЪЯНЫ МАГИЧЕСКИХ ПРЕДМЕТОВ D20", 20, new ArrayList<>());
+        RandomEvent event51 = new RandomEvent("Изъяны магических предметов D20", 20, new ArrayList<>());
         event51.getEventList().add(new RandomEvent.Event(1, 1, "Глаза владельца становятся красными и светятся в темноте. На зрение не влияет никак."));
         event51.getEventList().add(new RandomEvent.Event(10, 10, "Люди всегда принимают вас за кого-то другого, при первой встрече."));
         event51.getEventList().add(new RandomEvent.Event(11, 11, "Владелец всегда ошибается в оценке того, с кем имеет дело при первой встрече."));
@@ -2401,7 +2401,7 @@ public class RandomConstant {
 
         randomEventList.add(event51);
 
-        RandomEvent event52 = new RandomEvent("МАЛЫЕ ПРОКЛЯТЬЯ МАГИЧЕСКИХ ПРЕДМЕТОВ D20", 20, new ArrayList<>());
+        RandomEvent event52 = new RandomEvent("Малые проклятья магических предметов D20", 20, new ArrayList<>());
         event52.getEventList().add(new RandomEvent.Event(1, 1, "Владелец преисполняется безудержной ненависти к отдельно взятому народу (профессии, призванию, политической линии, полу и т.п.)."));
         event52.getEventList().add(new RandomEvent.Event(10, 10, "В критические моменты (объяснение в любви, бой, выступление в суде) на владельца нападает трясучка, будто бы его выставили голым на сорокаградусный мороз."));
         event52.getEventList().add(new RandomEvent.Event(11, 11, "Владелец страдает клаустрофобией."));
@@ -2425,7 +2425,7 @@ public class RandomConstant {
 
         randomEventList.add(event52);
 
-        RandomEvent event53 = new RandomEvent("ПРОКЛЯТЬЯ МАГИЧЕСКИХ ПРЕДМЕТОВ D20", 20, new ArrayList<>());
+        RandomEvent event53 = new RandomEvent("Проклятья магических предметов D20", 20, new ArrayList<>());
         event53.getEventList().add(new RandomEvent.Event(1, 1, "Участки тела, прикрытые доспехами, невыносимо чешутся, да так, что носить эти самые доспехи практически невозможно."));
         event53.getEventList().add(new RandomEvent.Event(10, 10, " Абсолютный страх перед определенными типами противников (вся нежить, любые гоблиноиды и т.п.), всегда вызывающий панику."));
         event53.getEventList().add(new RandomEvent.Event(11, 11, "Владелец является носителем смертельно опасной (и заразной) болезни, которая, тем не менее, не наносит ему никакого вреда."));

@@ -31,6 +31,6 @@
     <fragment
         android:id="@+id/nav_randoms"
         android:name="ru.drudenko.dnd.fragment.random.RandomFragment"
-        android:label="@string/menu_profiles"
+        android:label="@string/menu_randoms"
         tools:layout="@layout/fragment_random_list" />
 </navigation>
