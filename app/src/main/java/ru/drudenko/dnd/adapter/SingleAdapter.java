@@ -2,7 +2,6 @@ package ru.drudenko.dnd.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,8 +33,7 @@ public class SingleAdapter extends ArrayAdapter<String> {
         view = LayoutInflater.from(getContext()).inflate(R.layout.listview_layout_single_text, parent, false);
         TextView textView = view.findViewById(R.id.textView2);
 
-        textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
-        textView.setTypeface(null, Typeface.BOLD);
+        textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
         textView.setTextColor(Color.WHITE);
         textView.setText(getItem(position));
 

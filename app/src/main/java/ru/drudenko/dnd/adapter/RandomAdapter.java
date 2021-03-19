@@ -3,7 +3,6 @@ package ru.drudenko.dnd.adapter;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,8 +33,7 @@ public class RandomAdapter extends ArrayAdapter<RandomEvent> {
         view = LayoutInflater.from(getContext()).inflate(R.layout.random_event_list_view_item_layout, parent, false);
         TextView textView = view.findViewById(R.id.textView2);
 
-        textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
-        textView.setTypeface(null, Typeface.BOLD);
+        textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
         textView.setTextColor(Color.WHITE);
         RandomEvent randomEvent = getItem(position);
         textView.setText(randomEvent.getTitle());

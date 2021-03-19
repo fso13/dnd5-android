@@ -6,6 +6,8 @@
 
     <ListView
         android:id="@+id/events"
+        android:divider="@color/colorPrimary"
+        android:dividerHeight="1dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 </LinearLayout>

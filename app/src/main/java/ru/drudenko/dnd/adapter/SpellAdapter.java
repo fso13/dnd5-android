@@ -2,7 +2,6 @@ package ru.drudenko.dnd.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.os.Build;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -93,8 +92,7 @@ public class SpellAdapter extends BaseAdapter implements Filterable {
 
         final Spell spell = filteredData.get(position);
 
-        viewHolder.textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
-        viewHolder.textView.setTypeface(null, Typeface.BOLD);
+        viewHolder.textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
         viewHolder.textView.setTextColor(Color.WHITE);
         viewHolder.textView.setText(String.format("%s: %s", spell.getLevel(), spell.getName()));
 
