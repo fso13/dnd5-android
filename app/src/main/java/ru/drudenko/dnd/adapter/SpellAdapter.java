@@ -55,8 +55,7 @@ public class SpellAdapter extends BaseAdapter implements Filterable {
     }
 
     private boolean isBelongSchool(String schoolFilterText, Spell spell) {
-        String school = spell.getSchool() == null ? spell.getText().substring(0, spell.getText().indexOf('\n')) : spell.getSchool();
-        return school != null && school.toUpperCase().contains(schoolFilterText.toUpperCase());
+        return spell.getSchool() != null && spell.getSchool().toUpperCase().contains(schoolFilterText.toUpperCase());
     }
 
     public int getCount() {
