@@ -15,10 +15,8 @@ import ru.drudenko.dnd.model.monster.Monster;
 
 public class MonsterInfoFragment extends Fragment {
 
-    private final Monster monster;
 
-    public MonsterInfoFragment(Monster monster) {
-        this.monster = monster;
+    public MonsterInfoFragment() {
     }
 
     @Override
@@ -31,6 +29,7 @@ public class MonsterInfoFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_monster_info, container, false);
+        Monster monster = (Monster) getArguments().getSerializable("monster");
 
         TextView info = root.findViewById(R.id.textView_info);
         info.setText(Html.fromHtml(monster.getFiction().trim() + "<br><br>"), TextView.BufferType.SPANNABLE);

@@ -8,7 +8,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
@@ -38,11 +37,14 @@ import ru.drudenko.dnd.model.monster.Monster;
 public class MonsterActivity extends AppCompatActivity {
     private Monster monster;
 
+    public MonsterActivity() {
+    }
+
     public Drawable getDrawableFromAssets(String path) throws IOException {
         return Drawable.createFromStream(getAssets().open(path), null);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    //    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -142,10 +144,26 @@ public class MonsterActivity extends AppCompatActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new MonsterAbilityFragment(monster), "способности");
-        adapter.addFragment(new MonsterTraitFragment(monster), "черты");
-        adapter.addFragment(new MonsterActionFragment(monster), "действия");
-        adapter.addFragment(new MonsterInfoFragment(monster), "описание");
+
+        Bundle args = new Bundle();
+        args.putSerializable("monster", monster);
+
+        MonsterAbilityFragment monsterAbilityFragment = new MonsterAbilityFragment();
+        monsterAbilityFragment.setArguments(args);
+        adapter.addFragment(monsterAbilityFragment, "способности");
+
+        MonsterTraitFragment monsterTraitFragment = new MonsterTraitFragment();
+        monsterTraitFragment.setArguments(args);
+        adapter.addFragment(monsterTraitFragment, "черты");
+
+        MonsterActionFragment monsterActionFragment = new MonsterActionFragment();
+        monsterActionFragment.setArguments(args);
+        adapter.addFragment(monsterActionFragment, "действия");
+
+        MonsterInfoFragment monsterInfoFragment = new MonsterInfoFragment();
+        monsterInfoFragment.setArguments(args);
+        adapter.addFragment(monsterInfoFragment, "описание");
+
         viewPager.setAdapter(adapter);
     }
 

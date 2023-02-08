@@ -24,7 +24,7 @@ public class Spell implements Serializable, Cloneable {
 
     public Spell(String name, String ritual, String school, String level, String castingTime, String range, String components, String duration, String text, String source, List<String> classes, boolean isFavorite) {
         this.name = name;
-        this.ritual = Boolean.getBoolean(ritual);
+        this.ritual = Boolean.parseBoolean(ritual);
         this.school = school;
         this.level = level;
         this.castingTime = castingTime;

@@ -16,10 +16,7 @@ import ru.drudenko.dnd.model.monster.Trait;
 
 public class MonsterActionFragment extends Fragment {
 
-    private final Monster monster;
-
-    public MonsterActionFragment(Monster monster) {
-        this.monster = monster;
+    public MonsterActionFragment() {
     }
 
     @Override
@@ -32,6 +29,7 @@ public class MonsterActionFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_monster_action, container, false);
+        Monster monster = (Monster) getArguments().getSerializable("monster");
 
         TextView action = root.findViewById(R.id.textView_action);
         StringBuilder r = new StringBuilder();

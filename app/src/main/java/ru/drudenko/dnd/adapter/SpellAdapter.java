@@ -91,7 +91,11 @@ public class SpellAdapter extends BaseAdapter implements Filterable {
         final Spell spell = filteredData.get(position);
 
         viewHolder.textView.setTextColor(Color.WHITE);
-        viewHolder.textView.setText(String.format("%s: %s", spell.getLevel(), spell.getName()));
+        if(spell.getRitual()) {
+            viewHolder.textView.setText(String.format("%s: %s (Ритуал)", spell.getLevel(), spell.getName()));
+        } else{
+            viewHolder.textView.setText(String.format("%s: %s", spell.getLevel(), spell.getName()));
+        }
 
         viewHolder.toggleButton.setChecked(spell.isFavorite());
         viewHolder.toggleButton.setTextOff("");

@@ -78,8 +78,12 @@ public class MonsterListFragment extends Fragment implements AbsListView.OnScrol
             Intent intent = new Intent(getContext(), MonsterActivity.class);
             monster = monsterAdapter.getItem(position);
 
-            intent.putExtra("MONSTERID", ((App) getActivity().getApplication()).monsters.indexOf(monster));
-            startActivityForResult(intent, 0);
+            if (monster != null) {
+                intent.putExtra("MONSTERID", ((App) getActivity().getApplication()).monsters.indexOf(monster));
+                startActivityForResult(intent, 0);
+            }
+
+
         };
         listView.setOnItemClickListener(itemListener);
 

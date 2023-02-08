@@ -13,7 +13,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import org.json.JSONObject;
 
-import java.text.MessageFormat;
 import java.util.Locale;
 
 import ru.drudenko.dnd.R;
@@ -38,13 +37,17 @@ public class SpellActivity extends AppCompatActivity {
 
         TextView school = findViewById(R.id.spell_school);
         school.setText(spell.getSchool(), TextView.BufferType.SPANNABLE);
-        if (spell.getRitual()) {
-            school.setText(MessageFormat.format("{0}, {1}", school.getText(), "Ритуал"), TextView.BufferType.SPANNABLE);
-        }
 
         TextView castingTime = findViewById(R.id.spell_castingTime);
-        castingTime.setText(spell.getCastingTime(), TextView.BufferType.SPANNABLE);
-
+        if (spell.getRitual()) {
+            if (spell.getCastingTime() == null || spell.getCastingTime().isEmpty()) {
+                castingTime.setText("как ритуал", TextView.BufferType.SPANNABLE);
+            } else {
+                castingTime.setText("как ритуал или " + spell.getCastingTime(), TextView.BufferType.SPANNABLE);
+            }
+        } else {
+            castingTime.setText(spell.getCastingTime(), TextView.BufferType.SPANNABLE);
+        }
         TextView range = findViewById(R.id.spell_range);
         range.setText(spell.getRange(), TextView.BufferType.SPANNABLE);
 
@@ -73,8 +76,10 @@ public class SpellActivity extends AppCompatActivity {
             props.put("monster", spell.getName());
             ((App) getApplication()).mixpanel.track("Spell activity", props);
 
-        } catch (Exception ignored) {
+        } catch (
+                Exception ignored) {
         }
+
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
