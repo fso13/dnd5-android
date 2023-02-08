@@ -1,5 +1,5 @@
 {
-  "url": "https://github.com/fso13/dnd5-android/releases/download/2302080/app-release.apk",
-  "versionCode": 2302080,
-  "updateMessage": "Исправлен баг с крашем при повороте экрана во вкладке монстра. В заклинаниях отображается признак ритуала."
+  "url": "https://github.com/fso13/dnd5-android/releases/download/2302081/app-release.apk",
+  "versionCode": 2302081,
+  "updateMessage": "В ширме добавлены формулы расчета для различных ситуаций."
 }
