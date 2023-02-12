@@ -23,8 +23,8 @@ jobs:
         run: echo ::set-env name=RELEASE_VERSION::$(echo ${GITHUB_REF:10})
 
       - name: Changelog
-          uses: Bullrich/generate-release-changelog@master
-          id: Changelog
+        uses: Bullrich/generate-release-changelog@master
+        id: Changelog
           env:
             REPO: ${{ github.repository }}
 
