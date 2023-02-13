@@ -22,11 +22,12 @@ jobs:
           ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
         run: echo ::set-env name=RELEASE_VERSION::$(echo ${GITHUB_REF:10})
 
-      - name: Changelog
-        uses: Bullrich/generate-release-changelog@master
-        id: Changelog
-        env:
-          REPO: ${{ github.repository }}
+      - run: |
+          git fetch --prune --unshallow --tags
+
+      - name: Create changelogs
+        id: changelogs
+        uses: heineiuo/create-changelogs@master
 
       - name: Create release and upload apk
         uses: underwindfall/create-release-with-debugapk@v2.0.0
@@ -38,5 +39,4 @@ jobs:
           asset_path: app/build/outputs/apk/release/app-release.apk
           asset_name: app-release.apk
           asset_content_type: application/zip
-          body: |
-            ${{ steps.Changelog.outputs.changelog }}
+          body: ${{ steps.changelogs.outputs.changelogs }}
