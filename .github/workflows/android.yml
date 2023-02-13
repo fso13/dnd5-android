@@ -22,6 +22,15 @@ jobs:
           ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
         run: echo ::set-env name=RELEASE_VERSION::$(echo ${GITHUB_REF:10})
 
+      - run: echo "previous_tag=$(git describe --tags --abbrev=0 2>/dev/null || echo '')" >> $GITHUB_ENV
+      - name: Generate changelog
+        id: changelog
+        uses: jaywcjlove/changelog-generator@main
+#        if: env.previous_tag
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+#          filter: '[R|r]elease[d]\s+\d(\.\d+){0,2}'
+
       - name: Create changelogs
         id: changelogs
         uses: heineiuo/create-changelogs@master
@@ -36,4 +45,7 @@ jobs:
           asset_path: app/build/outputs/apk/release/app-release.apk
           asset_name: app-release.apk
           asset_content_type: application/zip
-          body: ${{ steps.changelogs.outputs.changelogs }}
+          body: |
+            ${{ steps.changelog.outputs.compareurl }}
+            
+            ${{ steps.changelog.outputs.changelog }}
