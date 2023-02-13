@@ -23,6 +23,7 @@ import org.json.JSONObject;
 
 import java.util.Locale;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import ru.drudenko.dnd.BuildConfig;
 import ru.drudenko.dnd.R;
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements UpdateNotice {
     private static final String APP_UPDATE_SERVER_URL = "https://raw.githubusercontent.com/fso13/dnd5-android/master/release.json";
     public static final AtomicBoolean isM = new AtomicBoolean(false);
     private AppBarConfiguration mAppBarConfiguration;
+    private final AtomicInteger count = new AtomicInteger(0);
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -142,7 +144,12 @@ public class MainActivity extends AppCompatActivity implements UpdateNotice {
                 ft.commitAllowingStateLoss();
             } else {
                 if (isM.get()) {
-                    Toast toast = Toast.makeText(getApplicationContext(), "Обновлений нет!", Toast.LENGTH_SHORT);
+                    Toast toast;
+                    if (count.addAndGet(1) % 5 == 0) {
+                        toast = Toast.makeText(getApplicationContext(), "Да нет обновлений, успокойся!!!", Toast.LENGTH_SHORT);
+                    } else {
+                        toast = Toast.makeText(getApplicationContext(), "Обновлений нет!", Toast.LENGTH_SHORT);
+                    }
                     toast.show();
 
                     isM.set(false);
