@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v2
       - name: Use Java 11
@@ -21,9 +21,6 @@ jobs:
         env:
           ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
         run: echo ::set-env name=RELEASE_VERSION::$(echo ${GITHUB_REF:10})
-
-      - run: |
-          git fetch --prune --unshallow --tags
 
       - name: Create changelogs
         id: changelogs
