@@ -23,15 +23,16 @@ android {
         applicationId "ru.drudenko.dnd"
         minSdkVersion 23
         targetSdkVersion 33
-        versionCode 2302130
-        versionName "23.02.13.0"
+        versionCode 2302131
+        versionName "23.02.13.1"
         vectorDrawables.useSupportLibrary true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
+            minifyEnabled true
+            shrinkResources true
             signingConfig signingConfigs.config
-            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
