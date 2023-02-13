@@ -19,7 +19,6 @@ android {
 
     buildToolsVersion '30.0.3'
     defaultConfig {
-//        multiDexEnabled true
         applicationId "ru.drudenko.dnd"
         minSdkVersion 23
         targetSdkVersion 30
@@ -30,8 +29,7 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled true
-            shrinkResources true
+            minifyEnabled false
             signingConfig signingConfigs.config
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
