@@ -37,6 +37,12 @@
     <fragment
         android:id="@+id/nav_class_master_help"
         android:name="ru.drudenko.dnd.fragment.master.ClassHelpFragment"
-        android:label="@string/menu_randoms"
+        android:label="@string/menu_class"
         tools:layout="@layout/class_master_help" />
+
+    <fragment
+        android:id="@+id/nav_race_master_help"
+        android:name="ru.drudenko.dnd.fragment.master.RaceHelpFragment"
+        android:label="@string/menu_race"
+        tools:layout="@layout/race_master_help" />
 </navigation>

@@ -6,4 +6,6 @@
     <item name="ic_menu_monster_all" type="drawable">@drawable/monster_all</item>
     <item name="ic_menu_monster_favorite" type="drawable">@drawable/monster_favorite</item>
     <item name="ic_menu_master_help" type="drawable">@drawable/master_help</item>
+    <item name="ic_menu_race" type="drawable">@drawable/ic_race</item>
+    <item name="ic_menu_class" type="drawable">@drawable/ic_classes</item>
 </resources>

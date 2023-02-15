@@ -152,5 +152,8 @@
     <string name="todo">TODO</string>
     <string name="random_events">Случайные события</string>
     <string name="classes">Классы</string>
+    <string name="races">Расы</string>
     <string name="menu_randoms">Случайные события</string>
+    <string name="menu_class">Классы</string>
+    <string name="menu_race">Расы</string>
 </resources>
