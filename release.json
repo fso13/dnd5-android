@@ -1,5 +1,5 @@
 {
-  "url": "https://github.com/fso13/dnd5-android/releases/download/2302139/app-release.apk",
-  "versionCode": 2302139,
-  "updateMessage": "Обновление компонентов, для большей стабильности. Уменьшение размера apk."
+  "url": "https://github.com/fso13/dnd5-android/releases/download/2302150/app-release.apk",
+  "versionCode": 2302150,
+  "updateMessage": "Добавленна справочная информация по классам и расам."
 }
