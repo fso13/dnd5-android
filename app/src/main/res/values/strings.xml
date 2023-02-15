@@ -151,5 +151,6 @@
     <string name="username">Имя профиля</string>
     <string name="todo">TODO</string>
     <string name="random_events">Случайные события</string>
+    <string name="classes">Классы</string>
     <string name="menu_randoms">Случайные события</string>
 </resources>

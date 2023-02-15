@@ -33,4 +33,10 @@
         android:name="ru.drudenko.dnd.fragment.random.RandomFragment"
         android:label="@string/menu_randoms"
         tools:layout="@layout/fragment_random_list" />
+
+    <fragment
+        android:id="@+id/nav_class_master_help"
+        android:name="ru.drudenko.dnd.fragment.master.ClassHelpFragment"
+        android:label="@string/menu_randoms"
+        tools:layout="@layout/class_master_help" />
 </navigation>

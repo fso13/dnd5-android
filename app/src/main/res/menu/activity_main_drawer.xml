@@ -34,5 +34,11 @@
             android:icon="@android:drawable/ic_dialog_map"
             android:textColor="@color/textColor"
             android:title="@string/random_events" />
+
+        <item
+            android:id="@+id/nav_class_master_help"
+            android:icon="@android:drawable/ic_dialog_map"
+            android:textColor="@color/textColor"
+            android:title="@string/classes" />
     </group>
 </menu>

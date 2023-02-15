@@ -64,7 +64,7 @@ public class HelpActivity extends AppCompatActivity {
                 "            border: 1px solid red;\n" +
                 "        }\n" +
                 "\n" +
-                "        span.cls_012 {\n" +
+                "        span.cls_012, h3, h2, h4 {\n" +
                 "            font-family: Times, serif;\n" +
                 "            color: red;\n" +
                 "            font-weight: bold;\n" +
