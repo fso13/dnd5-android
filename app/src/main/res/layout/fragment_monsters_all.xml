@@ -29,14 +29,17 @@
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="0dp" />
+
 
     <Spinner
         android:id="@+id/spinner_level"
-        android:layout_width="150dp"
-        android:layout_height="40dp"
-        android:layout_marginLeft="15dp"
+        android:layout_width="85dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="16dp"
         android:paddingTop="10dp"
         android:text="@string/spinner_level"
         android:verticalScrollbarPosition="right"
@@ -45,12 +48,25 @@
 
     <Spinner
         android:id="@+id/spinner_biom"
-        android:layout_width="150dp"
+        android:layout_width="0dp"
         android:layout_height="40dp"
-        android:layout_marginRight="15dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="16dp"
         android:paddingTop="10dp"
         android:text="@string/spinner_class"
         android:verticalScrollbarPosition="left"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/toolbar_monster"
+        app:layout_constraintStart_toEndOf="@+id/spinner_type"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/spinner_type"
+        android:layout_width="165dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        android:paddingTop="10dp"
+        android:text="@string/spinner_type"
+        android:verticalScrollbarPosition="left"
+        app:layout_constraintStart_toEndOf="@+id/spinner_level"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

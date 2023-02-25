@@ -1,5 +1,5 @@
 {
-  "url": "https://github.com/fso13/dnd5-android/releases/download/2302220/app-release.apk",
-  "versionCode": 2302220,
-  "updateMessage": "Добавленна справочная информация по классам и расам."
+  "url": "https://github.com/fso13/dnd5-android/releases/download/2302250/app-release.apk",
+  "versionCode": 2302250,
+  "updateMessage": "Добавлен фильтр по типу монстров"
 }

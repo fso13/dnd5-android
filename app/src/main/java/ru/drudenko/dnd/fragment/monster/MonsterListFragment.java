@@ -24,8 +24,11 @@ import androidx.fragment.app.Fragment;
 
 import org.json.JSONObject;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import ru.drudenko.dnd.R;
 import ru.drudenko.dnd.activity.MainActivity;
@@ -96,6 +99,22 @@ public class MonsterListFragment extends Fragment implements AbsListView.OnScrol
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 monsterAdapter.getFilter().filter("exp:" + ConstantMonsters.expId.get(position));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        Spinner spinnerType = root.findViewById(R.id.spinner_type);
+        ArrayAdapter<String> adapterTypes = new ArrayAdapter<>(this.getActivity(), R.layout.spinner_dropdown_item, ConstantMonsters.types);
+        adapterTypes.setDropDownViewResource(R.layout.spinner_dropdown_item);
+        spinnerType.setAdapter(adapterTypes);
+        spinnerType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                monsterAdapter.getFilter().filter("type:" + ConstantMonsters.types.get(position));
             }
 
             @Override

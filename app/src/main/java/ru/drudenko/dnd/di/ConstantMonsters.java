@@ -27,6 +27,9 @@ public final class ConstantMonsters {
 
     public static final ArrayList<Monster> monsters = new ArrayList<>(557);
 
+    public static final  List<String> types = Arrays.asList("Все",
+            "гуманоид", "элементаль", "аберрация", "растение", "небожитель", "исчадие", "конструкт", "монстр", "фея", "демон", "дракон", "рой", "великан", "нежить", "зверь", "слизь");
+
     static {
         exps.put("Все", "Все");
         exps.put("0", "0 - 10");

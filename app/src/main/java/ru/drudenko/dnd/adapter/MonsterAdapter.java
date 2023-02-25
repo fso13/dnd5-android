@@ -32,6 +32,7 @@ public class MonsterAdapter extends BaseAdapter implements Filterable {
     private String biomFilterText = "Все";
     private String favoriteFilterText = "false";
     private String levelFilterText = "Все";
+    private String typeFilterText = "Все";
     private String nameFilterText = "";
     private CharSequence constraintAdapter;
 
@@ -146,6 +147,10 @@ public class MonsterAdapter extends BaseAdapter implements Filterable {
                     levelFilterText = filterString[1];
                 }
 
+                if (filterString[0].equals("type")) {
+                    typeFilterText = filterString[1];
+                }
+
                 if (filterString[0].equals("biom")) {
                     biomFilterText = filterString[1];
                 }
@@ -175,6 +180,7 @@ public class MonsterAdapter extends BaseAdapter implements Filterable {
             return ("".equals(nameFilterText) || monster.getName().toLowerCase().contains(nameFilterText)) &&
                     (levelFilterText.equals("Все") || monster.getCr().equals(levelFilterText)) &&
                     (biomFilterText.equals("Все") || monster.getBioms().contains(biomFilterText)) &&
+                    (typeFilterText.equals("Все") || monster.getType().contains(typeFilterText)) &&
                     ((monster.isFavorite() && "true".equals(favoriteFilterText) || "false".equals(favoriteFilterText)));
         }
 
