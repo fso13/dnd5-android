@@ -10,7 +10,9 @@ import java.util.List;
 import javax.inject.Inject;
 
 import ru.drudenko.dnd.adapter.MonsterAdapter;
+import ru.drudenko.dnd.adapter.OrderAdapter;
 import ru.drudenko.dnd.adapter.SpellAdapter;
+import ru.drudenko.dnd.model.Order;
 import ru.drudenko.dnd.model.Profile;
 import ru.drudenko.dnd.model.magic.Spell;
 import ru.drudenko.dnd.model.monster.Monster;
@@ -29,6 +31,9 @@ public class App extends Application {
 
     @Inject
     public List<Profile> profiles;
+
+    @Inject
+    public List<Order> orders;
 
     public MonsterAdapter monsterAdapter;
     public SpellAdapter spellAdapter;
@@ -91,6 +96,38 @@ public class App extends Application {
         }
 
         final String key = "PROFILES";
+        sharedPreferences.edit().putString(key, value.toString()).apply();
+
+    }
+
+    public void addOrder(Order order) {
+        for (Order order1 : orders) {
+            if (order1.getName().equals(order.getName())) {
+                return;
+            }
+        }
+        orders.add(order);
+
+        StringBuilder value = new StringBuilder();
+
+        for (Order order1 : orders) {
+            value.append(order1.getName()).append(";");
+        }
+
+        final String key = "ORDERS";
+        sharedPreferences.edit().putString(key, value.toString()).apply();
+
+    }
+
+    public void deleteOrder(Order order) {
+
+        orders.remove(order);
+
+        StringBuilder value = new StringBuilder();
+        for (Order order1 : orders) {
+            value.append(order1.getName()).append(";");
+        }
+        final String key = "ORDERS";
         sharedPreferences.edit().putString(key, value.toString()).apply();
 
     }

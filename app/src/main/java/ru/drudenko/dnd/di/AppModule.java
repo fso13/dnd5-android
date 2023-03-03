@@ -11,6 +11,7 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import ru.drudenko.dnd.model.Order;
 import ru.drudenko.dnd.model.Profile;
 import ru.drudenko.dnd.model.magic.Spell;
 import ru.drudenko.dnd.model.monster.Monster;
@@ -69,6 +70,26 @@ public class AppModule {
 //            }
 
             return monsters;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Provides
+    @Singleton
+    public List<Order> provideListOrders() {
+        try {
+            SharedPreferences preferences = application.getApplicationContext().getSharedPreferences("application_preferences", Context.MODE_PRIVATE);
+            List<Order> orders = new ArrayList<>();
+            String profilesString = preferences.getString("ORDERS", "Default=true");
+
+            for (String s : profilesString.split(";")) {
+                Order order = new Order(s);
+                orders.add(order);
+            }
+
+            return orders;
         } catch (Exception e) {
             e.printStackTrace();
         }

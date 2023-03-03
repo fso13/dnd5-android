@@ -22,7 +22,11 @@
             android:icon="@drawable/ic_menu_master_help"
             android:textColor="@color/textColor"
             android:title="@string/menu_master_help" />
-
+        <item
+            android:id="@+id/nav_order"
+            android:icon="@android:drawable/ic_menu_myplaces"
+            android:textColor="@color/textColor"
+            android:title="@string/menu_order" />
         <item
             android:id="@+id/nav_profiles"
             android:icon="@android:drawable/ic_menu_myplaces"

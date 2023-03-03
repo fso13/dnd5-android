@@ -45,4 +45,10 @@
         android:name="ru.drudenko.dnd.fragment.master.RaceHelpFragment"
         android:label="@string/menu_race"
         tools:layout="@layout/race_master_help" />
+
+    <fragment
+        android:id="@+id/nav_order"
+        android:name="ru.drudenko.dnd.fragment.order.OrderInitFragment"
+        android:label="@string/menu_order"
+        tools:layout="@layout/fragment_order_init" />
 </navigation>
