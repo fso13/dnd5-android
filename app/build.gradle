@@ -22,8 +22,8 @@ android {
         applicationId "ru.drudenko.dnd"
         minSdkVersion 23
         targetSdkVersion 30
-        versionCode 2302250
-        versionName "23.02.25.0"
+        versionCode 2303030
+        versionName "23.03.03.0"
         vectorDrawables.useSupportLibrary true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
