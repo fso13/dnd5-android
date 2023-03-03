@@ -24,7 +24,7 @@
             android:title="@string/menu_master_help" />
         <item
             android:id="@+id/nav_order"
-            android:icon="@android:drawable/ic_menu_myplaces"
+            android:icon="@android:drawable/ic_media_ff"
             android:textColor="@color/textColor"
             android:title="@string/menu_order" />
         <item

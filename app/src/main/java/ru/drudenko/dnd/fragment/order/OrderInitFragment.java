@@ -1,9 +1,13 @@
 package ru.drudenko.dnd.fragment.order;
 
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -15,6 +19,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import java.util.Collections;
+
 import ru.drudenko.dnd.R;
 import ru.drudenko.dnd.adapter.OrderAdapter;
 import ru.drudenko.dnd.adapter.ProfileAdapter;
@@ -22,7 +28,7 @@ import ru.drudenko.dnd.di.App;
 import ru.drudenko.dnd.model.Order;
 import ru.drudenko.dnd.model.Profile;
 
-public class OrderInitFragment extends Fragment implements AbsListView.OnScrollListener {
+public class OrderInitFragment extends Fragment{
 
     public OrderInitFragment() {
     }
@@ -39,13 +45,12 @@ public class OrderInitFragment extends Fragment implements AbsListView.OnScrollL
         setHasOptionsMenu(true);
 
         View root = inflater.inflate(R.layout.fragment_order_init, container, false);
-        ListView listView = root.findViewById(R.id.orderList);
+        RecyclerView listView = root.findViewById(R.id.orderList);
 
         EditText editText = root.findViewById(R.id.init_name);
 
-        OrderAdapter adapter = new OrderAdapter(getContext(), ((App) getActivity().getApplication()));
+        OrderAdapter adapter = new OrderAdapter(((App) getActivity().getApplication()));
         listView.setAdapter(adapter);
-        listView.setOnScrollListener(this);
 
         Button button = root.findViewById(R.id.add_init);
         button.setOnClickListener(v -> {
@@ -57,6 +62,11 @@ public class OrderInitFragment extends Fragment implements AbsListView.OnScrollL
 
         });
 
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this.getContext(), DividerItemDecoration.VERTICAL);
+        dividerItemDecoration.setDrawable( new ColorDrawable(this.getResources().getColor(R.color.colorPrimary)));
+        listView.addItemDecoration(dividerItemDecoration);
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleCallback);
+        itemTouchHelper.attachToRecyclerView(listView);
         return root;
     }
 
@@ -65,13 +75,21 @@ public class OrderInitFragment extends Fragment implements AbsListView.OnScrollL
         super.onCreateOptionsMenu(menu, inflater);
     }
 
-    @Override
-    public void onScrollStateChanged(AbsListView view, int scrollState) {
+    ItemTouchHelper.SimpleCallback simpleCallback = new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP | ItemTouchHelper.DOWN | ItemTouchHelper.START | ItemTouchHelper.END, 0) {
+        @Override
+        public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
 
-    }
+            int fromPosition = viewHolder.getAdapterPosition();
+            int toPosition = target.getAdapterPosition();
+            Collections.swap(((App) getActivity().getApplication()).orders, fromPosition, toPosition);
+            recyclerView.getAdapter().notifyItemMoved(fromPosition, toPosition);
+            return false;
+        }
 
-    @Override
-    public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+        @Override
+        public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
 
-    }
+        }
+    };
+
 }

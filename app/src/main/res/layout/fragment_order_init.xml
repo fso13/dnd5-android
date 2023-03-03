@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.order.OrderInitFragment">
 
     <LinearLayout
@@ -46,15 +47,20 @@
                 android:textColor="@color/colorAccent" />
         </LinearLayout>
 
-        <ListView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/orderList"
-            android:divider="@color/colorPrimary"
-            android:dividerHeight="1dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:divider="@color/colorPrimary"
+            android:dividerHeight="1dp"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        </ListView>
+        </androidx.recyclerview.widget.RecyclerView>
 
     </LinearLayout>
 
