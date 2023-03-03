@@ -14,19 +14,19 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
+import android.widget.Spinner;
 
 import java.util.Collections;
+import java.util.List;
 
 import ru.drudenko.dnd.R;
 import ru.drudenko.dnd.adapter.OrderAdapter;
-import ru.drudenko.dnd.adapter.ProfileAdapter;
 import ru.drudenko.dnd.di.App;
 import ru.drudenko.dnd.model.Order;
-import ru.drudenko.dnd.model.Profile;
 
 public class OrderInitFragment extends Fragment{
 
@@ -45,9 +45,19 @@ public class OrderInitFragment extends Fragment{
         setHasOptionsMenu(true);
 
         View root = inflater.inflate(R.layout.fragment_order_init, container, false);
+
+        Spinner spinner = root.findViewById(R.id.spinner_person_type);
+        ArrayAdapter<String> adapterLevel = new ArrayAdapter<>(this.getActivity(), R.layout.spinner_dropdown_item, List.of("Игрок", "Монстр", "НПС"));
+        adapterLevel.setDropDownViewResource(R.layout.spinner_dropdown_item);
+        spinner.setAdapter(adapterLevel);
+
         RecyclerView listView = root.findViewById(R.id.orderList);
 
-        EditText editText = root.findViewById(R.id.init_name);
+
+        ArrayAdapter<String> adapterTextEdit = new ArrayAdapter<>(getContext(),
+                android.R.layout.simple_dropdown_item_1line, ((App) getActivity().getApplication()).getMonsterNames());
+        AutoCompleteTextView editText = root.findViewById(R.id.init_name);
+        editText.setAdapter(adapterTextEdit);
 
         OrderAdapter adapter = new OrderAdapter(((App) getActivity().getApplication()));
         listView.setAdapter(adapter);
@@ -55,7 +65,7 @@ public class OrderInitFragment extends Fragment{
         Button button = root.findViewById(R.id.add_init);
         button.setOnClickListener(v -> {
             if (!editText.getText().toString().isEmpty()) {
-                ((App) getActivity().getApplication()).addOrder(new Order(editText.getText().toString()));
+                ((App) getActivity().getApplication()).addOrder(new Order(editText.getText().toString(), spinner.getSelectedItem().toString()));
                 editText.getText().clear();
                 adapter.notifyDataSetChanged();
             }
@@ -65,6 +75,7 @@ public class OrderInitFragment extends Fragment{
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this.getContext(), DividerItemDecoration.VERTICAL);
         dividerItemDecoration.setDrawable( new ColorDrawable(this.getResources().getColor(R.color.colorPrimary)));
         listView.addItemDecoration(dividerItemDecoration);
+
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleCallback);
         itemTouchHelper.attachToRecyclerView(listView);
         return root;
@@ -83,6 +94,8 @@ public class OrderInitFragment extends Fragment{
             int toPosition = target.getAdapterPosition();
             Collections.swap(((App) getActivity().getApplication()).orders, fromPosition, toPosition);
             recyclerView.getAdapter().notifyItemMoved(fromPosition, toPosition);
+            recyclerView.getAdapter().notifyItemChanged(fromPosition);
+            recyclerView.getAdapter().notifyItemChanged(toPosition);
             return false;
         }
 

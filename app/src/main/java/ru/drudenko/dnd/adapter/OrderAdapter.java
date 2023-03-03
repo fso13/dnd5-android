@@ -1,5 +1,7 @@
 package ru.drudenko.dnd.adapter;
 
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,8 +13,15 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import ru.drudenko.dnd.R;
+import ru.drudenko.dnd.activity.MonsterActivity;
 import ru.drudenko.dnd.di.App;
+import ru.drudenko.dnd.model.Order;
+import ru.drudenko.dnd.model.monster.Monster;
 
 public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> {
     private final App app;
@@ -30,6 +39,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
         return viewHolder;
     }
 
+
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.textView.setText(app.orders.get(position).getName());
@@ -46,13 +56,13 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
     }
 
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-
+        private final Context context;
         TextView textView;
         ImageButton button;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-
+            context = itemView.getContext();
             textView = itemView.findViewById(R.id.textView2);
             textView.setTextColor(Color.WHITE);
 
@@ -64,7 +74,22 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
 
         @Override
         public void onClick(View view) {
-            Toast.makeText(view.getContext(), app.orders.get(getAdapterPosition()).getName(), Toast.LENGTH_SHORT).show();
+            Order order = app.orders.get(getAdapterPosition());
+            if (order.getType().equals("Монстр")) {
+                Intent intent = new Intent(context, MonsterActivity.class);
+                Set<Monster> monsters = new HashSet<>();
+                for (Monster m : app.monsters) {
+                    if (m.getName().toUpperCase().startsWith(order.getName().toUpperCase())) {
+                        monsters.add(m);
+                    }
+                }
+                Monster monster = monsters.iterator().hasNext() ? monsters.iterator().next() : null;
+
+                if (monster != null) {
+                    intent.putExtra("MONSTERID", app.monsters.indexOf(monster));
+                    context.startActivity(intent);
+                }
+            }
         }
     }
 }

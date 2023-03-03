@@ -5,7 +5,9 @@ import android.content.SharedPreferences;
 
 import com.mixpanel.android.mpmetrics.MixpanelAPI;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.inject.Inject;
 
@@ -29,6 +31,7 @@ public class App extends Application {
     @Inject
     public List<Monster> monsters;
 
+   private List<String> monsterName;
     @Inject
     public List<Profile> profiles;
 
@@ -74,6 +77,18 @@ public class App extends Application {
     }
 
 
+    public List<String> getMonsterNames(){
+
+        if(monsterName == null) {
+            monsterName = new ArrayList<>();
+            for (Monster monster : monsters) {
+                String name = monster.getName();
+                monsterName.add(name);
+            }
+        }
+        return monsterName;
+    }
+
     public AppComponent getComponent() {
         return component;
     }
@@ -111,7 +126,7 @@ public class App extends Application {
         StringBuilder value = new StringBuilder();
 
         for (Order order1 : orders) {
-            value.append(order1.getName()).append(";");
+            value.append(order1.getName()).append("=").append(order1.getType()).append(";");
         }
 
         final String key = "ORDERS";
@@ -125,7 +140,7 @@ public class App extends Application {
 
         StringBuilder value = new StringBuilder();
         for (Order order1 : orders) {
-            value.append(order1.getName()).append(";");
+            value.append(order1.getName()).append("=").append(order1.getType()).append(";");
         }
         final String key = "ORDERS";
         sharedPreferences.edit().putString(key, value.toString()).apply();

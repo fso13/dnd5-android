@@ -82,11 +82,14 @@ public class AppModule {
         try {
             SharedPreferences preferences = application.getApplicationContext().getSharedPreferences("application_preferences", Context.MODE_PRIVATE);
             List<Order> orders = new ArrayList<>();
-            String profilesString = preferences.getString("ORDERS", "Default=true");
+            String profilesString = preferences.getString("ORDERS", "");
 
-            for (String s : profilesString.split(";")) {
-                Order order = new Order(s);
-                orders.add(order);
+            if (!"".equals(profilesString)) {
+                for (String s : profilesString.split(";")) {
+                    String[] ss = s.split("=");
+                    Order order = new Order(ss[0], ss.length > 1 ? ss[1] : "НПС");
+                    orders.add(order);
+                }
             }
 
             return orders;
