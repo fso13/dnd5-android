@@ -588,7 +588,7 @@ public class MasterHelpFragment extends ListFragment {
             "        <td colspan=\"3\">-</td>\n" +
             "    </tr>" +
             "    </tbody></table>";
-    private final List<String> data = Arrays.asList("Сражение", "Состояния", "Виды урона", "Укрытие", "Броня", "Оружие", "Снаряжение", "Формулы");
+    private final List<String> data = Arrays.asList("Сражение", "Состояния", "Виды урона", "Укрытие", "Броня", "Оружие", "Снаряжение", "Формулы", "Огнестрельное оружие и взрывчатка");
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -719,6 +719,214 @@ public class MasterHelpFragment extends ListFragment {
                 }
                 intent.putExtra("CustomItems", m8);
                 intent.putExtra("title", "Формулы");
+
+                startActivityForResult(intent, 0);
+
+                break;
+            case 8:
+                intent = new Intent(getContext(), HelpActivity.class);
+                ArrayList<CustomItem> m9 = new ArrayList<>();
+                m9.add(new CustomItem("", "<div class=\"desc card__article-body\" itemprop=\"articleBody\">\n" +
+                        "    <h3 class=\"underlined\">Огнестрельное оружие<br></h3><p>Если хотите передать бесшабашный дух Трёх Мушкетёров и подобных романов, можете ввести в свою кампанию в стиле эпохи Возрождения пороховое оружие. То же самое касается кампаний, в которых разбились космические корабли или присутствуют элементы современной Земли. В таблице «огнестрельное оружие» приводятся примеры для всех этих трёх периодов. Для современного и футуристичного оружия цены не указаны.</p>\n" +
+                        "    <br><h3 class=\"smallSectionTitle\">ВЛАДЕНИЕ </h3><p>Вы сами решаете, владеет ли персонаж обращением с огнестрельным оружием. У персонажей в большинстве миров таких навыков нет. Во время простоя персонажи могут использовать правила обучения из Книги игрока, чтобы получить владение этим навыком, при условии, что у них есть достаточное количество боеприпасов, чтобы оружие можно было использовать во время обучения.</p>\n" +
+                        "    <br><h3 class=\"smallSectionTitle\">СВОЙСТВА </h3><p>Огнестрельное оружие использует особые боеприпасы, и у некоторых из них есть свойства «боекомплект» и «очередь».</p>\n" +
+                        "    <p><strong><em>Боекомплект.</em></strong> Из оружия с этим свойством можно совершить ограниченное число выстрелов. После этого персонаж должен перезарядить его действием или бонусным действием (на свой выбор).</p>\n" +
+                        "    <p><strong><em>Боеприпас.</em></strong> Боеприпасы огнестрельного оружия уничтожаются при использовании. Современное оружие и оружие эпохи Возрождения использует пули и патроны. Футуристическое оружие использует особые боеприпасы, называемые батареями. В одной батарее достаточно энергии, чтобы сделать все выстрелы, которые способно совершить оружие.</p>\n" +
+                        "    <p><strong><em>Очередь.</em></strong> Оружие с этим свойством может совершать как обычные атаки по одной цели, так и атаки по области 10-футового куба в пределах обычной дистанции. Все существа в этой области должны совершить спасбросок Ловкости Сл 15, иначе они получат обычный урон этого оружия. Такое действие использует десять боеприпасов.</p>\n" +
+                        "    <h4 class=\"tableTitle\">ОГНЕСТРЕЛЬНОЕ ОРУЖИЕ</h4>\n" +
+                        "    <div class=\"table-wrapper\"><table>\n" +
+                        "        <tbody>\n" +
+                        "        <tr class=\"table_header\"><td>Предмет</td>\n" +
+                        "            <td>Стоимость</td>\n" +
+                        "            <td>Урон</td>\n" +
+                        "            <td>Вес</td>\n" +
+                        "            <td>Свойства</td>\n" +
+                        "        </tr>\n" +
+                        "        <tr>\n" +
+                        "            <td colspan=\"5\"><strong>эпоха Возрождения</strong></td>\n" +
+                        "        </tr>\n" +
+                        "        <tr>\n" +
+                        "            <td colspan=\"5\"><em>Воинское дальнобойное оружие</em></td>\n" +
+                        "        </tr>\n" +
+                        "        <tr>\n" +
+                        "            <td class=\"pad\">Пистоль</td>\n" +
+                        "            <td>250 зм</td>\n" +
+                        "            <td><span class=\"dice\" onclick=\"return ROLLtABLE.rollDice(this);\"><span>1к10</span><span></span></span> колющий</td>\n" +
+                        "            <td>3 фнт.</td>\n" +
+                        "            <td>Боеприпас (дис. 30/90), перезарядка</td>\n" +
+                        "        </tr>\n" +
+                        "        <tr>\n" +
+                        "            <td class=\"pad\">Мушкет</td>\n" +
+                        "            <td>500 зм</td>\n" +
+                        "            <td><span class=\"dice\" onclick=\"return ROLLtABLE.rollDice(this);\"><span>1к12</span><span></span></span> колющий</td>\n" +
+                        "            <td>10 фнт.</td>\n" +
+                        "            <td>Боеприпас (дис. 40/120), <span tooltip-for=\"weapon.twohanded\" class=\"tooltipstered tooltip\">двуручное</span>, перезарядка</td>\n" +
+                        "        </tr>\n" +
+                        "        <tr>\n" +
+                        "            <td colspan=\"5\"><em>Боеприпасы</em></td>\n" +
+                        "        </tr>\n" +
+                        "        <tr>\n" +
+                        "            <td class=\"pad\">Пули (10)</td>\n" +
+                        "            <td>3 зм</td>\n" +
+                        "            <td>-</td>\n" +
+                        "            <td>2 фнт.</td>\n" +
+                        "            <td>-</td>\n" +
+                        "        </tr>\n" +
+                        "        <tr>\n" +
+                        "            <td colspan=\"5\"><strong>Современное</strong></td>\n" +
+                        "        </tr>\n" +
+                        "        <tr>\n" +
+                        "            <td colspan=\"5\"><em>Воинское дальнобойное оружие</em></td>\n" +
+                        "        </tr>\n" +
+                        "        <tr>\n" +
+                        "            <td class=\"pad\">Пистолет, автоматический</td>\n" +
+                        "            <td>-</td>\n" +
+                        "            <td><span class=\"dice\" onclick=\"return ROLLtABLE.rollDice(this);\"><span>2к6</span><span></span></span> колющий</td>\n" +
+                        "            <td>3 фнт.</td>\n" +
+                        "            <td>Боекомплект (15 выстрелов), <span tooltip-for=\"weapon.ammo\" class=\"tooltipstered tooltip\">боеприпас (дис. 50/150)</span></td>\n" +
+                        "        </tr>\n" +
+                        "        <tr>\n" +
+                        "            <td class=\"pad\">Револьвер</td>\n" +
+                        "            <td>-</td>\n" +
+                        "            <td><span class=\"dice\" onclick=\"return ROLLtABLE.rollDice(this);\"><span>2к8</span><span></span></span> колющий</td>\n" +
+                        "            <td>3 фнт.</td>\n" +
+                        "            <td>Боекомплект (6 выстрелов), <span tooltip-for=\"weapon.ammo\" class=\"tooltipstered tooltip\">боеприпас (дис. 40/120)</span></td>\n" +
+                        "        </tr>\n" +
+                        "        <tr>\n" +
+                        "            <td class=\"pad\">Винтовка, охотничья</td>\n" +
+                        "            <td>-</td>\n" +
+                        "            <td><span class=\"dice\" onclick=\"return ROLLtABLE.rollDice(this);\"><span>2к10</span><span></span></span> колющий</td>\n" +
+                        "            <td>8 фнт.</td>\n" +
+                        "            <td>Боекомплект (5 выстрелов), <span tooltip-for=\"weapon.ammo\" class=\"tooltipstered tooltip\">боеприпас (дис. 80/240)</span>, <span tooltip-for=\"weapon.twohanded\" class=\"tooltipstered tooltip\">двуручное</span></td>\n" +
+                        "        </tr>\n" +
+                        "        <tr>\n" +
+                        "            <td class=\"pad\">Винтовка, автоматическая</td>\n" +
+                        "            <td>-</td>\n" +
+                        "            <td><span class=\"dice\" onclick=\"return ROLLtABLE.rollDice(this);\"><span>2к8</span><span></span></span> колющий</td>\n" +
+                        "            <td>8 фнт.</td>\n" +
+                        "            <td>Боекомплект (30 выстрелов), <span tooltip-for=\"weapon.ammo\" class=\"tooltipstered tooltip\">боеприпас (дис. 80/240)</span>, <span tooltip-for=\"weapon.twohanded\" class=\"tooltipstered tooltip\">двуручное</span>, очередь</td>\n" +
+                        "        </tr>\n" +
+                        "        <tr>\n" +
+                        "            <td class=\"pad\">Дробовик</td>\n" +
+                        "            <td>-</td>\n" +
+                        "            <td><span class=\"dice\" onclick=\"return ROLLtABLE.rollDice(this);\"><span>2к8</span><span></span></span> колющий</td>\n" +
+                        "            <td>7 фнт.</td>\n" +
+                        "            <td>Боекомплект (2 выстрела), <span tooltip-for=\"weapon.ammo\" class=\"tooltipstered tooltip\">боеприпас (дис. 30/90)</span>, <span tooltip-for=\"weapon.twohanded\" class=\"tooltipstered tooltip\">двуручное</span></td>\n" +
+                        "        </tr>\n" +
+                        "        <tr>\n" +
+                        "            <td colspan=\"5\"><em>Боеприпасы</em></td>\n" +
+                        "        </tr>\n" +
+                        "        <tr>\n" +
+                        "            <td class=\"pad\">Патроны (10)</td>\n" +
+                        "            <td>-</td>\n" +
+                        "            <td>-</td>\n" +
+                        "            <td>1 фнт.</td>\n" +
+                        "            <td>-</td>\n" +
+                        "        </tr>\n" +
+                        "        <tr>\n" +
+                        "            <td colspan=\"5\"><strong>Футуристическое</strong></td>\n" +
+                        "        </tr>\n" +
+                        "        <tr>\n" +
+                        "            <td colspan=\"5\"><em>Воинское дальнобойное оружие</em></td>\n" +
+                        "        </tr>\n" +
+                        "        <tr>\n" +
+                        "            <td class=\"pad\">Лазерный пистолет</td>\n" +
+                        "            <td>-</td>\n" +
+                        "            <td><span class=\"dice\" onclick=\"return ROLLtABLE.rollDice(this);\"><span>3к6</span><span></span></span> излучение</td>\n" +
+                        "            <td>2 фнт.</td>\n" +
+                        "            <td>Боекомплект (50 выстрелов), <span tooltip-for=\"weapon.ammo\" class=\"tooltipstered tooltip\">боеприпас (дис. 40/120)</span></td>\n" +
+                        "        </tr>\n" +
+                        "        <tr>\n" +
+                        "            <td class=\"pad\">Винтовка на антиматерии</td>\n" +
+                        "            <td>-</td>\n" +
+                        "            <td><span class=\"dice\" onclick=\"return ROLLtABLE.rollDice(this);\"><span>6к8</span><span></span></span> некротическая энергия</td>\n" +
+                        "            <td>10 фнт.</td>\n" +
+                        "            <td>Боекомплект (2 выстрела), <span tooltip-for=\"weapon.ammo\" class=\"tooltipstered tooltip\">боеприпас (дис. 120/360)</span>, <span tooltip-for=\"weapon.twohanded\" class=\"tooltipstered tooltip\">двуручное</span></td>\n" +
+                        "        </tr>\n" +
+                        "        <tr>\n" +
+                        "            <td class=\"pad\">Лазерная винтовка</td>\n" +
+                        "            <td>-</td>\n" +
+                        "            <td><span class=\"dice\" onclick=\"return ROLLtABLE.rollDice(this);\"><span>3к8</span><span></span></span> излучение</td>\n" +
+                        "            <td>7 фнт.</td>\n" +
+                        "            <td>Боекомплект (30 выстрелов), <span tooltip-for=\"weapon.ammo\" class=\"tooltipstered tooltip\">боеприпас (дис. 100/300)</span>, <span tooltip-for=\"weapon.twohanded\" class=\"tooltipstered tooltip\">двуручное</span></td>\n" +
+                        "        </tr>\n" +
+                        "        <tr>\n" +
+                        "            <td colspan=\"5\"><em>Боеприпасы</em></td>\n" +
+                        "        </tr>\n" +
+                        "        <tr>\n" +
+                        "            <td class=\"pad\">Батарея</td>\n" +
+                        "            <td>-</td>\n" +
+                        "            <td>-</td>\n" +
+                        "            <td>5 унц.</td>\n" +
+                        "            <td>-</td>\n" +
+                        "        </tr>\n" +
+                        "        </tbody>\n" +
+                        "    </table></div>\n" +
+                        "    <br><h3 class=\"underlined\">ВЗРЫВЧАТКА </h3><p>В кампании могут встречаться взрывчатые вещества из эпохи Возрождения или современного мира (для последних цены не указаны), представленные в таблице «взрывчатка».</p>\n" +
+                        "    <br><h3 class=\"smallSectionTitle\">БОМБА </h3><p>Персонаж может действием поджечь бомбу и бросить её на расстояние до 60 футов. Все существа в пределах 5 футов от этой точки должны преуспеть в спасброске Ловкости Сл 12, иначе они получат урон огнём <span class=\"dice\" onclick=\"return ROLLtABLE.rollDice(this);\"><span>3к6</span><span></span></span>.</p>\n" +
+                        "    <br><h3 class=\"smallSectionTitle\">ПОРОХ </h3><p>Порох преимущественно используется для приведения в движение пули в стволе пистолета или винтовки, а также для изготовления бомб. Порох продаётся в маленьких деревянных бочонках или водонепроницаемых рожках.</p>\n" +
+                        "    <p>Поджигание контейнера с порохом может вызвать взрыв, причиняющий урон огнём всем существам в пределах 10 футов от него (<span class=\"dice\" onclick=\"return ROLLtABLE.rollDice(this);\"><span>3к6</span><span></span></span> от рожка, <span class=\"dice\" onclick=\"return ROLLtABLE.rollDice(this);\"><span>7к6</span><span></span></span> от бочонка). Успешный спасбросок Ловкости Сл 12 уменьшает урон вдвое. Подожжённая унция пороха просто горит 1 раунд, распространяя яркий свет в радиусе 30 футов и тусклый свет в пределах ещё 30 футов.</p>\n" +
+                        "    <br><h3 class=\"smallSectionTitle\">ДИНАМИТ </h3><p>Существо может действием поджечь динамитную шашку и бросить её на расстояние до 60 футов. Все существа в пределах 5 футов от этой точки должны совершить спасбросок Ловкости Сл 12, получая дробящий урон <span class=\"dice\" onclick=\"return ROLLtABLE.rollDice(this);\"><span>3к6</span><span></span></span> при провале или половину этого урона при успехе.</p>\n" +
+                        "    <p>Персонаж может связать вместе несколько динамитных шашек, чтоб они взорвались одновременно. Каждая добавленная шашка увеличивает урон на <span class=\"dice\" onclick=\"return ROLLtABLE.rollDice(this);\"><span>1к6</span><span></span></span> (максимум — <span class=\"dice\" onclick=\"return ROLLtABLE.rollDice(this);\"><span>10к6</span><span></span></span>), а радиус взрыва — на 5 футов (максимум — 20 футов).</p>\n" +
+                        "    <p>Динамит может быть переделан на удлинённый фитиль, чтоб взорваться через определённое время, обычно от 1 до 6 раундов. Совершите проверку инициативы за динамит. После того, как пройдёт указанное количество раундов, динамит взорвётся при своей инициативе.</p>\n" +
+                        "    <br><h3 class=\"smallSectionTitle\">ГРАНАТЫ </h3><p>Персонаж может действием кинуть гранату на расстояние до 60 футов. Имея гранатомёт, можно запустить её на расстояние до 120 футов.</p>\n" +
+                        "    <p>Все существа в пределах 20 футов от места взрыва осколочной гранаты должны совершить спасбросок Ловкости Сл 15, получая при провале колющий урон <span class=\"dice\" onclick=\"return ROLLtABLE.rollDice(this);\"><span>5к6</span><span></span></span> или половину этого урона при успехе.</p>\n" +
+                        "    <p>Спустя раунд после приземления дымовой гранаты появляется облако дыма, создающее сильно заслонённую местность с радиусом 20 футов. Умеренный ветер (по крайней мере, 10 миль в час) разгоняет дым за 4 раунда, сильный ветер (20 или больше миль в час) разгоняет его за 1 раунд.</p>\n" +
+                        "    <h4 class=\"tableTitle\">ВЗРЫВЧАТКА</h4>\n" +
+                        "    <div class=\"table-wrapper\"><table>\n" +
+                        "        <tbody>\n" +
+                        "        <tr class=\"table_header\"><td>Предмет</td>\n" +
+                        "            <td>Стоимость</td>\n" +
+                        "            <td>Вес</td>\n" +
+                        "        </tr>\n" +
+                        "        <tr>\n" +
+                        "            <td colspan=\"3\"><strong>эпоха Возрождения</strong></td>\n" +
+                        "        </tr>\n" +
+                        "        <tr>\n" +
+                        "            <td class=\"pad\">Бомба</td>\n" +
+                        "            <td>150 зм</td>\n" +
+                        "            <td>1 фнт.</td>\n" +
+                        "        </tr>\n" +
+                        "        <tr>\n" +
+                        "            <td class=\"pad\">Порох, бочонок</td>\n" +
+                        "            <td>250 зм</td>\n" +
+                        "            <td>20 фнт.</td>\n" +
+                        "        </tr>\n" +
+                        "        <tr>\n" +
+                        "            <td class=\"pad\">Порох, рожок</td>\n" +
+                        "            <td>35 зм</td>\n" +
+                        "            <td>2 фнт.</td>\n" +
+                        "        </tr>\n" +
+                        "        <tr>\n" +
+                        "            <td colspan=\"3\"><strong>современное</strong></td>\n" +
+                        "        </tr>\n" +
+                        "        <tr>\n" +
+                        "            <td class=\"pad\">Граната, дымовая</td>\n" +
+                        "            <td>-</td>\n" +
+                        "            <td>2 фнт.</td>\n" +
+                        "        </tr>\n" +
+                        "        <tr>\n" +
+                        "            <td class=\"pad\">Граната, осколочная</td>\n" +
+                        "            <td>-</td>\n" +
+                        "            <td>1 фнт.</td>\n" +
+                        "        </tr>\n" +
+                        "        <tr>\n" +
+                        "            <td class=\"pad\">Гранатомёт</td>\n" +
+                        "            <td>-</td>\n" +
+                        "            <td>7 фнт.</td>\n" +
+                        "        </tr>\n" +
+                        "        <tr>\n" +
+                        "            <td class=\"pad\">Динамит (шашка)</td>\n" +
+                        "            <td>-</td>\n" +
+                        "            <td>1 фнт.</td>\n" +
+                        "        </tr>\n" +
+                        "        </tbody>\n" +
+                        "    </table></div>\n" +
+                        "\n" +
+                        "</div>"));
+
+                intent.putExtra("CustomItems", m9);
+                intent.putExtra("title", "Огнестрельное оружие и взрывчатка");
 
                 startActivityForResult(intent, 0);
 
