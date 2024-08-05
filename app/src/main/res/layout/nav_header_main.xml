@@ -31,9 +31,9 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:autoLink="web"
         android:padding="15px"
         android:text="@string/donat"
+        android:clickable="true"
         android:textColor="@color/textColor"
         android:textColorLink="@color/colorPrimary"
         android:textSize="16sp" />

@@ -3,6 +3,8 @@ package ru.drudenko.dnd.activity;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.view.Menu;
 import android.widget.Button;
 import android.widget.TextView;
@@ -63,6 +65,11 @@ public class MainActivity extends AppCompatActivity implements UpdateNotice {
 
         TextView versionName = navigationView.getHeaderView(0).findViewById(R.id.textViewVersion);
         versionName.setText(String.format("v.%s", BuildConfig.VERSION_NAME));
+        TextView donat = navigationView.getHeaderView(0).findViewById(R.id.textView);
+        donat.setText(Html.fromHtml("<a href=\"https://yoomoney.ru/to/41001853413229\">Поддержи</a>"));;
+        donat.setMovementMethod(LinkMovementMethod.getInstance());
+        donat.setClickable(true);
+
 
         Button button = navigationView.getHeaderView(0).findViewById(R.id.button);
         button.setOnClickListener(v -> {
