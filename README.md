@@ -1,3 +1,4 @@
+[![Github All Releases](https://img.shields.io/github/downloads/fso13/dnd5-android/total.svg)]()
 ## Android приложение для помощи игрокам и мастерам для игры в D&D 5e.
 
 ## Возможности
